@@ -1,13 +1,12 @@
 /*!
 
 =========================================================
-* Paper Dashboard React - v1.1.0
+* Argon Dashboard React - v1.1.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
 
 * Coded by Creative Tim
 
@@ -18,24 +17,22 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/paper-dashboard.scss?v=1.1.0";
-import "assets/demo/demo.css";
-import "perfect-scrollbar/css/perfect-scrollbar.css";
+import "assets/plugins/nucleo/css/nucleo.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "assets/scss/argon-dashboard-react.scss";
 
-import AdminLayout from "layouts/Admin.jsx";
-
-const hist = createBrowserHistory();
+import AdminLayout from "layouts/Admin.js";
+import AuthLayout from "layouts/Auth.js";
 
 ReactDOM.render(
-  <Router history={hist}>
+  <BrowserRouter>
     <Switch>
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
-      <Redirect to="/admin/dashboard" />
+      <Route path="/auth" render={props => <AuthLayout {...props} />} />
+      <Redirect from="/" to="/admin/index" />
     </Switch>
-  </Router>,
+  </BrowserRouter>,
   document.getElementById("root")
 );

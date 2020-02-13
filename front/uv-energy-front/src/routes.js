@@ -1,13 +1,12 @@
 /*!
 
 =========================================================
-* Paper Dashboard React - v1.1.0
+* Argon Dashboard React - v1.1.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
 
 * Coded by Creative Tim
 
@@ -16,72 +15,63 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Dashboard from "views/Dashboard.jsx";
-import Notifications from "views/Notifications.jsx";
-import Icons from "views/Icons.jsx";
-import Typography from "views/Typography.jsx";
-import TableList from "views/Tables.jsx";
-import Maps from "views/Map.jsx";
-import UserPage from "views/User.jsx";
-import UpgradeToPro from "views/Upgrade.jsx";
+import Index from "views/Index.js";
+import Profile from "views/examples/Profile.js";
+import Maps from "views/examples/Maps.js";
+import Register from "views/examples/Register.js";
+import Login from "views/examples/Login.js";
+import Tables from "views/examples/Tables.js";
+import Icons from "views/examples/Icons.js";
 
 var routes = [
   {
-    path: "/dashboard",
+    path: "/index",
     name: "Dashboard",
-    icon: "nc-icon nc-bank",
-    component: Dashboard,
+    icon: "ni ni-tv-2 text-primary",
+    component: Index,
     layout: "/admin"
   },
   {
     path: "/icons",
     name: "Icons",
-    icon: "nc-icon nc-diamond",
+    icon: "ni ni-planet text-blue",
     component: Icons,
     layout: "/admin"
   },
   {
     path: "/maps",
     name: "Maps",
-    icon: "nc-icon nc-pin-3",
+    icon: "ni ni-pin-3 text-orange",
     component: Maps,
     layout: "/admin"
   },
   {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "nc-icon nc-bell-55",
-    component: Notifications,
-    layout: "/admin"
-  },
-  {
-    path: "/user-page",
+    path: "/user-profile",
     name: "User Profile",
-    icon: "nc-icon nc-single-02",
-    component: UserPage,
+    icon: "ni ni-single-02 text-yellow",
+    component: Profile,
     layout: "/admin"
   },
   {
     path: "/tables",
-    name: "Table List",
-    icon: "nc-icon nc-tile-56",
-    component: TableList,
+    name: "Tables",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: Tables,
     layout: "/admin"
   },
   {
-    path: "/typography",
-    name: "Typography",
-    icon: "nc-icon nc-caps-small",
-    component: Typography,
-    layout: "/admin"
+    path: "/login",
+    name: "Login",
+    icon: "ni ni-key-25 text-info",
+    component: Login,
+    layout: "/auth"
   },
   {
-    pro: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "nc-icon nc-spaceship",
-    component: UpgradeToPro,
-    layout: "/admin"
+    path: "/register",
+    name: "Register",
+    icon: "ni ni-circle-08 text-pink",
+    component: Register,
+    layout: "/auth"
   }
 ];
 export default routes;

@@ -1,33 +1,37 @@
 {
-  "name": "paper-dashboard-react",
+  "name": "argon-dashboard-react",
   "version": "1.1.0",
-  "private": true,
-  "homepage": "https://demos.creative-tim.com/paper-dashboard-react/#/dashboard",
-  "dependencies": {
-    "bootstrap": "4.3.1",
-    "chart.js": "2.8.0",
-    "history": "4.9.0",
-    "node-sass": "4.12.0",
-    "perfect-scrollbar": "1.4.0",
-    "react": "16.8.6",
-    "react-chartjs-2": "2.7.6",
-    "react-dom": "16.8.6",
-    "react-google-maps": "9.4.5",
-    "react-notification-alert": "0.0.12",
-    "react-router": "5.0.0",
-    "react-router-dom": "5.0.0",
-    "react-scripts": "3.0.1",
-    "reactstrap": "8.0.0"
+  "description": "React version of Argon Dashboard by Creative Tim",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creativetimofficial/argon-dashboard-react.git"
   },
+  "keywords": [
+    "react",
+    "reactjs",
+    "argon",
+    "argon-react",
+    "dashboard",
+    "dashboard-react",
+    "argon-dashboard",
+    "argon-dashboard-react"
+  ],
+  "author": "Creative Tim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
+  },
+  "homepage": "https://demos.creative-tim.com/argon-dashboard-react/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "compile-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css",
-    "minify-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.min.css --output-style compressed",
-    "map-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css --source-map true"
+    "compile-sass": "node-sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css",
+    "minify-sass": "node-sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.min.css --output-style compressed",
+    "map-sass": "node-sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css --source-map true"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,12 +42,30 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "optionalDependencies": {
-    "@types/googlemaps": "3.36.2",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "5.12.1",
+    "chart.js": "2.9.3",
+    "classnames": "2.2.6",
+    "moment": "2.24.0",
+    "node-sass": "4.13.1",
+    "nouislider": "14.1.1",
+    "react": "16.12.0",
+    "react-chartjs-2": "2.9.0",
+    "react-copy-to-clipboard": "5.0.2",
+    "react-datetime": "2.16.3",
+    "react-dom": "16.12.0",
+    "react-google-maps": "9.4.5",
+    "react-router-dom": "5.1.2",
+    "react-scripts": "3.3.1",
+    "reactstrap": "8.4.1"
+  },
+  "devDependencies": {
+    "@types/googlemaps": "3.39.2",
     "@types/markerclustererplus": "2.1.33",
-    "@types/react": "16.8.19",
-    "ajv": "6.10.0",
-    "jquery": "3.4.1",
-    "typescript": "3.4.5"
+    "@types/react": "16.9.19",
+    "eslint-plugin-flowtype": "3.13.0",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.8",
+    "typescript": "3.7.5"
   }
 }
