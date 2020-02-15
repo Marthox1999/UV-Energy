@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    #Abstract user fields
+    # Abstract user fields
     # 1) numero de documento 2) date_joined 3)email
     # 4) fecha_nacimiento
     class Meta:
