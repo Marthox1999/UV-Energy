@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import RegexValidator, validate_email
 from django.core.validators import MaxValueValidator, MinValueValidator
-'''from users.models import Client'''
+from users.models import User
 # Create your models here.
 # transformadores, subestaciones, contador
 
@@ -68,8 +68,6 @@ class Meter(models.Model):
     fk_electric_transformers = models.ForeignKey(ElectricTransformer,
                                                  on_delete=models.SET_NULL,
                                                  null=True)
-
-
-'''fk_client = models.ForeignKey(Client,
+    fk_client = models.ForeignKey(User,
                                   on_delete=models.SET_NULL,
-                                  null=True)'''
+                                  null=True)

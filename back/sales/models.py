@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import RegexValidator, validate_email
 from django.utils import timezone
-'''from users.models import Employee'''
+from users.models import User
 from assets.models import Meter
 # Create your models here.
 
@@ -20,9 +20,8 @@ class DebitPayment(models.Model):
     pk_debit_payment = models.AutoField(primary_key=True)
     fk_bank = models.ForeignKey(Bank, on_delete=models.SET_NULL,
                                 null=True)
-
-'''fk_employee = models.ForeignKey(Employee, on_delete=models.SET_NULL,
-                                    null=True)'''
+    fk_employee = models.ForeignKey(User, on_delete=models.SET_NULL,
+                                    null=True)
 
 # Bill
 
@@ -41,7 +40,5 @@ class Bill(models.Model):
     fk_meter = models.ForeignKey(Meter,
                                  on_delete=models.SET_NULL,
                                  null=True)
-
-
-'''fk_employee = models.ForeignKey(Employee, on_delete=models.SET_NULL,
-                                    null=True)'''
+    fk_employee = models.ForeignKey(User, on_delete=models.SET_NULL,
+                                    null=True)

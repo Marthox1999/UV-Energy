@@ -1,20 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
+# Users: employee and client
 
 
-class Client(models.Model):
-    cc = models.CharField(unique=True, max_length=20)
-
-# Employee
-
-
-class Employee(AbstractUser):
+class User(AbstractUser):
     POSITION = {
         ('MGR', 'Manager'),
         ('ADMIN', 'Administrator'),
-        ('OP', 'Operator')
+        ('OP', 'Operator'),
+        ('CLT', 'Client')
     }
-    pk_employee = models.CharField(unique=True,
-                                   max_length=10,
-                                   primary_key=True)
-    position = models.CharField(max_length=5, choices=POSITION, default='OP')
+    pk_user = models.CharField(unique=True,
+                               max_length=10,
+                               primary_key=True)
+    position = models.CharField(max_length=5, choices=POSITION, default='CLT')
+    cellphone_regex = RegexValidator(regex=r'^\+?1?\d{7,10}$',
+                                     message='''The cellphone must be:
+                                                '+7777777'.
+                                                Up to 10 digits allowed.''')
+    cellphone = models.CharField(validators=[cellphone_regex],
+                                 max_length=12,
+                                 blank=True)
+                                 
