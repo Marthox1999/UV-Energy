@@ -22,6 +22,8 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
+import UVForm from "views/examples/Form.js";
+
 
 var routes = [
   {
@@ -72,6 +74,13 @@ var routes = [
     icon: "ni ni-circle-08 text-pink",
     component: Register,
     layout: "/auth"
+  },
+  {
+      path: "/form",
+      name: "Form",
+      icon: "ni ni-single-02 text-yellow",
+      component: UVForm,
+      layout: "/admin"
   }
 ];
 export default routes;
