@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -19,10 +19,10 @@ import {
     Media
   } from "reactstrap";
 
-  import L from 'leaflet';
+import L from 'leaflet';
 
-  // core components
-  import Header from "components/Headers/Header.js";
+// core components
+import UVHeader from "components/Headers/UVHeader.js";
 
 
 // map
@@ -33,7 +33,7 @@ import {
     Popup
   } from "react-leaflet";
   
-  import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 
 const setPoint = new L.icon({
     iconUrl: require("assets/img/theme/transformador.svg"),
@@ -58,7 +58,7 @@ class AddElectricTransformer extends React.Component {
     render() {
         return(
         <>
-        <Header/>
+        <UVHeader/>
             <Container className="mt--7" fluid>
             <Card className="bg-secondary shadow">
                     <CardHeader className="bg-white border-0">
