@@ -98,6 +98,7 @@ var routes = [
       component: ModifyManager,
       layout: "/admin"
   },
+  {
       path: "/addElectricTransformer",
       name: "Agregar Transformador",
       icon: "ni ni-single-02 text-yellow",
