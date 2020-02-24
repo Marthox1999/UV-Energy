@@ -53,20 +53,6 @@ class LMaps extends React.Component {
                 url={'http://{s}.tile.osm.org/{z}/{x}/{y}.png'}
               />
               </Map>
-                {/*<MapWrapper
-                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"
-                  loadingElement={<div style={{ height: `100%` }} />}
-                  containerElement={
-                    <div
-                      style={{ height: `600px` }}
-                      className="map-canvas"
-                      id="map-canvas"
-                    />
-                  }
-                  mapElement={
-                    <div style={{ height: `100%`, borderRadius: "inherit" }} />
-                  }
-                />*/}
               </Card>
             </div>
           </Row>

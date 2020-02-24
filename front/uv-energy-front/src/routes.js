@@ -22,6 +22,7 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
+import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
 
 var routes = [
   {
@@ -72,6 +73,13 @@ var routes = [
     icon: "ni ni-circle-08 text-pink",
     component: Register,
     layout: "/auth"
-  }
+  },
+  {
+      path: "/addElectricTransformer",
+      name: "Agregar Transformador",
+      icon: "ni ni-single-02 text-yellow",
+      component: AddElectricTransformer,
+      layout: "/admin"
+  },
 ];
 export default routes;
