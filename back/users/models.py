@@ -22,4 +22,3 @@ class User(AbstractUser):
     cellphone = models.CharField(validators=[cellphone_regex],
                                  max_length=12,
                                  blank=True)
-                                 
