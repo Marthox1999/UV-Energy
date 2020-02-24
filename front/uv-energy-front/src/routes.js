@@ -23,6 +23,8 @@ import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import UVForm from "views/examples/Form.js";
+import AddManager from "views/Administrador-Gerente/AddManager.js";
+import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 
 
 var routes = [
@@ -80,6 +82,20 @@ var routes = [
       name: "Form",
       icon: "ni ni-single-02 text-yellow",
       component: UVForm,
+      layout: "/admin"
+  },
+  {
+      path: "/addManager",
+      name: "Agregar Gerente",
+      icon: "ni ni-single-02 text-yellow",
+      component: AddManager,
+      layout: "/admin"
+  },
+  {
+      path: "/modifyManager",
+      name: "Modificar Gerente",
+      icon: "ni ni-single-02 text-yellow",
+      component: ModifyManager,
       layout: "/admin"
   }
 ];
