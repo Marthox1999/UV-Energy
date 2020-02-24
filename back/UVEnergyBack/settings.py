@@ -25,9 +25,37 @@ SECRET_KEY = 'g61i+%@r=as53*_7+1r(7u)zu!_oq+!1_)v3lpp@t*r)o77m7h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 AUTH_USER_MODEL = 'users.User'
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:7000',
+    'http://localhost:8000'
+]
+
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:7000',
+    'http://localhost:8000'
+]
+
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Application definition
 
@@ -39,8 +67,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django_elasticsearch_dsl',
-    'django_elasticsearch_dsl_drf',
+    # 'django_elasticsearch_dsl',
+    # 'django_elasticsearch_dsl_drf',
+    'corsheaders',
     'users',
     'assets',
     'sales',
@@ -54,6 +83,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
 ]
 
 ROOT_URLCONF = 'UVEnergyBack.urls'
@@ -134,8 +172,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+""" 
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'elasticsearch:9200'
     },
 }
+ """

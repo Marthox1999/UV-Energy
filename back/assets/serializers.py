@@ -12,6 +12,3 @@ class SubStationSerializers(serializers.ModelSerializer):
     class Meta:
         model = Substation
         fields = '__all__'
-
-
-

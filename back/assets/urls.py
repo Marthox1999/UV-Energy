@@ -6,8 +6,9 @@ router = routers.DefaultRouter()
 router.register('ElectricTransformer',
                 ElectricTransformerViewSet,
                 'ElectricTransformer')
+
 router.register('Substation',
-                 SubStationViewSet,
-                  'Substation')
+                SubStationViewSet,
+                'Substation')
+
 urlpatterns = router.urls
-  

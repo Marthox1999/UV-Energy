@@ -12,6 +12,7 @@ class ElectricTransformerViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = ElectricTransformerSerializers
 
+
 class SubStationViewSet(viewsets.ModelViewSet):
     queryset = Substation.objects.all()
     permission_classes = [

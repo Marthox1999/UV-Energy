@@ -41,6 +41,7 @@ const setPoint = new L.icon({
     iconSize: new L.point(25,25)
 })
 
+const c = require('../constants')
 
 class AddElectricTransformer extends React.Component {
     constructor(props){
@@ -49,13 +50,31 @@ class AddElectricTransformer extends React.Component {
             coord : {
                 lat: 3.430283815687804,
                 lng: 283.48211288452154,
-            }
+            },
+            listSubstation : []
+
         }
+        this.handleClick = this.handleClick.bind(this);
+
+    }
+    componentDidMount(){
+        axios.get(c.api + 'assets/Substation')
+        .then( response => {
+            console.log(response)
+            if( response.data.error != null){
+                alert(response.data.error);
+              }
+              else{
+                this.setState({listSubstation: response.data.models})
+                console.log(this.state.listSubstation)
+            }             
+        })
     }
     handleClick = (e) => {
         console.log(e.latlng)
         this.setState({ coord: {lat:e.latlng.lat, lng:e.latlng.lng}});
     }
+
     render() {
         return(
         <>
