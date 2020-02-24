@@ -9,4 +9,3 @@ django-elasticsearch-dsl-drf==0.17.6
 
 
 
-
