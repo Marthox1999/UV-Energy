@@ -11,9 +11,6 @@ class User(AbstractUser):
         ('OP', 'Operator'),
         ('CLT', 'Client')
     }
-    pk_user = models.CharField(unique=True,
-                               max_length=10,
-                               primary_key=True)
     position = models.CharField(max_length=5, choices=POSITION, default='CLT')
     cellphone_regex = RegexValidator(regex=r'^\+?1?\d{7,10}$',
                                      message='''The cellphone must be:
