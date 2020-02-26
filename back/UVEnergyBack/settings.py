@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_elasticsearch_dsl',
     'django_elasticsearch_dsl_drf',
     'users',
@@ -77,6 +78,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'UVEnergyBack.wsgi.application'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+        'PAGE_SIZE': 10
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -98,7 +109,8 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
      'NAME':
-     'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+     'django.contrib.auth.password_validation.' +
+     'UserAttributeSimilarityValidator',
     },
     {
      'NAME':
