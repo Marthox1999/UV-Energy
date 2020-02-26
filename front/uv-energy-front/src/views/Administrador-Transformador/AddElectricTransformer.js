@@ -35,10 +35,11 @@ import {
   } from "react-leaflet";
   
 import 'leaflet/dist/leaflet.css';
+import { textChangeRangeIsUnchanged } from "typescript";
 
 const setPoint = new L.icon({
     iconUrl: require("assets/img/theme/transformador.svg"),
-    iconSize: new L.point(25,25)
+    iconSize: new L.point(30,30)
 })
 
 const c = require('../constants')
@@ -51,30 +52,46 @@ class AddElectricTransformer extends React.Component {
                 lat: 3.430283815687804,
                 lng: 283.48211288452154,
             },
-            listSubstation : []
-
+            electricTransformer : {
+                pk_transformers: -1,
+                tension_level: -1,
+                reference: "aaa111",
+                long: "0.0",
+                lat: "0.0",
+                fk_substation: -1
+            },
+            listSubstation : [],
         }
         this.handleClick = this.handleClick.bind(this);
-
+        this.handleChange = this.handleChange.bind(this);
+        this.getSubstation = this.getSubstation.bind(this);
     }
     componentDidMount(){
         axios.get(c.api + 'assets/Substation')
         .then( response => {
-            console.log(response)
             if( response.data.error != null){
                 alert(response.data.error);
               }
               else{
-                this.setState({listSubstation: response.data.models})
-                console.log(this.state.listSubstation)
+                this.setState({listSubstation: response.data})
             }             
         })
     }
     handleClick = (e) => {
-        console.log(e.latlng)
         this.setState({ coord: {lat:e.latlng.lat, lng:e.latlng.lng}});
     }
-
+    handleChange(e){
+        const { name, value} = e.target;
+        this.setState({
+            electricTransformer: {
+                [name]: value
+            }
+        },
+        () => {console.log(this.state.electricTransformer)})
+    }
+    getSubstation(id,data){
+        this.setState({ electricTransformer: {pk_substation: id, name: data.name}});
+    }
     render() {
         return(
         <>
@@ -84,14 +101,14 @@ class AddElectricTransformer extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Agregar Transformador</h3>
+                        <h3 className="mb-0">Add Electric Transformer</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
-                    <Form>
+                    <Form onSubmit={this.AddElectricTransformer}>
                         <h6 className="heading-small text-muted mb-4">
-                        Informacion General
+                        General Information
                         </h6>
                         <div className="pl-lg-4">
                             <FormGroup>
@@ -99,7 +116,7 @@ class AddElectricTransformer extends React.Component {
                                 <DropdownToggle className="pr-0">
                                 <Media className="align-items-center" >
                                     <span className="mb-0 text-sm font-weight-bold">
-                                        Subestación  
+                                        Substation  
                                     </span>
                                     <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
                                     <img
@@ -110,22 +127,16 @@ class AddElectricTransformer extends React.Component {
                                 </Media>
                                 </DropdownToggle>
                                 <DropdownMenu className="dropdown-menu-arrow" right>
-                                <DropdownItem className="noti-title" header tag="div">
-                                    <h6 className="text-overflow m-0">Subestación 1</h6>
-                                </DropdownItem>
-                                <DropdownItem to="/admin/user-profile" tag={Link}>
-                                    <i className="ni ni-single-02" />
-                                    <span>Subestación 1</span>
-                                </DropdownItem>
-                                <DropdownItem to="/admin/user-profile" tag={Link}>
-                                    <i className="ni ni-settings-gear-65" />
-                                    <span>Subestación 2</span>
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                                    <i className="ni ni-user-run" />
-                                    <span>Logout</span>
-                                </DropdownItem>
+                                { this.state.listSubstation.length > 0 ?
+                                this.state.listSubstation.map((data, id) =>
+                                <DropdownItem key={'s-'+id} onClick={()=> this.getSubstation(id,data)}>
+                                    <i className=" ni ni-pin-3" />
+                                    <span>{data.name}</span>
+                                </DropdownItem>) : 
+                                <DropdownItem to="#" tag={Link}>
+                                <i className=" ni ni-fat-remove"/>
+                                <span>There aren't substations</span>
+                                </DropdownItem>}
                                 </DropdownMenu>
                                 </UncontrolledDropdown>
                             </FormGroup>
@@ -134,13 +145,14 @@ class AddElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Referencia
+                                Reference
                                 </label>
                                 <Input
                                 className="form-control-alternative"
-                                id="input-first-name"
+                                name="reference"
                                 placeholder="reference"
                                 type="text"
+                                onChange={this.handleChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -148,13 +160,14 @@ class AddElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Nivel de Tensión
+                                Tension Level
                                 </label>
                                 <Input
                                 className="form-control-alternative"
-                                id="input-last-name"
-                                placeholder="Tensión"
+                                name="tension_level"
+                                placeholder="tension"
                                 type="number"
+                                onChange={this.handleChange}
                                 />
                             </FormGroup>
                             <Map
@@ -173,12 +186,12 @@ class AddElectricTransformer extends React.Component {
                                     position={this.state.coord}
                                     draggable={true}
                                     icon={setPoint}>
-                                <Popup onClick={this.handleClick} position={this.state.coord}>¿Seguro? Punto: <pre>{JSON.stringify(this.state.coord, null, 2)}</pre></Popup>
+                                <Popup onClick={this.handleClick} position={this.state.coord}>Point: <pre>{JSON.stringify(this.state.coord, null, 2)}</pre></Popup>
                             </Marker>
                             </Map>
                         <div className="text-center">
-                            <Button className="mt-4" color="primary" type="button">
-                                Agregar
+                            <Button className="mt-4" color="primary" type="submit">
+                                Add
                             </Button>
                         </div>
                         </div>
