@@ -17,7 +17,8 @@ import {
     Col,
     DropdownMenu,
     UncontrolledDropdown,
-    Media
+    Media,
+    Alert
   } from "reactstrap";
 
 import L from 'leaflet';
@@ -35,7 +36,6 @@ import {
   } from "react-leaflet";
   
 import 'leaflet/dist/leaflet.css';
-import { textChangeRangeIsUnchanged } from "typescript";
 
 const setPoint = new L.icon({
     iconUrl: require("assets/img/theme/transformador.svg"),
@@ -61,6 +61,7 @@ class AddElectricTransformer extends React.Component {
                 fk_substation: -1
             },
             listSubstation : [],
+            isAlert: false,
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -92,6 +93,13 @@ class AddElectricTransformer extends React.Component {
     getSubstation(id,data){
         this.setState({ electricTransformer: {pk_substation: id, name: data.name}});
     }
+    AddElectricTransformer(e){
+        if ((this.state.electricTransformer.tension_level === -1) && (this.state.electricTransformer.reference == "") && (this.state.electricTransformer.long == "0.0") && (this.state.electricTransformer.lat == "0.0") && (this.state.electricTransformer.fk_substation === -1)){
+            this.setState({isAlert: true})
+        }else{
+            
+        }
+    }
     render() {
         return(
         <>
@@ -111,6 +119,9 @@ class AddElectricTransformer extends React.Component {
                         General Information
                         </h6>
                         <div className="pl-lg-4">
+                            <Alert color="warning" isOpen={this.state.isAlert}>
+                                <strong>Warning!</strong> There are empty fields!
+                            </Alert>
                             <FormGroup>
                                 <UncontrolledDropdown nav>
                                 <DropdownToggle className="pr-0">
