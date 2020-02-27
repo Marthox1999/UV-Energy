@@ -3,11 +3,11 @@ from .api import ElectricTransformerViewSet, SubStationViewSet
 
 router = routers.DefaultRouter()
 
-router.register('ElectricTransformer',
+router.register(r'ElectricTransformer',
                 ElectricTransformerViewSet,
                 'ElectricTransformer')
 
-router.register('Substation',
+router.register(r'Substation',
                 SubStationViewSet,
                 'Substation')
 
