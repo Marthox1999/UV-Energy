@@ -35,6 +35,28 @@ class ModifyManager extends React.Component {
                     <CardBody>
                     <Form>
                         <h6 className="heading-small text-muted mb-4">
+                        Seleccione el Gerente
+                        </h6>
+                        <div className="pl-lg-4">
+                            <Row>
+                                <Col lg="6">
+                                <FormGroup>
+                                    <label 
+                                    for="exampleFormControlSelect1"
+                                    >
+                                    Seleccione el Gerente
+                                    </label>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                    </select>
+                                </FormGroup>
+                                </Col>
+                            </Row>
+                            
+                        </div>
+                    </Form>
+                    
+                    <Form>
+                        <h6 className="heading-small text-muted mb-4">
                         Informacion Personal
                         </h6>
                         <div className="pl-lg-4">
