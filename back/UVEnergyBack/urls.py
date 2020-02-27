@@ -7,5 +7,5 @@ from users import api as api_users
 
 urlpatterns = [
     path('api-token-auth/', obtain_auth_token),
-    path('api-user/', api_users.CreateUser.as_view()),
+    path('api-user/', api_users.APIUser.as_view()),
 ]
