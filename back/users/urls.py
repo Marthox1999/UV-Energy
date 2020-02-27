@@ -5,4 +5,5 @@ router = routers.DefaultRouter()
 
 router.register('user', UserViewSet, 'api-user')
 
+
 urlpatterns = router.urls

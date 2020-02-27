@@ -1,4 +1,6 @@
 import React from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -11,7 +13,12 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
+  DropdownMenu,
+  UncontrolledDropdown,
+  Media,
+  DropdownToggle,
+  DropdownItem
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -33,6 +40,54 @@ class ModifyManager extends React.Component {
                     </Row>
                     </CardHeader>
                     <CardBody>
+                    <Form>
+                    <FormGroup>
+                                <UncontrolledDropdown nav>
+                                <DropdownToggle className="pr-0">
+                                <Media className="align-items-center" >
+                                    <span className="mb-0 text-sm font-weight-bold">
+                                        Gerente  
+                                    </span>
+                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
+                                    </span>
+                                </Media>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                <DropdownItem className="noti-title" header tag="div">
+                                    <h6 className="text-overflow m-0">Gerentes</h6>
+                                </DropdownItem>
+                                <DropdownItem to="/admin/user-profile">
+                                    <i className="ni ni-single-02" />
+                                    <span>Gerente 1 </span>
+                                </DropdownItem>
+                                <DropdownItem to="/admin/user-profile">
+                                    <i className="ni ni-single-02s" />
+                                    <span>Gerente 2</span>
+                                </DropdownItem>
+                                </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </FormGroup>
+                        <h6 className="heading-small text-muted mb-4">
+                        Seleccione el Gerente
+                        </h6>
+                        <div className="pl-lg-4">
+                            <Row>
+                                <Col lg="6">
+                                <FormGroup>
+                                    <label 
+                                    for="exampleFormControlSelect1"
+                                    >
+                                    Seleccione el Gerente
+                                    </label>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                    </select>
+                                </FormGroup>
+                                </Col>
+                            </Row>
+                            
+                        </div>
+                    </Form>
+                    
                     <Form>
                         <h6 className="heading-small text-muted mb-4">
                         Informacion Personal

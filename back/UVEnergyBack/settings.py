@@ -110,7 +110,7 @@ Emily 163046        'HOST': 'db',
 AUTH_PASSWORD_VALIDATORS = [
     {
      'NAME':
-     'django.contrib.auth.password_validation.'Emily 163046 +
+     'django.contrib.auth.password_validation.' +
      'UserAttributeSimilarityValidator',
     },
     {
