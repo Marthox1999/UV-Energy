@@ -33,8 +33,8 @@ class ElectricTransformer(models.Model):
                                  max_length=8,
                                  blank=True)
 
-    long = models.DecimalField(max_digits=9, decimal_places=6)
-    lat = models.DecimalField(max_digits=9, decimal_places=6)
+    long = models.DecimalField(max_digits=18, decimal_places=15)
+    lat = models.DecimalField(max_digits=18, decimal_places=15)
     fk_substation = models.ForeignKey(Substation,
                                       on_delete=models.SET_NULL,
                                       null=True)
