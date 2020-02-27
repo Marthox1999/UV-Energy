@@ -59,10 +59,11 @@ class AddElectricTransformer extends React.Component {
             },
             electricTransformer : {
                 pk_transformers: -1,
-                tension_level: -1,
-                reference: '',
-                long: -1,
-                lat: -1,
+                tension_level: 0,
+                reference: "",
+                long: "",
+                lat: "",
+                isActive: true,
                 fk_substation: -1
             },
             listSubstation : [],
@@ -71,6 +72,8 @@ class AddElectricTransformer extends React.Component {
             isAlertSuccess: false,
         }
         this.handleClick = this.handleClick.bind(this);
+        this.onChangeReference = this.onChangeReference.bind(this);
+        this.onChangeTensionLevel = this.onChangeTensionLevel.bind(this);
         this.getSubstation = this.getSubstation.bind(this);
         this.AddElectricTransformer = this.AddElectricTransformer.bind(this);
     }
@@ -98,34 +101,52 @@ class AddElectricTransformer extends React.Component {
                                                 pk_transformers: -1,
                                                 tension_level: parseInt(this.state.electricTransformer.tension_level),
                                                 reference: this.state.electricTransformer.reference,
-                                                long: e.latlng.lng,
-                                                lat: e.latlng.lat,
+                                                long: e.latlng.lng.toString(),
+                                                lat: e.latlng.lat.toString(),
+                                                isActive: this.state.electricTransformer.isActive,
                                                 fk_substation: this.state.electricTransformer.fk_substation
-                                            }});
+                                            }}, () => console.log(this.state.electricTransformer));
+    }
+    onChangeReference(e){
+        this.setState({ electricTransformer: {
+                                                pk_transformers: -1,
+                                                tension_level: this.state.electricTransformer.tension_level,
+                                                reference: e.target.value,
+                                                long: this.state.electricTransformer.long,
+                                                lat: this.state.electricTransformer.lat,
+                                                isActive: this.state.electricTransformer.isActive,
+                                                fk_substation: this.state.electricTransformer.fk_substation
+                                            }})
+    }
+    onChangeTensionLevel(e){
+        this.setState({ electricTransformer: {
+                                                pk_transformers: -1,
+                                                tension_level: e.target.value,
+                                                reference: this.state.electricTransformer.reference,
+                                                long: this.state.electricTransformer.long,
+                                                lat: this.state.electricTransformer.lat,
+                                                isActive: this.state.electricTransformer.isActive,
+                                                fk_substation: this.state.electricTransformer.fk_substation
+                                            }})
     }
     getSubstation(data){
         this.setState({ electricTransformer:{
                                                 pk_transformers: -1,
-                                                tension_level: -1,
-                                                reference: '',
+                                                tension_level: this.state.electricTransformer.tension_level,
+                                                reference: this.state.electricTransformer.reference,
                                                 long: this.state.electricTransformer.long,
                                                 lat: this.state.electricTransformer.lat,
+                                                isActive: this.state.electricTransformer.isActive,
                                                 fk_substation: data.pk_substation
                                             }});
     }
     AddElectricTransformer(e){
-        this.setState({ electricTransformer:{
-            pk_transformers: -1,
-            tension_level: parseInt(e.target.tension_level.value),
-            reference: e.target.reference.value,
-            long: this.state.electricTransformer.long,
-            lat: this.state.electricTransformer.lat,
-            fk_substation: this.state.electricTransformer.fk_substation
-        }});
-        if ((this.state.electricTransformer.tension_level === -1) ||
-            (this.state.electricTransformer.reference === '') ||
-            (this.state.electricTransformer.long === -1) ||
-            (this.state.electricTransformer.lat === -1) ||
+        e.preventDefault()
+        console.log(this.state.electricTransformer)
+        if ((this.state.electricTransformer.tension_level === 0) ||
+            (this.state.electricTransformer.reference === "") ||
+            (this.state.electricTransformer.long === "") ||
+            (this.state.electricTransformer.lat === "") ||
             (this.state.electricTransformer.fk_substation === -1)){
             console.log(this.state.electricTransformer)
             this.setState({isAlertEmpty: true})
@@ -134,11 +155,20 @@ class AddElectricTransformer extends React.Component {
                        this.state.electricTransformer)
             .then( response => {
                 if (response.data.pk_transformers !== -1){
-                    this.setState({ isAlertSuccess: true, isAlertEmpty: false});
+                    this.setState({ isAlertSuccess: true,
+                                    isAlertEmpty: false,
+                                    electricTransformer: {
+                                                            pk_transformers: -1,
+                                                            tension_level: 0,
+                                                            reference: "",
+                                                            long: "",
+                                                            lat: "",
+                                                            isActive: true,
+                                                            fk_substation: -1
+                                                        }});
                 }
             }).catch(error => console.log(error))
         }
-        e.preventDefault()
     }
     render() {
         return(
@@ -206,6 +236,8 @@ class AddElectricTransformer extends React.Component {
                                 name="reference"
                                 placeholder="reference"
                                 type="text"
+                                value={this.state.electricTransformer.reference}
+                                onChange={this.onChangeReference}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -220,6 +252,8 @@ class AddElectricTransformer extends React.Component {
                                 name="tension_level"
                                 placeholder="tension"
                                 type="number"
+                                value={this.state.electricTransformer.tension_level}
+                                onChange={this.onChangeTensionLevel}
                                 />
                             </FormGroup>
                             <h2>Choose the point for the electric transformer</h2>
@@ -245,6 +279,12 @@ class AddElectricTransformer extends React.Component {
                                     attribution={'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
                                     url={'http://{s}.tile.osm.org/{z}/{x}/{y}.png'}
                                 />
+                                    {this.state.transformers.map((data, id) =>  
+                                    <Marker key={'transformer-'+id} position={[parseFloat(data.lat), parseFloat(data.long)]} icon={transformerDone}>
+                                        <Popup>
+                                            <span> {data.name} </span>
+                                        </Popup>
+                                    </Marker>)}
                                     <Marker
                                         onClick={this.handleClick}
                                         position={this.state.coord}
@@ -252,12 +292,6 @@ class AddElectricTransformer extends React.Component {
                                         icon={setPoint}>
                                         <Popup onClick={this.handleClick} position={this.state.coord}>Point choosen: <pre>{this.state.electricTransformer.lat}, {this.state.electricTransformer.long}</pre></Popup>
                                     </Marker>
-                                    {this.state.transformers.map((data, id) =>  
-                                    <Marker key={'transformer-'+id} position={[parseFloat(data.lat), parseFloat(data.long)]} icon={transformerDone}>
-                                        <Popup>
-                                            <span> {data.name} </span>
-                                        </Popup>
-                                    </Marker>)}
                             </Map>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
