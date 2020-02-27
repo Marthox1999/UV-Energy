@@ -17,7 +17,8 @@ import {
     Col,
     DropdownMenu,
     UncontrolledDropdown,
-    Media
+    Media,
+    Alert
   } from "reactstrap";
 
 import L from 'leaflet';
@@ -35,11 +36,15 @@ import {
   } from "react-leaflet";
   
 import 'leaflet/dist/leaflet.css';
-import { textChangeRangeIsUnchanged } from "typescript";
 
 const setPoint = new L.icon({
-    iconUrl: require("assets/img/theme/transformador.svg"),
-    iconSize: new L.point(30,30)
+    iconUrl: require("assets/img/theme/transformador.png"),
+    iconSize: new L.point(45,45)
+})
+
+const transformerDone = new L.icon({
+    iconUrl: require("assets/img/theme/pointerdone.png"),
+    iconSize: new L.point(45,45)
 })
 
 const c = require('../constants')
@@ -55,16 +60,19 @@ class AddElectricTransformer extends React.Component {
             electricTransformer : {
                 pk_transformers: -1,
                 tension_level: -1,
-                reference: "aaa111",
-                long: "0.0",
-                lat: "0.0",
+                reference: '',
+                long: -1,
+                lat: -1,
                 fk_substation: -1
             },
             listSubstation : [],
+            transformers: [],
+            isAlertEmpty: false,
+            isAlertSuccess: false,
         }
         this.handleClick = this.handleClick.bind(this);
-        this.handleChange = this.handleChange.bind(this);
         this.getSubstation = this.getSubstation.bind(this);
+        this.AddElectricTransformer = this.AddElectricTransformer.bind(this);
     }
     componentDidMount(){
         axios.get(c.api + 'assets/Substation')
@@ -75,22 +83,62 @@ class AddElectricTransformer extends React.Component {
               else{
                 this.setState({listSubstation: response.data})
             }             
-        })
+        }).catch(error => alert(error))
+        axios.get(c.api + 'assets/ElectricTransformer')
+        .then(response => {
+            if (response.data <= 0){
+                alert("No hay transformadores registrados.")
+            }else{
+                this.setState({transformers: response.data})
+            }
+        }).catch(error => console.log(error))
     }
     handleClick = (e) => {
-        this.setState({ coord: {lat:e.latlng.lat, lng:e.latlng.lng}});
+        this.setState({ electricTransformer: {
+                                                pk_transformers: -1,
+                                                tension_level: parseInt(this.state.electricTransformer.tension_level),
+                                                reference: this.state.electricTransformer.reference,
+                                                long: e.latlng.lng,
+                                                lat: e.latlng.lat,
+                                                fk_substation: this.state.electricTransformer.fk_substation
+                                            }});
     }
-    handleChange(e){
-        const { name, value} = e.target;
-        this.setState({
-            electricTransformer: {
-                [name]: value
-            }
-        },
-        () => {console.log(this.state.electricTransformer)})
+    getSubstation(data){
+        this.setState({ electricTransformer:{
+                                                pk_transformers: -1,
+                                                tension_level: -1,
+                                                reference: '',
+                                                long: this.state.electricTransformer.long,
+                                                lat: this.state.electricTransformer.lat,
+                                                fk_substation: data.pk_substation
+                                            }});
     }
-    getSubstation(id,data){
-        this.setState({ electricTransformer: {pk_substation: id, name: data.name}});
+    AddElectricTransformer(e){
+        this.setState({ electricTransformer:{
+            pk_transformers: -1,
+            tension_level: parseInt(e.target.tension_level.value),
+            reference: e.target.reference.value,
+            long: this.state.electricTransformer.long,
+            lat: this.state.electricTransformer.lat,
+            fk_substation: this.state.electricTransformer.fk_substation
+        }});
+        if ((this.state.electricTransformer.tension_level === -1) ||
+            (this.state.electricTransformer.reference === '') ||
+            (this.state.electricTransformer.long === -1) ||
+            (this.state.electricTransformer.lat === -1) ||
+            (this.state.electricTransformer.fk_substation === -1)){
+            console.log(this.state.electricTransformer)
+            this.setState({isAlertEmpty: true})
+        }else{
+            axios.post(c.api + 'assets/ElectricTransformer/',
+                       this.state.electricTransformer)
+            .then( response => {
+                if (response.data.pk_transformers !== -1){
+                    this.setState({ isAlertSuccess: true, isAlertEmpty: false});
+                }
+            }).catch(error => console.log(error))
+        }
+        e.preventDefault()
     }
     render() {
         return(
@@ -111,6 +159,12 @@ class AddElectricTransformer extends React.Component {
                         General Information
                         </h6>
                         <div className="pl-lg-4">
+                            <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                                <strong>Warning!</strong> There are empty fields!
+                            </Alert>
+                            <Alert color="success" isOpen={this.state.isAlertSuccess}>
+                                <strong>Congratulations!</strong> The electric transformer was created!
+                            </Alert>
                             <FormGroup>
                                 <UncontrolledDropdown nav>
                                 <DropdownToggle className="pr-0">
@@ -129,7 +183,7 @@ class AddElectricTransformer extends React.Component {
                                 <DropdownMenu className="dropdown-menu-arrow" right>
                                 { this.state.listSubstation.length > 0 ?
                                 this.state.listSubstation.map((data, id) =>
-                                <DropdownItem key={'s-'+id} onClick={()=> this.getSubstation(id,data)}>
+                                <DropdownItem key={'s-'+id} onClick={()=> this.getSubstation(data)}>
                                     <i className=" ni ni-pin-3" />
                                     <span>{data.name}</span>
                                 </DropdownItem>) : 
@@ -152,7 +206,6 @@ class AddElectricTransformer extends React.Component {
                                 name="reference"
                                 placeholder="reference"
                                 type="text"
-                                onChange={this.handleChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -167,13 +220,24 @@ class AddElectricTransformer extends React.Component {
                                 name="tension_level"
                                 placeholder="tension"
                                 type="number"
-                                onChange={this.handleChange}
                                 />
                             </FormGroup>
+                            <h2>Choose the point for the electric transformer</h2>
+                            <img 
+                                alt="..."
+                                src={require("assets/img/theme/transformador.png")}
+                                style={{height: '35px', width: '35px'}}
+                            /> Electric transformer to set
+                            <br/>
+                            <img 
+                                alt="..."
+                                src={require("assets/img/theme/pointerdone.png")}
+                                style={{height: '35px', width: '35px'}}
+                            /> Electric transformers active
                             <Map
                                 id="map-canvas"
-                                style={{width: '100%',height: '400px'}}
-                                center={[3.430283815687804, 283.48211288452154]}
+                                style={{width: '100%',height: '350px'}}
+                                center={[this.state.coord.lat, this.state.coord.lng]}
                                 zoom={12}
                                 onClick={this.handleClick}>
                                 >
@@ -182,12 +246,18 @@ class AddElectricTransformer extends React.Component {
                                     url={'http://{s}.tile.osm.org/{z}/{x}/{y}.png'}
                                 />
                                     <Marker
-                                    onClick={this.handleClick}
-                                    position={this.state.coord}
-                                    draggable={true}
-                                    icon={setPoint}>
-                                <Popup onClick={this.handleClick} position={this.state.coord}>Point: <pre>{JSON.stringify(this.state.coord, null, 2)}</pre></Popup>
-                            </Marker>
+                                        onClick={this.handleClick}
+                                        position={this.state.coord}
+                                        draggable={true}
+                                        icon={setPoint}>
+                                        <Popup onClick={this.handleClick} position={this.state.coord}>Point choosen: <pre>{this.state.electricTransformer.lat}, {this.state.electricTransformer.long}</pre></Popup>
+                                    </Marker>
+                                    {this.state.transformers.map((data, id) =>  
+                                    <Marker key={'transformer-'+id} position={[parseFloat(data.lat), parseFloat(data.long)]} icon={transformerDone}>
+                                        <Popup>
+                                            <span> {data.name} </span>
+                                        </Popup>
+                                    </Marker>)}
                             </Map>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
