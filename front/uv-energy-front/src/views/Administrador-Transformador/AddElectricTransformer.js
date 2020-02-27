@@ -91,7 +91,7 @@ class AddElectricTransformer extends React.Component {
             }else{
                 this.setState({transformers: response.data})
             }
-        }).catch(error => alert(error))
+        }).catch(error => console.log(error))
     }
     handleClick = (e) => {
         this.setState({ electricTransformer: {
@@ -108,8 +108,8 @@ class AddElectricTransformer extends React.Component {
                                                 pk_transformers: -1,
                                                 tension_level: -1,
                                                 reference: '',
-                                                long: -1,
-                                                lat: -1,
+                                                long: this.state.electricTransformer.long,
+                                                lat: this.state.electricTransformer.lat,
                                                 fk_substation: data.pk_substation
                                             }});
     }
@@ -118,8 +118,8 @@ class AddElectricTransformer extends React.Component {
             pk_transformers: -1,
             tension_level: parseInt(e.target.tension_level.value),
             reference: e.target.reference.value,
-            long: -1,
-            lat: -1,
+            long: this.state.electricTransformer.long,
+            lat: this.state.electricTransformer.lat,
             fk_substation: this.state.electricTransformer.fk_substation
         }});
         if ((this.state.electricTransformer.tension_level === -1) ||
@@ -127,6 +127,7 @@ class AddElectricTransformer extends React.Component {
             (this.state.electricTransformer.long === -1) ||
             (this.state.electricTransformer.lat === -1) ||
             (this.state.electricTransformer.fk_substation === -1)){
+            console.log(this.state.electricTransformer)
             this.setState({isAlertEmpty: true})
         }else{
             axios.post(c.api + 'assets/ElectricTransformer/',
@@ -135,7 +136,7 @@ class AddElectricTransformer extends React.Component {
                 if (response.data.pk_transformers !== -1){
                     this.setState({ isAlertSuccess: true, isAlertEmpty: false});
                 }
-            }).catch(error => alert(error))
+            }).catch(error => console.log(error))
         }
         e.preventDefault()
     }
@@ -222,9 +223,20 @@ class AddElectricTransformer extends React.Component {
                                 />
                             </FormGroup>
                             <h2>Choose the point for the electric transformer</h2>
+                            <img 
+                                alt="..."
+                                src={require("assets/img/theme/transformador.png")}
+                                style={{height: '35px', width: '35px'}}
+                            /> Electric transformer to set
+                            <br/>
+                            <img 
+                                alt="..."
+                                src={require("assets/img/theme/pointerdone.png")}
+                                style={{height: '35px', width: '35px'}}
+                            /> Electric transformers active
                             <Map
                                 id="map-canvas"
-                                style={{width: '100%',height: '400px'}}
+                                style={{width: '100%',height: '350px'}}
                                 center={[this.state.coord.lat, this.state.coord.lng]}
                                 zoom={12}
                                 onClick={this.handleClick}>
