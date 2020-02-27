@@ -1,7 +1,6 @@
 from assets.models import ElectricTransformer, Substation
 from rest_framework import viewsets, permissions
 from .serializers import ElectricTransformerSerializers, SubStationSerializers
-
 # electric transformer viewsets
 
 
@@ -19,10 +18,3 @@ class SubStationViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = SubStationSerializers
-
-class AdminViewSet(viewsets.ModelViewSet):
-    queryset = Admin.objects.all()
-    permission_classes = [
-        permissions.AllowAny
-    ]
-    serializer_class = AdminSerializers
