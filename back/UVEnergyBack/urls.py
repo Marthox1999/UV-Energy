@@ -3,9 +3,13 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 
-router = routers.DefaultRouter()
+from users import api as api_users
 
 
 urlpatterns = [
-    path('', include(router.urls)),
-]
+    path('admin/', admin.site.urls),
+    path('api/assets/', include('assets.urls')),
+    path('api/users/auth/', obtain_auth_token),
+    path('api/users/', include('users.urls')),
+  
+router = routers.DefaultRouter()
