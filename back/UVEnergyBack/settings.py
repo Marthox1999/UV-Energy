@@ -25,9 +25,14 @@ SECRET_KEY = 'g61i+%@r=as53*_7+1r(7u)zu!_oq+!1_)v3lpp@t*r)o77m7h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 AUTH_USER_MODEL = 'users.User'
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+]
 
 # Application definition
 
@@ -42,6 +47,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_elasticsearch_dsl',
     'django_elasticsearch_dsl_drf',
+    'corsheaders',
+
     'users',
     'assets',
     'sales',
@@ -50,12 +57,15 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
 ]
+
 
 ROOT_URLCONF = 'UVEnergyBack.urls'
 
@@ -146,8 +156,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+""" 
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'elasticsearch:9200'
     },
 }
+ """
