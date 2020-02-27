@@ -74,3 +74,16 @@ class Meter(models.Model):
                                   on_delete=models.SET_NULL,
                                   null=True)
     isActive = models.BooleanField(default=True)
+
+# Subestacion
+
+
+class Admin(models.Model):
+    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$',
+                                  'Only alphanumeric characters are allowed.')
+    pk_substation = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, unique=True,
+                            validators=[alphanumeric])
+    long = models.DecimalField(max_digits=18, decimal_places=15)
+    lat = models.DecimalField(max_digits=18, decimal_places=15)
+    isActive = models.BooleanField(default=True)

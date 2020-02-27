@@ -11,4 +11,8 @@ router.register('Substation',
                 SubStationViewSet,
                 'Substation')
 
+router.register('Admin',
+                AdminViewSet,
+                'Admin')
+
 urlpatterns = router.urls
