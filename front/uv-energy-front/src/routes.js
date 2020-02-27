@@ -26,6 +26,7 @@ import UVForm from "views/examples/Form.js";
 import AddManager from "views/Administrador-Gerente/AddManager.js";
 import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
+import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
 
 var routes = [
   {
@@ -71,11 +72,11 @@ var routes = [
         layout: "/auth"
   },
   {
-		path: "/register",
-		name: "Register",
-		icon: "ni ni-circle-08 text-pink",
-		component: Register,
-		layout: "/auth"
+	  path: "/register",
+        name: "Register",
+        icon: "ni ni-circle-08 text-pink",
+        component: Register,
+        layout: "/auth"
   },
   {
       path: "/form",
@@ -104,6 +105,13 @@ var routes = [
       icon: "ni ni-single-02 text-yellow",
       component: AddElectricTransformer,
       layout: "/admin"
-  }
+  },
+  {
+      path: "/addAdmin",
+      name: "Add Admin",
+      icon: "ni ni-single-02 text-yellow",
+      component: AddAdmin,
+      layout: "/admin"
+  },
 ];
 export default routes;
