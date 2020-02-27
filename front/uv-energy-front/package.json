@@ -46,6 +46,7 @@
     "@fortawesome/fontawesome-free": "5.12.1",
     "chart.js": "2.9.3",
     "classnames": "2.2.6",
+    "leaflet": "^1.6.0",
     "moment": "2.24.0",
     "node-sass": "4.13.1",
     "nouislider": "14.1.1",
@@ -55,9 +56,11 @@
     "react-datetime": "2.16.3",
     "react-dom": "16.12.0",
     "react-google-maps": "9.4.5",
+    "react-leaflet": "^2.6.1",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.3.1",
-    "reactstrap": "8.4.1"
+    "reactstrap": "8.4.1",
+    "axios": "^0.19.2"
   },
   "devDependencies": {
     "@types/googlemaps": "3.39.2",
