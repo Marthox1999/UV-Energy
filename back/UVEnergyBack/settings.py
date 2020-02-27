@@ -36,14 +36,12 @@ INSTALLED_APPS = [
     # 'django_elasticsearch_dsl_drf',
     'corsheaders',
     'rest_framework.authtoken',
-    'django_elasticsearch_dsl',
-    'django_elasticsearch_dsl_drf',
     'users',
     'assets',
     'sales',
-]
-
-MIDDLEWARE = [
+    ]
+    
+MIDDLEWARE =[
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -75,7 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'UVEnergyBack.wsgi.application'
-
+"""
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -88,7 +86,7 @@ REST_FRAMEWORK = {
         'rest_framework.pagination.PageNumberPagination',
         'PAGE_SIZE': 10
 }
-
+"""
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -98,7 +96,7 @@ DATABASES = {
         'NAME': 'novaDB',
         'USER': 'postgres',
         'PASSWORD': 'novaSecret',
-Emily 163046        'HOST': 'db',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
@@ -110,7 +108,7 @@ Emily 163046        'HOST': 'db',
 AUTH_PASSWORD_VALIDATORS = [
     {
      'NAME':
-     'django.contrib.auth.password_validation.'Emily 163046 +
+     'django.contrib.auth.password_validation.' +
      'UserAttributeSimilarityValidator',
     },
     {
@@ -147,7 +145,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-""" 
+"""
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'elasticsearch:9200'
