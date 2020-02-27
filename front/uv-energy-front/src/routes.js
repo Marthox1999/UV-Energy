@@ -28,6 +28,7 @@ import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
 import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
 
+
 var routes = [
   {
         path: "/index",
@@ -72,7 +73,7 @@ var routes = [
         layout: "/auth"
   },
   {
-	  path: "/register",
+	      path: "/register",
         name: "Register",
         icon: "ni ni-circle-08 text-pink",
         component: Register,

@@ -33,8 +33,8 @@ class ElectricTransformer(models.Model):
                                  max_length=8,
                                  blank=True)
 
-    long = models.DecimalField(max_digits=9, decimal_places=6)
-    lat = models.DecimalField(max_digits=9, decimal_places=6)
+    long = models.DecimalField(max_digits=18, decimal_places=15)
+    lat = models.DecimalField(max_digits=18, decimal_places=15)
     fk_substation = models.ForeignKey(Substation,
                                       on_delete=models.SET_NULL,
                                       null=True)
@@ -73,17 +73,4 @@ class Meter(models.Model):
     fk_client = models.ForeignKey(User,
                                   on_delete=models.SET_NULL,
                                   null=True)
-    isActive = models.BooleanField(default=True)
-
-# Subestacion
-
-
-class Admin(models.Model):
-    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$',
-                                  'Only alphanumeric characters are allowed.')
-    pk_substation = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, unique=True,
-                            validators=[alphanumeric])
-    long = models.DecimalField(max_digits=18, decimal_places=15)
-    lat = models.DecimalField(max_digits=18, decimal_places=15)
     isActive = models.BooleanField(default=True)
