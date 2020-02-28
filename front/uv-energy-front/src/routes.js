@@ -28,6 +28,8 @@ import AddManager from "views/Administrador-Gerente/AddManager.js";
 import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
 import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
+import RegistredAdmins from "views/Administrador-Administrador/RegistredAdmins.js";
+import RUDDAdmin from "views/Administrador-Administrador/RUDDAdmin.js";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 
 

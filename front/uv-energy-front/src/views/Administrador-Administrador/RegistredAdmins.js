@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from 'axios';
 
 // reactstrap components
@@ -14,7 +13,12 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Table,
+  UncontrolledDropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -38,6 +42,7 @@ class RegistredAdmins extends React.Component {
                 cellphone: "123",
                 position: "ADMIN"
             },
+            listAdmins: [],
             isAlertEmpty: false,
             isAlertSuccess: false,
         }
@@ -49,6 +54,19 @@ class RegistredAdmins extends React.Component {
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
 
         this.AddAdmin = this.AddAdmin.bind(this);
+    }
+    componentDidMount(){
+        axios.get(c.api + 'users/user/?position=ADMIN')
+        .then( response => {
+            if( response.data.error != null){
+                alert(response.data.error);
+                alert("There aren't any admin registred.")
+              }
+              else{
+                this.setState({listAdmins: response.data})
+                console.log(this.state.listAdmins)
+            }             
+        }).catch(error => alert(error))
     }
     onChangeUsername(e){
         this.setState({ admin: {
@@ -160,277 +178,59 @@ class RegistredAdmins extends React.Component {
             <UVHeader />
             {/* Page content */}
             <Container className="mt--7" fluid>
-                <Card className="bg-secondary shadow">
-                    <CardHeader className="bg-white border-0">
-                    <Row className="align-items-center">
-                        <Col xs="8">
-                        <h3 className="mb-0">Admin Information</h3>
-                        </Col>
-                    </Row>
-                    </CardHeader>
-                    <CardBody>
-                    <Form onSubmit={this.AddAdmin}>
-                        <h6 className="heading-small text-muted mb-4">
-                        Personal Information
-                        </h6>
-                        <div className="pl-lg-4">
-                            <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
-                            </Alert>
-                            <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The electric transformer was created!
-                            </Alert>
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-first-name"
-                                >
-                                Name
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-first-name"
-                                placeholder="Name"
-                                type="text"
-                                value={this.state.admin.first_name}
-                                onChange={this.onChangeFirsName}
-                                />
-                            </FormGroup>
-                            </Col>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-last-name"
-                                >
-                                Last Name
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-last-name"
-                                placeholder="Last Name"
-                                type="text"
-                                value={this.state.admin.last_name}
-                                onChange={this.onChangeLastName}
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-phone-number"
-                                >
-                                Phone Number
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-phone-number"
-                                placeholder="Phone Number"
-                                type="number"
-                                value={this.state.admin.cellphone}
-                                onChange={this.onChangeCellphone}
-                                />
-                            </FormGroup>
-                            </Col>
-
-                            {/* 
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-address"
-                                >
-                                Address
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-address"
-                                placeholder="Adress"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-                            */}
-                        </Row>
-                        {/* 
-                        <Row>
-                            <Col className="col-md-12">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-date-birth"
-                                >
-                                Date of birth
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-date birth"
-                                placeholder=""
-                                type="date"
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        */}
-                        </div>
-                        {/*
-                        <hr className="my-4"></hr>
-                        <h6 className="heading-small text-muted mb-4">
-                        Payment Information
-                        </h6>
-                        <div className="pl-lg-4">
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-bank"
-                                >
-                                Bank
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-bank"
-                                placeholder="Bank"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-account-type"
-                                >
-                                Account Type
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-account-type"
-                                placeholder="Account type"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-account-number"
-                                >
-                                Account Number
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-account-number"
-                                placeholder="Account Number"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-salary"
-                                >
-                                Salary
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-salary"
-                                placeholder="Salary"
-                                type="number"
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        </div>
-                        */}
-
-                        <hr className="my-4"></hr>
-                        <h6 className="heading-small text-muted mb-4">
-                        Account Information
-                        </h6>
-                        <div className="pl-lg-4">                        
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-username"
-                                >
-                                Username
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-username"
-                                placeholder="Username"
-                                type="text"
-                                value={this.state.admin.username}
-                                onChange={this.onChangeUsername}
-                                />
-                            </FormGroup>
-                            </Col>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-email"
-                                >
-                                Email 
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-email"
-                                placeholder="jesse@example.com"
-                                type="email"
-                                value={this.state.admin.email}
-                                onChange={this.onChangeEmail}
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="col-md-12">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-password"
-                                >
-                                Password
-                                </label>
-                                <Input 
-                                className="form-control-alternative"
-                                placeholder="Password" 
-                                type="password" 
-                                autoComplete="new-password"
-                                value={this.state.admin.password}
-                                onChange={this.onChangePassword}
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        <div className="text-center">
-                            <Button className="mt-4" color="primary" type="submit">
-                                Add
-                            </Button>
-                        </div>
-                        </div>
-                    </Form>
-                    </CardBody>
-                </Card>
+                {/* Table */}
+                <Row>
+                    <div className="col">
+                        <Card className="shadow">
+                            <CardHeader className="border-0">
+                            <h3 className="mb-0">Active Admins</h3>
+                            </CardHeader>
+                            <Table className="align-items-center table-flush" responsive>
+                            <thead className="thead-light">
+                                <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col" />
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.listAdmins.map((item, key) => 
+                                    <tr>
+                                    <th scope="row">
+                                        <span className="mb-0 text-sm">
+                                        {item.first_name}
+                                        </span>
+                                    </th>
+                                    <td>{item.username}</td>                                
+                                    <td className="text-right">
+                                        <UncontrolledDropdown>
+                                        <DropdownToggle
+                                            className="btn-icon-only text-light"
+                                            href="#pablo"
+                                            role="button"
+                                            size="sm"
+                                            color=""
+                                            onClick={e => e.preventDefault()}
+                                        >
+                                            <i className="fas fa-ellipsis-v" />
+                                        </DropdownToggle>
+                                        <DropdownMenu className="dropdown-menu-arrow" right>
+                                            <DropdownItem
+                                            href="#pablo"
+                                            onClick={e => e.preventDefault()}
+                                            >
+                                            Action
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                        </UncontrolledDropdown>
+                                    </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                            </Table>
+                        </Card>
+                    </div>
+                </Row>
             </Container>
             </>
         );

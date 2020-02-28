@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from 'axios';
 
 // reactstrap components
@@ -171,7 +170,7 @@ class RUDDAdmin extends React.Component {
                     <CardBody>
                     <Form onSubmit={this.AddAdmin}>
                         <h6 className="heading-small text-muted mb-4">
-                        Personal Information
+                        {this.state.admin.first_name} - {this.state.admin.username}
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
@@ -425,7 +424,13 @@ class RUDDAdmin extends React.Component {
                         </Row>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
-                                Add
+                                Modify Information
+                            </Button>
+                            <Button className="mt-4" color="primary" type="submit">
+                                Disable Admin
+                            </Button>
+                            <Button className="mt-4" color="primary" type="submit">
+                                Delete Register
                             </Button>
                         </div>
                         </div>
