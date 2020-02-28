@@ -10,5 +10,4 @@ router.register(r'ElectricTransformer',
 router.register(r'Substation',
                 SubStationViewSet,
                 'Substation')
-
 urlpatterns = router.urls

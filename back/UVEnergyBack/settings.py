@@ -145,7 +145,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-"""
+
+""" 
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'elasticsearch:9200'
