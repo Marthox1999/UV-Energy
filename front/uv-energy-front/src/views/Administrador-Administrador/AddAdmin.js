@@ -132,7 +132,7 @@ class AddAdmin extends React.Component {
             (this.state.admin.last_name === "Last name") ||
             (this.state.admin.cellphone === "123")){
             console.log(this.state.admin)
-            this.setState({isAlertEmpty: true})
+            this.setState({isAlertEmpty: true, isAlertSuccess: false})
         }else{
             axios.post(c.api + 'users/user/',
                        this.state.admin)
@@ -240,6 +240,7 @@ class AddAdmin extends React.Component {
                             </FormGroup>
                             </Col>
 
+                            {/* 
                             <Col lg="6">
                             <FormGroup>
                                 <label
@@ -256,8 +257,9 @@ class AddAdmin extends React.Component {
                                 />
                             </FormGroup>
                             </Col>
+                            */}
                         </Row>
-
+                        {/* 
                         <Row>
                             <Col className="col-md-12">
                             <FormGroup>
@@ -276,8 +278,9 @@ class AddAdmin extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
+                        */}
                         </div>
-
+                        {/*
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
                         Payment Information
@@ -355,6 +358,7 @@ class AddAdmin extends React.Component {
                             </Col>
                         </Row>
                         </div>
+                        */}
 
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
