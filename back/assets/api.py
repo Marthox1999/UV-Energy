@@ -1,7 +1,6 @@
 from assets.models import ElectricTransformer, Substation
 from rest_framework import viewsets, permissions
 from .serializers import ElectricTransformerSerializers, SubStationSerializers
-
 # electric transformer viewsets
 
 

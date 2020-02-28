@@ -142,7 +142,6 @@ class AddElectricTransformer extends React.Component {
     }
     AddElectricTransformer(e){
         e.preventDefault()
-        console.log(this.state.electricTransformer)
         if ((this.state.electricTransformer.tension_level === 0) ||
             (this.state.electricTransformer.reference === "") ||
             (this.state.electricTransformer.long === "") ||
@@ -154,6 +153,7 @@ class AddElectricTransformer extends React.Component {
             axios.post(c.api + 'assets/ElectricTransformer/',
                        this.state.electricTransformer)
             .then( response => {
+                console.log(response)
                 if (response.data.pk_transformers !== -1){
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
