@@ -1,4 +1,6 @@
 import React from "react";
+//import { Link } from "react-router-dom";
+import axios from 'axios';
 
 // reactstrap components
 import {
@@ -11,13 +13,147 @@ import {
   Input,
   Container,
   Row,
-  Col
+  Col,
+  Alert
 } from "reactstrap";
+
+import 'leaflet/dist/leaflet.css';
+
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 
+const c = require('../constants')
 
 class AddAdmin extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            admin : {
+                username: "Username",
+                password: "",
+                email: "Email",
+                first_name: "Name",
+                last_name: "Last name",
+                is_active: true,
+                cellphone: "123",
+                position: "ADMIN"
+            },
+            isAlertEmpty: false,
+            isAlertSuccess: false,
+        }
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeFirsName = this.onChangeFirsName.bind(this);
+        this.onChangeLastName = this.onChangeLastName.bind(this);
+        this.onChangeCellphone = this.onChangeCellphone.bind(this);
+
+        this.AddAdmin = this.AddAdmin.bind(this);
+    }
+    onChangeUsername(e){
+        this.setState({ admin: {
+                                    username: e.target.value,
+                                    password: this.state.admin.password,
+                                    email: this.state.admin.email,
+                                    first_name: this.state.admin.first_name,
+                                    last_name: this.state.admin.last_name,
+                                    is_active: true,
+                                    cellphone: this.state.admin.cellphone,
+                                    position: "ADMIN"
+                                }})
+    }
+    onChangePassword(e){
+        this.setState({ admin: {
+                                    username: this.state.admin.username,
+                                    password: e.target.value,
+                                    email: this.state.admin.email,
+                                    first_name: this.state.admin.first_name,
+                                    last_name: this.state.admin.last_name,
+                                    is_active: true,
+                                    cellphone: this.state.admin.cellphone,
+                                    position: "ADMIN"
+                                }})
+    }
+    onChangeEmail(e){
+        this.setState({ admin: {
+                                    username: this.state.admin.username,
+                                    password: this.state.admin.password,
+                                    email: e.target.value,
+                                    first_name: this.state.admin.first_name,
+                                    last_name: this.state.admin.last_name,
+                                    is_active: true,
+                                    cellphone: this.state.admin.cellphone,
+                                    position: "ADMIN"
+                                }})
+    }
+    onChangeFirsName(e){
+        this.setState({ admin: {
+                                    username: this.state.admin.username,
+                                    password: this.state.admin.password,
+                                    email: this.state.admin.email,
+                                    first_name: e.target.value,
+                                    last_name: this.state.admin.last_name,
+                                    is_active: true,
+                                    cellphone: this.state.admin.cellphone,
+                                    position: "ADMIN"
+                                }})
+    }
+    onChangeLastName(e){
+        this.setState({ admin: {
+                                    username: this.state.admin.username,
+                                    password: this.state.admin.password,
+                                    email: this.state.admin.email,
+                                    first_name: this.state.admin.first_name,
+                                    last_name: e.target.value,
+                                    is_active: true,
+                                    cellphone: this.state.admin.cellphone,
+                                    position: "ADMIN"
+                                }})
+    }
+    onChangeCellphone(e){
+        this.setState({ admin: {
+                                    username:this.state.admin.username,
+                                    password: this.state.admin.password,
+                                    email: this.state.admin.email,
+                                    first_name: this.state.admin.first_name,
+                                    last_name: this.state.admin.last_name,
+                                    is_active: true,
+                                    cellphone: e.target.value,
+                                    position: "ADMIN"
+                                }})
+    }
+    AddAdmin(e){
+        e.preventDefault()
+        if ((this.state.admin.username === "Username") ||
+            (this.state.admin.password === "") ||
+            (this.state.admin.email === "Email") ||
+            (this.state.admin.first_name === "Name") ||
+            (this.state.admin.last_name === "Last name") ||
+            (this.state.admin.cellphone === "123")){
+            console.log(this.state.admin)
+            this.setState({isAlertEmpty: true, isAlertSuccess: false})
+        }else{
+            axios.post(c.api + 'users/user/',
+                       this.state.admin)
+            .then( response => {
+                console.log(response)
+                if (response.data.username !== "username"){
+                    this.setState({ isAlertSuccess: true,
+                                    isAlertEmpty: false,
+                                    admin : {
+                                                username: "Username",
+                                                password: "",
+                                                email: "Email",
+                                                first_name: "Name",
+                                                last_name: "Last name",
+                                                is_active: true,
+                                                cellphone: "123",
+                                                position: "ADMIN"
+                                            }});
+                }
+            }).catch(error => console.log(error))
+        }
+    }
     render() {
         return(
             <>
@@ -28,35 +164,22 @@ class AddAdmin extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Admin</h3>
+                        <h3 className="mb-0">Admin Information</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
-                    <Form>
+                    <Form onSubmit={this.AddAdmin}>
                         <h6 className="heading-small text-muted mb-4">
                         Personal Information
                         </h6>
                         <div className="pl-lg-4">
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-id-number"
-                                >
-                                ID Number
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-id-number"
-                                placeholder="ID Number"
-                                type="number"
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-
+                            <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                                <strong>Warning!</strong> There are empty fields!
+                            </Alert>
+                            <Alert color="success" isOpen={this.state.isAlertSuccess}>
+                                <strong>Congratulations!</strong> The electric transformer was created!
+                            </Alert>
                         <Row>
                             <Col lg="6">
                             <FormGroup>
@@ -71,6 +194,8 @@ class AddAdmin extends React.Component {
                                 id="input-first-name"
                                 placeholder="Name"
                                 type="text"
+                                value={this.state.admin.first_name}
+                                onChange={this.onChangeFirsName}
                                 />
                             </FormGroup>
                             </Col>
@@ -87,6 +212,8 @@ class AddAdmin extends React.Component {
                                 id="input-last-name"
                                 placeholder="Last Name"
                                 type="text"
+                                value={this.state.admin.last_name}
+                                onChange={this.onChangeLastName}
                                 />
                             </FormGroup>
                             </Col>
@@ -106,10 +233,13 @@ class AddAdmin extends React.Component {
                                 id="input-phone-number"
                                 placeholder="Phone Number"
                                 type="number"
+                                value={this.state.admin.cellphone}
+                                onChange={this.onChangeCellphone}
                                 />
                             </FormGroup>
                             </Col>
 
+                            {/* 
                             <Col lg="6">
                             <FormGroup>
                                 <label
@@ -126,10 +256,11 @@ class AddAdmin extends React.Component {
                                 />
                             </FormGroup>
                             </Col>
+                            */}
                         </Row>
-
+                        {/* 
                         <Row>
-                            <Col lg="6">
+                            <Col className="col-md-12">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
@@ -146,8 +277,10 @@ class AddAdmin extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
+                        */}
                         </div>
-
+                        {/*
+                        <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
                         Payment Information
                         </h6>
@@ -224,7 +357,9 @@ class AddAdmin extends React.Component {
                             </Col>
                         </Row>
                         </div>
+                        */}
 
+                        <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
                         Account Information
                         </h6>
@@ -243,6 +378,8 @@ class AddAdmin extends React.Component {
                                 id="input-username"
                                 placeholder="Username"
                                 type="text"
+                                value={this.state.admin.username}
+                                onChange={this.onChangeUsername}
                                 />
                             </FormGroup>
                             </Col>
@@ -259,29 +396,34 @@ class AddAdmin extends React.Component {
                                 id="input-email"
                                 placeholder="jesse@example.com"
                                 type="email"
+                                value={this.state.admin.email}
+                                onChange={this.onChangeEmail}
                                 />
                             </FormGroup>
                             </Col>
                         </Row>
                         <Row>
-                            <Col lg="6">
+                            <Col className="col-md-12">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
                                 htmlFor="input-password"
                                 >
-                                Contrasena
+                                Password
                                 </label>
                                 <Input 
                                 className="form-control-alternative"
                                 placeholder="Password" 
                                 type="password" 
-                                autoComplete="new-password"/>
+                                autoComplete="new-password"
+                                value={this.state.admin.password}
+                                onChange={this.onChangePassword}
+                                />
                             </FormGroup>
                             </Col>
                         </Row>
                         <div className="text-center">
-                            <Button className="mt-4" color="primary" type="button">
+                            <Button className="mt-4" color="primary" type="submit">
                                 Add
                             </Button>
                         </div>
