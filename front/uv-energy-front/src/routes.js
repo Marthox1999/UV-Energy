@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Index from "views/Index.js";
+/*import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
 import LMaps from "views/examples/Maps.js";
 import Register from "views/examples/Register.js";
@@ -23,11 +23,15 @@ import Login from "views/users/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import UVForm from "views/examples/Form.js";
+*/
 import AddManager from "views/Administrador-Gerente/AddManager.js";
 import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
+import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 
 var routes = [
+
+/*
   {
         path: "/index",
         name: "Dashboard",
@@ -84,6 +88,7 @@ var routes = [
       component: UVForm,
       layout: "/admin"
   },
+  */
   {
       path: "/addManager",
       name: "Agregar Gerente",
@@ -99,8 +104,15 @@ var routes = [
       layout: "/admin"
   },
   {
+      path: "/addSubstation",
+      name: "Add Substation",
+      icon: "ni ni-single-02 text-yellow",
+      component: AddSubstation,
+      layout: "/admin"
+  },
+  {
       path: "/addElectricTransformer",
-      name: "Agregar Transformador",
+      name: "Add Electric Transformer",
       icon: "ni ni-single-02 text-yellow",
       component: AddElectricTransformer,
       layout: "/admin"
