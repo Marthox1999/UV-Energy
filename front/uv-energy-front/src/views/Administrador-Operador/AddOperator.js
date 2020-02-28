@@ -20,7 +20,7 @@ import Axios from "axios";
 
 const c = require('../constants')
 
-class AddManager extends React.Component {
+class AddOperator extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -32,7 +32,7 @@ class AddManager extends React.Component {
                 last_name: "",
                 is_active: true,
                 cellphone: "",
-                position: "MGR"
+                position: "OP"
             },
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -43,7 +43,7 @@ class AddManager extends React.Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
-        this.AddManager = this.AddManager.bind(this);
+        this.AddOperator = this.AddOperator.bind(this);
     }
     onChangeFirstName(e){
         this.setState({ user: {
@@ -54,7 +54,7 @@ class AddManager extends React.Component {
             last_name: this.state.user.last_name,
             is_active: true,
             cellphone: this.state.user.cellphone,
-            position: "MGR"
+            position: "OP"
         }})
     }
     onChangeLastName(e){
@@ -66,7 +66,7 @@ class AddManager extends React.Component {
             last_name: e.target.value,
             is_active: true,
             cellphone: this.state.user.cellphone,
-            position: "MGR"
+            position: "OP"
         }})
     }
     onChangeUsername(e){
@@ -78,7 +78,7 @@ class AddManager extends React.Component {
             last_name: this.state.user.last_name,
             is_active: true,
             cellphone: this.state.user.cellphone,
-            position: "MGR"
+            position: "OP"
         }})
     }
     onChangeEmail(e){
@@ -90,7 +90,7 @@ class AddManager extends React.Component {
             last_name: this.state.user.last_name,
             is_active: true,
             cellphone: this.state.user.cellphone,
-            position: "MGR"
+            position: "OP"
         }}) 
     }
     onChangePassword(e){
@@ -102,7 +102,7 @@ class AddManager extends React.Component {
             last_name: this.state.user.last_name,
             is_active: true,
             cellphone: this.state.user.cellphone,
-            position: "MGR"
+            position: "OP"
         }})
     }
     onChangeCellphone(e){
@@ -114,10 +114,10 @@ class AddManager extends React.Component {
             last_name: this.state.user.last_name,
             is_active: true,
             cellphone: e.target.value.toString(),
-            position: "MGR"
+            position: "OP"
         }}) 
     }
-    AddManager(e){
+    AddOperator(e){
         e.preventDefault()
         if ((this.state.user.username === "") ||
             (this.state.user.password === "") ||
@@ -140,7 +140,7 @@ class AddManager extends React.Component {
                         last_name: "",
                         is_active: true,
                         cellphone: "",
-                        position: "MGR"
+                        position: "OP"
                     }})
             }).catch(error => console.log(error))
         }
@@ -155,7 +155,7 @@ class AddManager extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Manager</h3>
+                        <h3 className="mb-0">Add Operator</h3>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -164,9 +164,9 @@ class AddManager extends React.Component {
                         <strong>Warning!</strong> There are empty fields!
                     </Alert>
                     <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                        <strong>Congratulations!</strong> The manager was created!
+                        <strong>Congratulations!</strong> The opertator was created!
                     </Alert>
-                    <Form onSubmit={this.AddManager}>
+                    <Form onSubmit={this.AddOperator}>
                         <h6 className="heading-small text-muted mb-4">
                         Personal Information
                         </h6>
@@ -303,4 +303,4 @@ class AddManager extends React.Component {
     }
 }
 
-export default AddManager;
+export default AddOperator;
