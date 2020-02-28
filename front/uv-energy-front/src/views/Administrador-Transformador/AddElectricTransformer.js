@@ -18,7 +18,9 @@ import {
     DropdownMenu,
     UncontrolledDropdown,
     Media,
-    Alert
+    Alert,
+    Modal,
+    ModalBody
   } from "reactstrap";
 
 import L from 'leaflet';
@@ -76,6 +78,7 @@ class AddElectricTransformer extends React.Component {
         this.onChangeTensionLevel = this.onChangeTensionLevel.bind(this);
         this.getSubstation = this.getSubstation.bind(this);
         this.AddElectricTransformer = this.AddElectricTransformer.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
         axios.get(c.api + 'assets/Substation')
@@ -147,28 +150,23 @@ class AddElectricTransformer extends React.Component {
             (this.state.electricTransformer.long === "") ||
             (this.state.electricTransformer.lat === "") ||
             (this.state.electricTransformer.fk_substation === -1)){
-            console.log(this.state.electricTransformer)
             this.setState({isAlertEmpty: true})
         }else{
             axios.post(c.api + 'assets/ElectricTransformer/',
                        this.state.electricTransformer)
             .then( response => {
-                console.log(response)
                 if (response.data.pk_transformers !== -1){
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
-                                    electricTransformer: {
-                                                            pk_transformers: -1,
-                                                            tension_level: 0,
-                                                            reference: "",
-                                                            long: "",
-                                                            lat: "",
-                                                            isActive: true,
-                                                            fk_substation: -1
-                                                        }});
+                                    electricTransformer: response.data});
+                    
                 }
             }).catch(error => console.log(error))
         }
+    }
+    closeModal(){
+        this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+        window.location.reload();
     }
     render() {
         return(
@@ -192,10 +190,11 @@ class AddElectricTransformer extends React.Component {
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
                                 <strong>Warning!</strong> There are empty fields!
                             </Alert>
-                            <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The electric transformer was created!
-                            </Alert>
+                            <Row>
+                            <Col lg="3">
+                            <center>
                             <FormGroup>
+                                <br></br>
                                 <UncontrolledDropdown nav>
                                 <DropdownToggle className="pr-0">
                                 <Media className="align-items-center" >
@@ -213,7 +212,7 @@ class AddElectricTransformer extends React.Component {
                                 <DropdownMenu className="dropdown-menu-arrow" right>
                                 { this.state.listSubstation.length > 0 ?
                                 this.state.listSubstation.map((data, id) =>
-                                <DropdownItem key={'s-'+id} onClick={()=> this.getSubstation(data)}>
+                                <DropdownItem key={'s-'+id} onClick={(Fsubbbbbased)=> this.getSubstation(data)}>
                                     <i className=" ni ni-pin-3" />
                                     <span>{data.name}</span>
                                 </DropdownItem>) : 
@@ -224,6 +223,9 @@ class AddElectricTransformer extends React.Component {
                                 </DropdownMenu>
                                 </UncontrolledDropdown>
                             </FormGroup>
+                            </center>
+                            </Col>
+                            <Col lg="4">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
@@ -240,6 +242,8 @@ class AddElectricTransformer extends React.Component {
                                 onChange={this.onChangeReference}
                                 />
                             </FormGroup>
+                            </Col>
+                            <Col lg="4">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
@@ -256,6 +260,8 @@ class AddElectricTransformer extends React.Component {
                                 onChange={this.onChangeTensionLevel}
                                 />
                             </FormGroup>
+                            </Col>
+                            </Row>
                             <h2>Choose the point for the electric transformer</h2>
                             <img 
                                 alt="..."
@@ -302,6 +308,39 @@ class AddElectricTransformer extends React.Component {
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isAlertSuccess}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="success">
+                        <strong>Congratulations!</strong> The electric transformer was created!
+                        </Alert>
+                        Information:
+                        <br></br>
+                        <strong> No. Transformer: </strong> {this.state.electricTransformer.pk_transformers}<br/>
+                        <strong> Reference: </strong> {this.state.electricTransformer.reference}<br/>
+                        <strong> Tension Level: </strong> {this.state.electricTransformer.tension_level}<br/>
+                        <strong> Substation: </strong> {this.state.listSubstation.map((data, id) => id !== this.state.electricTransformer.fk_substation ? data.name : <p></p>)}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                <Button color="primary" type="button">
+                  Close
+                </Button>
+                <Button
+                  className="ml-auto"
+                  color="link"
+                  data-dismiss="modal"
+                  type="button"
+                  onClick={() => this.closeModal}
+                >
+                  Close
+                </Button>
+              </div>
+            </Modal>
             </Container>
         </>
         );
