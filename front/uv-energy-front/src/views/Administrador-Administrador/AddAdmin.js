@@ -28,13 +28,13 @@ class AddAdmin extends React.Component {
         super(props);
         this.state = {
             admin : {
-                username: "Username",
+                username: "",
                 password: "",
-                email: "Email",
-                first_name: "Name",
-                last_name: "Last name",
+                email: "",
+                first_name: "",
+                last_name: "",
                 is_active: true,
-                cellphone: "123",
+                cellphone: "",
                 position: "ADMIN"
             },
             isAlertEmpty: false,
@@ -123,12 +123,12 @@ class AddAdmin extends React.Component {
     }
     AddAdmin(e){
         e.preventDefault()
-        if ((this.state.admin.username === "Username") ||
+        if ((this.state.admin.username === "") ||
             (this.state.admin.password === "") ||
-            (this.state.admin.email === "Email") ||
-            (this.state.admin.first_name === "Name") ||
-            (this.state.admin.last_name === "Last name") ||
-            (this.state.admin.cellphone === "123")){
+            (this.state.admin.email === "") ||
+            (this.state.admin.first_name === "") ||
+            (this.state.admin.last_name === "") ||
+            (this.state.admin.cellphone === "")){
             console.log(this.state.admin)
             this.setState({isAlertEmpty: true, isAlertSuccess: false})
         }else{
@@ -136,17 +136,17 @@ class AddAdmin extends React.Component {
                        this.state.admin)
             .then( response => {
                 console.log(response)
-                if (response.data.username !== "username"){
+                if (response.data.username !== ""){
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
                                     admin : {
-                                                username: "Username",
+                                                username: "",
                                                 password: "",
-                                                email: "Email",
-                                                first_name: "Name",
-                                                last_name: "Last name",
+                                                email: "",
+                                                first_name: "",
+                                                last_name: "",
                                                 is_active: true,
-                                                cellphone: "123",
+                                                cellphone: "",
                                                 position: "ADMIN"
                                             }});
                 }
@@ -177,7 +177,7 @@ class AddAdmin extends React.Component {
                                 <strong>Warning!</strong> There are empty fields!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The electric transformer was created!
+                                <strong>Congratulations!</strong> The admin was registred!
                             </Alert>
                         <Row>
                             <Col lg="6">
@@ -219,7 +219,7 @@ class AddAdmin extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col lg="6">
+                            <Col className="col-md-12">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
@@ -236,128 +236,10 @@ class AddAdmin extends React.Component {
                                 onChange={this.onChangeCellphone}
                                 />
                             </FormGroup>
-                            </Col>
-
-                            {/* 
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-address"
-                                >
-                                Address
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-address"
-                                placeholder="Adress"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-                            */}
-                        </Row>
-                        {/* 
-                        <Row>
-                            <Col className="col-md-12">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-date-birth"
-                                >
-                                Date of birth
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-date birth"
-                                placeholder=""
-                                type="date"
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        */}
-                        </div>
-                        {/*
-                        <hr className="my-4"></hr>
-                        <h6 className="heading-small text-muted mb-4">
-                        Payment Information
-                        </h6>
-                        <div className="pl-lg-4">
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-bank"
-                                >
-                                Bank
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-bank"
-                                placeholder="Bank"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-account-type"
-                                >
-                                Account Type
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-account-type"
-                                placeholder="Account type"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-account-number"
-                                >
-                                Account Number
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-account-number"
-                                placeholder="Account Number"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-salary"
-                                >
-                                Salary
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-salary"
-                                placeholder="Salary"
-                                type="number"
-                                />
-                            </FormGroup>
-                            </Col>
+                            </Col>                        
                         </Row>
                         </div>
-                        */}
-
+                        
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
                         Account Information

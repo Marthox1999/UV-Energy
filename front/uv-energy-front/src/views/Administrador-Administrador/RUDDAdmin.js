@@ -27,16 +27,9 @@ class RUDDAdmin extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            admin : {
-                username: props.username,
-                password: props.password,
-                email: props.email,
-                first_name: props.first_name,
-                last_name: props.last_name,
-                is_active: true,
-                cellphone: props.cellphone,
-                position: "ADMIN"
-            },
+            admin : this.props.location.state.adminS,
+            adminData: this.props.location.state.adminS,
+            adminPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,
         }
@@ -47,10 +40,12 @@ class RUDDAdmin extends React.Component {
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
 
-        this.AddAdmin = this.AddAdmin.bind(this);
+        this.ModfAdmin = this.ModfAdmin.bind(this);
+        this.SubmitEvent = this.SubmitEvent.bind(this);
     }
     onChangeUsername(e){
         this.setState({ admin: {
+                                    id: this.state.admin.id,
                                     username: e.target.value,
                                     password: this.state.admin.password,
                                     email: this.state.admin.email,
@@ -62,19 +57,11 @@ class RUDDAdmin extends React.Component {
                                 }})
     }
     onChangePassword(e){
-        this.setState({ admin: {
-                                    username: this.state.admin.username,
-                                    password: e.target.value,
-                                    email: this.state.admin.email,
-                                    first_name: this.state.admin.first_name,
-                                    last_name: this.state.admin.last_name,
-                                    is_active: true,
-                                    cellphone: this.state.admin.cellphone,
-                                    position: "ADMIN"
-                                }})
+        this.setState({ adminPassword: e.target.value })
     }
     onChangeEmail(e){
         this.setState({ admin: {
+                                    id: this.state.admin.id,
                                     username: this.state.admin.username,
                                     password: this.state.admin.password,
                                     email: e.target.value,
@@ -87,6 +74,7 @@ class RUDDAdmin extends React.Component {
     }
     onChangeFirsName(e){
         this.setState({ admin: {
+                                    id: this.state.admin.id,
                                     username: this.state.admin.username,
                                     password: this.state.admin.password,
                                     email: this.state.admin.email,
@@ -99,6 +87,7 @@ class RUDDAdmin extends React.Component {
     }
     onChangeLastName(e){
         this.setState({ admin: {
+                                    id: this.state.admin.id,
                                     username: this.state.admin.username,
                                     password: this.state.admin.password,
                                     email: this.state.admin.email,
@@ -111,6 +100,7 @@ class RUDDAdmin extends React.Component {
     }
     onChangeCellphone(e){
         this.setState({ admin: {
+                                    id: this.state.admin.id,
                                     username:this.state.admin.username,
                                     password: this.state.admin.password,
                                     email: this.state.admin.email,
@@ -121,37 +111,80 @@ class RUDDAdmin extends React.Component {
                                     position: "ADMIN"
                                 }})
     }
-    AddAdmin(e){
-        e.preventDefault()
-        if ((this.state.admin.username === "") ||
-            (this.state.admin.password === "") ||
-            (this.state.admin.email === "") ||
-            (this.state.admin.first_name === "") ||
-            (this.state.admin.last_name === "") ||
-            (this.state.admin.cellphone === "")){
-            console.log(this.state.admin)
-            this.setState({isAlertEmpty: true, isAlertSuccess: false})
-        }else{
-            axios.post(c.api + 'users/user/',
-                       this.state.admin)
-            .then( response => {
-                console.log(response)
-                if (response.data.username !== "username"){
-                    this.setState({ isAlertSuccess: true,
-                                    isAlertEmpty: false,
-                                    admin : {
-                                                username: "Username",
-                                                password: "",
-                                                email: "Email",
-                                                first_name: "Name",
-                                                last_name: "Last name",
-                                                is_active: true,
-                                                cellphone: "123",
-                                                position: "ADMIN"
-                                            }});
+    SubmitEvent(buttonVal){
+        if(buttonVal==1){
+            console.log("Modify")
+            if ((this.state.admin.username === "") ||
+                (this.state.admin.password === "") ||
+                (this.state.admin.email === "") ||
+                (this.state.admin.first_name === "") ||
+                (this.state.admin.last_name === "") ||
+                (this.state.admin.cellphone === "")){
+
+                this.setState({isAlertEmpty: true, isAlertSuccess: false})
+            }else{
+                console.log(this.state.admin)
+                if(this.state.adminPassword != ""){
+                    this.setState({ admin: {
+                                            id: this.state.admin.id,
+                                            username:this.state.admin.username,
+                                            password: this.state.adminPassword,
+                                            email: this.state.admin.email,
+                                            first_name: this.state.admin.first_name,
+                                            last_name: this.state.admin.last_name,
+                                            is_active: true,
+                                            cellphone: this.state.admin.cellphone,
+                                            position: "ADMIN"
+                                        }})
                 }
-            }).catch(error => console.log(error))
+                axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
+                        this.state.admin)
+                .then( response => {
+                    console.log(response)
+                    if ((response.data.password === this.state.adminData.password) ||
+                        (response.data.email === this.state.adminData.email) ||
+                        (response.data.first_name === this.state.adminData.first_name) ||
+                        (response.data.last_name === this.state.adminData.last_name) ||
+                        (response.data.cellphone === this.state.adminData.cellphone)
+                        ){
+                        this.setState({ isAlertSuccess: true,
+                                        isAlertEmpty: false,
+                                        adminPassword: "",
+                                    });
+                    }
+                }).catch(error => console.log(error.response.request))
+            }
+        }else if(buttonVal == 2){
+            console.log("Disable")
+            this.setState({ admin: {
+                id: this.state.admin.id,
+                username:this.state.admin.username,
+                password: this.state.admin.password,
+                email: this.state.admin.email,
+                first_name: this.state.admin.first_name,
+                last_name: this.state.admin.last_name,
+                is_active: false,
+                cellphone: this.state.admin.cellphone,
+                position: "ADMIN"
+            }})
+            console.log(this.state.admin)
+            axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
+                        this.state.admin)
+            .catch(error => console.log(error))
+
+        }else if(buttonVal == 3){
+            console.log("Delete")
+            axios.delete(c.api + 'users/user/'+this.state.admin.id+'/')
+            .catch(error => console.log(error))
+
+            this.props.history.push({
+                pathname: '/admin/RegistredAdmins',                
+            })
         }
+    }
+    ModfAdmin(e){
+        e.preventDefault()
+        
     }
     render() {
         return(
@@ -163,21 +196,20 @@ class RUDDAdmin extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Admin Information</h3>
+                        <h3 className="mb-0">{this.state.admin.first_name} Information</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.AddAdmin}>
                         <h6 className="heading-small text-muted mb-4">
-                        {this.state.admin.first_name} - {this.state.admin.username}
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
                                 <strong>Warning!</strong> There are empty fields!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The electric transformer was created!
+                                <strong>Congratulations!</strong> The Admin was modified!
                             </Alert>
                         <Row>
                             <Col lg="6">
@@ -237,126 +269,8 @@ class RUDDAdmin extends React.Component {
                                 />
                             </FormGroup>
                             </Col>
-
-                            {/* 
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-address"
-                                >
-                                Address
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-address"
-                                placeholder="Adress"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-                            */}
-                        </Row>
-                        {/* 
-                        <Row>
-                            <Col className="col-md-12">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-date-birth"
-                                >
-                                Date of birth
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-date birth"
-                                placeholder=""
-                                type="date"
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        */}
-                        </div>
-                        {/*
-                        <hr className="my-4"></hr>
-                        <h6 className="heading-small text-muted mb-4">
-                        Payment Information
-                        </h6>
-                        <div className="pl-lg-4">
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-bank"
-                                >
-                                Bank
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-bank"
-                                placeholder="Bank"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-account-type"
-                                >
-                                Account Type
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-account-type"
-                                placeholder="Account type"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-account-number"
-                                >
-                                Account Number
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-account-number"
-                                placeholder="Account Number"
-                                type="text"
-                                />
-                            </FormGroup>
-                            </Col>
-
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-salary"
-                                >
-                                Salary
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-salary"
-                                placeholder="Salary"
-                                type="number"
-                                />
-                            </FormGroup>
-                            </Col>
                         </Row>
                         </div>
-                        */}
 
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
@@ -376,8 +290,7 @@ class RUDDAdmin extends React.Component {
                                 className="form-control-alternative"
                                 id="input-username"
                                 placeholder="Username"
-                                type="text"
-                                readOnly
+                                type="text"                                
                                 value={this.state.admin.username}
                                 onChange={this.onChangeUsername}
                                 />
@@ -416,20 +329,20 @@ class RUDDAdmin extends React.Component {
                                 placeholder="Password" 
                                 type="password" 
                                 autoComplete="new-password"
-                                value={this.state.admin.password}
+                                value={this.state.adminPassword}
                                 onChange={this.onChangePassword}
                                 />
                             </FormGroup>
                             </Col>
                         </Row>
                         <div className="text-center">
-                            <Button className="mt-4" color="primary" type="submit">
+                            <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                                 Modify Information
                             </Button>
-                            <Button className="mt-4" color="primary" type="submit">
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Disable Admin?')){this.SubmitEvent(2)};} }>
                                 Disable Admin
                             </Button>
-                            <Button className="mt-4" color="primary" type="submit">
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Delete Admin?')){this.SubmitEvent(3)};} }>
                                 Delete Register
                             </Button>
                         </div>
