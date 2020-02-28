@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import axios from 'axios';
 
 // reactstrap components
@@ -17,7 +17,6 @@ import {
   Alert
 } from "reactstrap";
 
-import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // core components
