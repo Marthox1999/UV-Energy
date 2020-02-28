@@ -25,6 +25,9 @@ import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
 import routes from "routes.js";
+import adminRoutes from "adminRoutes.js";
+import managerRoutes from "managerRoutes.js";
+import operatorRoutes from "operatorRoutes.js";
 
 class Admin extends React.Component {
   componentDidUpdate(e) {
@@ -47,6 +50,55 @@ class Admin extends React.Component {
       }
     });
   };
+
+  getManagerRoutes = managerRoutes => {
+    return managerRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+
+  getAdminRoutes = adminRoutes => {
+    return adminRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+
+  getOperatorRoutes = operatorRoutes => {
+    return operatorRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -59,12 +111,55 @@ class Admin extends React.Component {
     }
     return "Brand";
   };
+
+  getBrandTextManager = path => {
+    for (let i = 0; i < managerRoutes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          managerRoutes[i].layout + managerRoutes[i].path
+        ) !== -1
+      ) {
+        return managerRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
+
+  getBrandTextAdmin = path => {
+    for (let i = 0; i < adminRoutes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          adminRoutes[i].layout + adminRoutes[i].path
+        ) !== -1
+      ) {
+        return adminRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
+
+  getBrandTextOperator = path => {
+    for (let i = 0; i < operatorRoutes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          operatorRoutes[i].layout + operatorRoutes[i].path
+        ) !== -1
+      ) {
+        return operatorRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
+
   render() {
     return (
       <>
         <Sidebar
           {...this.props}
           routes={routes}
+          adminRoutes={adminRoutes}
+          managerRoutes={managerRoutes}
+          operatorRoutes={operatorRoutes}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -75,9 +170,14 @@ class Admin extends React.Component {
           <UVAdminNavbar
             {...this.props}
             brandText={this.getBrandText(this.props.location.pathname)}
+            brandTextManager={this.getBrandTextManager(this.props.location.pathname)}
+            brandTextAdmin={this.getBrandTextAdmin(this.props.location.pathname)}
+            brandTextOperator={this.getBrandTextOperator(this.props.location.pathname)}
           />
           <Switch>
-            {this.getRoutes(routes)}
+            {this.getAdminRoutes(adminRoutes)}
+            {this.getManagerRoutes(managerRoutes)}
+            {this.getOperatorRoutes(operatorRoutes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
           <Container fluid>
