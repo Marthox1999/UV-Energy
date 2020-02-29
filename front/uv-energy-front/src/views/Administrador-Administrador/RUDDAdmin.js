@@ -112,7 +112,7 @@ class RUDDAdmin extends React.Component {
                                 }})
     }
     SubmitEvent(buttonVal){
-        if(buttonVal==1){
+        if(buttonVal===1){
             console.log("Modify")
             if ((this.state.admin.username === "") ||
                 (this.state.admin.password === "") ||
@@ -124,7 +124,7 @@ class RUDDAdmin extends React.Component {
                 this.setState({isAlertEmpty: true, isAlertSuccess: false})
             }else{
                 console.log(this.state.admin)
-                if(this.state.adminPassword != ""){
+                if(this.state.adminPassword !== ""){
                     this.setState({ admin: {
                                             id: this.state.admin.id,
                                             username:this.state.admin.username,
@@ -154,7 +154,7 @@ class RUDDAdmin extends React.Component {
                     }
                 }).catch(error => console.log(error.response.request))
             }
-        }else if(buttonVal == 2){
+        }else if(buttonVal === 2){
             console.log("Disable")
             this.setState({ admin: {
                 id: this.state.admin.id,
@@ -172,7 +172,7 @@ class RUDDAdmin extends React.Component {
                         this.state.admin)
             .catch(error => console.log(error))
 
-        }else if(buttonVal == 3){
+        }else if(buttonVal === 3){
             console.log("Delete")
             axios.delete(c.api + 'users/user/'+this.state.admin.id+'/')
             .catch(error => console.log(error))
@@ -263,7 +263,7 @@ class RUDDAdmin extends React.Component {
                                 className="form-control-alternative"
                                 id="input-phone-number"
                                 placeholder="Phone Number"
-                                type="number"
+                                type="text"
                                 value={this.state.admin.cellphone}
                                 onChange={this.onChangeCellphone}
                                 />

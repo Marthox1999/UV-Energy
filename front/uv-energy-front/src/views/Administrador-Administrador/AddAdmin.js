@@ -231,7 +231,7 @@ class AddAdmin extends React.Component {
                                 className="form-control-alternative"
                                 id="input-phone-number"
                                 placeholder="Phone Number"
-                                type="number"
+                                type="text"
                                 value={this.state.admin.cellphone}
                                 onChange={this.onChangeCellphone}
                                 />
