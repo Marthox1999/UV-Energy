@@ -155,8 +155,10 @@ class RUDDAdmin extends React.Component {
                 }).catch(error => console.log(error.response.request))
             }
         }else if(buttonVal === 2){
-            console.log("Disable")
-            this.setState({ admin: {
+            //console.log("Disable")
+            //console.log(this.state.admin)
+            axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
+            {
                 id: this.state.admin.id,
                 username:this.state.admin.username,
                 password: this.state.admin.password,
@@ -166,11 +168,11 @@ class RUDDAdmin extends React.Component {
                 is_active: false,
                 cellphone: this.state.admin.cellphone,
                 position: "ADMIN"
-            }})
-            console.log(this.state.admin)
-            axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
-                        this.state.admin)
+            })
             .catch(error => console.log(error))
+
+            this.props.history.push({
+                pathname: '/admin/RegistredAdmins', state:{disabledAdmin: true, deletedAdmin: false}})
 
         }else if(buttonVal === 3){
             console.log("Delete")
@@ -178,8 +180,7 @@ class RUDDAdmin extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegistredAdmins',                
-            })
+                pathname: '/admin/RegistredAdmins', state:{disabledAdmin: false, deletedAdmin: true}})
         }
     }
     ModfAdmin(e){

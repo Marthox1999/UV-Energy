@@ -9,6 +9,7 @@ import {
   Container,
   Row,
   Table,
+  Alert,
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -21,6 +22,14 @@ const c = require('../constants')
 class RegistredAdmins extends React.Component {
     constructor(props){
         super(props);
+        console.log(this.props.location.state)
+        if(this.props.location.state === null){
+            this.props = { state:{disabledAdmin: false, deletedAdmin: false}}
+        }else if(this.props.location.state.disabledAdmin){
+            this.props = { state:{disabledAdmin: true, deletedAdmin: false}}
+        }else if(this.props.location.state.deletedAdmin){
+            this.props = { state:{disabledAdmin: false, deletedAdmin: true}}
+        }
         this.state = {
             admin : {
                 username: "Username",
@@ -33,8 +42,8 @@ class RegistredAdmins extends React.Component {
                 position: "ADMIN"
             },
             listAdmins: [],
-            isAlertEmpty: false,
-            isAlertSuccess: false,
+            isdisabledAdmin: this.props.state.disabledAdmin,
+            isdeletedAdmin: this.props.state.deletedAdmin,
             filter: {
                 where: {
                     position: "ADMIN",
@@ -77,6 +86,13 @@ class RegistredAdmins extends React.Component {
                             <CardHeader className="border-0">
                             <h3 className="mb-0">Active Admins</h3>
                             </CardHeader>
+                            <br></br>
+                            <Alert color="info" isOpen={this.state.isdisabledAdmin}>
+                                Admin account was disabled! Please reload the page to see the changes
+                            </Alert>
+                            <Alert color="info" isOpen={this.state.isdeletedAdmin}>
+                                Admin account was deleted! Please reload the page to see the changes
+                            </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
                                 <tr>
