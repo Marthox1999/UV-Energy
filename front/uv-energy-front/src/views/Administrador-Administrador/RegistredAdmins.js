@@ -22,7 +22,6 @@ const c = require('../constants')
 class RegistredAdmins extends React.Component {
     constructor(props){
         super(props);
-        console.log(this.props.location.state)
         if(this.props.location.state === null){
             this.props = { state:{disabledAdmin: false, deletedAdmin: false}}
         }else if(this.props.location.state.disabledAdmin){
@@ -51,7 +50,6 @@ class RegistredAdmins extends React.Component {
                 }
             }
         }
-        this.readAdmin = this.readAdmin.bind(this);
     }
     componentDidMount(){
         axios.get(c.api + 'users/activeAdmin/')
@@ -66,12 +64,6 @@ class RegistredAdmins extends React.Component {
                 console.log(response.config)
             }             
         }).catch(error => alert(error))
-    }
-    readAdmin(item){
-        this.props.history.push({
-            pathname: '/RUDDAdmin',
-            state: { adminS: item }
-        })
     }
     render() {
         return(
@@ -118,7 +110,7 @@ class RegistredAdmins extends React.Component {
                                             role="button"
                                             size="sm"
                                             color=""
-                                            onClick={ () => this.props.history.push({pathname: '/admin/RUDDAdmin', state: { adminS: item }}) }
+                                            onClick={ () => this.props.history.push({pathname: '/admin/RUDDAdmin', state: { adminID: item.id }}) }
                                         >
                                             <i className="fas fa-ellipsis-v" />
                                             

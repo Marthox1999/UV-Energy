@@ -26,12 +26,34 @@ const c = require('../constants')
 class RUDDAdmin extends React.Component {
     constructor(props){
         super(props);
+        console.log(this.props.location.state)
         this.state = {
-            admin : this.props.location.state.adminS,
-            adminData: this.props.location.state.adminS,
+            admin : {
+                id: this.props.location.state.adminID,
+                username: "",
+                password: "",
+                email: "",
+                first_name: "",
+                last_name: "",
+                is_active: true,
+                cellphone: "",
+                position: "ADMIN"
+            },
+            adminData: {
+                id: this.props.location.state.adminID,
+                username: "",
+                password: "",
+                email: "",
+                first_name: "",
+                last_name: "",
+                is_active: true,
+                cellphone: "",
+                position: "ADMIN"
+            },
             adminPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isBadinputs: false,
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
@@ -42,6 +64,21 @@ class RUDDAdmin extends React.Component {
 
         this.ModfAdmin = this.ModfAdmin.bind(this);
         this.SubmitEvent = this.SubmitEvent.bind(this);
+
+    }
+    componentDidMount(){
+        axios.get(c.api + 'users/user/'+this.state.admin.id+'/')
+        .then( response => {
+            if( response.data.error != null){
+                alert(response.data.error);
+                alert("Wrong Id")
+              }
+              else{
+                console.log(response.data)
+                this.setState({admin: response.data, adminData: response.data})
+                console.log(this.state.listAdmins)                
+            }             
+        }).catch(error => alert(error))
     }
     onChangeUsername(e){
         this.setState({ admin: {
@@ -112,7 +149,11 @@ class RUDDAdmin extends React.Component {
                                 }})
     }
     SubmitEvent(buttonVal){
-        if(buttonVal===1){
+        this.setState({ isAlertSuccess: true,
+            isAlertEmpty: false,
+            isBadinputs: false,
+        });
+        if(buttonVal===1){            
             console.log("Modify")
             if ((this.state.admin.username === "") ||
                 (this.state.admin.password === "") ||
@@ -121,7 +162,7 @@ class RUDDAdmin extends React.Component {
                 (this.state.admin.last_name === "") ||
                 (this.state.admin.cellphone === "")){
 
-                this.setState({isAlertEmpty: true, isAlertSuccess: false})
+                this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
             }else{
                 console.log(this.state.admin)
                 if(this.state.adminPassword !== ""){
@@ -149,10 +190,16 @@ class RUDDAdmin extends React.Component {
                         ){
                         this.setState({ isAlertSuccess: true,
                                         isAlertEmpty: false,
+                                        isBadinputs: false,
                                         adminPassword: "",
                                     });
                     }
-                }).catch(error => console.log(error.response.request))
+                }).catch(error => {
+                    console.log(error.response.request)
+                    this.setState({ isAlertSuccess: false,
+                                    isAlertEmpty: false,
+                                    isBadinputs: true})
+                })
             }
         }else if(buttonVal === 2){
             //console.log("Disable")
@@ -208,6 +255,9 @@ class RUDDAdmin extends React.Component {
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
                                 <strong>Warning!</strong> There are empty fields!
+                            </Alert>
+                            <Alert color="warning" isOpen={this.state.isBadinputs}>
+                                <strong>Warning!</strong> Wrong information on fields!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
                                 <strong>Congratulations!</strong> The Admin was modified!

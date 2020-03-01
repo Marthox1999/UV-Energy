@@ -39,6 +39,7 @@ class AddAdmin extends React.Component {
             },
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isBadinputs: false,
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
@@ -130,7 +131,7 @@ class AddAdmin extends React.Component {
             (this.state.admin.last_name === "") ||
             (this.state.admin.cellphone === "")){
             console.log(this.state.admin)
-            this.setState({isAlertEmpty: true, isAlertSuccess: false})
+            this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
         }else{
             axios.post(c.api + 'users/user/',
                        this.state.admin)
@@ -139,6 +140,7 @@ class AddAdmin extends React.Component {
                 if (response.data.username !== ""){
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
+                                    isBadinputs: false,
                                     admin : {
                                                 username: "",
                                                 password: "",
@@ -150,7 +152,12 @@ class AddAdmin extends React.Component {
                                                 position: "ADMIN"
                                             }});
                 }
-            }).catch(error => console.log(error))
+            }).catch(error => {
+                console.log(error)
+                this.setState({ isAlertSuccess: false,
+                                isAlertEmpty: false,
+                                isBadinputs: true})
+            })
         }
     }
     render() {
@@ -175,6 +182,9 @@ class AddAdmin extends React.Component {
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
                                 <strong>Warning!</strong> There are empty fields!
+                            </Alert>
+                            <Alert color="warning" isOpen={this.state.isBadinputs}>
+                                <strong>Warning!</strong> Wrong information on fields!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
                                 <strong>Congratulations!</strong> The admin was registred!
