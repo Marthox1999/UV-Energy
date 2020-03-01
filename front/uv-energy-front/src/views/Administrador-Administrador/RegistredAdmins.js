@@ -35,11 +35,17 @@ class RegistredAdmins extends React.Component {
             listAdmins: [],
             isAlertEmpty: false,
             isAlertSuccess: false,
+            filter: {
+                where: {
+                    position: "ADMIN",
+                    is_active: true,
+                }
+            }
         }
         this.readAdmin = this.readAdmin.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'users/user/?position=ADMIN')
+        axios.get(c.api + 'users/activeAdmin/')
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
@@ -48,6 +54,7 @@ class RegistredAdmins extends React.Component {
               else{
                 this.setState({listAdmins: response.data})
                 console.log(this.state.listAdmins)
+                console.log(response.config)
             }             
         }).catch(error => alert(error))
     }
