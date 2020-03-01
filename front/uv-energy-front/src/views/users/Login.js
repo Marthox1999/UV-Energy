@@ -57,14 +57,14 @@ class Login extends React.Component {
     event.preventDefault()
     
     if(this.state.isVerified) {
-      if(this.state.credentials.username == '' &&
-         this.state.credentials.password == '') {
+      if(this.state.credentials.username === '' &&
+         this.state.credentials.password === '') {
            alert('Please fill out the username and password fields')
          }
-      else if(this.state.credentials.username == '') {
+      else if(this.state.credentials.username === '') {
         alert('Please fill out the username field')
       }
-      else if(this.state.credentials.password == '') {
+      else if(this.state.credentials.password === '') {
         alert('Please fill out the password field')
       }else {
         axios.post(
@@ -73,7 +73,9 @@ class Login extends React.Component {
           response => {
             console.log(response)
             if(Object.prototype.hasOwnProperty.call(response.data, 'token')) {
-              this.state.token = response.data.token
+              this.setState({
+                token: response.data.token
+              })
               console.log(this.state.token)
             }else {
               alert("Invalid Credentials")
