@@ -19,18 +19,18 @@ import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
 
-class RegisteredManagers extends React.Component {
+class RegisteredOperators extends React.Component {
     constructor(props){
         super(props);
         if(this.props.location.state === null){
-            this.props = { state:{disabledManager: false, deletedManager: false}}
-        }else if(this.props.location.state.disabledManager){
-            this.props = { state:{disabledManager: true, deletedManager: false}}
-        }else if(this.props.location.state.deletedManager){
-            this.props = { state:{disabledManager: false, deletedManager: true}}
+            this.props = { state:{disabledOperator: false, deletedOperator: false}}
+        }else if(this.props.location.state.disabledOperator){
+            this.props = { state:{disabledOperator: true, deletedOperator: false}}
+        }else if(this.props.location.state.deletedOperator){
+            this.props = { state:{disabledOperator: false, deletedOperator: true}}
         }
         this.state = {
-            manager : {
+            operator : {
                 username: "Username",
                 password: "",
                 email: "Email",
@@ -38,29 +38,29 @@ class RegisteredManagers extends React.Component {
                 last_name: "Last name",
                 is_active: true,
                 cellphone: "123",
-                position: "MGR"
+                position: "OP"
             },
-            listManagers: [],
-            isdisabledManager: this.props.state.disabledManager,
-            isdeletedManager: this.props.state.deletedManager,
+            listOperators: [],
+            isdisabledOperator: this.props.state.disabledOperator,
+            isdeletedOperator: this.props.state.deletedOperator,
             filter: {
                 where: {
-                    position: "MGR",
+                    position: "OP",
                     is_active: true,
                 }
             }
         }
     }
     componentDidMount(){
-        axios.get(c.api + 'users/activeManager/')
+        axios.get(c.api + 'users/activeOperator/')
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("There aren't any managers registered.")
+                alert("There aren't any operators registered.")
               }
               else{
-                this.setState({listManagers: response.data})
-                console.log(this.state.listManagers)
+                this.setState({listOperators: response.data})
+                console.log(this.state.listOperators)
                 console.log(response.config)
             }             
         }).catch(error => alert(error))
@@ -76,14 +76,14 @@ class RegisteredManagers extends React.Component {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                            <h3 className="mb-0">Active Managers</h3>
+                            <h3 className="mb-0">Active Operators</h3>
                             </CardHeader>
                             <br></br>
-                            <Alert color="info" isOpen={this.state.isdisabledManager}>
-                                Manager account was disabled! Please reload the page to see the changes
+                            <Alert color="info" isOpen={this.state.isdisabledOperator}>
+                                Operator account was disabled! Please reload the page to see the changes
                             </Alert>
-                            <Alert color="info" isOpen={this.state.isdeletedManager}>
-                                Manager account was deleted! Please reload the page to see the changes
+                            <Alert color="info" isOpen={this.state.isdeletedOperator}>
+                                Operator account was deleted! Please reload the page to see the changes
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
@@ -95,8 +95,8 @@ class RegisteredManagers extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.listManagers.map((item, key) => 
-                                    <tr key={'manager-'+key}>
+                                {this.state.listOperators.map((item, key) => 
+                                    <tr key={'operator-'+key}>
                                     <td>{item.id}</td>
                                     <th scope="row">
                                         <span className="mb-0 text-sm">
@@ -110,7 +110,7 @@ class RegisteredManagers extends React.Component {
                                             role="button"
                                             size="sm"
                                             color=""
-                                            onClick={ () => this.props.history.push({pathname: '/admin/RUDDManager', state: { managerID: item.id }}) }
+                                            onClick={ () => this.props.history.push({pathname: '/admin/RUDDOperator', state: { operatorID: item.id }}) }
                                         >
                                             <i className="fas fa-ellipsis-v" />
                                             
@@ -129,4 +129,4 @@ class RegisteredManagers extends React.Component {
     }
 }
 
-export default RegisteredManagers;
+export default RegisteredOperators;

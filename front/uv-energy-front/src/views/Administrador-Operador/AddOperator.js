@@ -164,7 +164,7 @@ class AddOperator extends React.Component {
                         <strong>Warning!</strong> There are empty fields!
                     </Alert>
                     <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                        <strong>Congratulations!</strong> The opertator was created!
+                        <strong>Congratulations!</strong> The tor was created!
                     </Alert>
                     <Form onSubmit={this.AddOperator}>
                         <h6 className="heading-small text-muted mb-4">

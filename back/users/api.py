@@ -19,3 +19,11 @@ class ActiveManagerViewSet (viewsets.ViewSet):
         queryset = User.objects.filter(Q(position="MGR") & Q(is_active=True))
         serializer = UserSerializer(queryset,many=True)
         return Response(serializer.data)
+
+
+#Active Operator viewSet
+class ActiveOperatorViewSet (viewsets.ViewSet):
+    def list(self, request):
+        queryset = User.objects.filter(Q(position="OP") & Q(is_active=True))
+        serializer = UserSerializer(queryset,many=True)
+        return Response(serializer.data)

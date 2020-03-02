@@ -1,7 +1,6 @@
 
 import AddManager from "views/Administrador-Gerente/AddManager.js";
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js"
-import RUDDManager from "views/Administrador-Gerente/RUDDManager.js"
 
 var managerRoutes = [
 
