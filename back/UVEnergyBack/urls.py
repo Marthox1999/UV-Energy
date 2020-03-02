@@ -11,5 +11,6 @@ urlpatterns = [
     path('api/assets/', include('assets.urls')),
     path('api/users/auth/', obtain_auth_token),
     path('api/users/', include('users.urls')),
+]
   
 router = routers.DefaultRouter()

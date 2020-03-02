@@ -11,13 +11,8 @@ import {
     Form,
     Input,
     Container,
-    DropdownToggle,
-    DropdownItem,
     Row,
     Col,
-    DropdownMenu,
-    UncontrolledDropdown,
-    Media,
     Alert,
     Modal,
     ModalBody
@@ -33,16 +28,10 @@ import UVHeader from "components/Headers/UVHeader.js";
 import {
     Map,
     TileLayer,
-    Marker,
-    Popup
+    Marker
   } from "react-leaflet";
   
 import 'leaflet/dist/leaflet.css';
-
-const setPoint = new L.icon({
-    iconUrl: require("assets/img/theme/transformador.png"),
-    iconSize: new L.point(45,45)
-})
 
 const transformerDone = new L.icon({
     iconUrl: require("assets/img/theme/pointerdone.png"),
@@ -51,7 +40,7 @@ const transformerDone = new L.icon({
 
 const c = require('../constants')
 
-class AddElectricTransformer extends React.Component {
+class DeactivateElectricTransformer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -72,24 +61,21 @@ class AddElectricTransformer extends React.Component {
             transformers: [],
             isAlertEmpty: false,
             isAlertSuccess: false,
+            modifySubstation: true,
+            modifyReference: true,
+            modifyTensionLevel: true,
+            submitClicked: '',
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.setData = this.setData.bind(this);
+        this.updateClicked = this.updateClicked.bind(this);
         this.onChangeReference = this.onChangeReference.bind(this);
         this.onChangeTensionLevel = this.onChangeTensionLevel.bind(this);
         this.getSubstation = this.getSubstation.bind(this);
-        this.AddElectricTransformer = this.AddElectricTransformer.bind(this);
+        this.action = this.action.bind(this);
+        this.deactivate = this.deactivate.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation')
-        .then( response => {
-            if( response.data.error != null){
-                alert(response.data.error);
-              }
-              else{
-                this.setState({listSubstation: response.data})
-            }             
-        }).catch(error => alert(error))
         axios.get(c.api + 'assets/ElectricTransformer')
         .then(response => {
             if (response.data <= 0){
@@ -99,16 +85,8 @@ class AddElectricTransformer extends React.Component {
             }
         }).catch(error => console.log(error))
     }
-    handleClick = (e) => {
-        this.setState({ electricTransformer: {
-                                                pk_transformers: -1,
-                                                tension_level: parseInt(this.state.electricTransformer.tension_level),
-                                                reference: this.state.electricTransformer.reference,
-                                                long: e.latlng.lng.toString(),
-                                                lat: e.latlng.lat.toString(),
-                                                isActive: this.state.electricTransformer.isActive,
-                                                fk_substation: this.state.electricTransformer.fk_substation
-                                            }}, () => console.log(this.state.electricTransformer));
+    setData = (data) => {
+        this.setState({electricTransformer: data, modifyReference: true, modifySubstation: true, modifyTensionLevel: true})
     }
     onChangeReference(e){
         this.setState({ electricTransformer: {
@@ -132,6 +110,17 @@ class AddElectricTransformer extends React.Component {
                                                 fk_substation: this.state.electricTransformer.fk_substation
                                             }})
     }
+    onChangeSubstation(e){
+        this.setState({ electricTransformer: {
+                                                pk_transformers: -1,
+                                                tension_level: this.state.electricTransformer.tension_level,
+                                                reference: this.state.electricTransformer.reference,
+                                                long: this.state.electricTransformer.long,
+                                                lat: this.state.electricTransformer.lat,
+                                                isActive: this.state.electricTransformer.isActive,
+                                                fk_substation: e.target.value,
+                                            }})        
+    }
     getSubstation(data){
         this.setState({ electricTransformer:{
                                                 pk_transformers: -1,
@@ -143,29 +132,62 @@ class AddElectricTransformer extends React.Component {
                                                 fk_substation: data.pk_substation
                                             }});
     }
-    AddElectricTransformer(e){
+    updateClicked(name){
+        this.setState({submitClicked: name})
+    }
+    action(e){
         e.preventDefault()
-        if ((this.state.electricTransformer.tension_level === 0) ||
-            (this.state.electricTransformer.reference === "") ||
-            (this.state.electricTransformer.long === "") ||
-            (this.state.electricTransformer.lat === "") ||
-            (this.state.electricTransformer.fk_substation === -1)){
-            this.setState({isAlertEmpty: true})
-        }else{
-            axios.post(c.api + 'assets/ElectricTransformer/',
-                       this.state.electricTransformer)
-            .then( response => {
-                if (response.data.pk_transformers !== -1){
-                    this.setState({ isAlertSuccess: true,
-                                    isAlertEmpty: false,
-                                    electricTransformer: response.data});
-                    
+        if(this.state.submitClicked === ''){
+            alert("que haces aqui 0-0")
+        }
+        else{
+            if (this.state.submitClicked === 'modify'){
+                if ((this.state.modifyReference && this.state.modifySubstation && this.state.modifyTensionLevel) === true){
+                    if (this.state.electricTransformer.fk_substation === -1){
+                        alert("Select a substation first")
+                    }else{
+                        this.setState({modifyReference: !this.state.modifyReference,
+                            modifySubstation: !this.state.modifySubstation,
+                            modifyTensionLevel: !this.state.modifyTensionLevel})
+                    }
+
+                }else{
+                    if ((this.state.electricTransformer.tension_level === 0) ||
+                    (this.state.electricTransformer.reference === "") ||
+                    (this.state.electricTransformer.long === "") ||
+                    (this.state.electricTransformer.lat === "") ||
+                    (this.state.electricTransformer.fk_substation === -1)){
+                        this.setState({isAlertEmpty: true})
+                    }else{
+                        alert("enviar")
+                    /* axios.post(c.api + 'assets/ElectricTransformer/',
+                                this.state.electricTransformer)
+                        .then( response => {
+                            if (response.data.pk_transformers !== -1){
+                                this.setState({ isAlertSuccess: true,
+                                                isAlertEmpty: false,
+                                                electricTransformer: response.data});
+                                
+                            }
+                        }).catch(error => console.log(error))*/
+                    }
                 }
-            }).catch(error => console.log(error))
+            }else{
+                if (this.state.submitClicked === 'deactivate'){
+                    if (this.state.electricTransformer.fk_substation === -1){
+                        alert("Select a substation first")
+                    }else{
+                        this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+                    }
+                }
+            }
         }
     }
+    deactivate(){
+        alert("deactivate")
+        window.location.reload(true);
+    }
     closeModal(){
-        console.log("closemodal")
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
         window.location.reload(true);
     }
@@ -178,12 +200,12 @@ class AddElectricTransformer extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Electric Transformer</h3>
+                        <h3 className="mb-0">Deactivate Electric Transformer</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
-                    <Form onSubmit={this.AddElectricTransformer}>
+                    <Form onSubmit={this.action}>
                         <h6 className="heading-small text-muted mb-4">
                         General Information
                         </h6>
@@ -192,39 +214,24 @@ class AddElectricTransformer extends React.Component {
                                 <strong>Warning!</strong> There are empty fields!
                             </Alert>
                             <Row>
-                            <Col lg="3">
-                            <center>
+                            <Col lg="4">
                             <FormGroup>
-                                <br></br>
-                                <UncontrolledDropdown nav>
-                                <DropdownToggle className="pr-0">
-                                <Media className="align-items-center" >
-                                    <span className="mb-0 text-sm font-weight-bold">
-                                        Substation  
-                                    </span>
-                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
-                                    <img
-                                        alt="..."
-                                        src={require("assets/img/theme/subestacion.svg")}
-                                    />
-                                    </span>
-                                </Media>
-                                </DropdownToggle>
-                                <DropdownMenu className="dropdown-menu-arrow" right>
-                                { this.state.listSubstation.length > 0 ?
-                                this.state.listSubstation.map((data, id) =>
-                                <DropdownItem key={'s-'+id} onClick={(Fsubbbbbased)=> this.getSubstation(data)}>
-                                    <i className=" ni ni-pin-3" />
-                                    <span>{data.name}</span>
-                                </DropdownItem>) : 
-                                <DropdownItem to="#" tag={Link}>
-                                <i className=" ni ni-fat-remove"/>
-                                <span>There aren't substations</span>
-                                </DropdownItem>}
-                                </DropdownMenu>
-                                </UncontrolledDropdown>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-first-name"
+                                >
+                                Substation
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                name="substation"
+                                placeholder="substation"
+                                type="text"
+                                disabled = {this.state.modifySubstation}
+                                value={this.state.electricTransformer.fk_substation}
+                                onChange={this.onChangeSubstation}
+                                />
                             </FormGroup>
-                            </center>
                             </Col>
                             <Col lg="4">
                             <FormGroup>
@@ -239,6 +246,7 @@ class AddElectricTransformer extends React.Component {
                                 name="reference"
                                 placeholder="reference"
                                 type="text"
+                                disabled = {this.state.modifyReference}
                                 value={this.state.electricTransformer.reference}
                                 onChange={this.onChangeReference}
                                 />
@@ -257,19 +265,13 @@ class AddElectricTransformer extends React.Component {
                                 name="tension_level"
                                 placeholder="tension"
                                 type="number"
+                                disabled = {this.state.modifyTensionLevel}
                                 value={this.state.electricTransformer.tension_level}
                                 onChange={this.onChangeTensionLevel}
                                 />
                             </FormGroup>
                             </Col>
                             </Row>
-                            <h2>Choose the point for the electric transformer</h2>
-                            <img 
-                                alt="..."
-                                src={require("assets/img/theme/transformador.png")}
-                                style={{height: '35px', width: '35px'}}
-                            /> Electric transformer to set
-                            <br/>
                             <img 
                                 alt="..."
                                 src={require("assets/img/theme/pointerdone.png")}
@@ -287,23 +289,26 @@ class AddElectricTransformer extends React.Component {
                                     url={'http://{s}.tile.osm.org/{z}/{x}/{y}.png'}
                                 />
                                     {this.state.transformers.map((data, id) =>  
-                                    <Marker key={'transformer-'+id} position={[parseFloat(data.lat), parseFloat(data.long)]} icon={transformerDone}>
-                                        <Popup>
-                                            <span> {data.name} </span>
-                                        </Popup>
+                                    <Marker 
+                                        key={'transformer-'+id}
+                                        onClick={() => this.setData(data)}
+                                        position={[parseFloat(data.lat), parseFloat(data.long)]}
+                                        icon={transformerDone}>
                                     </Marker>)}
-                                    <Marker
-                                        onClick={this.handleClick}
-                                        position={this.state.coord}
-                                        draggable={true}
-                                        icon={setPoint}>
-                                        <Popup onClick={this.handleClick} position={this.state.coord}>Point choosen: <pre>{this.state.electricTransformer.lat}, {this.state.electricTransformer.long}</pre></Popup>
-                                    </Marker>
                             </Map>
                         <div className="text-center">
-                            <Button className="mt-4" color="primary" type="submit">
-                                Add
-                            </Button>
+                            <Row>
+                                <Col lg="6">
+                                    <Button className="mt-4" name="modify" onClick={()=>this.updateClicked('modify')} color="primary" type="submit">
+                                        Modify
+                                    </Button>
+                                </Col>
+                                <Col lg="6">
+                                    <Button className="mt-4" name="deactivate" onClick={()=>this.updateClicked('deactivate')} color="primary" type="submit">
+                                        Deactivate
+                                    </Button>
+                                </Col>
+                            </Row>
                         </div>
                         </div>
                     </Form>
@@ -314,10 +319,10 @@ class AddElectricTransformer extends React.Component {
                     color="success"
                     isOpen={this.state.isAlertSuccess}
                     >
-                    <ModalBody>
+                        <ModalBody>
                     <div className="modal-body">
-                        <Alert color="success">
-                        <strong>Congratulations!</strong><br/>The electric transformer was created!
+                        <Alert color="warning">
+                        <strong>Deactivate electric transformer,</strong><br/>are you sure?
                         </Alert>
                         <strong>Information:</strong>
                         <br></br>
@@ -328,6 +333,14 @@ class AddElectricTransformer extends React.Component {
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
+                    <Button
+                        color="danger"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.deactivate}
+                        >
+                        Deactivate
+                        </Button>
                         <Button
                         color="primary"
                         data-dismiss="modal"
@@ -336,6 +349,7 @@ class AddElectricTransformer extends React.Component {
                         >
                         Close
                         </Button>
+                    
                     </div>
             </Modal>
             </Container>
@@ -344,4 +358,4 @@ class AddElectricTransformer extends React.Component {
     }
 }
 
-export default AddElectricTransformer;
+export default DeactivateElectricTransformer;

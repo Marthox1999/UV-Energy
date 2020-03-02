@@ -27,6 +27,7 @@ import UVForm from "views/examples/Form.js";
 import AddManager from "views/Administrador-Gerente/AddManager.js";
 //import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
+import DeactivateElectricTransformer from "views/Administrador-Transformador/DeactivateElectricTransformer.js";
 import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 
@@ -118,6 +119,13 @@ var routes = [
       name: "Add Electric Transformer",
       icon: "ni ni-single-02 text-yellow",
       component: AddElectricTransformer,
+      layout: "/admin"
+  },
+  {
+      path: "/DeactivateElectricTransformer",
+      name: "Deactivate Electric Transformer",
+      icon: "ni ni-single-02 text-yellow",
+      component: DeactivateElectricTransformer,
       layout: "/admin"
   },
   {
