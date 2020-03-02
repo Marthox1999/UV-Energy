@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
@@ -28,6 +28,8 @@ import routes from "routes.js";
 import adminRoutes from "adminRoutes.js";
 import managerRoutes from "managerRoutes.js";
 import operatorRoutes from "operatorRoutes.js";
+import electricTransformerRoutes from "electricTransformersRoutes.js";
+import substationRoutes from "substationRoutes.js";
 
 class Admin extends React.Component {
   componentDidUpdate(e) {
@@ -100,6 +102,38 @@ class Admin extends React.Component {
     });
   };
 
+  getElectricTransformerRoutes = electricTransformerRoutes => {
+    return electricTransformerRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+
+  getSubstationRoutes = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -152,6 +186,32 @@ class Admin extends React.Component {
     return "Brand";
   };
 
+  getBrandTextElectricTransformer = path => {
+    for (let i = 0; i < electricTransformerRoutes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          electricTransformerRoutes[i].layout + electricTransformerRoutes[i].path
+        ) !== -1
+      ) {
+        return electricTransformerRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
+
+  getBrandTextSubstation = path => {
+    for (let i = 0; i < substationRoutes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          substationRoutes[i].layout + substationRoutes[i].path
+        ) !== -1
+      ) {
+        return substationRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
+
   render() {
     return (
       <>
@@ -161,6 +221,8 @@ class Admin extends React.Component {
           adminRoutes={adminRoutes}
           managerRoutes={managerRoutes}
           operatorRoutes={operatorRoutes}
+          electricTransformerRoutes={electricTransformerRoutes}
+          substationRoutes={substationRoutes}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -174,12 +236,16 @@ class Admin extends React.Component {
             brandTextManager={this.getBrandTextManager(this.props.location.pathname)}
             brandTextAdmin={this.getBrandTextAdmin(this.props.location.pathname)}
             brandTextOperator={this.getBrandTextOperator(this.props.location.pathname)}
+            brandTextElectricTransformer={this.getBrandTextElectricTransformer(this.props.pathname)}
+            brandTextSubstation={this.getBrandTextSubstation(this.props.pathname)}
           />
           <Switch>
             {this.getAdminRoutes(adminRoutes)}
             {this.getManagerRoutes(managerRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
             {this.getRoutes(routes)}
+            {this.getSubstationRoutes(substationRoutes)}
+            {this.getElectricTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
           <Container fluid>
