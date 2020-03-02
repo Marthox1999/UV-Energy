@@ -13,6 +13,7 @@ class UserViewSet (viewsets.ModelViewSet):
     ]
     serializer_class = UserSerializer
 
+
 #Active Manager viewSet
 class ActiveManagerViewSet (viewsets.ViewSet):
     def list(self, request):
@@ -20,10 +21,17 @@ class ActiveManagerViewSet (viewsets.ViewSet):
         serializer = UserSerializer(queryset,many=True)
         return Response(serializer.data)
 
+<<<<<<< HEAD
 
 #Active Operator viewSet
 class ActiveOperatorViewSet (viewsets.ViewSet):
     def list(self, request):
         queryset = User.objects.filter(Q(position="OP") & Q(is_active=True))
+=======
+#Active Admin viewSet
+class ActiveAdminViewSet (viewsets.ViewSet):
+    def list(self, request):
+        queryset = User.objects.filter(Q(position="ADMIN") & Q(is_active=True))
+>>>>>>> 252118337ee25df853407b8072411748fc8f857b
         serializer = UserSerializer(queryset,many=True)
         return Response(serializer.data)

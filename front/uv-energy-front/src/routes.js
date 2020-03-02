@@ -28,6 +28,8 @@ import AddManager from "views/Administrador-Gerente/AddManager.js";
 //import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
 import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
+import RegistredAdmins from "views/Administrador-Administrador/RegistredAdmins.js";
+import RUDDAdmin from "views/Administrador-Administrador/RUDDAdmin.js";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 import AddOperator from "views/Administrador-Operador/AddOperator";
 import RUDDManager from "views/Administrador-Gerente/RUDDManager.js";
@@ -138,18 +140,34 @@ var routes = [
       layout: "/admin"
   },
   {
-    path: "/RUDDManager",
-    name: "Selected Manager",
-    icon: "ni ni-single-02 text-yellow",
-    component: RUDDManager,
-    layout:"/admin"
+      path: "/RUDDManager",
+      name: "Selected Manager",
+      icon: "ni ni-single-02 text-yellow",
+      component: RUDDManager,
+      layout:"/admin"
  },
  {
+<<<<<<< HEAD
     path: "/RUDDOperator",
     name: "Selected Operator",
     icon: "ni ni-single-02 text-yellow",
     component: RUDDOperator,
     layout:"/admin"
  },
+=======
+      path: "/registredAdmins",
+      name: "Registred Admins",
+      icon: "ni ni-single-02 text-yellow",
+      component: RegistredAdmins,
+      layout: "/admin"
+  },
+  {
+      path: "/RUDDAdmin",
+      name: "Selected Admin",
+      icon: "ni ni-single-02 text-yellow",
+      component: RUDDAdmin,
+      layout: "/admin"
+  },
+>>>>>>> 252118337ee25df853407b8072411748fc8f857b
 ];
 export default routes;
