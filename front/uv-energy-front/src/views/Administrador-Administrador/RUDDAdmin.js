@@ -13,7 +13,9 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Modal,
+  ModalBody
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -53,6 +55,8 @@ class RUDDAdmin extends React.Component {
             adminPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isModal: false,
+            submitClicked: "",
             isBadinputs: false,
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
@@ -62,7 +66,9 @@ class RUDDAdmin extends React.Component {
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
 
-        this.ModfAdmin = this.ModfAdmin.bind(this);
+        this.updateClicked = this.updateClicked.bind(this);
+        this.accept = this.accept.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         this.SubmitEvent = this.SubmitEvent.bind(this);
 
     }
@@ -76,7 +82,6 @@ class RUDDAdmin extends React.Component {
               else{
                 console.log(response.data)
                 this.setState({admin: response.data, adminData: response.data})
-                console.log(this.state.listAdmins)                
             }             
         }).catch(error => alert(error))
     }
@@ -219,7 +224,8 @@ class RUDDAdmin extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: true, deletedAdmin: false}})
+                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: true, deletedAdmin: false, reload: true}})
+                window.location.reload(true);
 
         }else if(buttonVal === 3){
             console.log("Delete")
@@ -227,12 +233,23 @@ class RUDDAdmin extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: false, deletedAdmin: true}})
+                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: false, deletedAdmin: true, reload: true}})
+                window.location.reload(true);
         }
     }
-    ModfAdmin(e){
-        e.preventDefault()
-        
+    updateClicked(name){
+        this.setState({submitClicked: name,  isModal: !this.state.isModal})
+    }
+    accept(){
+        if(this.state.submitClicked==="Disable"){
+            this.SubmitEvent(2);
+        }else if(this.state.submitClicked==="Delete"){
+            this.SubmitEvent(3);
+        }
+    }
+    closeModal(){
+        this.setState({ isModal: !this.state.isModal})
+        window.location.reload(true);
     }
     render() {
         return(
@@ -390,10 +407,10 @@ class RUDDAdmin extends React.Component {
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                                 Modify Information
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Disable Admin?')){this.SubmitEvent(2)};} }>
+                            <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Disable')}>
                                 Disable Admin
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Delete Admin?')){this.SubmitEvent(3)};} }>
+                            <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Delete')}>
                                 Delete Register
                             </Button>
                         </div>
@@ -401,6 +418,41 @@ class RUDDAdmin extends React.Component {
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isModal}
+                >
+                    <ModalBody>
+                        <div className="modal-body">
+                            <Alert color="warning">
+                            <strong>{this.state.submitClicked} admin register,</strong><br/>are you sure?
+                            </Alert>
+                            <strong>Information:</strong>
+                            <br></br>
+                            <strong> ID: </strong> {this.state.adminData.id}<br/>
+                            <strong> Name: </strong> {this.state.adminData.name} {this.state.adminData.last_name}<br/>                                                        
+                        </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                            color="danger"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.accept}
+                            >
+                            Sure
+                            </Button>
+                            <Button
+                            color="primary"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.closeModal}
+                            >
+                            No
+                        </Button>                    
+                    </div>
+                </Modal>
             </Container>
             </>
         );
