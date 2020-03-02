@@ -126,13 +126,6 @@ var routes = [
       layout: "/admin"
   },
   {
-      path: "/addAdmin",
-      name: "Add Admin",
-      icon: "ni ni-single-02 text-yellow",
-      component: AddAdmin,
-      layout: "/admin"
-  },
-  {
       path: "/addOperator",
       name: "Add Operator",
       icon: "ni ni-single-02 text-yellow",
@@ -154,18 +147,11 @@ var routes = [
     layout:"/admin"
  },
 {
-      path: "/registredAdmins",
-      name: "Registred Admins",
-      icon: "ni ni-single-02 text-yellow",
-      component: RegistredAdmins,
-      layout: "/admin"
-  },
-  {
       path: "/RUDDAdmin",
       name: "Selected Admin",
       icon: "ni ni-single-02 text-yellow",
       component: RUDDAdmin,
       layout: "/admin"
-  },
+},
 ];
 export default routes;
