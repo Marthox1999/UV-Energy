@@ -30,6 +30,7 @@ import AddElectricTransformer from "views/Administrador-Transformador/AddElectri
 import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 import AddOperator from "views/Administrador-Operador/AddOperator";
+import RUDDManager from "views/Administrador-Gerente/RUDDManager.js"
 
 
 var routes = [
@@ -135,5 +136,12 @@ var routes = [
       component: AddOperator,
       layout: "/admin"
   },
+  {
+    path: "/RUDDManager",
+    name: "Selected Manager",
+    icon: "ni ni-single-02 text-yellow",
+    component: RUDDManager,
+    layout:"/admin"
+ },
 ];
 export default routes;

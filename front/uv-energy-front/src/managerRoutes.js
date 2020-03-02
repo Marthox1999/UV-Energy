@@ -19,12 +19,5 @@ var managerRoutes = [
     component: RegisteredManagers,
     layout: "/admin"
   },
-  {
-    path: "/RUDDManager",
-    name: "Selected Manager",
-    icon: "ni ni-single-02 text-yellow",
-    component: RUDDManager,
-    layout: "/admin"
- },
 ];
 export default managerRoutes;

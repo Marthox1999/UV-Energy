@@ -52,6 +52,7 @@ class Admin extends React.Component {
   };
 
   getManagerRoutes = managerRoutes => {
+    console.log(managerRoutes)
     return managerRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
@@ -126,7 +127,7 @@ class Admin extends React.Component {
   };
 
   getBrandTextAdmin = path => {
-    for (let i = 0; i < adminRoutes.length; i++) {
+    for (let i = 0; i < adminRoutes.length - 1; i++) {
       if (
         this.props.location.pathname.indexOf(
           adminRoutes[i].layout + adminRoutes[i].path
@@ -178,6 +179,7 @@ class Admin extends React.Component {
             {this.getAdminRoutes(adminRoutes)}
             {this.getManagerRoutes(managerRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
+            {this.getRoutes(routes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
           <Container fluid>
