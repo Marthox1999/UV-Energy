@@ -13,9 +13,17 @@ class UserViewSet (viewsets.ModelViewSet):
     ]
     serializer_class = UserSerializer
 
+
 #Active Manager viewSet
 class ActiveManagerViewSet (viewsets.ViewSet):
     def list(self, request):
         queryset = User.objects.filter(Q(position="MGR") & Q(is_active=True))
+        serializer = UserSerializer(queryset,many=True)
+        return Response(serializer.data)
+
+#Active Admin viewSet
+class ActiveAdminViewSet (viewsets.ViewSet):
+    def list(self, request):
+        queryset = User.objects.filter(Q(position="ADMIN") & Q(is_active=True))
         serializer = UserSerializer(queryset,many=True)
         return Response(serializer.data)
