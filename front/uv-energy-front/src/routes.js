@@ -1,21 +1,4 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-/*import Index from "views/Index.js";
+import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
 import LMaps from "views/examples/Maps.js";
 import Register from "views/examples/Register.js";
@@ -23,10 +6,10 @@ import Login from "views/users/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import UVForm from "views/examples/Form.js";
-*/
 import AddManager from "views/Administrador-Gerente/AddManager.js";
-//import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
+import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
+import DeactivateElectricTransformer from "views/Administrador-Transformador/DeactivateElectricTransformer.js";
 import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
 import RUDDAdmin from "views/Administrador-Administrador/RUDDAdmin.js";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
@@ -35,8 +18,6 @@ import RUDDManager from "views/Administrador-Gerente/RUDDManager.js"
 
 
 var routes = [
-
-/*
   {
         path: "/index",
         name: "Dashboard",
@@ -93,7 +74,6 @@ var routes = [
       component: UVForm,
       layout: "/admin"
   },
-  */
   {
       path: "/addManager",
       name: "Add Manager",
@@ -101,14 +81,13 @@ var routes = [
       component: AddManager,
       layout: "/admin"
   },
-  /*
   {
       path: "/modifyManager",
       name: "Modificar Gerente",
       icon: "ni ni-single-02 text-yellow",
       component: ModifyManager,
       layout: "/admin"
-  },*/
+  },
   {
       path: "/addSubstation",
       name: "Add Substation",
@@ -121,6 +100,13 @@ var routes = [
       name: "Add Electric Transformer",
       icon: "ni ni-single-02 text-yellow",
       component: AddElectricTransformer,
+      layout: "/admin"
+  },
+  {
+      path: "/DeactivateElectricTransformer",
+      name: "Deactivate Electric Transformer",
+      icon: "ni ni-single-02 text-yellow",
+      component: DeactivateElectricTransformer,
       layout: "/admin"
   },
   {

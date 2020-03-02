@@ -106,7 +106,12 @@ class AddSubstation extends React.Component {
             this.setState({isAlertEmpty: true})
         }else{
             axios.post(c.api + 'assets/Substation/',
-                       this.state.substation)
+                       this.state.substation,
+                       /*{
+                           headers: {
+                               'Content-Type': 
+                           }
+                       }*/)
             .then( response => {
                 console.log(response.error)
                 if (response.data.pk_substation !== -1){
@@ -121,7 +126,7 @@ class AddSubstation extends React.Component {
                             isActive: true
                         }});
                 }
-            }).catch(error => console.log(error))
+            }).catch(error => console.log(error.response.request))
         }
     }
     render() {
