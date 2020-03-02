@@ -11,7 +11,10 @@ import ModifyManager from "views/Administrador-Gerente/ModifyManager.js";
 import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
 import DeactivateElectricTransformer from "views/Administrador-Transformador/DeactivateElectricTransformer.js";
 import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
+import RUDDAdmin from "views/Administrador-Administrador/RUDDAdmin.js";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
+import AddOperator from "views/Administrador-Operador/AddOperator";
+import RUDDManager from "views/Administrador-Gerente/RUDDManager.js"
 
 
 var routes = [
@@ -111,6 +114,27 @@ var routes = [
       name: "Add Admin",
       icon: "ni ni-single-02 text-yellow",
       component: AddAdmin,
+      layout: "/admin"
+  },
+  {
+      path: "/addOperator",
+      name: "Add Operator",
+      icon: "ni ni-single-02 text-yellow",
+      component: AddOperator,
+      layout: "/admin"
+  },
+  {
+      path: "/RUDDManager",
+      name: "Selected Manager",
+      icon: "ni ni-single-02 text-yellow",
+      component: RUDDManager,
+      layout:"/admin"
+ },
+  {
+      path: "/RUDDAdmin",
+      name: "Selected Admin",
+      icon: "ni ni-single-02 text-yellow",
+      component: RUDDAdmin,
       layout: "/admin"
   },
 ];

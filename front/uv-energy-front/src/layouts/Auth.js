@@ -24,7 +24,7 @@ import { Container, Row, Col } from "reactstrap";
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
 
-import routes from "routes.js";
+import adminRoutes from "adminRoutes.js";
 
 class Auth extends React.Component {
   componentDidMount() {
@@ -33,8 +33,40 @@ class Auth extends React.Component {
   componentWillUnmount() {
     document.body.classList.remove("bg-default");
   }
-  getRoutes = routes => {
-    return routes.map((prop, key) => {
+  getManagerRoutes = managerRoutes => {
+    return managerRoutes.map((prop, key) => {
+      if (prop.layout === "/auth") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+
+  getAdminRoutes = adminRoutes => {
+    return adminRoutes.map((prop, key) => {
+      if (prop.layout === "/auth") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+
+  getOperatorRoutes = operatorRoutes => {
+    return operatorRoutes.map((prop, key) => {
       if (prop.layout === "/auth") {
         return (
           <Route
@@ -86,7 +118,7 @@ class Auth extends React.Component {
           <Container className="mt--8 pb-5">
             <Row className="justify-content-center">
               <Switch>
-                {this.getRoutes(routes)}
+                {this.getAdminRoutes(adminRoutes)}
                 <Redirect from="*" to="/auth/login" />
               </Switch>
             </Row>

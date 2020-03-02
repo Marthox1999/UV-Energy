@@ -5,6 +5,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from .models import User
 from .serializers import UserSerializer
+from django.db.models import Q
 
 
 # User ViewSet
@@ -14,6 +15,22 @@ class UserViewSet (viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = UserSerializer
+
+
+#Active Manager viewSet
+class ActiveManagerViewSet (viewsets.ViewSet):
+    def list(self, request):
+        queryset = User.objects.filter(Q(position="MGR") & Q(is_active=True))
+        serializer = UserSerializer(queryset,many=True)
+        return Response(serializer.data)
+
+
+#Active Admin viewSet
+class ActiveAdminViewSet (viewsets.ViewSet):
+    def list(self, request):
+        queryset = User.objects.filter(Q(position="ADMIN") & Q(is_active=True))
+        serializer = UserSerializer(queryset,many=True)
+        return Response(serializer.data)
 
 
 class ProfileViewSet (viewsets.ViewSet):

@@ -23,17 +23,11 @@ import { PropTypes } from "prop-types";
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
   Collapse,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -45,8 +39,6 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Progress,
-  Table,
   Container,
   Row,
   Col
@@ -96,8 +88,62 @@ class Sidebar extends React.Component {
       );
     });
   };
+
+  createManagerLinks = managerRoutes => {
+    return managerRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+
+  createAdminLinks = adminRoutes => {
+    return adminRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+
+  createOperatorLinks = operatorRoutes => {
+    return operatorRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
   render() {
-    const { bgColor, routes, logo } = this.props;
+    const { bgColor, adminRoutes, managerRoutes, operatorRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -223,7 +269,14 @@ class Sidebar extends React.Component {
               </InputGroup>
             </Form>
             {/* Navigation */}
-            <Nav navbar>{this.createLinks(routes)}</Nav>
+            <Nav navbar>
+              &nbsp;&nbsp;&nbsp;&nbsp;Manager
+              {this.createManagerLinks(managerRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Administrator
+              {this.createAdminLinks(adminRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Operator
+              {this.createOperatorLinks(operatorRoutes)}
+              </Nav>
           </Collapse>
         </Container>
       </Navbar>
@@ -232,12 +285,16 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.defaultProps = {
-  routes: [{}]
+  adminRoutes: [{}],
+  managerRoutes: [{}],
+  operatorRoutes: [{}]
 };
 
 Sidebar.propTypes = {
   // links that will be displayed inside the component
-  routes: PropTypes.arrayOf(PropTypes.object),
+  adminRoutes: PropTypes.arrayOf(PropTypes.object),
+  managerRoutes: PropTypes.arrayOf(PropTypes.object),
+  operatorRoutes: PropTypes.arrayOf(PropTypes.object),
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag
