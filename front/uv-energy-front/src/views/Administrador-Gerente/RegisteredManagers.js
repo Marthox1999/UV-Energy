@@ -22,6 +22,7 @@ const c = require('../constants')
 class RegistredManagers extends React.Component {
     constructor(props){
         super(props);
+        console.log(this.props.location.state===null)
         if(this.props.location.state === null){
             this.props = { state:{disabledManager: false, deletedManager: false}}
         }else if(this.props.location.state.disabledManager){
@@ -56,7 +57,7 @@ class RegistredManagers extends React.Component {
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("There aren't any managers registred.")
+                alert("There are no registered managers")
               }
               else{
                 this.setState({listManagers: response.data})
@@ -79,7 +80,7 @@ class RegistredManagers extends React.Component {
                             <h3 className="mb-0">Active Managers</h3>
                             </CardHeader>
                             <br></br>
-                            <Alert color="info" isOpen={this.state.isdisabledMAnager}>
+                            <Alert color="info" isOpen={this.state.isdisabledManager}>
                                 Manager account was disabled! Please reload the page to see the changes
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedManager}>

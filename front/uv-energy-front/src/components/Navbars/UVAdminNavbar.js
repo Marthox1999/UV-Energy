@@ -22,9 +22,6 @@ class UVAdminNavbar extends React.Component {
               className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
               to="/"
             >
-              {this.props.brandTextManager}
-              {this.props.brandTextAdmin}
-              {this.props.brandTextOperator}
             </Link>
             <Nav className="align-items-center d-none d-md-flex" navbar>
               <UncontrolledDropdown nav>

@@ -219,7 +219,7 @@ class RUDDManager extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/manager/RegistredManagers', state:{disabledManager: true, deletedMAnager: false}})
+                pathname: '/admin/RegisteredManagers', state:{disabledManager: true, deletedManager: false}})
 
         }else if(buttonVal === 3){
             console.log("Delete")
@@ -227,7 +227,7 @@ class RUDDManager extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/manager/RegistredManagers', state:{disabledManager: false, deletedMAnager: true}})
+                pathname: '/admin/RegisteredManagers', state:{disabledManager: false, deletedManager: true}})
         }
     }
     ModfManager(e){

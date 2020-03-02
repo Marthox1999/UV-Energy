@@ -19,7 +19,7 @@ import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
 
-class RegistredAdmins extends React.Component {
+class RegisteredAdmins extends React.Component {
     constructor(props){
         super(props);
         if(this.props.location.state === null){
@@ -56,7 +56,7 @@ class RegistredAdmins extends React.Component {
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("There aren't any admin registred.")
+                alert("There are no registered administrators.")
               }
               else{
                 this.setState({listAdmins: response.data})
@@ -129,4 +129,4 @@ class RegistredAdmins extends React.Component {
     }
 }
 
-export default RegistredAdmins;
+export default RegisteredAdmins;

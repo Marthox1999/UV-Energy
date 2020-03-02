@@ -187,7 +187,7 @@ class AddAdmin extends React.Component {
                                 <strong>Warning!</strong> Wrong information on fields!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The admin was registred!
+                                <strong>Congratulations!</strong> The admin was registered!
                             </Alert>
                         <Row>
                             <Col lg="6">

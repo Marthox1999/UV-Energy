@@ -219,7 +219,7 @@ class RUDDAdmin extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegistredAdmins', state:{disabledAdmin: true, deletedAdmin: false}})
+                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: true, deletedAdmin: false}})
 
         }else if(buttonVal === 3){
             console.log("Delete")
@@ -227,7 +227,7 @@ class RUDDAdmin extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegistredAdmins', state:{disabledAdmin: false, deletedAdmin: true}})
+                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: false, deletedAdmin: true}})
         }
     }
     ModfAdmin(e){
