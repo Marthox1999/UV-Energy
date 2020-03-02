@@ -12,4 +12,4 @@ urlpatterns = [
     path('api/users/auth/', obtain_auth_token),
     path('api/users/', include('users.urls')),
 ]
-router = routers.DefaultRouter()
+

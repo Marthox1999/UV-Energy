@@ -220,7 +220,7 @@ class AddManager extends React.Component {
                                 className="form-control-alternative"
                                 id="input-cellphone"
                                 placeholder="3111111111"
-                                type="number"
+                                type="text"
                                 value={this.state.user.cellphone}
                                 onChange={this.onChangeCellphone}/>
                             </FormGroup>
