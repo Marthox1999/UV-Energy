@@ -19,7 +19,6 @@ class Login extends React.Component {
         username: '',
         password: ''
       },
-      token:''
     }
   }
 
@@ -71,16 +70,25 @@ class Login extends React.Component {
           c.api + 'users/auth/' , this.state.credentials
         ).then(
           response => {
-            console.log(response)
-            if(Object.prototype.hasOwnProperty.call(response.data, 'token')) {
-              this.setState({
-                token: response.data.token
-              })
-              console.log(this.state.token)
-              this.props.history.push({
-                pathname: '/admin/index', state:{ notCredentials: this.credentials}
-              })
-
+            console.log(response.data)
+            if(Object.prototype.hasOwnProperty.call(response.data, 'notCredentials')) {
+              if(response.data.notCredentials.position === "ADMIN"){
+                this.props.history.push({
+                  pathname: '/admin/index', state:{ notCredentials: response.data.notCredentials}
+                })
+              } else if (response.data.notCredentials.position === "MGR"){
+                this.props.history.push({
+                  pathname: '/manager/index', state:{ notCredentials: response.data.notCredentials}
+                })
+              } else if (response.data.notCredentials.position === "OP"){
+                this.props.history.push({
+                  pathname: '/operator/index', state:{ notCredentials: response.data.notCredentials}
+                })
+              } else if (response.data.notCredentials.position === "CLR"){
+                this.props.history.push({
+                  pathname: '/client/index', state:{ notCredentials: response.data.notCredentials}
+                })
+              }
             }else {
               alert("Invalid Credentials")
             }

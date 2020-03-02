@@ -5,7 +5,7 @@ WORKDIR /code
 #donde estaran las librerias de mi dependencia
 COPY ./uv-energy-front/package.json ./package.json
 
-RUN npm install
+#RUN npm install
 
 COPY ./uv-energy-front/ .
 
