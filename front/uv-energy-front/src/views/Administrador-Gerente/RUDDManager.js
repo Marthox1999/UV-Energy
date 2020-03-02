@@ -220,6 +220,7 @@ class RUDDManager extends React.Component {
 
             this.props.history.push({
                 pathname: '/admin/RegisteredManagers', state:{disabledManager: true, deletedManager: false}})
+                window.location.reload(true);
 
         }else if(buttonVal === 3){
             console.log("Delete")
@@ -228,6 +229,7 @@ class RUDDManager extends React.Component {
 
             this.props.history.push({
                 pathname: '/admin/RegisteredManagers', state:{disabledManager: false, deletedManager: true}})
+                window.location.reload(true);
         }
     }
     ModfManager(e){

@@ -28,7 +28,7 @@ const c = require('../constants')
 class RUDDAdmin extends React.Component {
     constructor(props){
         super(props);
-        console.log(this.props.location.state)
+        //console.log(this.props.location.state)
         this.state = {
             admin : {
                 id: this.props.location.state.adminID,
@@ -80,7 +80,7 @@ class RUDDAdmin extends React.Component {
                 alert("Wrong Id")
               }
               else{
-                console.log(response.data)
+                //console.log(response.data)
                 this.setState({admin: response.data, adminData: response.data})
             }             
         }).catch(error => alert(error))
@@ -169,7 +169,7 @@ class RUDDAdmin extends React.Component {
 
                 this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
             }else{
-                console.log(this.state.admin)
+                //console.log(this.state.admin)
                 if(this.state.adminPassword !== ""){
                     this.setState({ admin: {
                                             id: this.state.admin.id,
@@ -186,7 +186,7 @@ class RUDDAdmin extends React.Component {
                 axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
                         this.state.admin)
                 .then( response => {
-                    console.log(response)
+                    //console.log(response)
                     if ((response.data.password === this.state.adminData.password) ||
                         (response.data.email === this.state.adminData.email) ||
                         (response.data.first_name === this.state.adminData.first_name) ||
@@ -200,7 +200,7 @@ class RUDDAdmin extends React.Component {
                                     });
                     }
                 }).catch(error => {
-                    console.log(error.response.request)
+                    //console.log(error.response.request)
                     this.setState({ isAlertSuccess: false,
                                     isAlertEmpty: false,
                                     isBadinputs: true})
@@ -228,7 +228,7 @@ class RUDDAdmin extends React.Component {
                 window.location.reload(true);
 
         }else if(buttonVal === 3){
-            console.log("Delete")
+            //console.log("Delete")
             axios.delete(c.api + 'users/user/'+this.state.admin.id+'/')
             .catch(error => console.log(error))
 
