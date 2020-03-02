@@ -147,14 +147,13 @@ var routes = [
       layout:"/admin"
  },
  {
-<<<<<<< HEAD
     path: "/RUDDOperator",
     name: "Selected Operator",
     icon: "ni ni-single-02 text-yellow",
     component: RUDDOperator,
     layout:"/admin"
  },
-=======
+{
       path: "/registredAdmins",
       name: "Registred Admins",
       icon: "ni ni-single-02 text-yellow",
@@ -168,6 +167,5 @@ var routes = [
       component: RUDDAdmin,
       layout: "/admin"
   },
->>>>>>> 252118337ee25df853407b8072411748fc8f857b
 ];
 export default routes;
