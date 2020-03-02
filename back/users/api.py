@@ -30,5 +30,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         token = Token.objects.get(key=response.data['token'])
         user = User.objects.get(id=token.user_id)
         return Response({
-            'token':token.key, 'id':token.user_id, 'position':user.position
+            'notCredentials':{
+                'token':token.key, 'id':token.user_id, 'position':user.position
+            }
         })

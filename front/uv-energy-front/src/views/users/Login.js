@@ -77,6 +77,10 @@ class Login extends React.Component {
                 token: response.data.token
               })
               console.log(this.state.token)
+              this.props.history.push({
+                pathname: '/admin/index', state:{ notCredentials: this.credentials}
+              })
+
             }else {
               alert("Invalid Credentials")
             }
