@@ -6,18 +6,22 @@ import { Container } from "reactstrap";
 import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
+import addElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
+
 
 import routes from "routes.js";
 import adminRoutes from "adminRoutes.js";
 import managerRoutes from "managerRoutes.js";
 import operatorRoutes from "operatorRoutes.js";
+import electricTransformerRoutes from "ElectricTransformersRoutes.js";
+
 
 class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isVerified: false,
-      credentials:this.props.location.notCredentials
+      credentials: this.props.location.state.notCredentials
     };
   };
   componentDidUpdate(e) {
@@ -42,7 +46,6 @@ class Admin extends React.Component {
   };
 
   getManagerRoutes = managerRoutes => {
-    console.log(managerRoutes)
     return managerRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
@@ -81,6 +84,23 @@ class Admin extends React.Component {
           <Route
             path={prop.layout + prop.path}
             component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+
+  getElectricTransformerRoutes = ElectricTransformerRoutes => {
+    return ElectricTransformerRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        console.log(prop)
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            render={props => <addElectricTransformer {...props} state={ this.state.credentials}/>}
             key={key}
           />
         );
@@ -142,8 +162,19 @@ class Admin extends React.Component {
     return "Brand";
   };
 
+  getBrandTextElectricTransformer = path => {
+    for (let i = 0; i < electricTransformerRoutes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          electricTransformerRoutes[i].layout + electricTransformerRoutes[i].path
+        ) !== -1
+      ) {
+        return electricTransformerRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
   render() {
-    console.log(this.props.location.state)
     return (
       <>
         <Sidebar
@@ -152,6 +183,7 @@ class Admin extends React.Component {
           adminRoutes={adminRoutes}
           managerRoutes={managerRoutes}
           operatorRoutes={operatorRoutes}
+          electricTransformerRoutes={electricTransformerRoutes}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -165,12 +197,14 @@ class Admin extends React.Component {
             brandTextManager={this.getBrandTextManager(this.props.location.pathname)}
             brandTextAdmin={this.getBrandTextAdmin(this.props.location.pathname)}
             brandTextOperator={this.getBrandTextOperator(this.props.location.pathname)}
+            brandTextElectricTransformer={this.getBrandTextElectricTransformer(this.props.location.pathname)}
           />
           <Switch>
             {this.getAdminRoutes(adminRoutes)}
             {this.getManagerRoutes(managerRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
             {this.getRoutes(routes)}
+            {this.getElectricTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
           <Container fluid>

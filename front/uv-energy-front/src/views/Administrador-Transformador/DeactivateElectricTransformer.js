@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+/*import { Link } from "react-router-dom";*/
 import axios from 'axios';
 // reactstrap components
 import {
@@ -90,7 +90,7 @@ class DeactivateElectricTransformer extends React.Component {
     }
     onChangeReference(e){
         this.setState({ electricTransformer: {
-                                                pk_transformers: -1,
+                                                pk_transformers: this.state.electricTransformer.pk_transformers,
                                                 tension_level: this.state.electricTransformer.tension_level,
                                                 reference: e.target.value,
                                                 long: this.state.electricTransformer.long,
@@ -101,7 +101,7 @@ class DeactivateElectricTransformer extends React.Component {
     }
     onChangeTensionLevel(e){
         this.setState({ electricTransformer: {
-                                                pk_transformers: -1,
+                                                pk_transformers: this.state.electricTransformer.pk_transformers,
                                                 tension_level: e.target.value,
                                                 reference: this.state.electricTransformer.reference,
                                                 long: this.state.electricTransformer.long,
@@ -112,7 +112,7 @@ class DeactivateElectricTransformer extends React.Component {
     }
     onChangeSubstation(e){
         this.setState({ electricTransformer: {
-                                                pk_transformers: -1,
+                                                pk_transformers: this.state.electricTransformer.pk_transformers,
                                                 tension_level: this.state.electricTransformer.tension_level,
                                                 reference: this.state.electricTransformer.reference,
                                                 long: this.state.electricTransformer.long,
@@ -123,7 +123,7 @@ class DeactivateElectricTransformer extends React.Component {
     }
     getSubstation(data){
         this.setState({ electricTransformer:{
-                                                pk_transformers: -1,
+                                                pk_transformers: this.state.electricTransformer.pk_transformers,
                                                 tension_level: this.state.electricTransformer.tension_level,
                                                 reference: this.state.electricTransformer.reference,
                                                 long: this.state.electricTransformer.long,
@@ -159,17 +159,20 @@ class DeactivateElectricTransformer extends React.Component {
                     (this.state.electricTransformer.fk_substation === -1)){
                         this.setState({isAlertEmpty: true})
                     }else{
-                        alert("enviar")
-                    /* axios.post(c.api + 'assets/ElectricTransformer/',
+                        axios.put(c.api + 'assets/ElectricTransformer/'+this.state.electricTransformer.pk_transformers+'/',
                                 this.state.electricTransformer)
                         .then( response => {
-                            if (response.data.pk_transformers !== -1){
-                                this.setState({ isAlertSuccess: true,
-                                                isAlertEmpty: false,
+                            console.log(response.data)
+                            if ((this.state.electricTransformer.tension_level === 0) ||
+                                (this.state.electricTransformer.reference === "") ||
+                                (this.state.electricTransformer.long === "") ||
+                                (this.state.electricTransformer.lat === "") ||
+                                (this.state.electricTransformer.fk_substation === -1)){
+                                this.setState({ isAlertEmpty: false,
                                                 electricTransformer: response.data});
                                 
                             }
-                        }).catch(error => console.log(error))*/
+                        }).catch(error => console.log(error))
                     }
                 }
             }else{
@@ -184,7 +187,25 @@ class DeactivateElectricTransformer extends React.Component {
         }
     }
     deactivate(){
-        alert("deactivate")
+        this.setState({ electricTransformer:{
+            pk_transformers: this.state.electricTransformer.pk_transformers,
+            tension_level: this.state.electricTransformer.tension_level,
+            reference: this.state.electricTransformer.reference,
+            long: this.state.electricTransformer.long,
+            lat: this.state.electricTransformer.lat,
+            isActive: false,
+            fk_substation: this.state.electricTransformer.fk_substation
+        }})
+        axios.put(c.api + 'assets/ElectricTransformer/'+this.state.electricTransformer.pk_transformers+'/',
+                                this.state.electricTransformer)
+                        .then( response => {
+                            console.log(response.data)
+                            if (this.state.electricTransformer.isActive === false){
+                                alert("falta modal bonito")
+                                this.setState({ isAlertEmpty: false,
+                                                electricTransformer: response.data});
+                            }
+                        }).catch(error => console.log(error))
         window.location.reload(true);
     }
     closeModal(){

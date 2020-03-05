@@ -68,6 +68,7 @@ class AddElectricTransformer extends React.Component {
                 isActive: true,
                 fk_substation: -1
             },
+            credentials: "",
             listSubstation : [],
             transformers: [],
             isAlertEmpty: false,
@@ -81,7 +82,8 @@ class AddElectricTransformer extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation')
+        axios.get(c.api + 'assets/Substation',
+                  {headers: { Authorization: 'Bearer ' + this.state.credentials.token}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
@@ -97,7 +99,7 @@ class AddElectricTransformer extends React.Component {
             }else{
                 this.setState({transformers: response.data})
             }
-        }).catch(error => console.log(error))
+        }).catch(error => console.log(error.response))
     }
     handleClick = (e) => {
         this.setState({ electricTransformer: {
@@ -170,10 +172,13 @@ class AddElectricTransformer extends React.Component {
         window.location.reload(true);
     }
     render() {
+        console.log(this.props)
+        console.log(this.props.credentials)
         return(
         <>
         <UVHeader/>
-            <Container className="mt--7" fluid>
+            <Container {...this.props} className="mt--7" fluid>
+            
             <Card className="bg-secondary shadow">
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
