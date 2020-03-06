@@ -82,21 +82,20 @@ class AddElectricTransformer extends React.Component {
         axios.get(c.api + 'assets/Substation',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
-            if( response.data.error != null){
-                console.log(response.data.error);
+            if( response.data.count === 0){
+                alert("There are not substations registered")
               }
               else{
-                console.log(response.data)
-                this.setState({listSubstation: response.data})
+                this.setState({listSubstation: response.data.results})
             }             
         }).catch(error => console.log(error))
         axios.get(c.api + 'assets/ElectricTransformer',
                   {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then(response => {
-            if (response.data <= 0){
-                alert("No hay transformadores registrados.")
+            if (response.data.count === 0){
+                alert("There are not electric transformers registered")
             }else{
-                this.setState({transformers: response.data})
+                this.setState({transformers: response.data.results})
             }
         }).catch(error => console.log(error.response))
     }
@@ -154,8 +153,12 @@ class AddElectricTransformer extends React.Component {
             this.setState({isAlertEmpty: true})
         }else{
             axios.post(c.api + 'assets/ElectricTransformer/',
-                       this.state.electricTransformer)
+                       this.state.electricTransformer,
+                       {headers: 
+                        { 'Authorization' : `Token ${this.state.credentials.token}`}
+                       })
             .then( response => {
+                console.log(response.data.pk_transformers !== -1)
                 if (response.data.pk_transformers !== -1){
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
@@ -166,7 +169,6 @@ class AddElectricTransformer extends React.Component {
         }
     }
     closeModal(){
-        console.log("closemodal")
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
         window.location.reload(true);
     }
@@ -215,7 +217,7 @@ class AddElectricTransformer extends React.Component {
                                 <DropdownMenu className="dropdown-menu-arrow" right>
                                 { this.state.listSubstation.length > 0 ?
                                 this.state.listSubstation.map((data, id) =>
-                                <DropdownItem key={'s-'+id} onClick={(Fsubbbbbased)=> this.getSubstation(data)}>
+                                <DropdownItem key={'s-'+id} onClick={()=> this.getSubstation(data)}>
                                     <i className=" ni ni-pin-3" />
                                     <span>{data.name}</span>
                                 </DropdownItem>) : 

@@ -16,6 +16,7 @@ class ElectricTransformerViewSet(viewsets.ModelViewSet):
 
 class SubStationViewSet(viewsets.ModelViewSet):
     queryset = Substation.objects.all()
+    authentication_classes = (TokenAuthentication, )
     permission_classes = [
         permissions.IsAuthenticated
     ]

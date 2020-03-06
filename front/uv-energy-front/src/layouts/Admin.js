@@ -39,7 +39,21 @@ class Admin extends React.Component {
       }
     });
   };
-
+  getRoutes = routes => {
+    return routes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getManagerRoutes = managerRoutes => {
     return managerRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -190,10 +204,10 @@ class Admin extends React.Component {
         <div className="main-content" ref="mainContent">
           <UVAdminNavbar/>
           <Switch>
+            {this.getRoutes(routes)}
             {this.getAdminRoutes(adminRoutes)}
             {this.getManagerRoutes(managerRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
-            {this.getRoutes(routes)}
             {this.getSubstationRoutes(substationRoutes)}
             {this.getElectricTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/admin/index" />
