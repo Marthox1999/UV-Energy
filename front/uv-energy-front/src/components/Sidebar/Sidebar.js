@@ -1,21 +1,3 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-/*eslint-disable*/
 import React from "react";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
@@ -23,17 +5,11 @@ import { PropTypes } from "prop-types";
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
   Collapse,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -45,14 +21,12 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Progress,
-  Table,
   Container,
   Row,
   Col
 } from "reactstrap";
 
-var ps;
+/*var ps;*/
 
 class Sidebar extends React.Component {
   state = {
@@ -60,6 +34,9 @@ class Sidebar extends React.Component {
   };
   constructor(props) {
     super(props);
+    this.state= {
+      credentials: this.props.credentials,
+    }
     this.activeRoute.bind(this);
   }
   // verifies if routeName is the one active (in browser input)
@@ -96,8 +73,96 @@ class Sidebar extends React.Component {
       );
     });
   };
+
+  createManagerLinks = managerRoutes => {
+    return managerRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+
+  createAdminLinks = adminRoutes => {
+    return adminRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+
+  createOperatorLinks = operatorRoutes => {
+    return operatorRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+  createSubstationLinks = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={{pathname: prop.layout + prop.path, state: { credentials: this.state.credentials}}}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+  createElectricTransfomerLinks = electricTransformerRoutes => {
+    return electricTransformerRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={{pathname: prop.layout + prop.path, state: { credentials: this.state.credentials}}}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
   render() {
-    const { bgColor, routes, logo } = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -223,7 +288,18 @@ class Sidebar extends React.Component {
               </InputGroup>
             </Form>
             {/* Navigation */}
-            <Nav navbar>{this.createLinks(routes)}</Nav>
+            <Nav navbar>
+              &nbsp;&nbsp;&nbsp;&nbsp;Manager
+              {this.createManagerLinks(managerRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Administrator
+              {this.createAdminLinks(adminRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Operator
+              {this.createOperatorLinks(operatorRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Substation
+              {this.createSubstationLinks(substationRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Electric Transformer
+              {this.createElectricTransfomerLinks(electricTransformerRoutes)}
+              </Nav>
           </Collapse>
         </Container>
       </Navbar>
@@ -232,12 +308,18 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.defaultProps = {
-  routes: [{}]
+  adminRoutes: [{}],
+  managerRoutes: [{}],
+  operatorRoutes: [{}],
+  electricTransformerRoutes: [{}]
 };
 
 Sidebar.propTypes = {
   // links that will be displayed inside the component
-  routes: PropTypes.arrayOf(PropTypes.object),
+  adminRoutes: PropTypes.arrayOf(PropTypes.object),
+  managerRoutes: PropTypes.arrayOf(PropTypes.object),
+  operatorRoutes: PropTypes.arrayOf(PropTypes.object),
+  electricTransformerRoutes: PropTypes.arrayOf(PropTypes.object),
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag

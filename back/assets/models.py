@@ -15,8 +15,8 @@ class Substation(models.Model):
     pk_substation = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True,
                             validators=[alphanumeric])
-    long = models.DecimalField(max_digits=18, decimal_places=15)
-    lat = models.DecimalField(max_digits=18, decimal_places=15)
+    long = models.DecimalField(max_digits=25, decimal_places=20)
+    lat = models.DecimalField(max_digits=25, decimal_places=20)
     isActive = models.BooleanField(default=True)
 
 
@@ -33,8 +33,8 @@ class ElectricTransformer(models.Model):
                                  max_length=8,
                                  blank=True)
 
-    long = models.DecimalField(max_digits=18, decimal_places=15)
-    lat = models.DecimalField(max_digits=18, decimal_places=15)
+    long = models.DecimalField(max_digits=25, decimal_places=20)
+    lat = models.DecimalField(max_digits=25, decimal_places=20)
     fk_substation = models.ForeignKey(Substation,
                                       on_delete=models.SET_NULL,
                                       null=True)
