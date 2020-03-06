@@ -43,6 +43,7 @@ const c = require('../constants')
 class DeactivateElectricTransformer extends React.Component {
     constructor(props){
         super(props);
+        console.log(this.props.location)
         this.state = {
             coord : {
                 lat: 3.430283815687804,
@@ -57,6 +58,7 @@ class DeactivateElectricTransformer extends React.Component {
                 isActive: true,
                 fk_substation: -1
             },
+            credentials: this.props.location.state.credentials,
             listSubstation : [],
             transformers: [],
             isAlertEmpty: false,
@@ -76,14 +78,19 @@ class DeactivateElectricTransformer extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/ElectricTransformer')
+        if (typeof this.state.credentials === 'undefined'){
+            alert("no token");
+            this.props.history.push('/auth/login');
+        }
+        axios.get(c.api + 'assets/ElectricTransformer',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then(response => {
-            if (response.data <= 0){
-                alert("No hay transformadores registrados.")
+            if (response.data.count === 0){
+                alert("There are not electric transformers registered.")
             }else{
-                this.setState({transformers: response.data})
+                this.setState({transformers: response.data.results})
             }
-        }).catch(error => console.log(error))
+        }).catch(error => console.log(error.response))
     }
     setData = (data) => {
         this.setState({electricTransformer: data, modifyReference: true, modifySubstation: true, modifyTensionLevel: true})
@@ -166,7 +173,7 @@ class DeactivateElectricTransformer extends React.Component {
                             if ((this.state.electricTransformer.tension_level === 0) ||
                                 (this.state.electricTransformer.reference === "") ||
                                 (this.state.electricTransformer.long === "") ||
-                                (this.state.electricTransformer.lat === "") ||
+                                (this.state.electricTran0sformer.lat === "") ||
                                 (this.state.electricTransformer.fk_substation === -1)){
                                 this.setState({ isAlertEmpty: false,
                                                 electricTransformer: response.data});

@@ -24,6 +24,12 @@ class Admin extends React.Component {
       credentials: this.props.location.state.notCredentials
     };
   };
+  componentWillMount(){
+    if (typeof this.state.credentials === 'undefined'){
+      alert("no tengo token!")
+      this.props.history.push('/login/auth');
+    }
+  }
   componentDidUpdate(e) {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
