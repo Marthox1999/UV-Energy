@@ -1,7 +1,9 @@
 from assets.models import ElectricTransformer, Substation
 from rest_framework import viewsets, permissions
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.response import Response
 from .serializers import ElectricTransformerSerializers, SubStationSerializers
+from django.db.models import Q
 # electric transformer viewsets
 
 
@@ -21,3 +23,10 @@ class SubStationViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
     serializer_class = SubStationSerializers
+
+class ActiveSubStationViewSet(viewsets.ViewSet):
+    def list(self, request):
+        queryset = Substation.objects.filter(Q(isActive=True))
+        serializer = SubStationSerializers(queryset, many=True)
+        return Response(serializer.data)
+    

@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .api import ElectricTransformerViewSet, SubStationViewSet
+from .api import ElectricTransformerViewSet, SubStationViewSet, ActiveSubStationViewSet
 
 router = routers.DefaultRouter()
 
@@ -10,4 +10,7 @@ router.register(r'ElectricTransformer',
 router.register(r'Substation',
                 SubStationViewSet,
                 'Substation')
+
+router.register(r'activeSubstation', ActiveSubStationViewSet, 'activeSubstation')
+
 urlpatterns = router.urls

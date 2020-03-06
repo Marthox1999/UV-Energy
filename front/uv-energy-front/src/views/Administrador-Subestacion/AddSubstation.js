@@ -195,7 +195,10 @@ class AddSubstation extends React.Component {
                                     url={'http://{s}.tile.osm.org/{z}/{x}/{y}.png'}
                                 />
                                     {this.state.listSubstation.map((data, id) =>  
-                                    <Marker key={'substation-'+id} position={[parseFloat(data.lat), parseFloat(data.long)]} icon={substationDone}>
+                                    <Marker
+                                        key={'substation-'+id}
+                                        position={[parseFloat(data.lat), parseFloat(data.long)]}
+                                        icon={substationDone}>
                                         <Popup>
                                             <span> {data.name} </span>
                                         </Popup>
