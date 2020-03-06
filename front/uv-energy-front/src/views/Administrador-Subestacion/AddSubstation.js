@@ -59,6 +59,7 @@ class AddSubstation extends React.Component {
                 lat: "",
                 isActive: true
             },
+            credentials: this.props.location.state.credentials,
             listSubstation : [],
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -68,15 +69,16 @@ class AddSubstation extends React.Component {
         this.AddSubstation = this.AddSubstation.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation')
+        axios.get(c.api + 'assets/Substation',
+              {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
-                alert(response.data.error);
+                alert(response.data);
               }
               else{
                 this.setState({listSubstation: response.data})
             }             
-        }).catch(error => alert(error))
+        }).catch(error => console.log(error))
     }
     handleClick = (e) => {
         this.setState({ substation: {

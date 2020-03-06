@@ -36,9 +36,6 @@ import {
     Marker,
     Popup
   } from "react-leaflet";
-  
-import 'leaflet/dist/leaflet.css';
-
 const setPoint = new L.icon({
     iconUrl: require("assets/img/theme/transformador.png"),
     iconSize: new L.point(45,45)
@@ -68,7 +65,7 @@ class AddElectricTransformer extends React.Component {
                 isActive: true,
                 fk_substation: -1
             },
-            credentials: "",
+            credentials: this.props.location.state.credentials,
             listSubstation : [],
             transformers: [],
             isAlertEmpty: false,
@@ -83,16 +80,18 @@ class AddElectricTransformer extends React.Component {
     }
     componentDidMount(){
         axios.get(c.api + 'assets/Substation',
-                  {headers: { Authorization: 'Bearer ' + this.state.credentials.token}})
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
-                alert(response.data.error);
+                console.log(response.data.error);
               }
               else{
+                console.log(response.data)
                 this.setState({listSubstation: response.data})
             }             
-        }).catch(error => alert(error))
-        axios.get(c.api + 'assets/ElectricTransformer')
+        }).catch(error => console.log(error))
+        axios.get(c.api + 'assets/ElectricTransformer',
+                  {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then(response => {
             if (response.data <= 0){
                 alert("No hay transformadores registrados.")
@@ -172,12 +171,10 @@ class AddElectricTransformer extends React.Component {
         window.location.reload(true);
     }
     render() {
-        console.log(this.props)
-        console.log(this.props.credentials)
         return(
         <>
         <UVHeader/>
-            <Container {...this.props} className="mt--7" fluid>
+            <Container className="mt--7" fluid>
             
             <Card className="bg-secondary shadow">
                     <CardHeader className="bg-white border-0">

@@ -34,6 +34,9 @@ class Sidebar extends React.Component {
   };
   constructor(props) {
     super(props);
+    this.state= {
+      credentials: this.props.credentials,
+    }
     this.activeRoute.bind(this);
   }
   // verifies if routeName is the one active (in browser input)
@@ -124,13 +127,29 @@ class Sidebar extends React.Component {
       );
     });
   };
-
+  createSubstationLinks = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={{pathname: prop.layout + prop.path, state: { credentials: this.state.credentials}}}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
   createElectricTransfomerLinks = electricTransformerRoutes => {
     return electricTransformerRoutes.map((prop, key) => {
       return (
         <NavItem key={key}>
           <NavLink
-            to={prop.layout + prop.path}
+            to={{pathname: prop.layout + prop.path, state: { credentials: this.state.credentials}}}
             tag={NavLinkRRD}
             onClick={this.closeCollapse}
             activeClassName="active"
@@ -143,7 +162,7 @@ class Sidebar extends React.Component {
     });
   };
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, logo } = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -276,6 +295,8 @@ class Sidebar extends React.Component {
               {this.createAdminLinks(adminRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;Operator
               {this.createOperatorLinks(operatorRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Substation
+              {this.createSubstationLinks(substationRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;Electric Transformer
               {this.createElectricTransfomerLinks(electricTransformerRoutes)}
               </Nav>

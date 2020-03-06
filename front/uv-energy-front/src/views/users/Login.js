@@ -4,11 +4,12 @@ import {
   InputGroupAddon, InputGroupText, InputGroup,
   Row, Col
 } from 'reactstrap';
-
 import Recaptcha from 'react-recaptcha';
 import axios from 'axios';
 
 const c = require('../constants')
+
+
 
 class Login extends React.Component {
   constructor(props) {
@@ -70,7 +71,6 @@ class Login extends React.Component {
           c.api + 'users/auth/' , this.state.credentials
         ).then(
           response => {
-            console.log(response.data)
             if(Object.prototype.hasOwnProperty.call(response.data, 'notCredentials')) {
               if(response.data.notCredentials.position === "ADMIN"){
                 this.props.history.push({

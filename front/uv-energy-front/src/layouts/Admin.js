@@ -6,7 +6,6 @@ import { Container } from "reactstrap";
 import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import addElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
 
 
 import routes from "routes.js";
@@ -14,6 +13,7 @@ import adminRoutes from "adminRoutes.js";
 import managerRoutes from "managerRoutes.js";
 import operatorRoutes from "operatorRoutes.js";
 import electricTransformerRoutes from "ElectricTransformersRoutes.js";
+import substationRoutes from "SubstationRoutes.js";
 
 
 class Admin extends React.Component {
@@ -25,11 +25,6 @@ class Admin extends React.Component {
     };
   };
   componentDidUpdate(e) {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    this.refs.mainContent.scrollTop = 0;
-  }
-  getRoutes = routes => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
@@ -96,12 +91,11 @@ class Admin extends React.Component {
   getElectricTransformerRoutes = ElectricTransformerRoutes => {
     return ElectricTransformerRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
-        console.log(prop)
         return (
           <Route
             path={prop.layout + prop.path}
-            render={props => <addElectricTransformer {...props} state={ this.state.credentials}/>}
             key={key}
+            component={prop.component}
           />
         );
       } else {
@@ -109,31 +103,32 @@ class Admin extends React.Component {
       }
     });
   };
-
+  getSubstationRoutes = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            key={key}
+            component={prop.component}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
         this.props.location.pathname.indexOf(
           routes[i].layout + routes[i].path
         ) !== -1
-      ) {
-        return routes[i].name;
+        ) {
+          return routes[i].name;
+        }
       }
-    }
-    return "Brand";
-  };
-
-  getBrandTextManager = path => {
-    for (let i = 0; i < managerRoutes.length; i++) {
-      if (
-        this.props.location.pathname.indexOf(
-          managerRoutes[i].layout + managerRoutes[i].path
-        ) !== -1
-      ) {
-        return managerRoutes[i].name;
-      }
-    }
-    return "Brand";
+      return "Brand";
   };
 
   getBrandTextAdmin = path => {
@@ -184,6 +179,8 @@ class Admin extends React.Component {
           managerRoutes={managerRoutes}
           operatorRoutes={operatorRoutes}
           electricTransformerRoutes={electricTransformerRoutes}
+          substationRoutes={substationRoutes}
+          credentials={this.state.credentials}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -191,19 +188,13 @@ class Admin extends React.Component {
           }}
         />
         <div className="main-content" ref="mainContent">
-          <UVAdminNavbar
-            {...this.props}
-            brandText={this.getBrandText(this.props.location.pathname)}
-            brandTextManager={this.getBrandTextManager(this.props.location.pathname)}
-            brandTextAdmin={this.getBrandTextAdmin(this.props.location.pathname)}
-            brandTextOperator={this.getBrandTextOperator(this.props.location.pathname)}
-            brandTextElectricTransformer={this.getBrandTextElectricTransformer(this.props.location.pathname)}
-          />
+          <UVAdminNavbar/>
           <Switch>
             {this.getAdminRoutes(adminRoutes)}
             {this.getManagerRoutes(managerRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
             {this.getRoutes(routes)}
+            {this.getSubstationRoutes(substationRoutes)}
             {this.getElectricTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>

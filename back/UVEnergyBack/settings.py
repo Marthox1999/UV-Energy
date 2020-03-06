@@ -71,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'UVEnergyBack.wsgi.application'
-"""
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -84,7 +84,7 @@ REST_FRAMEWORK = {
         'rest_framework.pagination.PageNumberPagination',
         'PAGE_SIZE': 10
 }
-"""
+
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 

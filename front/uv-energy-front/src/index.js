@@ -37,7 +37,7 @@ ReactDOM.render(
       <Route path="/operator" render={props => <OperatorLayout {...props} />} />
       <Route path="/client" render={props => <ClientLayout {...props} />} />
       <Route path="/auth" render={props => <AuthLayout {...props} />} />
-      <Redirect from="/" to="/admin/index" />
+      <Redirect from="/" to="/auth" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
