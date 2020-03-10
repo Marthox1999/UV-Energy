@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
@@ -24,7 +7,7 @@ import { Container, Row, Col } from "reactstrap";
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
 
-import adminRoutes from "adminRoutes.js";
+import routes from "routes.js";
 
 class Auth extends React.Component {
   componentDidMount() {
@@ -33,40 +16,8 @@ class Auth extends React.Component {
   componentWillUnmount() {
     document.body.classList.remove("bg-default");
   }
-  getManagerRoutes = managerRoutes => {
-    return managerRoutes.map((prop, key) => {
-      if (prop.layout === "/auth") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-
-  getAdminRoutes = adminRoutes => {
-    return adminRoutes.map((prop, key) => {
-      if (prop.layout === "/auth") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-
-  getOperatorRoutes = operatorRoutes => {
-    return operatorRoutes.map((prop, key) => {
+  getRoutes = routes => {
+    return routes.map((prop, key) => {
       if (prop.layout === "/auth") {
         return (
           <Route
@@ -118,7 +69,7 @@ class Auth extends React.Component {
           <Container className="mt--8 pb-5">
             <Row className="justify-content-center">
               <Switch>
-                {this.getAdminRoutes(adminRoutes)}
+                {this.getRoutes(routes)}
                 <Redirect from="*" to="/auth/login" />
               </Switch>
             </Row>

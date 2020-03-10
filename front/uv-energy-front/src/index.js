@@ -24,14 +24,20 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
+import ClientLayout from "layouts/Client.js"
 import AuthLayout from "layouts/Auth.js";
+import ManagerLayout from "layouts/Manager.js";
+import OperatorLayout from "layouts/Operator.js"
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
+      <Route path="/manager" render={props => <ManagerLayout {...props} />} />
+      <Route path="/operator" render={props => <OperatorLayout {...props} />} />
+      <Route path="/client" render={props => <ClientLayout {...props} />} />
       <Route path="/auth" render={props => <AuthLayout {...props} />} />
-      <Redirect from="/" to="/admin/index" />
+      <Redirect from="/" to="/auth" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

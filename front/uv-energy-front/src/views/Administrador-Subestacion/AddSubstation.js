@@ -59,6 +59,7 @@ class AddSubstation extends React.Component {
                 lat: "",
                 isActive: true
             },
+            credentials: this.props.location.state.credentials,
             listSubstation : [],
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -68,15 +69,17 @@ class AddSubstation extends React.Component {
         this.AddSubstation = this.AddSubstation.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation')
+        axios.get(c.api + 'assets/Substation',
+              {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
-            if( response.data.error != null){
-                alert(response.data.error);
+            if( response.data.count === 0){
+                alert("There are not substations registered");
               }
               else{
-                this.setState({listSubstation: response.data})
+                console.log(response)
+                this.setState({listSubstation: response.data.results}) 
             }             
-        }).catch(error => alert(error))
+        }).catch(error => console.log(error))
     }
     handleClick = (e) => {
         this.setState({ substation: {
@@ -106,7 +109,8 @@ class AddSubstation extends React.Component {
             this.setState({isAlertEmpty: true})
         }else{
             axios.post(c.api + 'assets/Substation/',
-                       this.state.substation)
+                       this.state.substation,
+                       {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
             .then( response => {
                 console.log(response.error)
                 if (response.data.pk_substation !== -1){
@@ -121,7 +125,7 @@ class AddSubstation extends React.Component {
                             isActive: true
                         }});
                 }
-            }).catch(error => console.log(error))
+            }).catch(error => console.log(error.response.request.responseText))
         }
     }
     render() {
