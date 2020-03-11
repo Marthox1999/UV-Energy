@@ -37,6 +37,7 @@ class AddAdmin extends React.Component {
                 cellphone: "",
                 position: "ADMIN"
             },
+            credentials: this.props.location.state.credentials,
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
@@ -134,7 +135,8 @@ class AddAdmin extends React.Component {
             this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
         }else{
             axios.post(c.api + 'users/user/',
-                       this.state.admin)
+                       this.state.admin,
+                       {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
             .then( response => {
                 console.log(response)
                 if (response.data.username !== ""){

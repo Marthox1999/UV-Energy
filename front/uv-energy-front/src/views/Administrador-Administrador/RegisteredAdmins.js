@@ -41,6 +41,7 @@ class RegisteredAdmins extends React.Component {
                 cellphone: "123",
                 position: "ADMIN"
             },
+            credentials: this.props.location.state.credentials,
             listAdmins: [],
             isdisabledAdmin: this.props.state.disabledAdmin,
             isdeletedAdmin: this.props.state.deletedAdmin,
@@ -53,7 +54,8 @@ class RegisteredAdmins extends React.Component {
         }
     }
     componentDidMount(){
-        axios.get(c.api + 'users/activeAdmin/')
+        axios.get(c.api + 'users/activeAdmin/',
+                 {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
