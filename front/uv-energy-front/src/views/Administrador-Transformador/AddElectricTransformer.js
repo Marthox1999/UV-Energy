@@ -36,6 +36,9 @@ import {
     Marker,
     Popup
   } from "react-leaflet";
+
+import Cookies from 'universal-cookie';
+
 const setPoint = new L.icon({
     iconUrl: require("assets/img/theme/transformador.png"),
     iconSize: new L.point(45,45)
@@ -47,6 +50,8 @@ const transformerDone = new L.icon({
 })
 
 const c = require('../constants')
+
+const cookie = new Cookies();
 
 class AddElectricTransformer extends React.Component {
     constructor(props){
@@ -65,7 +70,7 @@ class AddElectricTransformer extends React.Component {
                 isActive: true,
                 fk_substation: -1
             },
-            credentials: this.props.location.state.credentials,
+            credentials: cookie.get('noCredentials'),
             listSubstation : [],
             transformers: [],
             isAlertEmpty: false,

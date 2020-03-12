@@ -32,6 +32,7 @@ import {
   } from "react-leaflet";
   
 import 'leaflet/dist/leaflet.css';
+import Cookies from 'universal-cookie';
 
 const transformerDone = new L.icon({
     iconUrl: require("assets/img/theme/pointerdone.png"),
@@ -39,6 +40,7 @@ const transformerDone = new L.icon({
 })
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class DeactivateElectricTransformer extends React.Component {
     constructor(props){
@@ -58,14 +60,12 @@ class DeactivateElectricTransformer extends React.Component {
                 isActive: true,
                 fk_substation: -1
             },
-            credentials: this.props.location.state.credentials,
+            credentials: cookie.get('noCredentials'),
             listSubstation : [],
             transformers: [],
             isAlertEmpty: false,
             isAlertSuccess: false,
-            modifySubstation: true,
-            modifyReference: true,
-            modifyTensionLevel: true,
+            modify: true,
             submitClicked: '',
         }
         this.setData = this.setData.bind(this);
@@ -149,13 +149,11 @@ class DeactivateElectricTransformer extends React.Component {
         }
         else{
             if (this.state.submitClicked === 'modify'){
-                if ((this.state.modifyReference && this.state.modifySubstation && this.state.modifyTensionLevel) === true){
+                if (this.state.modify){
                     if (this.state.electricTransformer.fk_substation === -1){
                         alert("Select a substation first")
                     }else{
-                        this.setState({modifyReference: !this.state.modifyReference,
-                            modifySubstation: !this.state.modifySubstation,
-                            modifyTensionLevel: !this.state.modifyTensionLevel})
+                        this.setState({modify: !this.state.modify})
                     }
 
                 }else{
@@ -207,7 +205,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 this.state.electricTransformer)
                         .then( response => {
                             console.log(response.data)
-                            if (this.state.electricTransformer.isActive === false){
+                            if (!this.state.electricTransformer.isActive){
                                 alert("falta modal bonito")
                                 this.setState({ isAlertEmpty: false,
                                                 electricTransformer: response.data});
@@ -255,7 +253,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 name="substation"
                                 placeholder="substation"
                                 type="text"
-                                disabled = {this.state.modifySubstation}
+                                disabled = {this.state.modify}
                                 value={this.state.electricTransformer.fk_substation}
                                 onChange={this.onChangeSubstation}
                                 />
@@ -274,7 +272,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 name="reference"
                                 placeholder="reference"
                                 type="text"
-                                disabled = {this.state.modifyReference}
+                                disabled = {this.state.modify}
                                 value={this.state.electricTransformer.reference}
                                 onChange={this.onChangeReference}
                                 />
@@ -293,7 +291,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 name="tension_level"
                                 placeholder="tension"
                                 type="number"
-                                disabled = {this.state.modifyTensionLevel}
+                                disabled = {this.state.modify}
                                 value={this.state.electricTransformer.tension_level}
                                 onChange={this.onChangeTensionLevel}
                                 />

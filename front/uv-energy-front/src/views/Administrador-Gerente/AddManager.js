@@ -17,8 +17,10 @@ import {
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 import Axios from "axios";
+import Cookies from 'universal-cookie';
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class AddManager extends React.Component {
     constructor(props){
@@ -36,6 +38,7 @@ class AddManager extends React.Component {
             },
             isAlertEmpty: false,
             isAlertSuccess: false,
+            credentials: cookie.get('noCredentials'),
         }
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
@@ -128,7 +131,8 @@ class AddManager extends React.Component {
             this.setState({isAlertEmpty: true, isAlertSuccess: false})
         }else{
             console.log(this.state.user)
-            Axios.post(c.api + 'users/user/', this.state.user)
+            Axios.post(c.api + 'users/user/', this.state.user,
+            {headers: { Authorization: `Token ${this.state.credentials.token}`}})
             .then( response => {
                 this.setState({ isAlertEmpty: false,
                                 isAlertSuccess: true,

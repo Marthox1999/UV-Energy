@@ -14,14 +14,16 @@ import managerRoutes from "managerRoutes.js";
 import operatorRoutes from "operatorRoutes.js";
 import electricTransformerRoutes from "ElectricTransformersRoutes.js";
 import substationRoutes from "SubstationRoutes.js";
+import Cookies from 'universal-cookie';
 
+const cookie = new Cookies();
 
 class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isVerified: false,
-      credentials: this.props.location.state.notCredentials
+      credentials: cookie.get('noCredentials'),
     };
   };
   componentWillMount(){

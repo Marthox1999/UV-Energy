@@ -26,6 +26,11 @@ import {
   Col
 } from "reactstrap";
 
+
+
+import Cookies from 'universal-cookie';
+
+const cookie = new Cookies();
 /*var ps;*/
 
 class Sidebar extends React.Component {
@@ -37,6 +42,8 @@ class Sidebar extends React.Component {
     this.state= {
       credentials: this.props.credentials,
     }
+    cookie.set('noCredentials',this.state.credentials, { path: '/' });
+    console.log(cookie.get('noCredentials'));
     this.activeRoute.bind(this);
   }
   // verifies if routeName is the one active (in browser input)
@@ -132,7 +139,7 @@ class Sidebar extends React.Component {
       return (
         <NavItem key={key}>
           <NavLink
-            to={{pathname: prop.layout + prop.path, state: { credentials: this.state.credentials}}}
+            to={prop.layout + prop.path}
             tag={NavLinkRRD}
             onClick={this.closeCollapse}
             activeClassName="active"
@@ -149,7 +156,7 @@ class Sidebar extends React.Component {
       return (
         <NavItem key={key}>
           <NavLink
-            to={{pathname: prop.layout + prop.path, state: { credentials: this.state.credentials}}}
+            to={prop.layout + prop.path}
             tag={NavLinkRRD}
             onClick={this.closeCollapse}
             activeClassName="active"
