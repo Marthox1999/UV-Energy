@@ -44,7 +44,6 @@ class RegisteredAdmins extends React.Component {
                 cellphone: "123",
                 position: "ADMIN"
             },
-            credentials: this.props.location.state.credentials,
             listAdmins: [],
             isdisabledAdmin: this.props.state.disabledAdmin,
             isdeletedAdmin: this.props.state.deletedAdmin,

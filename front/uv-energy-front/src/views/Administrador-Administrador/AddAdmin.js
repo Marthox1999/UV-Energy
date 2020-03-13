@@ -39,7 +39,6 @@ class AddAdmin extends React.Component {
                 cellphone: "",
                 position: "ADMIN"
             },
-            credentials: this.props.location.state.credentials,
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
