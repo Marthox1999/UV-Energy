@@ -177,26 +177,6 @@ class RUDDAdminM extends React.Component {
                                     </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col className="col-md-12">
-                                    <FormGroup>
-                                        <label
-                                        className="form-control-label"
-                                        htmlFor="input-password"
-                                        >
-                                        Password
-                                        </label>
-                                        <Input
-                                        readOnly 
-                                        className="form-control-alternative"
-                                        placeholder="Password" 
-                                        type="password" 
-                                        autoComplete="new-password"
-                                        value={this.state.adminPassword}
-                                        />
-                                    </FormGroup>
-                                    </Col>
-                                </Row>
                             </div>
                         </Form>
                     </CardBody>
