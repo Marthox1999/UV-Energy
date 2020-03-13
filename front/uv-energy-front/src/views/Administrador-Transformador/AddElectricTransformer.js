@@ -70,7 +70,7 @@ class AddElectricTransformer extends React.Component {
                 isActive: true,
                 fk_substation: -1
             },
-            credentials: cookie.get('noCredentials'),
+            credentials: cookie.get('notCredentials'),
             listSubstation : [],
             transformers: [],
             isAlertEmpty: false,
@@ -94,15 +94,16 @@ class AddElectricTransformer extends React.Component {
                 this.setState({listSubstation: response.data.results})
             }             
         }).catch(error => console.log(error))
-        axios.get(c.api + 'assets/ElectricTransformer',
+        axios.get(c.api + 'assets/ActiveET',
                   {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then(response => {
             if (response.data.count === 0){
                 alert("There are not electric transformers registered")
             }else{
-                this.setState({transformers: response.data.results})
+                console.log(response.data)
+                this.setState({transformers: response.data})
             }
-        }).catch(error => console.log(error.response))
+        }).catch(error => console.log(error))
     }
     handleClick = (e) => {
         this.setState({ electricTransformer: {
@@ -297,9 +298,6 @@ class AddElectricTransformer extends React.Component {
                                 />
                                     {this.state.transformers.map((data, id) =>  
                                     <Marker key={'transformer-'+id} position={[parseFloat(data.lat), parseFloat(data.long)]} icon={transformerDone}>
-                                        <Popup>
-                                            <span> {data.name} </span>
-                                        </Popup>
                                     </Marker>)}
                                     <Marker
                                         onClick={this.handleClick}

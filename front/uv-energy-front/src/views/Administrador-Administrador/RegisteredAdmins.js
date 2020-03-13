@@ -46,7 +46,7 @@ class RegisteredAdmins extends React.Component {
             listAdmins: [],
             isdisabledAdmin: this.props.state.disabledAdmin,
             isdeletedAdmin: this.props.state.deletedAdmin,
-            credentials: cookie.get('noCredentials'),
+            credentials: cookie.get('notCredentials'),
             filter: {
                 where: {
                     position: "ADMIN",

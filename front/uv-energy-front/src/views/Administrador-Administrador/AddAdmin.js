@@ -42,7 +42,7 @@ class AddAdmin extends React.Component {
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
-            credentials: cookie.get('noCredentials'),
+            credentials: cookie.get('notCredentials'),
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);

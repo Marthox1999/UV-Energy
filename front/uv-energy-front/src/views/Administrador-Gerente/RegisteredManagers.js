@@ -45,7 +45,7 @@ class RegistredManagers extends React.Component {
             listManagers: [],
             isdisabledManager: this.props.state.disabledManager,
             isdeletedManager: this.props.state.deletedManager,
-            credentials: cookie.get('noCredentials'),
+            credentials: cookie.get('notCredentials'),
             filter: {
                 where: {
                     position: "MGR",

@@ -51,7 +51,7 @@ class RUDDManager extends React.Component {
                 cellphone: "",
                 position: "MGR"
             },
-            credentials: cookie.get('noCredentials'),
+            credentials: cookie.get('notCredentials'),
             managerPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,

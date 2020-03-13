@@ -1,7 +1,9 @@
 from assets.models import ElectricTransformer, Substation
 from rest_framework import viewsets, permissions
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.response import Response
 from .serializers import ElectricTransformerSerializers, SubStationSerializers
+from django.db.models import Q
 # electric transformer viewsets
 
 
@@ -13,6 +15,13 @@ class ElectricTransformerViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = ElectricTransformerSerializers
 
+class ActiveETViewSet(viewsets.ViewSet):
+    def list(self, request):
+        queryset = ElectricTransformer.objects.filter(Q(isActive=True))
+        serializer = ElectricTransformerSerializers(queryset, many=True)
+        return Response(serializer.data)
+
+
 
 class SubStationViewSet(viewsets.ModelViewSet):
     queryset = Substation.objects.all()
@@ -21,3 +30,4 @@ class SubStationViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
     serializer_class = SubStationSerializers
+

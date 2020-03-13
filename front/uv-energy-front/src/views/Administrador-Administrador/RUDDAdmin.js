@@ -51,7 +51,7 @@ class RUDDAdmin extends React.Component {
                 cellphone: "",
                 position: "ADMIN"
             },
-            credentials: cookie.get('noCredentials'),
+            credentials: cookie.get('notCredentials'),
             adminPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,

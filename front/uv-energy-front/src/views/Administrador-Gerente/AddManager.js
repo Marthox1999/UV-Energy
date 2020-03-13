@@ -38,7 +38,7 @@ class AddManager extends React.Component {
             },
             isAlertEmpty: false,
             isAlertSuccess: false,
-            credentials: cookie.get('noCredentials'),
+            credentials: cookie.get('notCredentials'),
         }
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);

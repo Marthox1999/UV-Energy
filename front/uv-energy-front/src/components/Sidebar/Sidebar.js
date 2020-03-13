@@ -26,24 +26,12 @@ import {
   Col
 } from "reactstrap";
 
-
-
-import Cookies from 'universal-cookie';
-
-const cookie = new Cookies();
-/*var ps;*/
-
 class Sidebar extends React.Component {
   state = {
     collapseOpen: false
   };
   constructor(props) {
     super(props);
-    this.state= {
-      credentials: this.props.credentials,
-    }
-    cookie.set('noCredentials',this.state.credentials, { path: '/' });
-    console.log(cookie.get('noCredentials'));
     this.activeRoute.bind(this);
   }
   // verifies if routeName is the one active (in browser input)

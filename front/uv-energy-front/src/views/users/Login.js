@@ -6,7 +6,9 @@ import {
 } from 'reactstrap';
 import Recaptcha from 'react-recaptcha';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
+const cookie = new Cookies();
 const c = require('../constants')
 
 
@@ -72,21 +74,22 @@ class Login extends React.Component {
         ).then(
           response => {
             if(Object.prototype.hasOwnProperty.call(response.data, 'notCredentials')) {
+              cookie.set('notCredentials',response.data.notCredentials, { path: '/' });
               if(response.data.notCredentials.position === "ADMIN"){
                 this.props.history.push({
-                  pathname: '/admin/index', state:{ notCredentials: response.data.notCredentials}
+                  pathname: '/admin/index'
                 })
               } else if (response.data.notCredentials.position === "MGR"){
                 this.props.history.push({
-                  pathname: '/manager/index', state:{ notCredentials: response.data.notCredentials}
+                  pathname: '/manager/index'
                 })
               } else if (response.data.notCredentials.position === "OP"){
                 this.props.history.push({
-                  pathname: '/operator/index', state:{ notCredentials: response.data.notCredentials}
+                  pathname: '/operator/index'
                 })
               } else if (response.data.notCredentials.position === "CLR"){
                 this.props.history.push({
-                  pathname: '/client/index', state:{ notCredentials: response.data.notCredentials}
+                  pathname: '/client/index'
                 })
               }
             }else {

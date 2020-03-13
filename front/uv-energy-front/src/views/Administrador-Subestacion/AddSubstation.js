@@ -63,7 +63,7 @@ class AddSubstation extends React.Component {
                 lat: "",
                 isActive: true
             },
-            credentials: cookie.get('noCredentials'),
+            credentials: cookie.get('notCredentials'),
             listSubstation : [],
             isAlertEmpty: false,
             isAlertSuccess: false,

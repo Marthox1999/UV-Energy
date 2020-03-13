@@ -23,14 +23,16 @@ class Admin extends React.Component {
     super(props)
     this.state = {
       isVerified: false,
-      credentials: cookie.get('noCredentials'),
+      credentials: cookie.get('notCredentials'),
     };
   };
   componentWillMount(){
     if (typeof this.state.credentials === 'undefined'){
-      alert("no tengo token!")
-      this.props.history.push('/login/auth');
+      this.props.history.push({
+        pathname: '/auth/login'
+      })
     }
+    
   }
   componentDidUpdate(e) {
     return routes.map((prop, key) => {
@@ -202,7 +204,6 @@ class Admin extends React.Component {
           operatorRoutes={operatorRoutes}
           electricTransformerRoutes={electricTransformerRoutes}
           substationRoutes={substationRoutes}
-          credentials={this.state.credentials}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
