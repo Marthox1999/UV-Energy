@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-
+import Cookies from 'universal-cookie';
 // reactstrap components
 import {
   Button,
@@ -18,6 +18,7 @@ import 'leaflet/dist/leaflet.css';
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class RegistredManagers extends React.Component {
     constructor(props){
@@ -44,6 +45,7 @@ class RegistredManagers extends React.Component {
             listManagers: [],
             isdisabledManager: this.props.state.disabledManager,
             isdeletedManager: this.props.state.deletedManager,
+            credentials: cookie.get('notCredentials'),
             filter: {
                 where: {
                     position: "MGR",
@@ -53,7 +55,8 @@ class RegistredManagers extends React.Component {
         }
     }
     componentDidMount(){
-        axios.get(c.api + 'users/activeManager/')
+        axios.get(c.api + 'users/activeManager/',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
@@ -81,10 +84,10 @@ class RegistredManagers extends React.Component {
                             </CardHeader>
                             <br></br>
                             <Alert color="info" isOpen={this.state.isdisabledManager}>
-                                Manager account was disabled! Please reload the page to see the changes
+                                Manager account was disabled!
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedManager}>
-                                Manager account was deleted! Please reload the page to see the changes
+                                Manager account was deleted!
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">

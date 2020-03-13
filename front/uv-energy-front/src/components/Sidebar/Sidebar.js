@@ -26,8 +26,6 @@ import {
   Col
 } from "reactstrap";
 
-var ps;
-
 class Sidebar extends React.Component {
   state = {
     collapseOpen: false
@@ -124,8 +122,42 @@ class Sidebar extends React.Component {
       );
     });
   };
+  createSubstationLinks = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+  createElectricTransfomerLinks = electricTransformerRoutes => {
+    return electricTransformerRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
   render() {
-    const { bgColor, adminRoutes, managerRoutes, operatorRoutes, logo } = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -258,6 +290,10 @@ class Sidebar extends React.Component {
               {this.createAdminLinks(adminRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;Operator
               {this.createOperatorLinks(operatorRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Substation
+              {this.createSubstationLinks(substationRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;Electric Transformer
+              {this.createElectricTransfomerLinks(electricTransformerRoutes)}
               </Nav>
           </Collapse>
         </Container>
@@ -269,7 +305,8 @@ class Sidebar extends React.Component {
 Sidebar.defaultProps = {
   adminRoutes: [{}],
   managerRoutes: [{}],
-  operatorRoutes: [{}]
+  operatorRoutes: [{}],
+  electricTransformerRoutes: [{}]
 };
 
 Sidebar.propTypes = {
@@ -277,6 +314,7 @@ Sidebar.propTypes = {
   adminRoutes: PropTypes.arrayOf(PropTypes.object),
   managerRoutes: PropTypes.arrayOf(PropTypes.object),
   operatorRoutes: PropTypes.arrayOf(PropTypes.object),
+  electricTransformerRoutes: PropTypes.arrayOf(PropTypes.object),
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag

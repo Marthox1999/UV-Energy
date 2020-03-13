@@ -31,6 +31,8 @@ import {
   
 import 'leaflet/dist/leaflet.css';
 
+import Cookies from 'universal-cookie';
+
 const setPoint = new L.icon({
     iconUrl: require("assets/img/theme/substationmove.png"),
     iconSize: new L.point(45,45)
@@ -42,6 +44,8 @@ const substationDone = new L.icon({
 })
 
 const c = require('../constants')
+
+const cookie = new Cookies();
 
 class AddSubstation extends React.Component {
     constructor(props){
@@ -59,6 +63,7 @@ class AddSubstation extends React.Component {
                 lat: "",
                 isActive: true
             },
+            credentials: cookie.get('notCredentials'),
             listSubstation : [],
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -68,15 +73,17 @@ class AddSubstation extends React.Component {
         this.AddSubstation = this.AddSubstation.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation')
+        axios.get(c.api + 'assets/Substation',
+              {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
-            if( response.data.error != null){
-                alert(response.data.error);
+            if( response.data.count === 0){
+                alert("There are not substations registered");
               }
               else{
-                this.setState({listSubstation: response.data})
+                console.log(response)
+                this.setState({listSubstation: response.data.results}) 
             }             
-        }).catch(error => alert(error))
+        }).catch(error => console.log(error))
     }
     handleClick = (e) => {
         this.setState({ substation: {
@@ -107,11 +114,7 @@ class AddSubstation extends React.Component {
         }else{
             axios.post(c.api + 'assets/Substation/',
                        this.state.substation,
-                       /*{
-                           headers: {
-                               'Content-Type': 
-                           }
-                       }*/)
+                       {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
             .then( response => {
                 console.log(response.error)
                 if (response.data.pk_substation !== -1){
@@ -126,7 +129,7 @@ class AddSubstation extends React.Component {
                             isActive: true
                         }});
                 }
-            }).catch(error => console.log(error.response.request))
+            }).catch(error => console.log(error.response.request.responseText))
         }
     }
     render() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+/*import { Link } from "react-router-dom";*/
 import axios from 'axios';
 // reactstrap components
 import {
@@ -32,6 +32,7 @@ import {
   } from "react-leaflet";
   
 import 'leaflet/dist/leaflet.css';
+import Cookies from 'universal-cookie';
 
 const transformerDone = new L.icon({
     iconUrl: require("assets/img/theme/pointerdone.png"),
@@ -39,6 +40,7 @@ const transformerDone = new L.icon({
 })
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class DeactivateElectricTransformer extends React.Component {
     constructor(props){
@@ -57,13 +59,13 @@ class DeactivateElectricTransformer extends React.Component {
                 isActive: true,
                 fk_substation: -1
             },
+            credentials: cookie.get('notCredentials'),
             listSubstation : [],
             transformers: [],
             isAlertEmpty: false,
             isAlertSuccess: false,
-            modifySubstation: true,
-            modifyReference: true,
-            modifyTensionLevel: true,
+            isModalModify: false,
+            modify: true,
             submitClicked: '',
         }
         this.setData = this.setData.bind(this);
@@ -72,25 +74,32 @@ class DeactivateElectricTransformer extends React.Component {
         this.onChangeTensionLevel = this.onChangeTensionLevel.bind(this);
         this.getSubstation = this.getSubstation.bind(this);
         this.action = this.action.bind(this);
+        this.modify = this.modify.bind(this);
         this.deactivate = this.deactivate.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.closeModalModify = this.closeModalModify.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/ElectricTransformer')
+        if (typeof this.state.credentials === 'undefined'){
+            alert("no token");
+            this.props.history.push('/auth/login');
+        }
+        axios.get(c.api + 'assets/ActiveET',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then(response => {
-            if (response.data <= 0){
-                alert("No hay transformadores registrados.")
+            if (response.data.count === 0){
+                alert("There are not electric transformers registered.")
             }else{
                 this.setState({transformers: response.data})
             }
-        }).catch(error => console.log(error))
+        }).catch(error => console.log(error.response))
     }
     setData = (data) => {
         this.setState({electricTransformer: data, modifyReference: true, modifySubstation: true, modifyTensionLevel: true})
     }
     onChangeReference(e){
         this.setState({ electricTransformer: {
-                                                pk_transformers: -1,
+                                                pk_transformers: this.state.electricTransformer.pk_transformers,
                                                 tension_level: this.state.electricTransformer.tension_level,
                                                 reference: e.target.value,
                                                 long: this.state.electricTransformer.long,
@@ -101,7 +110,7 @@ class DeactivateElectricTransformer extends React.Component {
     }
     onChangeTensionLevel(e){
         this.setState({ electricTransformer: {
-                                                pk_transformers: -1,
+                                                pk_transformers: this.state.electricTransformer.pk_transformers,
                                                 tension_level: e.target.value,
                                                 reference: this.state.electricTransformer.reference,
                                                 long: this.state.electricTransformer.long,
@@ -112,7 +121,7 @@ class DeactivateElectricTransformer extends React.Component {
     }
     onChangeSubstation(e){
         this.setState({ electricTransformer: {
-                                                pk_transformers: -1,
+                                                pk_transformers: this.state.electricTransformer.pk_transformers,
                                                 tension_level: this.state.electricTransformer.tension_level,
                                                 reference: this.state.electricTransformer.reference,
                                                 long: this.state.electricTransformer.long,
@@ -123,7 +132,7 @@ class DeactivateElectricTransformer extends React.Component {
     }
     getSubstation(data){
         this.setState({ electricTransformer:{
-                                                pk_transformers: -1,
+                                                pk_transformers: this.state.electricTransformer.pk_transformers,
                                                 tension_level: this.state.electricTransformer.tension_level,
                                                 reference: this.state.electricTransformer.reference,
                                                 long: this.state.electricTransformer.long,
@@ -142,35 +151,15 @@ class DeactivateElectricTransformer extends React.Component {
         }
         else{
             if (this.state.submitClicked === 'modify'){
-                if ((this.state.modifyReference && this.state.modifySubstation && this.state.modifyTensionLevel) === true){
+                if (this.state.modify){
                     if (this.state.electricTransformer.fk_substation === -1){
                         alert("Select a substation first")
                     }else{
-                        this.setState({modifyReference: !this.state.modifyReference,
-                            modifySubstation: !this.state.modifySubstation,
-                            modifyTensionLevel: !this.state.modifyTensionLevel})
+                        this.setState({modify: !this.state.modify})
                     }
 
                 }else{
-                    if ((this.state.electricTransformer.tension_level === 0) ||
-                    (this.state.electricTransformer.reference === "") ||
-                    (this.state.electricTransformer.long === "") ||
-                    (this.state.electricTransformer.lat === "") ||
-                    (this.state.electricTransformer.fk_substation === -1)){
-                        this.setState({isAlertEmpty: true})
-                    }else{
-                        alert("enviar")
-                    /* axios.post(c.api + 'assets/ElectricTransformer/',
-                                this.state.electricTransformer)
-                        .then( response => {
-                            if (response.data.pk_transformers !== -1){
-                                this.setState({ isAlertSuccess: true,
-                                                isAlertEmpty: false,
-                                                electricTransformer: response.data});
-                                
-                            }
-                        }).catch(error => console.log(error))*/
-                    }
+                    this.setState({isModalModify: !this.state.isModalModify})
                 }
             }else{
                 if (this.state.submitClicked === 'deactivate'){
@@ -183,12 +172,58 @@ class DeactivateElectricTransformer extends React.Component {
             }
         }
     }
-    deactivate(){
-        alert("deactivate")
+    modify(){
+        if ((this.state.electricTransformer.tension_level === 0) ||
+        (this.state.electricTransformer.reference === "") ||
+        (this.state.electricTransformer.long === "") ||
+        (this.state.electricTransformer.lat === "") ||
+        (this.state.electricTransformer.fk_substation === -1)){
+            this.setState({isAlertEmpty: true})
+        }else{
+            axios.put(c.api + 'assets/ElectricTransformer/'+this.state.electricTransformer.pk_transformers+'/',
+                    this.state.electricTransformer,
+                    {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+            .then( response => {
+                if ((this.state.electricTransformer.tension_level === response.data.tension_level) ||
+                    (this.state.electricTransformer.reference === response.data.reference) ||
+                    (this.state.electricTransformer.long === response.data.long) ||
+                    (this.state.electricTran0sformer.lat === response.data.lat) ||
+                    (this.state.electricTransformer.fk_substation === response.data.fk_substation)){
+                    this.setState({ isAlertEmpty: false,
+                                    electricTransformer: response.data});
+                }
+            }).catch(error => console.log(error.response.data))
+        }
         window.location.reload(true);
+    }
+    deactivate(){
+        axios.put(c.api + 'assets/ElectricTransformer/'+this.state.electricTransformer.pk_transformers+'/',
+                {
+                    pk_transformers: this.state.electricTransformer.pk_transformers,
+                    tension_level: this.state.electricTransformer.tension_level,
+                    reference: this.state.electricTransformer.reference,
+                    long: this.state.electricTransformer.long,
+                    lat: this.state.electricTransformer.lat,
+                    isActive: false,
+                    fk_substation: this.state.electricTransformer.fk_substation
+                },
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+                        .then( response => {
+                            console.log(response.data)
+                            if (!response.data.isActive){
+                                alert("falta modal bonito")
+                                this.setState({ isAlertEmpty: false,
+                                                electricTransformer: response.data});
+                            }
+                        }).catch(error => console.log(error))
+        //window.location.reload(true);
     }
     closeModal(){
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+        window.location.reload(true);
+    }
+    closeModalModify(){
+        this.setState({ isModalModify: !this.state.isModalModify})
         window.location.reload(true);
     }
     render() {
@@ -227,7 +262,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 name="substation"
                                 placeholder="substation"
                                 type="text"
-                                disabled = {this.state.modifySubstation}
+                                disabled = {true}
                                 value={this.state.electricTransformer.fk_substation}
                                 onChange={this.onChangeSubstation}
                                 />
@@ -246,7 +281,8 @@ class DeactivateElectricTransformer extends React.Component {
                                 name="reference"
                                 placeholder="reference"
                                 type="text"
-                                disabled = {this.state.modifyReference}
+                                maxLength="8"
+                                disabled = {this.state.modify}
                                 value={this.state.electricTransformer.reference}
                                 onChange={this.onChangeReference}
                                 />
@@ -265,7 +301,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 name="tension_level"
                                 placeholder="tension"
                                 type="number"
-                                disabled = {this.state.modifyTensionLevel}
+                                disabled = {this.state.modify}
                                 value={this.state.electricTransformer.tension_level}
                                 onChange={this.onChangeTensionLevel}
                                 />
@@ -346,6 +382,44 @@ class DeactivateElectricTransformer extends React.Component {
                         data-dismiss="modal"
                         type="button"
                         onClick={this.closeModal}
+                        >
+                        Close
+                        </Button>
+                    
+                    </div>
+            </Modal>
+            <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isModalModify}
+                    >
+                        <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="primary">
+                        <strong>Modify electric transformer</strong>
+                        </Alert>
+                        <strong>Information:</strong>
+                        <br></br>
+                        <strong> No. Transformer: </strong> {this.state.electricTransformer.pk_transformers}<br/>
+                        <strong> Reference: </strong> {this.state.electricTransformer.reference}<br/>
+                        <strong> Tension Level: </strong> {this.state.electricTransformer.tension_level}<br/>
+                        <strong> Substation: </strong> {this.state.listSubstation.map((data, id) => id !== this.state.electricTransformer.fk_substation ? data.name : <p></p>)}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                    <Button
+                        color="danger"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.modify}
+                        >
+                        Modify
+                        </Button>
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModalModify}
                         >
                         Close
                         </Button>

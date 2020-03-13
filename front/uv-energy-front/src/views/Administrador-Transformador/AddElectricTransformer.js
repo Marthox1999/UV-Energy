@@ -36,8 +36,8 @@ import {
     Marker,
     Popup
   } from "react-leaflet";
-  
-import 'leaflet/dist/leaflet.css';
+
+import Cookies from 'universal-cookie';
 
 const setPoint = new L.icon({
     iconUrl: require("assets/img/theme/transformador.png"),
@@ -50,6 +50,8 @@ const transformerDone = new L.icon({
 })
 
 const c = require('../constants')
+
+const cookie = new Cookies();
 
 class AddElectricTransformer extends React.Component {
     constructor(props){
@@ -68,6 +70,7 @@ class AddElectricTransformer extends React.Component {
                 isActive: true,
                 fk_substation: -1
             },
+            credentials: cookie.get('notCredentials'),
             listSubstation : [],
             transformers: [],
             isAlertEmpty: false,
@@ -81,20 +84,23 @@ class AddElectricTransformer extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation')
+        axios.get(c.api + 'assets/Substation',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
-            if( response.data.error != null){
-                alert(response.data.error);
+            if( response.data.count === 0){
+                alert("There are not substations registered")
               }
               else{
-                this.setState({listSubstation: response.data})
+                this.setState({listSubstation: response.data.results})
             }             
-        }).catch(error => alert(error))
-        axios.get(c.api + 'assets/ElectricTransformer')
+        }).catch(error => console.log(error))
+        axios.get(c.api + 'assets/ActiveET',
+                  {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then(response => {
-            if (response.data <= 0){
-                alert("No hay transformadores registrados.")
+            if (response.data.count === 0){
+                alert("There are not electric transformers registered")
             }else{
+                console.log(response.data)
                 this.setState({transformers: response.data})
             }
         }).catch(error => console.log(error))
@@ -153,8 +159,12 @@ class AddElectricTransformer extends React.Component {
             this.setState({isAlertEmpty: true})
         }else{
             axios.post(c.api + 'assets/ElectricTransformer/',
-                       this.state.electricTransformer)
+                       this.state.electricTransformer,
+                       {headers: 
+                        { 'Authorization' : `Token ${this.state.credentials.token}`}
+                       })
             .then( response => {
+                console.log(response.data.pk_transformers !== -1)
                 if (response.data.pk_transformers !== -1){
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
@@ -165,7 +175,6 @@ class AddElectricTransformer extends React.Component {
         }
     }
     closeModal(){
-        console.log("closemodal")
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
         window.location.reload(true);
     }
@@ -174,6 +183,7 @@ class AddElectricTransformer extends React.Component {
         <>
         <UVHeader/>
             <Container className="mt--7" fluid>
+            
             <Card className="bg-secondary shadow">
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
@@ -213,7 +223,7 @@ class AddElectricTransformer extends React.Component {
                                 <DropdownMenu className="dropdown-menu-arrow" right>
                                 { this.state.listSubstation.length > 0 ?
                                 this.state.listSubstation.map((data, id) =>
-                                <DropdownItem key={'s-'+id} onClick={(Fsubbbbbased)=> this.getSubstation(data)}>
+                                <DropdownItem key={'s-'+id} onClick={()=> this.getSubstation(data)}>
                                     <i className=" ni ni-pin-3" />
                                     <span>{data.name}</span>
                                 </DropdownItem>) : 
@@ -288,9 +298,6 @@ class AddElectricTransformer extends React.Component {
                                 />
                                     {this.state.transformers.map((data, id) =>  
                                     <Marker key={'transformer-'+id} position={[parseFloat(data.lat), parseFloat(data.long)]} icon={transformerDone}>
-                                        <Popup>
-                                            <span> {data.name} </span>
-                                        </Popup>
                                     </Marker>)}
                                     <Marker
                                         onClick={this.handleClick}

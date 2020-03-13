@@ -12,7 +12,7 @@ from django.db.models import Q
 class UserViewSet (viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = [
-        permissions.IsAuthenticated
+        permissions.AllowAny
     ]
     serializer_class = UserSerializer
 
