@@ -26,12 +26,13 @@ class RegisteredAdmins extends React.Component {
     constructor(props){
         super(props);
         if(this.props.location.state === null){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: false}}
+            this.props = { state:{disabledAdmin: false, deletedAdmin: false, reload: false}}
         }else if(this.props.location.state.disabledAdmin){
-            this.props = { state:{disabledAdmin: true, deletedAdmin: false}}
+            this.props = { state:{disabledAdmin: true, deletedAdmin: false, reload: true}}
         }else if(this.props.location.state.deletedAdmin){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: true}}
+            this.props = { state:{disabledAdmin: false, deletedAdmin: true, reload: true}}
         }
+
         this.state = {
             admin : {
                 username: "Username",
@@ -43,6 +44,7 @@ class RegisteredAdmins extends React.Component {
                 cellphone: "123",
                 position: "ADMIN"
             },
+            credentials: this.props.location.state.credentials,
             listAdmins: [],
             isdisabledAdmin: this.props.state.disabledAdmin,
             isdeletedAdmin: this.props.state.deletedAdmin,
@@ -85,10 +87,10 @@ class RegisteredAdmins extends React.Component {
                             </CardHeader>
                             <br></br>
                             <Alert color="info" isOpen={this.state.isdisabledAdmin}>
-                                Admin account was disabled! Please reload the page to see the changes
+                                Admin account was disabled!
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedAdmin}>
-                                Admin account was deleted! Please reload the page to see the changes
+                                Admin account was deleted!
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">

@@ -84,10 +84,10 @@ class RegistredManagers extends React.Component {
                             </CardHeader>
                             <br></br>
                             <Alert color="info" isOpen={this.state.isdisabledManager}>
-                                Manager account was disabled! Please reload the page to see the changes
+                                Manager account was disabled!
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedManager}>
-                                Manager account was deleted! Please reload the page to see the changes
+                                Manager account was deleted!
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
