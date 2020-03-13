@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 // reactstrap components
 import {
@@ -24,11 +25,11 @@ import 'leaflet/dist/leaflet.css';
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class RUDDAdmin extends React.Component {
     constructor(props){
         super(props);
-        //console.log(this.props.location.state)
         this.state = {
             admin : {
                 id: this.props.location.state.adminID,
@@ -52,7 +53,7 @@ class RUDDAdmin extends React.Component {
                 cellphone: "",
                 position: "ADMIN"
             },
-            credentials: this.props.location.state.credentials,
+            credentials: cookie.get('notCredentials'),
             adminPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -75,7 +76,7 @@ class RUDDAdmin extends React.Component {
     }
     componentDidMount(){
         axios.get(c.api + 'users/user/'+this.state.admin.id+'/',
-                {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
@@ -187,7 +188,7 @@ class RUDDAdmin extends React.Component {
                 }
                 axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
                         this.state.admin,
-                        {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
+                        {headers: { Authorization: `Token ${this.state.credentials.token}`}})
                 .then( response => {
                     //console.log(response)
                     if ((response.data.password === this.state.adminData.password) ||

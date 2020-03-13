@@ -26,17 +26,12 @@ import {
   Col
 } from "reactstrap";
 
-/*var ps;*/
-
 class Sidebar extends React.Component {
   state = {
     collapseOpen: false
   };
   constructor(props) {
     super(props);
-    this.state= {
-      credentials: this.props.credentials,
-    }
     this.activeRoute.bind(this);
   }
   // verifies if routeName is the one active (in browser input)
@@ -132,7 +127,7 @@ class Sidebar extends React.Component {
       return (
         <NavItem key={key}>
           <NavLink
-            to={{pathname: prop.layout + prop.path, state: { credentials: this.state.credentials}}}
+            to={prop.layout + prop.path}
             tag={NavLinkRRD}
             onClick={this.closeCollapse}
             activeClassName="active"
@@ -149,7 +144,7 @@ class Sidebar extends React.Component {
       return (
         <NavItem key={key}>
           <NavLink
-            to={{pathname: prop.layout + prop.path, state: { credentials: this.state.credentials}}}
+            to={prop.layout + prop.path}
             tag={NavLinkRRD}
             onClick={this.closeCollapse}
             activeClassName="active"

@@ -17,11 +17,13 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import Cookies from 'universal-cookie';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class AddAdmin extends React.Component {
     constructor(props){
@@ -41,6 +43,7 @@ class AddAdmin extends React.Component {
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
+            credentials: cookie.get('notCredentials'),
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
@@ -136,7 +139,7 @@ class AddAdmin extends React.Component {
         }else{
             axios.post(c.api + 'users/user/',
                        this.state.admin,
-                       {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
+                       {headers: { Authorization: `Token ${this.state.credentials.token}`}})
             .then( response => {
                 console.log(response)
                 if (response.data.username !== ""){

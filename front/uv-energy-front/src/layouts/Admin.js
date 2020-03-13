@@ -14,21 +14,25 @@ import managerRoutes from "managerRoutes.js";
 import operatorRoutes from "operatorRoutes.js";
 import electricTransformerRoutes from "ElectricTransformersRoutes.js";
 import substationRoutes from "SubstationRoutes.js";
+import Cookies from 'universal-cookie';
 
+const cookie = new Cookies();
 
 class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isVerified: false,
-      credentials: this.props.location.state.notCredentials
+      credentials: cookie.get('notCredentials'),
     };
   };
   componentWillMount(){
     if (typeof this.state.credentials === 'undefined'){
-      alert("no tengo token!")
-      this.props.history.push('/login/auth');
+      this.props.history.push({
+        pathname: '/auth/login'
+      })
     }
+    
   }
   componentDidUpdate(e) {
     return routes.map((prop, key) => {
@@ -200,7 +204,6 @@ class Admin extends React.Component {
           operatorRoutes={operatorRoutes}
           electricTransformerRoutes={electricTransformerRoutes}
           substationRoutes={substationRoutes}
-          credentials={this.state.credentials}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/argon-react.png"),

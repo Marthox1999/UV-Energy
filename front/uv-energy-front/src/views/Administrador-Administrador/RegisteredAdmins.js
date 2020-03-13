@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 // reactstrap components
 import {
@@ -18,6 +19,8 @@ import 'leaflet/dist/leaflet.css';
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+
+const cookie = new Cookies();
 
 class RegisteredAdmins extends React.Component {
     constructor(props){
@@ -45,6 +48,7 @@ class RegisteredAdmins extends React.Component {
             listAdmins: [],
             isdisabledAdmin: this.props.state.disabledAdmin,
             isdeletedAdmin: this.props.state.deletedAdmin,
+            credentials: cookie.get('notCredentials'),
             filter: {
                 where: {
                     position: "ADMIN",
@@ -55,7 +59,7 @@ class RegisteredAdmins extends React.Component {
     }
     componentDidMount(){
         axios.get(c.api + 'users/activeAdmin/',
-                 {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
