@@ -4,7 +4,6 @@ import Cookies from 'universal-cookie';
 
 // reactstrap components
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
@@ -14,9 +13,6 @@ import {
   Container,
   Row,
   Col,
-  Alert,
-  Modal,
-  ModalBody
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';

@@ -3,7 +3,6 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 // reactstrap components
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
@@ -13,7 +12,6 @@ import {
   Container,
   Row,
   Col,
-  Alert
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
