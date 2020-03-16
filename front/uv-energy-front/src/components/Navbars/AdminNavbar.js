@@ -1,21 +1,5 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -35,7 +19,15 @@ import {
   Media
 } from "reactstrap";
 
+const { t, i18n } = useTranslation();
+
 class AdminNavbar extends React.Component {
+  
+
+  handleClick = (lang) => {
+    i18n.changeLanguage(lang)
+  }
+
   render() {
     return (
       <>
@@ -78,31 +70,40 @@ class AdminNavbar extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-arrow" right>
                   <DropdownItem className="noti-title" header tag="div">
-                    <h6 className="text-overflow m-0">Welcome!</h6>
+                    <h6 className="text-overflow m-0">{t('Welcome.1')}</h6>
                   </DropdownItem>
                   <DropdownItem to="/admin/user-profile" tag={Link}>
                     <i className="ni ni-single-02" />
-                    <span>My profile</span>
+                    <span>{t('Profile.1')}</span>
                   </DropdownItem>
                   <DropdownItem to="/admin/user-profile" tag={Link}>
                     <i className="ni ni-settings-gear-65" />
-                    <span>Settings</span>
+                    <span>{t('Settings.1')}</span>
                   </DropdownItem>
                   <DropdownItem to="/admin/user-profile" tag={Link}>
                     <i className="ni ni-calendar-grid-58" />
-                    <span>Activity</span>
+                    <span>{t('Activity.1')}</span>
                   </DropdownItem>
                   <DropdownItem to="/admin/user-profile" tag={Link}>
                     <i className="ni ni-support-16" />
-                    <span>Support</span>
+                    <span>{t('Support.1')}</span>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                     <i className="ni ni-user-run" />
-                    <span>Logout</span>
+                    <span>{t('Logout.1')}</span>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              <button onClick={()=>handleClick('en')}>
+                English
+              </button>
+              <button onClick={()=>handleClick('es')}>
+                Español
+              </button>
+              <button onClick={()=>handleClick('pr')}>
+                Português
+              </button>
             </Nav>
           </Container>
         </Navbar>

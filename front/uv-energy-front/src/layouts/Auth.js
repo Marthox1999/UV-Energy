@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
@@ -9,7 +10,15 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 
 import routes from "routes.js";
 
+
 class Auth extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+  handleClick = (lang) => {
+    this.state.i18n.changeLanguage(lang)
+  }
   componentDidMount() {
     document.body.classList.add("bg-default");
   }
@@ -32,6 +41,11 @@ class Auth extends React.Component {
     });
   };
   render() {
+    const { t, i18n } = useTranslation();
+    this.setState = {
+      t:t,
+      i18n:i18n,
+    }
     return (
       <>
         <div className="main-content">
@@ -41,7 +55,7 @@ class Auth extends React.Component {
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
                   <Col lg="5" md="6">
-                    <h1 className="text-white">Welcome!</h1>
+                    {this.state.t != 0? <h1 className="text-white">{t('Welcome.1')}</h1>: null}
                     <p className="text-lead text-light">
                       Use these awesome forms to login into your account
                     </p>

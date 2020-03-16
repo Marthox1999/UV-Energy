@@ -1,0 +1,20 @@
+{
+    "Welcome":{
+        "1":"Welcome!"
+    },
+    "Profile":{
+        "1":"My Profile"
+    },
+    "Settings":{
+        "1":"Settings"
+    },
+    "Activity":{
+        "1":"Activity"
+    },
+    "Support":{
+        "1":"Support"
+    },
+    "Logout":{
+        "1":"Logout"
+    }
+}
