@@ -1,39 +1,128 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
-import AdminNavbar from "components/Navbars/AdminNavbar.js";
+import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
+
 import routes from "routes.js";
+import {adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes} from "adminRoutes.js";
+
+import Cookies from 'universal-cookie';
+
+const cookie = new Cookies();
 
 class Admin extends React.Component {
-  componentDidUpdate(e) {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    this.refs.mainContent.scrollTop = 0;
+  constructor(props) {
+    super(props)
+    this.state = {
+      isVerified: false,
+      credentials: cookie.get('notCredentials'),
+    };
+  };
+  componentWillMount(){
+    if (typeof this.state.credentials === 'undefined'){
+      this.props.history.push({
+        pathname: '/auth/login'
+      })
+    }
+    
   }
+  componentDidUpdate(e) {
+    return routes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getRoutes = routes => {
     return routes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getAdminRoutes = adminRoutes => {
+    return adminRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getManagerRoutes = managerRoutes => {
+    return managerRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getsubstationRoutes = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getOperatorRoutes = operatorRoutes => {
+    return operatorRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getTransformerRoutes = transformerRoutes => {
+    return transformerRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
           <Route
@@ -53,8 +142,47 @@ class Admin extends React.Component {
         this.props.location.pathname.indexOf(
           routes[i].layout + routes[i].path
         ) !== -1
+        ) {
+          return routes[i].name;
+        }
+      }
+      return "Brand";
+  };
+
+  getBrandTextAdmin = path => {
+    for (let i = 0; i < adminRoutes.length - 1; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          adminRoutes[i].layout + adminRoutes[i].path
+        ) !== -1
       ) {
-        return routes[i].name;
+        return adminRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
+
+  getBrandTextOperator = path => {
+    for (let i = 0; i < operatorRoutes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          operatorRoutes[i].layout + operatorRoutes[i].path
+        ) !== -1
+      ) {
+        return operatorRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
+
+  getBrandTextElectricTransformer = path => {
+    for (let i = 0; i < electricTransformerRoutes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          electricTransformerRoutes[i].layout + electricTransformerRoutes[i].path
+        ) !== -1
+      ) {
+        return electricTransformerRoutes[i].name;
       }
     }
     return "Brand";
@@ -65,6 +193,11 @@ class Admin extends React.Component {
         <Sidebar
           {...this.props}
           routes={routes}
+          managerRoutes={managerRoutes}
+          adminRoutes={adminRoutes}
+          substationRoutes={substationRoutes}
+          operatorRoutes={operatorRoutes}
+          electricTransformerRoutes={electricTransformerRoutes}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -72,12 +205,14 @@ class Admin extends React.Component {
           }}
         />
         <div className="main-content" ref="mainContent">
-          <AdminNavbar
-            {...this.props}
-            brandText={this.getBrandText(this.props.location.pathname)}
-          />
+          <UVAdminNavbar/>
           <Switch>
             {this.getRoutes(routes)}
+            {this.getAdminRoutes(adminRoutes)}
+            {this.getManagerRoutes(managerRoutes)}
+            {this.getsubstationRoutes(substationRoutes)}
+            {this.getOperatorRoutes(operatorRoutes)}
+            {this.getTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
           <Container fluid>
