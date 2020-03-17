@@ -44,20 +44,21 @@ class RegisteredAdmins extends React.Component {
                 cellphone: "123",
                 position: "ADMIN"
             },
-            credentials: this.props.location.state.credentials,
+            path: '',
             listAdmins: [],
             isdisabledAdmin: this.props.state.disabledAdmin,
             isdeletedAdmin: this.props.state.deletedAdmin,
-            credentials: cookie.get('notCredentials'),
-            filter: {
-                where: {
-                    position: "ADMIN",
-                    is_active: true,
-                }
-            }
+            credentials: cookie.get('notCredentials'),           
         }
     }
     componentDidMount(){
+        console.log(this.state.credentials)
+        if(this.state.credentials.position === 'ADMIN'){
+            this.setState({path: '/admin/RUDDAdmin'})
+        }else if(this.state.credentials.position === 'MGR'){
+            this.setState({path: '/manager/RUDDAdminM'})
+
+        }
         axios.get(c.api + 'users/activeAdmin/',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
@@ -67,8 +68,8 @@ class RegisteredAdmins extends React.Component {
               }
               else{
                 this.setState({listAdmins: response.data})
-                console.log(this.state.listAdmins)
-                console.log(response.config)
+                //console.log(this.state.listAdmins)
+                //console.log(response.config)
             }             
         }).catch(error => alert(error))
     }
@@ -117,7 +118,7 @@ class RegisteredAdmins extends React.Component {
                                             role="button"
                                             size="sm"
                                             color=""
-                                            onClick={ () => this.props.history.push({pathname: '/admin/RUDDAdmin', state: { adminID: item.id }}) }
+                                            onClick={ () => this.props.history.push({pathname: this.state.path, state: { adminID: item.id }}) }
                                         >
                                             <i className="fas fa-ellipsis-v" />
                                             

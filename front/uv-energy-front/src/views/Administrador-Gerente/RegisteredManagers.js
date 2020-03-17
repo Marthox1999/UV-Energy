@@ -42,19 +42,20 @@ class RegistredManagers extends React.Component {
                 cellphone: "123",
                 position: "MGR"
             },
+            path: '',
             listManagers: [],
             isdisabledManager: this.props.state.disabledManager,
             isdeletedManager: this.props.state.deletedManager,
             credentials: cookie.get('notCredentials'),
-            filter: {
-                where: {
-                    position: "MGR",
-                    is_active: true,
-                }
-            }
         }
     }
     componentDidMount(){
+        if(this.state.credentials.position === 'ADMIN'){
+            this.setState({path: '/admin/RUDDManager'})
+        }else if(this.state.credentials.position === 'MGR'){
+            this.setState({path: '/manager/RUDDManagerM'})
+
+        }
         axios.get(c.api + 'users/activeManager/',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
@@ -64,8 +65,6 @@ class RegistredManagers extends React.Component {
               }
               else{
                 this.setState({listManagers: response.data})
-                console.log(this.state.listManagers)
-                console.log(response.config)
             }             
         }).catch(error => alert(error))
     }
@@ -114,7 +113,7 @@ class RegistredManagers extends React.Component {
                                             role="button"
                                             size="sm"
                                             color=""
-                                            onClick={ () => this.props.history.push({pathname: '/admin/RUDDManager', state: { managerID: item.id }}) }
+                                            onClick={ () => this.props.history.push({pathname: this.state.path, state: { managerID: item.id }}) }
                                         >
                                             <i className="fas fa-ellipsis-v" />
                                             
