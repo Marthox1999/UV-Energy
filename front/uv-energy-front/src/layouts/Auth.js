@@ -1,5 +1,5 @@
-import React from "react";
-import { useTranslation } from 'react-i18next';
+import React, { Component, Suspense } from "react";
+import { withTranslation } from 'react-i18next';
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
@@ -10,8 +10,10 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 
 import routes from "routes.js";
 
+// react in18 translate
+import '../i18n'
 
-class Auth extends React.Component {
+class Auth extends Component {
   constructor() {
     super();
     this.state = {};
@@ -41,11 +43,7 @@ class Auth extends React.Component {
     });
   };
   render() {
-    const { t, i18n } = useTranslation();
-    this.setState = {
-      t:t,
-      i18n:i18n,
-    }
+    const { t } = this.props
     return (
       <>
         <div className="main-content">
@@ -55,7 +53,7 @@ class Auth extends React.Component {
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
                   <Col lg="5" md="6">
-                    {this.state.t != 0? <h1 className="text-white">{t('Welcome.1')}</h1>: null}
+                    {t("Welcome.1")}
                     <p className="text-lead text-light">
                       Use these awesome forms to login into your account
                     </p>
@@ -95,4 +93,12 @@ class Auth extends React.Component {
   }
 }
 
-export default Auth;
+const MyAuthComponent = withTranslation()(Auth)
+
+export default function App() {
+  return (
+    <Suspense fallback="loading">
+      <MyAuthComponent />
+    </Suspense>
+  );
+}

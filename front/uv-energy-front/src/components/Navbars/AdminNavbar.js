@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -18,8 +17,6 @@ import {
   Container,
   Media
 } from "reactstrap";
-
-const { t, i18n } = useTranslation();
 
 class AdminNavbar extends React.Component {
   
