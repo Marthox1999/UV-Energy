@@ -6,15 +6,10 @@ import Login from "views/users/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import UVForm from "views/examples/Form.js";
-import AddManager from "views/Administrador-Gerente/AddManager.js";
-import AddElectricTransformer from "views/Administrador-Transformador/AddElectricTransformer.js";
-import DeactivateElectricTransformer from "views/Administrador-Transformador/DeactivateElectricTransformer.js";
-import AddAdmin from "views/Administrador-Administrador/AddAdmin.js";
 import RUDDAdmin from "views/Administrador-Administrador/RUDDAdmin.js";
-import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
-import AddOperator from "views/Administrador-Operador/AddOperator";
 import RUDDManager from "views/Administrador-Gerente/RUDDManager.js"
-
+import RUDDAdminM from "views/Gerente-Reportes/RUDDAdminM.js"
+import RUDDManagerM from "views/Gerente-Reportes/RUDDManagerM.js"
 
 var routes = [
   {
@@ -74,48 +69,6 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/addManager",
-    name: "Add Manager",
-    icon: "ni ni-single-02 text-yellow",
-    component: AddManager,
-    layout: "/admin"
-  },
-  {
-    path: "/addSubstation",
-    name: "Add Substation",
-    icon: "ni ni-single-02 text-yellow",
-    component: AddSubstation,
-    layout: "/admin"
-  },
-  {
-    path: "/addElectricTransformer",
-    name: "Add Electric Transformer",
-    icon: "ni ni-single-02 text-yellow",
-    component: AddElectricTransformer,
-    layout: "/admin"
-  },
-  {
-    path: "/DeactivateElectricTransformer",
-    name: "Deactivate Electric Transformer",
-    icon: "ni ni-single-02 text-yellow",
-    component: DeactivateElectricTransformer,
-    layout: "/admin"
-  },
-  {
-    path: "/addAdmin",
-    name: "Add Admin",
-    icon: "ni ni-single-02 text-yellow",
-    component: AddAdmin,
-    layout: "/admin"
-  },
-  {
-    path: "/addOperator",
-    name: "Add Operator",
-    icon: "ni ni-single-02 text-yellow",
-    component: AddOperator,
-    layout: "/admin"
-  },
-  {
     path: "/RUDDManager",
     name: "Selected Manager",
     icon: "ni ni-single-02 text-yellow",
@@ -128,6 +81,20 @@ var routes = [
     icon: "ni ni-single-02 text-yellow",
     component: RUDDAdmin,
     layout: "/admin"
+  },
+  {
+    path: "/RUDDAdminM",
+    name: "Selected Admin",
+    icon: "ni ni-single-02 text-yellow",
+    component: RUDDAdminM,
+    layout: "/manager"
+  },
+  {
+    path: "/RUDDManagerM",
+    name: "Selected Admin",
+    icon: "ni ni-single-02 text-yellow",
+    component: RUDDManagerM,
+    layout: "/manager"
   },
 ];
 export default routes;

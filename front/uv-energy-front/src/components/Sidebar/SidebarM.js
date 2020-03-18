@@ -26,7 +26,7 @@ import {
   Col
 } from "reactstrap";
 
-class Sidebar extends React.Component {
+class SidebarM extends React.Component {
   state = {
     collapseOpen: false
   };
@@ -104,60 +104,8 @@ class Sidebar extends React.Component {
       );
     });
   };
-
-  createOperatorLinks = operatorRoutes => {
-    return operatorRoutes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            {prop.name}
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
-  createSubstationLinks = substationRoutes => {
-    return substationRoutes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            {prop.name}
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
-  createElectricTransfomerLinks = electricTransformerRoutes => {
-    return electricTransformerRoutes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            {prop.name}
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo } = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -287,13 +235,7 @@ class Sidebar extends React.Component {
               &nbsp;&nbsp;&nbsp;&nbsp;Manager
               {this.createManagerLinks(managerRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;Administrator
-              {this.createAdminLinks(adminRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;Operator
-              {this.createOperatorLinks(operatorRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;Substation
-              {this.createSubstationLinks(substationRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;Electric Transformer
-              {this.createElectricTransfomerLinks(electricTransformerRoutes)}
+              {this.createAdminLinks(adminRoutes)}              
               </Nav>
           </Collapse>
         </Container>
@@ -302,14 +244,14 @@ class Sidebar extends React.Component {
   }
 }
 
-Sidebar.defaultProps = {
+SidebarM.defaultProps = {
   adminRoutes: [{}],
   managerRoutes: [{}],
   operatorRoutes: [{}],
   electricTransformerRoutes: [{}]
 };
 
-Sidebar.propTypes = {
+SidebarM.propTypes = {
   // links that will be displayed inside the component
   adminRoutes: PropTypes.arrayOf(PropTypes.object),
   managerRoutes: PropTypes.arrayOf(PropTypes.object),
@@ -329,4 +271,4 @@ Sidebar.propTypes = {
   })
 };
 
-export default Sidebar;
+export default SidebarM;

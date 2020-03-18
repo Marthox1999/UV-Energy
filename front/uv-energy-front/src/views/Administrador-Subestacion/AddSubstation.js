@@ -31,6 +31,8 @@ import {
   
 import 'leaflet/dist/leaflet.css';
 
+import Cookies from 'universal-cookie';
+
 const setPoint = new L.icon({
     iconUrl: require("assets/img/theme/substationmove.png"),
     iconSize: new L.point(45,45)
@@ -42,6 +44,8 @@ const substationDone = new L.icon({
 })
 
 const c = require('../constants')
+
+const cookie = new Cookies();
 
 class AddSubstation extends React.Component {
     constructor(props){
@@ -59,7 +63,7 @@ class AddSubstation extends React.Component {
                 lat: "",
                 isActive: true
             },
-            credentials: this.props.location.state.credentials,
+            credentials: cookie.get('notCredentials'),
             listSubstation : [],
             isAlertEmpty: false,
             isAlertSuccess: false,

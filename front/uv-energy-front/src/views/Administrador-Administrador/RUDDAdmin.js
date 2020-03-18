@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 // reactstrap components
 import {
@@ -13,7 +14,9 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Modal,
+  ModalBody
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -22,11 +25,11 @@ import 'leaflet/dist/leaflet.css';
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class RUDDAdmin extends React.Component {
     constructor(props){
         super(props);
-        console.log(this.props.location.state)
         this.state = {
             admin : {
                 id: this.props.location.state.adminID,
@@ -50,9 +53,12 @@ class RUDDAdmin extends React.Component {
                 cellphone: "",
                 position: "ADMIN"
             },
+            credentials: cookie.get('notCredentials'),
             adminPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isModal: false,
+            submitClicked: "",
             isBadinputs: false,
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
@@ -62,21 +68,23 @@ class RUDDAdmin extends React.Component {
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
 
-        this.ModfAdmin = this.ModfAdmin.bind(this);
+        this.updateClicked = this.updateClicked.bind(this);
+        this.accept = this.accept.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         this.SubmitEvent = this.SubmitEvent.bind(this);
 
     }
     componentDidMount(){
-        axios.get(c.api + 'users/user/'+this.state.admin.id+'/')
+        axios.get(c.api + 'users/user/'+this.state.admin.id+'/',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
                 alert("Wrong Id")
               }
               else{
-                console.log(response.data)
+                //console.log(response.data)
                 this.setState({admin: response.data, adminData: response.data})
-                console.log(this.state.listAdmins)                
             }             
         }).catch(error => alert(error))
     }
@@ -164,7 +172,7 @@ class RUDDAdmin extends React.Component {
 
                 this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
             }else{
-                console.log(this.state.admin)
+                //console.log(this.state.admin)
                 if(this.state.adminPassword !== ""){
                     this.setState({ admin: {
                                             id: this.state.admin.id,
@@ -179,9 +187,10 @@ class RUDDAdmin extends React.Component {
                                         }})
                 }
                 axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
-                        this.state.admin)
+                        this.state.admin,
+                        {headers: { Authorization: `Token ${this.state.credentials.token}`}})
                 .then( response => {
-                    console.log(response)
+                    //console.log(response)
                     if ((response.data.password === this.state.adminData.password) ||
                         (response.data.email === this.state.adminData.email) ||
                         (response.data.first_name === this.state.adminData.first_name) ||
@@ -195,7 +204,7 @@ class RUDDAdmin extends React.Component {
                                     });
                     }
                 }).catch(error => {
-                    console.log(error.response.request)
+                    //console.log(error.response.request)
                     this.setState({ isAlertSuccess: false,
                                     isAlertEmpty: false,
                                     isBadinputs: true})
@@ -215,24 +224,37 @@ class RUDDAdmin extends React.Component {
                 is_active: false,
                 cellphone: this.state.admin.cellphone,
                 position: "ADMIN"
-            })
+            },{headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: true, deletedAdmin: false}})
+                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: true, deletedAdmin: false, reload: true}})
+                window.location.reload(true);
 
         }else if(buttonVal === 3){
-            console.log("Delete")
-            axios.delete(c.api + 'users/user/'+this.state.admin.id+'/')
+            //console.log("Delete")
+            axios.delete(c.api + 'users/user/'+this.state.admin.id+'/',
+                         {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: false, deletedAdmin: true}})
+                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: false, deletedAdmin: true, reload: true}})
+                window.location.reload(true);
         }
     }
-    ModfAdmin(e){
-        e.preventDefault()
-        
+    updateClicked(name){
+        this.setState({submitClicked: name,  isModal: !this.state.isModal})
+    }
+    accept(){
+        if(this.state.submitClicked==="Disable"){
+            this.SubmitEvent(2);
+        }else if(this.state.submitClicked==="Delete"){
+            this.SubmitEvent(3);
+        }
+    }
+    closeModal(){
+        this.setState({ isModal: !this.state.isModal})
+        window.location.reload(true);
     }
     render() {
         return(
@@ -390,10 +412,10 @@ class RUDDAdmin extends React.Component {
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                                 Modify Information
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Disable Admin?')){this.SubmitEvent(2)};} }>
+                            <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Disable')}>
                                 Disable Admin
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Delete Admin?')){this.SubmitEvent(3)};} }>
+                            <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Delete')}>
                                 Delete Register
                             </Button>
                         </div>
@@ -401,6 +423,41 @@ class RUDDAdmin extends React.Component {
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isModal}
+                >
+                    <ModalBody>
+                        <div className="modal-body">
+                            <Alert color="warning">
+                            <strong>{this.state.submitClicked} admin register,</strong><br/>are you sure?
+                            </Alert>
+                            <strong>Information:</strong>
+                            <br></br>
+                            <strong> ID: </strong> {this.state.adminData.id}<br/>
+                            <strong> Name: </strong> {this.state.adminData.name} {this.state.adminData.last_name}<br/>                                                        
+                        </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                            color="danger"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.accept}
+                            >
+                            Sure
+                            </Button>
+                            <Button
+                            color="primary"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.closeModal}
+                            >
+                            No
+                        </Button>                    
+                    </div>
+                </Modal>
             </Container>
             </>
         );

@@ -16,6 +16,13 @@ class ElectricTransformerViewSet(viewsets.ModelViewSet):
     serializer_class = ElectricTransformerSerializers
 
 
+class ActiveETViewSet(viewsets.ViewSet):
+    def list(self, request):
+        queryset = ElectricTransformer.objects.filter(Q(isActive=True))
+        serializer = ElectricTransformerSerializers(queryset, many=True)
+        return Response(serializer.data)
+
+
 class SubStationViewSet(viewsets.ModelViewSet):
     queryset = Substation.objects.all()
     authentication_classes = (TokenAuthentication, )

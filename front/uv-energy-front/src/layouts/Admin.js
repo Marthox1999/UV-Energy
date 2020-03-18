@@ -9,26 +9,27 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 
 
 import routes from "routes.js";
-import adminRoutes from "adminRoutes.js";
-import managerRoutes from "managerRoutes.js";
-import operatorRoutes from "operatorRoutes.js";
-import electricTransformerRoutes from "ElectricTransformersRoutes.js";
-import substationRoutes from "SubstationRoutes.js";
+import {adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes} from "adminRoutes.js";
 
+import Cookies from 'universal-cookie';
+
+const cookie = new Cookies();
 
 class Admin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isVerified: false,
-      credentials: this.props.location.state.notCredentials
+      credentials: cookie.get('notCredentials'),
     };
   };
   componentWillMount(){
     if (typeof this.state.credentials === 'undefined'){
-      alert("no tengo token!")
-      this.props.history.push('/login/auth');
+      this.props.history.push({
+        pathname: '/auth/login'
+      })
     }
+    
   }
   componentDidUpdate(e) {
     return routes.map((prop, key) => {
@@ -60,22 +61,6 @@ class Admin extends React.Component {
       }
     });
   };
-  getManagerRoutes = managerRoutes => {
-    return managerRoutes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-
   getAdminRoutes = adminRoutes => {
     return adminRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -91,7 +76,36 @@ class Admin extends React.Component {
       }
     });
   };
-
+  getManagerRoutes = managerRoutes => {
+    return managerRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getsubstationRoutes = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getOperatorRoutes = operatorRoutes => {
     return operatorRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -107,30 +121,14 @@ class Admin extends React.Component {
       }
     });
   };
-
-  getElectricTransformerRoutes = ElectricTransformerRoutes => {
-    return ElectricTransformerRoutes.map((prop, key) => {
+  getTransformerRoutes = transformerRoutes => {
+    return transformerRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
           <Route
             path={prop.layout + prop.path}
-            key={key}
             component={prop.component}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-  getSubstationRoutes = substationRoutes => {
-    return substationRoutes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
             key={key}
-            component={prop.component}
           />
         );
       } else {
@@ -195,12 +193,11 @@ class Admin extends React.Component {
         <Sidebar
           {...this.props}
           routes={routes}
-          adminRoutes={adminRoutes}
           managerRoutes={managerRoutes}
+          adminRoutes={adminRoutes}
+          substationRoutes={substationRoutes}
           operatorRoutes={operatorRoutes}
           electricTransformerRoutes={electricTransformerRoutes}
-          substationRoutes={substationRoutes}
-          credentials={this.state.credentials}
           logo={{
             innerLink: "/admin/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -213,9 +210,9 @@ class Admin extends React.Component {
             {this.getRoutes(routes)}
             {this.getAdminRoutes(adminRoutes)}
             {this.getManagerRoutes(managerRoutes)}
+            {this.getsubstationRoutes(substationRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
-            {this.getSubstationRoutes(substationRoutes)}
-            {this.getElectricTransformerRoutes(electricTransformerRoutes)}
+            {this.getTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
           <Container fluid>
