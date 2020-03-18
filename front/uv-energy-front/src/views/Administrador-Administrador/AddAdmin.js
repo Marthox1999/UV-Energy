@@ -13,7 +13,9 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Modal,
+  ModalBody,
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -50,7 +52,7 @@ class AddAdmin extends React.Component {
         this.onChangeFirsName = this.onChangeFirsName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
-
+        this.closeModal = this.closeModal.bind(this);
         this.AddAdmin = this.AddAdmin.bind(this);
     }
     onChangeUsername(e){
@@ -145,16 +147,7 @@ class AddAdmin extends React.Component {
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
                                     isBadinputs: false,
-                                    admin : {
-                                                username: "",
-                                                password: "",
-                                                email: "",
-                                                first_name: "",
-                                                last_name: "",
-                                                is_active: true,
-                                                cellphone: "",
-                                                position: "ADMIN"
-                                            }});
+                                    });
                 }
             }).catch(error => {
                 console.log(error)
@@ -163,6 +156,10 @@ class AddAdmin extends React.Component {
                                 isBadinputs: true})
             })
         }
+    }
+    closeModal(){
+        this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+        window.location.reload(true);
     }
     render() {
         return(
@@ -190,9 +187,6 @@ class AddAdmin extends React.Component {
                             <Alert color="warning" isOpen={this.state.isBadinputs}>
                                 <strong>Warning!</strong> Wrong information on fields!
                             </Alert>
-                            <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The admin was registered!
-                            </Alert>
                         <Row>
                             <Col lg="6">
                             <FormGroup>
@@ -203,6 +197,7 @@ class AddAdmin extends React.Component {
                                 Name
                                 </label>
                                 <Input
+                                required
                                 className="form-control-alternative"
                                 id="input-first-name"
                                 placeholder="Name"
@@ -221,6 +216,7 @@ class AddAdmin extends React.Component {
                                 Last Name
                                 </label>
                                 <Input
+                                required
                                 className="form-control-alternative"
                                 id="input-last-name"
                                 placeholder="Last Name"
@@ -242,6 +238,7 @@ class AddAdmin extends React.Component {
                                 Phone Number
                                 </label>
                                 <Input
+                                required
                                 className="form-control-alternative"
                                 id="input-phone-number"
                                 placeholder="Phone Number"
@@ -269,6 +266,7 @@ class AddAdmin extends React.Component {
                                 Username
                                 </label>
                                 <Input
+                                required
                                 className="form-control-alternative"
                                 id="input-username"
                                 placeholder="Username"
@@ -287,6 +285,7 @@ class AddAdmin extends React.Component {
                                 Email 
                                 </label>
                                 <Input
+                                required
                                 className="form-control-alternative"
                                 id="input-email"
                                 placeholder="jesse@example.com"
@@ -306,7 +305,8 @@ class AddAdmin extends React.Component {
                                 >
                                 Password
                                 </label>
-                                <Input 
+                                <Input
+                                required
                                 className="form-control-alternative"
                                 placeholder="Password" 
                                 type="password" 
@@ -326,6 +326,35 @@ class AddAdmin extends React.Component {
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isAlertSuccess}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="success">
+                        <strong>Congratulations!</strong><br/>The administrator account was created!
+                        </Alert>
+                        <strong>Information:</strong>
+                        <br></br>
+                        <strong> Name: </strong> {this.state.admin.first_name} {this.state.admin.last_name}<br/>
+                        <strong> Phone Number: </strong> {this.state.admin.cellphone}<br/>
+                        <strong> Username: </strong> {this.state.admin.username}<br/>
+                        <strong> Email: </strong> {this.state.admin.email}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        Close
+                        </Button>
+                    </div>
+                </Modal>
             </Container>
             </>
         );

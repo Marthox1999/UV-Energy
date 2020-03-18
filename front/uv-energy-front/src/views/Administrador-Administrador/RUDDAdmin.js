@@ -164,7 +164,6 @@ class RUDDAdmin extends React.Component {
         if(buttonVal===1){            
             console.log("Modify")
             if ((this.state.admin.username === "") ||
-                (this.state.admin.password === "") ||
                 (this.state.admin.email === "") ||
                 (this.state.admin.first_name === "") ||
                 (this.state.admin.last_name === "") ||
@@ -172,43 +171,67 @@ class RUDDAdmin extends React.Component {
 
                 this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
             }else{
-                //console.log(this.state.admin)
                 if(this.state.adminPassword !== ""){
-                    this.setState({ admin: {
-                                            id: this.state.admin.id,
-                                            username:this.state.admin.username,
-                                            password: this.state.adminPassword,
-                                            email: this.state.admin.email,
-                                            first_name: this.state.admin.first_name,
-                                            last_name: this.state.admin.last_name,
-                                            is_active: true,
-                                            cellphone: this.state.admin.cellphone,
-                                            position: "ADMIN"
-                                        }})
-                }
-                axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
-                        this.state.admin,
+                    axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
+                        {
+                            id: this.state.admin.id,
+                            username:this.state.admin.username,
+                            password: this.state.adminPassword,
+                            email: this.state.admin.email,
+                            first_name: this.state.admin.first_name,
+                            last_name: this.state.admin.last_name,
+                            is_active: true,
+                            cellphone: this.state.admin.cellphone,
+                            position: "ADMIN"
+                        },
                         {headers: { Authorization: `Token ${this.state.credentials.token}`}})
-                .then( response => {
-                    //console.log(response)
-                    if ((response.data.password === this.state.adminData.password) ||
-                        (response.data.email === this.state.adminData.email) ||
-                        (response.data.first_name === this.state.adminData.first_name) ||
-                        (response.data.last_name === this.state.adminData.last_name) ||
-                        (response.data.cellphone === this.state.adminData.cellphone)
-                        ){
-                        this.setState({ isAlertSuccess: true,
+
+                    .then( response => {
+                        //console.log(response)
+                        if ((response.data.password === this.state.adminData.password) ||
+                            (response.data.email === this.state.adminData.email) ||
+                            (response.data.first_name === this.state.adminData.first_name) ||
+                            (response.data.last_name === this.state.adminData.last_name) ||
+                            (response.data.cellphone === this.state.adminData.cellphone)
+                            ){
+                            this.setState({ isAlertSuccess: true,
+                                            isAlertEmpty: false,
+                                            isBadinputs: false,
+                                            adminPassword: "",
+                                        });
+                        }
+                    }).catch(error => {
+                        //console.log(error.response.request)
+                        this.setState({ isAlertSuccess: false,
                                         isAlertEmpty: false,
-                                        isBadinputs: false,
-                                        adminPassword: "",
-                                    });
-                    }
-                }).catch(error => {
-                    //console.log(error.response.request)
-                    this.setState({ isAlertSuccess: false,
-                                    isAlertEmpty: false,
-                                    isBadinputs: true})
-                })
+                                        isBadinputs: true})
+                    })
+                }else{
+                    axios.put(c.api + 'users/user/'+this.state.admin.id+'/',
+                            this.state.admin,
+                            {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+
+                    .then( response => {
+                        //console.log(response)
+                        if ((response.data.password === this.state.adminData.password) ||
+                            (response.data.email === this.state.adminData.email) ||
+                            (response.data.first_name === this.state.adminData.first_name) ||
+                            (response.data.last_name === this.state.adminData.last_name) ||
+                            (response.data.cellphone === this.state.adminData.cellphone)
+                            ){
+                            this.setState({ isAlertSuccess: true,
+                                            isAlertEmpty: false,
+                                            isBadinputs: false,
+                                            adminPassword: "",
+                                        });
+                        }
+                    }).catch(error => {
+                        //console.log(error.response.request)
+                        this.setState({ isAlertSuccess: false,
+                                        isAlertEmpty: false,
+                                        isBadinputs: true})
+                    })
+                }                
             }
         }else if(buttonVal === 2){
             //console.log("Disable")
