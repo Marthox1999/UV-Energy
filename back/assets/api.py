@@ -30,3 +30,10 @@ class SubStationViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
     serializer_class = SubStationSerializers
+
+class ActiveSubStationViewSet(viewsets.ViewSet):
+    def list(self, request):
+        queryset = Substation.objects.filter(Q(isActive=True))
+        serializer = SubStationSerializers(queryset, many=True)
+        return Response(serializer.data)
+    
