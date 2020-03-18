@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'users',
     'assets',
     'sales',
-    ]
-    
-MIDDLEWARE =[
+]
+
+
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -105,21 +106,21 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-     'NAME':
-     'django.contrib.auth.password_validation.' +
-     'UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.' +
+        'UserAttributeSimilarityValidator',
     },
     {
-     'NAME':
-     'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-     'NAME':
-     'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-     'NAME':
-     'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -144,7 +145,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-""" 
+"""
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'elasticsearch:9200'
