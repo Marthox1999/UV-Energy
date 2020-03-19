@@ -1,20 +1,45 @@
-{
-    "Welcome":{
-        "1":"Bienvenido!"
+{   
+    "Login":{
+        "Welcome":{
+            "1":"Bienvenido!"
+        },
+        "Profile":{
+            "1":"Mi Perfil"
+        },
+        "Settings":{
+            "1":"Configuración"
+        },
+        "Activity":{
+            "1":"Actividad"
+        },
+        "Support":{
+            "1":"Soporte"
+        },
+        "Logout":{
+            "1":"Salir"
+        },
+        "Sign_credentials":{
+            "1":"Inicie sesión con credenciales"
+        },
+        "Awesome_forms":{
+            "1":"Utilice estos impresionantes formularios para iniciar sesión en su cuenta"
+        },
+        "Username":{
+            "1":"Nombre de usuario"
+        },
+        "Password":{
+            "1":"Contraseña"
+        },
+        "Log_in":{
+            "1":"Ingresar"
+        },
+        "Create_account":{
+            "1":"Crear una cuenta nueva"
+        }
     },
-    "Profile":{
-        "1":"Mi Perfil"
-    },
-    "Settings":{
-        "1":"Configuración"
-    },
-    "Activity":{
-        "1":"Actividad"
-    },
-    "Support":{
-        "1":"Soporte"
-    },
-    "Logout":{
-        "1":"Salir"
+    "Manager":{
+        "Information":{
+            "1":"Información"
+        }
     }
 }

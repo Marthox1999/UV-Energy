@@ -11,7 +11,7 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 import routes from "routes.js";
 
 // react in18 translate
-import '../i18n'
+import i18n from '../i18n'
 
 class Auth extends Component {
   constructor() {
@@ -19,7 +19,7 @@ class Auth extends Component {
     this.state = {};
   }
   handleClick = (lang) => {
-    this.state.i18n.changeLanguage(lang)
+    i18n.changeLanguage(lang)
   }
   componentDidMount() {
     document.body.classList.add("bg-default");
@@ -53,9 +53,12 @@ class Auth extends Component {
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
                   <Col lg="5" md="6">
-                    {t("Welcome.1")}
+                    <button onClick={() => this.handleClick('en')}>en</button>
+                    <button onClick={() => this.handleClick('es')}>es</button>
+                    <button onClick={() => this.handleClick('pt')}>pt</button>
+                    <h1 className="text-white">{t("Login.Welcome.1")}</h1>
                     <p className="text-lead text-light">
-                      Use these awesome forms to login into your account
+                      {t("Login.Awesome_forms.1")}
                     </p>
                   </Col>
                 </Row>
@@ -93,12 +96,4 @@ class Auth extends Component {
   }
 }
 
-const MyAuthComponent = withTranslation()(Auth)
-
-export default function App() {
-  return (
-    <Suspense fallback="loading">
-      <MyAuthComponent />
-    </Suspense>
-  );
-}
+export default withTranslation()(Auth)

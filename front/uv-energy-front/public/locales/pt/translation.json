@@ -1,20 +1,45 @@
 {
-    "Welcome":{
-        "1":"Bem Vindo!"
+    "Login":{
+        "Welcome":{
+            "1":"Bem Vindo!"
+        },
+        "Profile":{
+            "1":"Meu Perfil"
+        },
+        "Settings":{
+            "1":"Configurações"
+        },
+        "Activity":{
+            "1":"Actividad"
+        },
+        "Support":{
+            "1":"Suporte"
+        },
+        "Logout":{
+            "1":"Sair"
+        },
+        "Sign_credentials":{
+            "1":"Entrar com credenciais"
+        },
+        "Awesome_forms":{
+            "1":"Use estes formulários incríveis para fazer login na sua conta"
+        },
+        "Username":{
+            "1":"Nome do usuário"
+        },
+        "Password":{
+            "1":"senha"
+        },
+        "Log_in":{
+            "1":"assinar em"
+        },
+        "Create_account":{
+            "1":"Criar nova conta"
+        }
     },
-    "Profile":{
-        "1":"Meu Perfil"
-    },
-    "Settings":{
-        "1":"Configurações"
-    },
-    "Activity":{
-        "1":"Actividad"
-    },
-    "Support":{
-        "1":"Suporte"
-    },
-    "Logout":{
-        "1":"Sair"
+    "Manager":{
+        "Information":{
+            "1":"Em formação"
+        }
     }
 }
