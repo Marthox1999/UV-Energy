@@ -44,6 +44,10 @@ class RUDDManagerM extends Component {
             credentials: cookie.get('notCredentials'),        
         }    
     }
+    /*componentWillMount(){
+        console.log(cookie.get('lng'))
+        i18n.changeLanguage(cookie.get('lng'))
+    }*/
     componentDidMount(){
         axios.get(c.api + 'users/user/'+this.state.manager.id+'/',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
@@ -123,7 +127,7 @@ class RUDDManagerM extends Component {
                                     className="form-control-label"
                                     htmlFor="input-phone-number"
                                     >
-                                    Phone Number
+                                    {t("General.Phone.1")}
                                     </label>
                                     <Input
                                     readOnly

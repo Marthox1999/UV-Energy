@@ -22,7 +22,7 @@ class Login extends Component {
       credentials:{
         username: '',
         password: ''
-      },
+      }
     }
   }
 

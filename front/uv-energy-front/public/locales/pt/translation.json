@@ -37,9 +37,24 @@
             "1":"Criar nova conta"
         }
     },
-    "Manager":{
+    "General":{
         "Information":{
-            "1":"Em formação"
+            "1":"portuguesse"
+        },
+        "Name":{
+            "1":"portuguesse"
+        },
+        "Last_name":{
+            "1":"portuguesse"
+        },
+        "Phone":{
+            "1":"portuguesse"
+        },
+        "Username":{
+            "1":"portuguesse"
+        },
+        "Account_info":{
+            "1":"portuguesse"
         }
     }
 }
