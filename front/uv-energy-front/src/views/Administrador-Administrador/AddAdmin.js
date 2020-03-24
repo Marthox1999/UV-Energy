@@ -13,7 +13,9 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Modal,
+  ModalBody
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -52,6 +54,7 @@ class AddAdmin extends React.Component {
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
 
         this.AddAdmin = this.AddAdmin.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     onChangeUsername(e){
         this.setState({ admin: {
@@ -145,16 +148,7 @@ class AddAdmin extends React.Component {
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
                                     isBadinputs: false,
-                                    admin : {
-                                                username: "",
-                                                password: "",
-                                                email: "",
-                                                first_name: "",
-                                                last_name: "",
-                                                is_active: true,
-                                                cellphone: "",
-                                                position: "ADMIN"
-                                            }});
+                                    admin : response.data});
                 }
             }).catch(error => {
                 console.log(error)
@@ -163,6 +157,10 @@ class AddAdmin extends React.Component {
                                 isBadinputs: true})
             })
         }
+    }
+    closeModal(){
+        this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+        window.location.reload(true);
     }
     render() {
         return(
@@ -189,9 +187,6 @@ class AddAdmin extends React.Component {
                             </Alert>
                             <Alert color="warning" isOpen={this.state.isBadinputs}>
                                 <strong>Warning!</strong> Wrong information on fields!
-                            </Alert>
-                            <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The admin was registered!
                             </Alert>
                         <Row>
                             <Col lg="6">
@@ -312,7 +307,7 @@ class AddAdmin extends React.Component {
                                 type="password" 
                                 autoComplete="new-password"
                                 value={this.state.admin.password}
-                                onChange={this.onChangePassword}
+                                onChange={this.onChangePassword}                               
                                 />
                             </FormGroup>
                             </Col>
@@ -326,6 +321,35 @@ class AddAdmin extends React.Component {
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isAlertSuccess}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="success">
+                        <strong>Congratulations!</strong><br/>The administrator was created!
+                        </Alert>
+                        <strong>Information:</strong>
+                        <br></br>
+                        <strong> Name: </strong> {this.state.admin.first_name}<br/>
+                        <strong> Last Name: </strong> {this.state.admin.last_name}<br/>
+                        <strong> Phone Number: </strong> {this.state.admin.cellphone}<br/>
+                        <strong> Email: </strong> {this.state.admin.email}<br/>
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        Close
+                        </Button>
+                    </div>
+            </Modal>
             </Container>
             </>
         );

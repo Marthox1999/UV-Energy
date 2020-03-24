@@ -207,7 +207,7 @@ class AddElectricTransformer extends React.Component {
                             <FormGroup>
                                 <br></br>
                                 <UncontrolledDropdown nav>
-                                <DropdownToggle className="pr-0">
+                                <DropdownToggle className="dropdown-menu-arrow">
                                 <Media className="align-items-center" >
                                     <span className="mb-0 text-sm font-weight-bold">
                                         Substation  
