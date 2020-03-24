@@ -8,8 +8,10 @@ import Icons from "views/examples/Icons.js";
 import UVForm from "views/examples/Form.js";
 import RUDDAdmin from "views/Administrador-Administrador/RUDDAdmin.js";
 import RUDDManager from "views/Administrador-Gerente/RUDDManager.js"
+import RUDDOperator from "views/Administrador-Operador/RUDDOperator.js"
 import RUDDAdminM from "views/Gerente-Reportes/RUDDAdminM.js"
 import RUDDManagerM from "views/Gerente-Reportes/RUDDManagerM.js"
+import RUDDOperatorM from "views/Gerente-Reportes/RUDDOperatorM.js"
 
 var routes = [
   {
@@ -83,6 +85,13 @@ var routes = [
     layout: "/admin"
   },
   {
+    path: "/RUDDOperator",
+    name: "Selected Operator",
+    icon: "ni ni-single-02 text-yellow",
+    component: RUDDOperator,
+    layout: "/admin"
+  },
+  {
     path: "/RUDDAdminM",
     name: "Selected Admin",
     icon: "ni ni-single-02 text-yellow",
@@ -95,6 +104,13 @@ var routes = [
     icon: "ni ni-single-02 text-yellow",
     component: RUDDManagerM,
     layout: "/manager"
+  },
+  {
+    path: "/RUDDOperatorM",
+    name: "Selected Operator",
+    icon: "ni ni-single-02 text-yellow",
+    component: RUDDOperatorM,
+    layout: "/admin"
   },
 ];
 export default routes;

@@ -40,6 +40,16 @@ class ActiveAdminViewSet (viewsets.ViewSet):
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
+# Active Operator viewSet
+class ActiveOperatorViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+
+    def list(self, request):
+        queryset = User.objects.filter(Q(position="OP") & Q(is_active=True))
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 class ProfileViewSet (viewsets.ViewSet):
     permission_classes = [

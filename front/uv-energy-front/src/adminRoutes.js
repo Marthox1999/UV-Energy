@@ -8,6 +8,7 @@ import AddManager from "views/Administrador-Gerente/AddManager.js";
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js"
 
 import AddOperator from "views/Administrador-Operador/AddOperator";
+import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator.js";
 
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 
@@ -71,6 +72,13 @@ var operatorRoutes = [
       component: AddOperator,
       layout: "/admin"
   },
+  {
+    path: "/registeredOperators",
+    name: "Registered Operators",
+    icon: "ni ni-single-02 text-yellow",
+    component: RegisteredOperators,
+    layout: "/admin"
+},
 ];
 
 var substationRoutes = [

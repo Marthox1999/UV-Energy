@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 // reactstrap components
 import {
@@ -18,6 +19,7 @@ import 'leaflet/dist/leaflet.css';
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class RegisteredOperators extends React.Component {
     constructor(props){
@@ -43,6 +45,7 @@ class RegisteredOperators extends React.Component {
             listOperators: [],
             isdisabledOperator: this.props.state.disabledOperator,
             isdeletedOperator: this.props.state.deletedOperator,
+            credentials: cookie.get('notCredentials'),
             filter: {
                 where: {
                     position: "OP",
@@ -52,7 +55,15 @@ class RegisteredOperators extends React.Component {
         }
     }
     componentDidMount(){
-        axios.get(c.api + 'users/activeOperator/')
+        console.log(this.state.credentials)
+        if(this.state.credentials.position === 'ADMIN'){
+            this.setState({path: '/admin/RUDDOperator'})
+        }else if(this.state.credentials.position === 'MGR'){
+            this.setState({path: '/manager/RUDDOperatorM'})
+
+        }
+        axios.get(c.api + 'users/activeOperator/',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
@@ -110,7 +121,7 @@ class RegisteredOperators extends React.Component {
                                             role="button"
                                             size="sm"
                                             color=""
-                                            onClick={ () => this.props.history.push({pathname: '/admin/RUDDOperator', state: { operatorID: item.id }}) }
+                                            onClick={ () => this.props.history.push({pathname: this.state.path, state: { operatorID: item.id }}) }
                                         >
                                             <i className="fas fa-ellipsis-v" />
                                             

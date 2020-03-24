@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 // reactstrap components
 import {
@@ -22,6 +23,7 @@ import 'leaflet/dist/leaflet.css';
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class RUDDOperator extends React.Component {
     constructor(props){
@@ -50,6 +52,7 @@ class RUDDOperator extends React.Component {
                 cellphone: "",
                 position: "OP"
             },
+            credentials: cookie.get('notCredentials'),
             operatorPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -67,7 +70,8 @@ class RUDDOperator extends React.Component {
 
     }
     componentDidMount(){
-        axios.get(c.api + 'users/user/'+this.state.operator.id+'/')
+        axios.get(c.api + 'users/user/'+this.state.operator.id+'/',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
@@ -179,7 +183,8 @@ class RUDDOperator extends React.Component {
                                         }})
                 }
                 axios.put(c.api + 'users/user/'+this.state.operator.id+'/',
-                        this.state.operator)
+                        this.state.operator,
+                        {headers: { Authorization: `Token ${this.state.credentials.token}`}})
                 .then( response => {
                     console.log(response)
                     if ((response.data.password === this.state.operatorData.password) ||
@@ -213,11 +218,13 @@ class RUDDOperator extends React.Component {
                 is_active: false,
                 cellphone: this.state.operator.cellphone,
                 position: "OP"
-            })
+            },
+            {headers: { Authorization: `Token ${this.state.credentials.token}`}})
             .catch(error => console.log(error))
 
             this.props.history.push({
                 pathname: '/admin/RegisteredOperators', state:{disabledOperator: true, deletedOperator: false}})
+                window.location.reload(true);
 
         }else if(buttonVal === 3){
             console.log("Delete")
