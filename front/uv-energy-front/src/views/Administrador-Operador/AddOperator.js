@@ -159,7 +159,7 @@ class AddOperator extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Operator</h3>
+                        <font size="5">Add Operator</font>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -223,7 +223,7 @@ class AddOperator extends React.Component {
                                 <Input 
                                 className="form-control-alternative"
                                 id="input-cellphone"
-                                placeholder="3111111111"
+                                placeholder="Phone Number"
                                 type="number"
                                 value={this.state.user.cellphone}
                                 onChange={this.onChangeCellphone}/>

@@ -174,14 +174,14 @@ class AddAdmin extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Admin Information</h3>
+                        <font size="5">Add Admin</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.AddAdmin}>
                         <h6 className="heading-small text-muted mb-4">
-                        Personal Information
+                            Personal Information
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>

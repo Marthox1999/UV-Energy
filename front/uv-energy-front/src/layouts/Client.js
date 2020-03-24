@@ -29,7 +29,6 @@ class Client extends React.Component {
           <UVAdminNavbar/>
           <Switch/>
           <Container fluid>
-            <AdminFooter />
           </Container>
         </div>
       </>

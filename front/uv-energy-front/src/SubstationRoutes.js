@@ -5,7 +5,7 @@ var SubstationRoutes = [
   {
     path: "/addSubstation",
     name: "Add Substation",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-fat-add text-blue",
     component: AddSubstation,
     layout: "/admin"
   },

@@ -79,9 +79,8 @@ class RegistredManagers extends React.Component {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                            <h3 className="mb-0">Active Managers</h3>
+                            <font size="5">Active Managers</font>
                             </CardHeader>
-                            <br></br>
                             <Alert color="info" isOpen={this.state.isdisabledManager}>
                                 Manager account was disabled!
                             </Alert>
@@ -91,9 +90,9 @@ class RegistredManagers extends React.Component {
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
                                 <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Username</th>
+                                <th scope="col"><font size="2">Id</font></th>
+                                <th scope="col"><font size="2">Name</font></th>
+                                <th scope="col"><font size="2">Username</font></th>
                                 <th scope="col" />
                                 </tr>
                             </thead>
@@ -109,13 +108,13 @@ class RegistredManagers extends React.Component {
                                     <td>{item.username}</td>
                                     <td className="text-right">
                                         <Button
-                                            className="btn-icon-only text-light"
+                                            className="text-blue"
                                             role="button"
-                                            size="sm"
-                                            color=""
+                                            size="md"
+                                            color="white"
                                             onClick={ () => this.props.history.push({pathname: this.state.path, state: { managerID: item.id }}) }
                                         >
-                                            <i className="fas fa-ellipsis-v" />
+                                            <i className="ni ni-settings" />
                                             
                                         </Button>
                                     </td>

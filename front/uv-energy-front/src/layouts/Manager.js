@@ -138,7 +138,6 @@ class Manager extends React.Component {
             <Redirect from="*" to="/manager/index" />
           </Switch>
           <Container fluid>
-            <AdminFooter />
           </Container>
         </div>
       </>

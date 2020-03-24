@@ -38,7 +38,7 @@ var routes = [
   {
     path: "/user-profile",
     name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-single-02 text-blue",
     component: Profile,
     layout: "/admin"
   },
@@ -73,42 +73,42 @@ var routes = [
   {
     path: "/RUDDManager",
     name: "Selected Manager",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-single-02 text-blue",
     component: RUDDManager,
     layout:"/admin"
  },
   {
     path: "/RUDDAdmin",
     name: "Selected Admin",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-single-02 text-blue",
     component: RUDDAdmin,
     layout: "/admin"
   },
   {
     path: "/RUDDOperator",
     name: "Selected Operator",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-single-02 text-blue",
     component: RUDDOperator,
     layout: "/admin"
   },
   {
     path: "/RUDDAdminM",
     name: "Selected Admin",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-single-02 text-blue",
     component: RUDDAdminM,
     layout: "/manager"
   },
   {
     path: "/RUDDManagerM",
     name: "Selected Admin",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-single-02 text-blue",
     component: RUDDManagerM,
     layout: "/manager"
   },
   {
     path: "/RUDDOperatorM",
     name: "Selected Operator",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-single-02 text-blue",
     component: RUDDOperatorM,
     layout: "/admin"
   },

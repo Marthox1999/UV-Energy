@@ -215,8 +215,7 @@ class Admin extends React.Component {
             {this.getTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/admin/index" />
           </Switch>
-          <Container fluid>
-            <AdminFooter />
+          <Container fluid> 
           </Container>
         </div>
       </>

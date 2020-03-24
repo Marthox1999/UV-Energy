@@ -75,7 +75,6 @@ class Auth extends React.Component {
             </Row>
           </Container>
         </div>
-        <AuthFooter />
       </>
     );
   }
