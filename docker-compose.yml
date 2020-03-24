@@ -38,7 +38,7 @@ services:
       - db
   #    - elasticsearch
   react:
-    build: ./front
+    build: ./front/uv-energy-front
     volumes:
       - ./front/uv-energy-front:/code
     ports:

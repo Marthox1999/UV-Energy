@@ -17,8 +17,10 @@ import {
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 import Axios from "axios";
+import Cookies from 'universal-cookie';
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class AddOperator extends React.Component {
     constructor(props){
@@ -36,6 +38,7 @@ class AddOperator extends React.Component {
             },
             isAlertEmpty: false,
             isAlertSuccess: false,
+            credentials: cookie.get('notCredentials'),
         }
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
@@ -128,7 +131,8 @@ class AddOperator extends React.Component {
             this.setState({isAlertEmpty: true, isAlertSuccess: false})
         }else{
             console.log(this.state.user)
-            Axios.post(c.api + 'users/user/', this.state.user)
+            Axios.post(c.api + 'users/user/', this.state.user,
+                       {headers: { Authorization: `Token ${this.state.credentials.token}`}})
             .then( response => {
                 this.setState({ isAlertEmpty: false,
                                 isAlertSuccess: true,
@@ -164,7 +168,7 @@ class AddOperator extends React.Component {
                         <strong>Warning!</strong> There are empty fields!
                     </Alert>
                     <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                        <strong>Congratulations!</strong> The tor was created!
+                        <strong>Congratulations!</strong> The opertator was created!
                     </Alert>
                     <Form onSubmit={this.AddOperator}>
                         <h6 className="heading-small text-muted mb-4">

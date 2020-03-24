@@ -17,11 +17,13 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import Cookies from 'universal-cookie';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class AddAdmin extends React.Component {
     constructor(props){
@@ -40,6 +42,7 @@ class AddAdmin extends React.Component {
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
+            credentials: cookie.get('notCredentials'),
         }
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
@@ -134,7 +137,8 @@ class AddAdmin extends React.Component {
             this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
         }else{
             axios.post(c.api + 'users/user/',
-                       this.state.admin)
+                       this.state.admin,
+                       {headers: { Authorization: `Token ${this.state.credentials.token}`}})
             .then( response => {
                 console.log(response)
                 if (response.data.username !== ""){
@@ -187,7 +191,7 @@ class AddAdmin extends React.Component {
                                 <strong>Warning!</strong> Wrong information on fields!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The admin was registred!
+                                <strong>Congratulations!</strong> The admin was registered!
                             </Alert>
                         <Row>
                             <Col lg="6">

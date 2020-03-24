@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 // reactstrap components
 import {
@@ -19,16 +20,19 @@ import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
 
-class RegistredAdmins extends React.Component {
+const cookie = new Cookies();
+
+class RegisteredAdmins extends React.Component {
     constructor(props){
         super(props);
         if(this.props.location.state === null){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: false}}
+            this.props = { state:{disabledAdmin: false, deletedAdmin: false, reload: false}}
         }else if(this.props.location.state.disabledAdmin){
-            this.props = { state:{disabledAdmin: true, deletedAdmin: false}}
+            this.props = { state:{disabledAdmin: true, deletedAdmin: false, reload: true}}
         }else if(this.props.location.state.deletedAdmin){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: true}}
+            this.props = { state:{disabledAdmin: false, deletedAdmin: true, reload: true}}
         }
+
         this.state = {
             admin : {
                 username: "Username",
@@ -40,28 +44,32 @@ class RegistredAdmins extends React.Component {
                 cellphone: "123",
                 position: "ADMIN"
             },
+            path: '',
             listAdmins: [],
             isdisabledAdmin: this.props.state.disabledAdmin,
             isdeletedAdmin: this.props.state.deletedAdmin,
-            filter: {
-                where: {
-                    position: "ADMIN",
-                    is_active: true,
-                }
-            }
+            credentials: cookie.get('notCredentials'),           
         }
     }
     componentDidMount(){
-        axios.get(c.api + 'users/activeAdmin/')
+        console.log(this.state.credentials)
+        if(this.state.credentials.position === 'ADMIN'){
+            this.setState({path: '/admin/RUDDAdmin'})
+        }else if(this.state.credentials.position === 'MGR'){
+            this.setState({path: '/manager/RUDDAdminM'})
+
+        }
+        axios.get(c.api + 'users/activeAdmin/',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("There aren't any admin registred.")
+                alert("There are no registered administrators.")
               }
               else{
                 this.setState({listAdmins: response.data})
-                console.log(this.state.listAdmins)
-                console.log(response.config)
+                //console.log(this.state.listAdmins)
+                //console.log(response.config)
             }             
         }).catch(error => alert(error))
     }
@@ -80,10 +88,10 @@ class RegistredAdmins extends React.Component {
                             </CardHeader>
                             <br></br>
                             <Alert color="info" isOpen={this.state.isdisabledAdmin}>
-                                Admin account was disabled! Please reload the page to see the changes
+                                Admin account was disabled!
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedAdmin}>
-                                Admin account was deleted! Please reload the page to see the changes
+                                Admin account was deleted!
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
@@ -110,7 +118,7 @@ class RegistredAdmins extends React.Component {
                                             role="button"
                                             size="sm"
                                             color=""
-                                            onClick={ () => this.props.history.push({pathname: '/admin/RUDDAdmin', state: { adminID: item.id }}) }
+                                            onClick={ () => this.props.history.push({pathname: this.state.path, state: { adminID: item.id }}) }
                                         >
                                             <i className="fas fa-ellipsis-v" />
                                             
@@ -129,4 +137,4 @@ class RegistredAdmins extends React.Component {
     }
 }
 
-export default RegistredAdmins;
+export default RegisteredAdmins;

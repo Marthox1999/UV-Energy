@@ -5,22 +5,21 @@ import { Container } from "reactstrap";
 // core components
 import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
-
+import SidebarM from "components/Sidebar/SidebarM.js";
 
 import routes from "routes.js";
-import {adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes} from "adminRoutes.js";
+import {managerRoutes, adminRoutes} from "managerRoutes.js";
 
 import Cookies from 'universal-cookie';
 
 const cookie = new Cookies();
 
-class Admin extends React.Component {
+class Manager extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isVerified: false,
-      credentials: cookie.get('notCredentials'),
+        isVerified: false,
+        credentials: cookie.get('notCredentials'),
     };
   };
   componentWillMount(){
@@ -33,7 +32,7 @@ class Admin extends React.Component {
   }
   componentDidUpdate(e) {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/manager") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -48,22 +47,7 @@ class Admin extends React.Component {
   };
   getRoutes = routes => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-  getAdminRoutes = adminRoutes => {
-    return adminRoutes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/manager") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -78,7 +62,7 @@ class Admin extends React.Component {
   };
   getManagerRoutes = managerRoutes => {
     return managerRoutes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/manager") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -91,39 +75,9 @@ class Admin extends React.Component {
       }
     });
   };
-  getsubstationRoutes = substationRoutes => {
-    return substationRoutes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-  getOperatorRoutes = operatorRoutes => {
-    return operatorRoutes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-  getTransformerRoutes = transformerRoutes => {
-    return transformerRoutes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+  getAdminRoutes = adminRoutes => {
+    return adminRoutes.map((prop, key) => {
+      if (prop.layout === "/manager") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -161,45 +115,16 @@ class Admin extends React.Component {
     }
     return "Brand";
   };
-
-  getBrandTextOperator = path => {
-    for (let i = 0; i < operatorRoutes.length; i++) {
-      if (
-        this.props.location.pathname.indexOf(
-          operatorRoutes[i].layout + operatorRoutes[i].path
-        ) !== -1
-      ) {
-        return operatorRoutes[i].name;
-      }
-    }
-    return "Brand";
-  };
-
-  getBrandTextElectricTransformer = path => {
-    for (let i = 0; i < electricTransformerRoutes.length; i++) {
-      if (
-        this.props.location.pathname.indexOf(
-          electricTransformerRoutes[i].layout + electricTransformerRoutes[i].path
-        ) !== -1
-      ) {
-        return electricTransformerRoutes[i].name;
-      }
-    }
-    return "Brand";
-  };
   render() {
     return (
       <>
-        <Sidebar
+        <SidebarM
           {...this.props}
           routes={routes}
           managerRoutes={managerRoutes}
-          adminRoutes={adminRoutes}
-          substationRoutes={substationRoutes}
-          operatorRoutes={operatorRoutes}
-          electricTransformerRoutes={electricTransformerRoutes}
+          adminRoutes={adminRoutes}          
           logo={{
-            innerLink: "/admin/index",
+            innerLink: "/manager/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
             imgAlt: "..."
           }}
@@ -208,12 +133,9 @@ class Admin extends React.Component {
           <UVAdminNavbar/>
           <Switch>
             {this.getRoutes(routes)}
-            {this.getAdminRoutes(adminRoutes)}
             {this.getManagerRoutes(managerRoutes)}
-            {this.getsubstationRoutes(substationRoutes)}
-            {this.getOperatorRoutes(operatorRoutes)}
-            {this.getTransformerRoutes(electricTransformerRoutes)}
-            <Redirect from="*" to="/admin/index" />
+            {this.getAdminRoutes(adminRoutes)}
+            <Redirect from="*" to="/manager/index" />
           </Switch>
           <Container fluid>
             <AdminFooter />
@@ -224,4 +146,4 @@ class Admin extends React.Component {
   }
 }
 
-export default Admin;
+export default Manager;

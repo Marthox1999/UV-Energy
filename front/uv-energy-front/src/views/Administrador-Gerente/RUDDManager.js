@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-
+import Cookies from 'universal-cookie';
 // reactstrap components
 import {
   Button,
@@ -22,6 +22,7 @@ import 'leaflet/dist/leaflet.css';
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
+const cookie = new Cookies();
 
 class RUDDManager extends React.Component {
     constructor(props){
@@ -50,6 +51,7 @@ class RUDDManager extends React.Component {
                 cellphone: "",
                 position: "MGR"
             },
+            credentials: cookie.get('notCredentials'),
             managerPassword: "",
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -67,7 +69,8 @@ class RUDDManager extends React.Component {
 
     }
     componentDidMount(){
-        axios.get(c.api + 'users/user/'+this.state.manager.id+'/')
+        axios.get(c.api + 'users/user/'+this.state.manager.id+'/',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
@@ -179,7 +182,8 @@ class RUDDManager extends React.Component {
                                         }})
                 }
                 axios.put(c.api + 'users/user/'+this.state.manager.id+'/',
-                        this.state.manager)
+                        this.state.manager,
+                        {headers: { Authorization: `Token ${this.state.credentials.token}`}})
                 .then( response => {
                     console.log(response)
                     if ((response.data.password === this.state.managerData.password) ||
@@ -215,11 +219,13 @@ class RUDDManager extends React.Component {
                 is_active: false,
                 cellphone: this.state.manager.cellphone,
                 position: "MGR"
-            })
+            },
+            {headers: { Authorization: `Token ${this.state.credentials.token}`}})
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/manager/RegisteredManagers', state:{disabledManager: true, deletedManager: false}})
+                pathname: '/admin/RegisteredManagers', state:{disabledManager: true, deletedManager: false}})
+                window.location.reload(true);
 
         }else if(buttonVal === 3){
             console.log("Delete")
@@ -227,7 +233,8 @@ class RUDDManager extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/manager/RegisteredManagers', state:{disabledManager: false, deletedManager: true}})
+                pathname: '/admin/RegisteredManagers', state:{disabledManager: false, deletedManager: true}})
+                window.location.reload(true);
         }
     }
     ModfManager(e){

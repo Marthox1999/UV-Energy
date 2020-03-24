@@ -49,7 +49,7 @@
     "classnames": "2.2.6",
     "leaflet": "^1.6.0",
     "moment": "2.24.0",
-    "node-sass": "4.13.1",
+    "node-sass": "^4.13.1",
     "nouislider": "14.1.1",
     "react": "16.12.0",
     "react-chartjs-2": "2.9.0",
@@ -58,9 +58,11 @@
     "react-dom": "16.12.0",
     "react-google-maps": "9.4.5",
     "react-leaflet": "^2.6.1",
+    "react-recaptcha": "^2.3.10",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.3.1",
-    "reactstrap": "8.4.1"
+    "reactstrap": "8.4.1",
+    "universal-cookie": "^4.0.3"
   },
   "devDependencies": {
     "@types/googlemaps": "3.39.2",
