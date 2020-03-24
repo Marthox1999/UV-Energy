@@ -177,17 +177,17 @@ class AddAdmin extends React.Component {
                     </Row>
                     </CardHeader>
                     <CardBody>
+                    <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                        <strong>Warning!</strong> There are empty fields!
+                    </Alert>
+                    <Alert color="warning" isOpen={this.state.isBadinputs}>
+                        <strong>Warning!</strong> Wrong information on fields!
+                    </Alert>
                     <Form onSubmit={this.AddAdmin}>
                         <h6 className="heading-small text-muted mb-4">
                             Personal Information
                         </h6>
                         <div className="pl-lg-4">
-                            <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
-                            </Alert>
-                            <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                <strong>Warning!</strong> Wrong information on fields!
-                            </Alert>
                         <Row>
                             <Col lg="6">
                             <FormGroup>
