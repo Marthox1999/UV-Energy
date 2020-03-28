@@ -1,0 +1,60 @@
+{   
+    "Login":{
+        "Welcome":{
+            "1":"Welcome!"
+        },
+        "Profile":{
+            "1":"My Profile"
+        },
+        "Settings":{
+            "1":"Settings"
+        },
+        "Activity":{
+            "1":"Activity"
+        },
+        "Support":{
+            "1":"Support"
+        },
+        "Logout":{
+            "1":"Logout"
+        },
+        "Sign_credentials":{
+            "1":"Sign in with credentials"
+        },
+        "Awesome_forms":{
+            "1":"Use these awesome forms to login into your account"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Log_in":{
+            "1":"Log in"
+        },
+        "Create_account":{
+            "1":"Create new account"
+        }
+    },
+    "General":{
+        "Information":{
+            "1":"Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "Last_name":{
+            "1":"Last Name"
+        },
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "Account_info":{
+            "1":"Account Information"
+        }
+    }
+}

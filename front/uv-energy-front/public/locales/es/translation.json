@@ -1,0 +1,60 @@
+{   
+    "Login":{
+        "Welcome":{
+            "1":"Bienvenido!"
+        },
+        "Profile":{
+            "1":"Mi Perfil"
+        },
+        "Settings":{
+            "1":"Configuración"
+        },
+        "Activity":{
+            "1":"Actividad"
+        },
+        "Support":{
+            "1":"Soporte"
+        },
+        "Logout":{
+            "1":"Salir"
+        },
+        "Sign_credentials":{
+            "1":"Inicie sesión con credenciales"
+        },
+        "Awesome_forms":{
+            "1":"Utilice estos impresionantes formularios para iniciar sesión en su cuenta"
+        },
+        "Username":{
+            "1":"Nombre de usuario"
+        },
+        "Password":{
+            "1":"Contraseña"
+        },
+        "Log_in":{
+            "1":"Ingresar"
+        },
+        "Create_account":{
+            "1":"Crear una cuenta nueva"
+        }
+    },
+    "General":{
+        "Information":{
+            "1":"Información"
+        },
+        "Name":{
+            "1":"Nombre"
+        },
+        "Last_name":{
+            "1":"Apellido"
+        },
+        "Phone":{
+            "1":"Celular"
+        },
+        "Username":{
+            "1":"Nombre de usuario"
+        },
+        "Account_info":{
+            "1":"Informacion de la cuenta"
+        }
+    }
+}
