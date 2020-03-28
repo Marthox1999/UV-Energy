@@ -76,10 +76,10 @@ class AddSubstation extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation',
+        axios.get(c.api + 'assets/activeSubstation',
               {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
-            if( response.data.count === 0){
+            if( response.data.length === 0){
                 alert("There are not substations registered");
               }
               else{

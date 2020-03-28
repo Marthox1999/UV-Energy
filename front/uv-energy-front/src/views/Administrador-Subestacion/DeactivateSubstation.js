@@ -62,6 +62,7 @@ class DeactivateSubstation extends React.Component {
             listSubstation : [],
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isModalModify: false,
             modifySubstation: true,
             submitClicked: '',
         }
@@ -70,7 +71,9 @@ class DeactivateSubstation extends React.Component {
         this.updateClicked = this.updateClicked.bind(this);
         this.action = this.action.bind(this);
         this.deactivate = this.deactivate.bind(this);
+        this.modify = this.modify.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.closeModalModify = this.closeModalModify.bind(this);
     }
     componentDidMount(){
         if (typeof this.state.credentials === 'undefined'){
@@ -80,7 +83,6 @@ class DeactivateSubstation extends React.Component {
         axios.get(c.api + 'assets/activeSubstation',
               {headers: { Authorization : `Token ${this.state.credentials.token}`}})
         .then( response => {
-            console.log(response.data)
             if( response.data.length === 0){
                 alert("There are not substations registered");
               }
@@ -121,24 +123,7 @@ class DeactivateSubstation extends React.Component {
                         })
                     }
                 }else{
-                    if ((this.state.substation.name === "") ||
-                    (this.state.substation.long === "") ||
-                    (this.state.substation.lat === "")){
-                        this.setState({isAlertEmpty: true})
-                    }else{
-                        axios.put(c.api + 'assets/activeSubstation/'+this.state.substation.pk_substation+'/',
-                                this.state.substation)
-                        .then( response => {
-                            console.log(response.data)
-                            if ((response.data.name === this.state.substation.name) ||
-                                (response.data.long === this.state.substation.long) ||
-                                (response.data.lat === this.state.substation.lat)){
-                                this.setState({ isAlertSuccess: true,
-                                    isAlertEmpty: false
-                                });
-                            }
-                        }).catch(error => console.log(error))
-                    }
+                    this.setState({isModalModify: !this.state.isModalModify})
                 }
             }else{
                 if (this.state.submitClicked === 'deactivate'){
@@ -151,8 +136,34 @@ class DeactivateSubstation extends React.Component {
             }
         }
     }
+
+
+    modify(){
+        if ((this.state.substation.name === "") ||
+        (this.state.substation.long === "") ||
+        (this.state.substation.lat === "")){
+            this.setState({isAlertEmpty: true})
+        }else{
+            axios.put(c.api + 'assets/Substation/'+this.state.substation.pk_substation+'/',
+                    this.state.substation,
+                    {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+            .then( response => {
+                if ((this.state.substation.name === response.data.tension_level) ||
+                    (this.state.substation.long === response.data.long) ||
+                    (this.state.substation.lat === response.data.lat)){
+                    this.setState({ isAlertEmpty: false,
+                                    substation: response.data});
+                }
+            }).catch(error => console.log(error.response.data))
+        }
+        window.location.reload(true);
+    }
+
+
+
+
     deactivate(){
-        axios.put(c.api + 'assets/activeSubstation/'+this.state.substation.pk_substation+'/',
+        axios.put(c.api + 'assets/Substation/'+this.state.substation.pk_substation+'/',
                     {   
                         pk_substation: this.state.substation.pk_substation,
                         name: this.state.substation.name,
@@ -164,12 +175,15 @@ class DeactivateSubstation extends React.Component {
                         .then( response => {
                             console.log(response.data)
                             if (!this.state.substation.isActive){
-                                alert("falta modal bonito")
                                 this.setState({ isAlertEmpty: false,
                                                 substation: response.data});
                             }
                         }).catch(error => console.log(error))
-        
+        window.location.reload(true);
+    }
+    closeModalModify(){
+        this.setState({ isModalModify: !this.state.isModalModify})
+        window.location.reload(true);
     }
     closeModal(){
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
@@ -295,7 +309,43 @@ class DeactivateSubstation extends React.Component {
                         </Button>
                     
                     </div>
-            </Modal>
+                </Modal>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isModalModify}
+                    >
+                        <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="primary">
+                        <strong>Modify substation,</strong><br/>Are you sure?
+                        </Alert>
+                        <strong>Information:</strong>
+                        <br></br>
+                        <strong> No. Substation: </strong> {this.state.substation.pk_substation}<br/>
+                        <strong> New name: </strong> {this.state.substation.name}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                    <Button
+                        color="danger"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.modify}
+                        >
+                        Deactivate
+                        </Button>
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModalModify}
+                        >
+                        Close
+                        </Button>
+                    
+                    </div>
+                </Modal>                        
             </Container>
         </>
         );
