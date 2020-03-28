@@ -12,7 +12,9 @@ import {
     Container,
     Row,
     Col,
-    Alert
+    Alert,
+    Modal,
+    ModalBody
   } from "reactstrap";
 
 import L from 'leaflet';
@@ -71,6 +73,7 @@ class AddSubstation extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.AddSubstation = this.AddSubstation.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
         axios.get(c.api + 'assets/Substation',
@@ -87,12 +90,12 @@ class AddSubstation extends React.Component {
     }
     handleClick = (e) => {
         this.setState({ substation: {
-                                                pk_substation: -1,
-                                                name: this.state.substation.name,
-                                                long: e.latlng.lng.toString(),
-                                                lat: e.latlng.lat.toString(),
-                                                isActive: this.state.substation.isActive
-                                            }}, () => console.log(this.state.substation));
+            pk_substation: -1,
+            name: this.state.substation.name,
+            long: e.latlng.lng.toString(),
+            lat: e.latlng.lat.toString(),
+            isActive: this.state.substation.isActive
+        }}, () => console.log(this.state.substation));
     }
     onChangeName(e){
         this.setState({ substation: {
@@ -121,16 +124,15 @@ class AddSubstation extends React.Component {
                     this.setState({
                         isAlertSuccess: true,
                         isAlertEmpty: false,
-                        substation: {
-                            pk_substation: -1,
-                            name: "",
-                            long: "",
-                            lat: "",
-                            isActive: true
-                        }});
+                        substation: response.data});
                 }
             }).catch(error => console.log(error.response.request.responseText))
         }
+    }
+
+    closeModal(){
+        this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+        window.location.reload(true);
     }
     render() {
         return(
@@ -153,9 +155,6 @@ class AddSubstation extends React.Component {
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
                                 <strong>Warning!</strong> There are empty fields!
-                            </Alert>
-                            <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The substation was created!
                             </Alert>
 
                             <FormGroup>
@@ -225,6 +224,33 @@ class AddSubstation extends React.Component {
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isAlertSuccess}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="success">
+                        <strong>Congratulations!</strong><br/>The substation was created!
+                        </Alert>
+                        <strong>Information:</strong>
+                        <br></br>
+                        <strong> No. Substation: </strong> {this.state.substation.pk_substation}<br/>
+                        <strong> Name: </strong> {this.state.substation.name}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        Close
+                        </Button>
+                    </div>
+                </Modal>
             </Container>
         </>
         );

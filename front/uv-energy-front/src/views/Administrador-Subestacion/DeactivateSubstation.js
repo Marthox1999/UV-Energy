@@ -32,14 +32,17 @@ import {
   } from "react-leaflet";
   
 import 'leaflet/dist/leaflet.css';
+import Cookies from 'universal-cookie';
 
 const substationDone = new L.icon({
     iconUrl: require("assets/img/theme/substationdone.png"),
     iconSize: new L.point(45,45)
 })
-const c = require('../constants')
 
-class DeactivateElectricTransformer extends React.Component {
+const c = require('../constants')
+const cookie = new Cookies();
+
+class DeactivateSubstation extends React.Component {
     constructor(props){
         super(props);
         console.log(this.props.location)
@@ -55,7 +58,7 @@ class DeactivateElectricTransformer extends React.Component {
                 lat: "",
                 isActive: true
             },
-            credentials: this.props.location.state.credentials,
+            credentials: cookie.get('notCredentials'),
             listSubstation : [],
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -82,7 +85,7 @@ class DeactivateElectricTransformer extends React.Component {
                 alert("There are not substations registered");
               }
               else{
-                this.setState({listSubstation: response.data.results}) 
+                this.setState({listSubstation: response.data}) 
             }             
         }).catch(error => console.log(error))
     }
@@ -265,7 +268,7 @@ class DeactivateElectricTransformer extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="warning">
-                        <strong>Deactivate electric transformer,</strong><br/>are you sure?
+                        <strong>Deactivate electric transformer,</strong><br/>Are you sure?
                         </Alert>
                         <strong>Information:</strong>
                         <br></br>
@@ -299,4 +302,4 @@ class DeactivateElectricTransformer extends React.Component {
     }
 }
 
-export default DeactivateElectricTransformer;
+export default DeactivateSubstation;
