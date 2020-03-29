@@ -101,6 +101,10 @@ class Login extends Component {
               alert("Invalid Credentials")
             }
           }
+        ).catch(
+          () => {
+            alert("Invalid Credentials")
+          }
         )
       }
     }else{
