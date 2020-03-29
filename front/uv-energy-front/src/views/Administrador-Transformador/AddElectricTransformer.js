@@ -153,7 +153,7 @@ class AddElectricTransformer extends React.Component {
     }
     AddElectricTransformer(e){
         e.preventDefault()
-        if ((this.state.electricTransformer.tension_level === 0) ||
+        if ((this.state.electricTransformer.tension_level <= 0) ||
             (this.state.electricTransformer.reference === "") ||
             (this.state.electricTransformer.long === "") ||
             (this.state.electricTransformer.lat === "") ||

@@ -66,7 +66,6 @@ class ModifyElectricTransformer extends React.Component {
             transformers: [],
             isAlertEmpty: false,
             isAlertSuccess: false,
-            isModalConfirm: false,
             isModalModify: false,
             modify: true,
             submitClicked: '',
@@ -81,13 +80,22 @@ class ModifyElectricTransformer extends React.Component {
         this.deactivate = this.deactivate.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.closeModalModify = this.closeModalModify.bind(this);
-        this.closeModalConfirm = this.closeModalConfirm.bind(this);
     }
     componentDidMount(){
         if (typeof this.state.credentials === 'undefined'){
             alert("no token");
             this.props.history.push('/auth/login');
         }
+        axios.get(c.api + 'assets/activeSubstation',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            if( response.data.count === 0){
+                alert(i18n.t("ETransformer.NoSubstationRegistered.1"))
+              }
+              else{
+                this.setState({listSubstation: response.data})
+            }             
+        }).catch(error => console.log(error))
         axios.get(c.api + 'assets/ActiveET',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then(response => {
@@ -176,7 +184,8 @@ class ModifyElectricTransformer extends React.Component {
             }
         }
     }
-    modify(){
+    modify(e){
+        e.preventDefault();
         if ((this.state.electricTransformer.tension_level === 0) ||
         (this.state.electricTransformer.reference === "") ||
         (this.state.electricTransformer.long === "") ||
@@ -195,12 +204,14 @@ class ModifyElectricTransformer extends React.Component {
                     (this.state.electricTransformer.fk_substation === response.data.fk_substation)){
                     this.setState({ isAlertEmpty: false,
                                     electricTransformer: response.data});
+                    window.location.reload(true);
                 }
-            }).catch(error => console.log(error.response.data))
+            }).catch(error => console.log(error))
+
         }
-        window.location.reload(true);
     }
-    deactivate(){
+    deactivate(e){
+        e.preventDefault();
         axios.put(c.api + 'assets/ElectricTransformer/'+this.state.electricTransformer.pk_transformers+'/',
                 {
                     pk_transformers: this.state.electricTransformer.pk_transformers,
@@ -216,22 +227,16 @@ class ModifyElectricTransformer extends React.Component {
                             console.log(response.data)
                             if (!response.data.isActive){
                                 this.setState({ isAlertEmpty: false,
-                                                isModalConfirm: true,
                                                 electricTransformer: response.data});
+                                window.location.reload(true);
                             }
                         }).catch(error => console.log(error))
     }
     closeModal(){
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
-        window.location.reload(true);
     }
     closeModalModify(){
         this.setState({ isModalModify: !this.state.isModalModify})
-        window.location.reload(true);
-    }
-    closeModalConfirm(){
-        this.setState({ isModalConfirm: false})
-        window.location.reload(true);
     }
     render() {
         const { t } = this.props
@@ -434,31 +439,6 @@ class ModifyElectricTransformer extends React.Component {
                     
                     </div>
             </Modal>
-            <Modal
-                    className="modal-dialog-centered"
-                    color="success"
-                    isOpen={this.state.isModalConfirm}
-                    >
-                        <ModalBody>
-                    <div className="modal-body">
-                        <Alert color="success">
-                        <strong>{t("ETransformer.Congrats.1")}</strong>
-                        </Alert>
-                        <br></br>
-                        &nbsp;{t("ETransformer.SucessfullDeactivate.1")}
-                    </div>
-                    </ModalBody>
-                    <div className="modal-footer">
-                    <Button
-                        color="primary"
-                        data-dismiss="modal"
-                        type="button"
-                        onClick={this.closeModalConfirm}
-                        >
-                        {t("ETransformer.Close.1")}
-                    </Button>
-                    </div>
-                </Modal>
             </Container>
         </>
         );
