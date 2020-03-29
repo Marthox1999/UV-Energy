@@ -38,6 +38,7 @@ import {
   } from "react-leaflet";
 
 import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 import Cookies from 'universal-cookie';
 
 const setPoint = new L.icon({
@@ -89,7 +90,7 @@ class AddElectricTransformer extends React.Component {
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.count === 0){
-                alert("There are not substations registered")
+                alert(i18n.t("ETransformer.NoSubstationRegistered.1"))
               }
               else{
                 this.setState({listSubstation: response.data})
@@ -98,8 +99,9 @@ class AddElectricTransformer extends React.Component {
         axios.get(c.api + 'assets/ActiveET',
                   {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then(response => {
-            if (response.data.count === 0){
-                alert("There are not electric transformers registered")
+            console.log(response.data)
+            if (response.data.length === 0){
+                alert(i18n.t("ETransformer.NoETRegistered.1"))
             }else{
                 this.setState({transformers: response.data})
             }
@@ -160,7 +162,7 @@ class AddElectricTransformer extends React.Component {
         }else{
             if (parseFloat(this.state.electricTransformer.long) === 283.48211288452154  &&
                 parseFloat(this.state.electricTransformer.lat) === 3.430283815687804){
-                    alert("Choose a point in the map");
+                    alert(i18n.t("ETransformer.NoPointChoosen.1"));
                 }
             else{
                 axios.post(c.api + 'assets/ElectricTransformer/',

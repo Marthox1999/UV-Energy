@@ -33,6 +33,7 @@ import {
   
 import 'leaflet/dist/leaflet.css';
 import Cookies from 'universal-cookie';
+import i18n from '../../i18n.js';
 import { withTranslation } from 'react-i18next';
 
 const transformerDone = new L.icon({
@@ -91,7 +92,7 @@ class ModifyElectricTransformer extends React.Component {
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then(response => {
             if (response.data.count === 0){
-                alert("There are not electric transformers registered.")
+                alert(i18n.t("ETransformer.NoETRegistered.1"))
             }else{
                 this.setState({transformers: response.data})
             }
@@ -156,7 +157,7 @@ class ModifyElectricTransformer extends React.Component {
             if (this.state.submitClicked === 'modify'){
                 if (this.state.modify){
                     if (this.state.electricTransformer.fk_substation === -1){
-                        alert("Select a substation first")
+                        alert(i18n.t("ETransformer.SelectSubstation.1"))
                     }else{
                         this.setState({modify: !this.state.modify})
                     }
@@ -167,7 +168,7 @@ class ModifyElectricTransformer extends React.Component {
             }else{
                 if (this.state.submitClicked === 'deactivate'){
                     if (this.state.electricTransformer.fk_substation === -1){
-                        alert("Select a substation first")
+                        alert(i18n.t("ETransformer.SelectSubstation.1"))
                     }else{
                         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
                     }

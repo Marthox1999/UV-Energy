@@ -165,6 +165,18 @@
         },
         "SucessfullDeactivate":{
             "1":"El transformador electrico fue desactivado correctamente"
+        },
+        "NoETRegistered":{
+            "1":"No hay transformadores electricos registrados."
+        },
+        "NoSubstationRegistered":{
+            "1": "No hay subestaciones registradas."
+        },
+        "NoPointChoosen":{
+            "1":"Escoja un punto en el mapa."
+        },
+        "SelectSubstation":{
+            "1":"Seleccione un transformador electrico primero."
         }
 
     }
