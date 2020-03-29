@@ -73,7 +73,7 @@ class AddSubstation extends React.Component {
         this.AddSubstation = this.AddSubstation.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation',
+        axios.get(c.api + 'assets/activeSubstation',
               {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.count === 0){
@@ -81,7 +81,7 @@ class AddSubstation extends React.Component {
               }
               else{
                 console.log(response)
-                this.setState({listSubstation: response.data.results}) 
+                this.setState({listSubstation: response.data}) 
             }             
         }).catch(error => console.log(error))
     }
@@ -199,7 +199,10 @@ class AddSubstation extends React.Component {
                                     url={'http://{s}.tile.osm.org/{z}/{x}/{y}.png'}
                                 />
                                     {this.state.listSubstation.map((data, id) =>  
-                                    <Marker key={'substation-'+id} position={[parseFloat(data.lat), parseFloat(data.long)]} icon={substationDone}>
+                                    <Marker
+                                        key={'substation-'+id}
+                                        position={[parseFloat(data.lat), parseFloat(data.long)]}
+                                        icon={substationDone}>
                                         <Popup>
                                             <span> {data.name} </span>
                                         </Popup>
