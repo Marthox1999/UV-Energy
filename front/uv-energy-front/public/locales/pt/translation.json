@@ -57,6 +57,7 @@
             "1":"portuguesse"
         }
     },
+<<<<<<< HEAD
 
 
 
@@ -65,6 +66,46 @@
     "Substation":{
         "AddSubstation":{
             "1":"Adicionar subestação"
+=======
+    "Sidebar":{
+        "Welcome":{
+            "1":"Bem-vindo!"
+        },
+        "MyProfile":{
+            "1":"Meu profile"
+        },
+        "Settings":{
+            "1": "Configurações"
+        },
+        "Activity":{
+            "1": "Atividade"
+        },
+        "Support":{
+            "1":"Apoio, suporte"
+        },
+        "Logout":{
+            "1":"Sair"
+        },
+        "Manager":{
+            "1":"Gerente"
+        },
+        "Administrator":{
+            "1":"Administrador"
+        },
+        "Operator":{
+            "1":"Operador"
+        },
+        "Substation":{
+            "1":"Subestação"
+        },
+        "ElectricTransformer":{
+            "1":"Transformador elétrico"
+        }
+    },
+    "ETransformer":{
+        "AddET":{
+            "1":"Adicionar transformador elétrico"
+>>>>>>> origin/master
         },
         "GeneralInfo":{
             "1":"Informação geral"

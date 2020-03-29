@@ -57,6 +57,7 @@
             "1":"Account Information"
         }
     },
+<<<<<<< HEAD
 
 
 
@@ -64,6 +65,46 @@
     "Substation":{
         "AddSubstation":{
             "1":"Add Substation"
+=======
+    "Sidebar":{
+        "Welcome":{
+            "1":"Welcome!"
+        },
+        "MyProfile":{
+            "1":"My profile"
+        },
+        "Settings":{
+            "1":"Settings"
+        },
+        "Activity":{
+            "1": "Activity"
+        },
+        "Support":{
+            "1":"Support"
+        },
+        "Logout":{
+            "1":"Logout"
+        },
+        "Manager":{
+            "1":"Manager"
+        },
+        "Administrator":{
+            "1":"Administrator"
+        },
+        "Operator":{
+            "1":"Operator"
+        },
+        "Substation":{
+            "1":"Substation"
+        },
+        "ElectricTransformer":{
+            "1":"Electric Transformer"
+        }
+    },
+    "ETransformer":{
+        "AddET":{
+            "1":"Add Electric Transformer"
+>>>>>>> origin/master
         },
         "GeneralInfo":{
             "1":"General Information"

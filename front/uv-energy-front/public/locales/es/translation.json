@@ -1,4 +1,5 @@
 {   
+    
     "Login":{
         "Welcome":{
             "1":"Bienvenido!"
@@ -57,6 +58,7 @@
             "1":"Informacion de la cuenta"
         }
     },
+<<<<<<< HEAD
 
 
 
@@ -64,6 +66,46 @@
     "Substation":{
         "AddSubstation":{
             "1":"Agregar Subestación"
+=======
+    "Sidebar":{
+        "Welcome":{
+            "1":"Bienvenido!"
+        },
+        "MyProfile":{
+            "1":"Mi perfil"
+        },
+        "Settings":{
+            "1":"Herramientas"
+        },
+        "Activity":{
+            "1": "Actividades"
+        },
+        "Support":{
+            "1":"Soporte"
+        },
+        "Logout":{
+            "1":"Cerrar sesión"
+        },
+        "Manager":{
+            "1":"Gerente"
+        },
+        "Administrator":{
+            "1":"Administrador"
+        },
+        "Operator":{
+            "1":"Operador"
+        },
+        "Substation":{
+            "1":"Subestacion"
+        },
+        "ElectricTransformer":{
+            "1":"Transformador Electrico"
+        }
+    },
+    "ETransformer":{
+        "AddET":{
+            "1":"Agregar Transformador Electrico"
+>>>>>>> origin/master
         },
         "GeneralInfo":{
             "1":"Información General"

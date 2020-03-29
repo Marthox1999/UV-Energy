@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -16,8 +16,6 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
-
-import i18n from '../../i18n'
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
