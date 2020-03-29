@@ -56,5 +56,97 @@
         "Account_info":{
             "1":"Account Information"
         }
+    },
+
+
+
+
+    "Substation":{
+        "AddSubstation":{
+            "1":"Add Substation"
+        },
+        "GeneralInfo":{
+            "1":"General Information"
+        },
+        "Warning":{
+            "1":"Warning!"
+        },
+        "EmptyFields":{
+            "1":"There are empty fields!"
+        },
+        "Substation":{
+            "1":"Substation"
+        },
+        "NoSubstation":{
+            "1":"There aren't substations"
+        },
+        "Reference":{
+            "1":"Reference"
+        },
+        "TensionLevel":{
+            "1":"Tension Level"
+        },
+        "ChoosePoint":{
+            "1":"Choosen the point:"
+        },
+        "ETSet":{
+            "1":"Electric transformer to set"
+        },
+        "ETActive":{
+            "1":"Electric transformers active"
+        },
+        "ChoosenPoint":{
+            "1":"Choosen point: "
+        },
+        "Add":{
+            "1": "Add"
+        },
+        "Congrats":{
+            "1":"Congratulations!"
+        },
+        "ETCreated":{
+            "1": "The electric transformer was created!"
+        },
+        "Information":{
+            "1":"Information:"
+        },
+        "NoTransformer":{
+            "1":"No. Transformer"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ModifyET":{
+            "1":"Modify Electric Transformer"
+        },
+        "Modify":{
+            "1":"Modify"
+        },
+        "Deactivate":{
+            "1":"Deactivate"
+        },
+        "DeactivateET":{
+            "1":"Deactivate electric transformer"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "SucessfullDeactivate":{
+            "1":"The Electric Transformer was deactivated successfully"
+        },
+        "NoETRegistered":{
+            "1":"There are not electric transformer registered."
+        },
+        "NoSubstationRegistered":{
+            "1": "There are not substations registered"
+        },
+        "NoPointChoosen":{
+            "1":"Choose a point in the map"
+        },
+        "SelectSubstation":{
+            "1":"Select a electric transformer first"
+        }
     }
+
+
 }

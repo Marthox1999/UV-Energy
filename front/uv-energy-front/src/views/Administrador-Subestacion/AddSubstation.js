@@ -33,6 +33,9 @@ import {
   
 import 'leaflet/dist/leaflet.css';
 
+
+import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 import Cookies from 'universal-cookie';
 
 const setPoint = new L.icon({
@@ -135,6 +138,7 @@ class AddSubstation extends React.Component {
         window.location.reload(true);
     }
     render() {
+        const { t } = this.props
         return(
         <>
         <UVHeader/>
@@ -150,7 +154,7 @@ class AddSubstation extends React.Component {
                     <CardBody>
                     <Form onSubmit={this.AddSubstation}>
                         <h6 className="heading-small text-muted mb-4">
-                        General Information
+                        {t("Substation.GeneralInfo.1")}
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
@@ -257,4 +261,4 @@ class AddSubstation extends React.Component {
     }
 }
 
-export default AddSubstation;
+export default withTranslation()(AddSubstation);
