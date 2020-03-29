@@ -60,9 +60,11 @@ class DeactivateSubstation extends React.Component {
             },
             credentials: cookie.get('notCredentials'),
             listSubstation : [],
+            listTransformers: [],
             isAlertEmpty: false,
             isAlertSuccess: false,
             isModalModify: false,
+            isModalConfirm: false,
             modifySubstation: true,
             submitClicked: '',
         }
@@ -70,8 +72,10 @@ class DeactivateSubstation extends React.Component {
         this.onChangeName = this.onChangeName.bind(this);
         this.updateClicked = this.updateClicked.bind(this);
         this.action = this.action.bind(this);
+        this.confirmDeactivate = this.confirmDeactivate.bind(this);
         this.deactivate = this.deactivate.bind(this);
         this.modify = this.modify.bind(this);
+        this.closeModalConfirm = this.closeModalConfirm.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.closeModalModify = this.closeModalModify.bind(this);
     }
@@ -88,6 +92,15 @@ class DeactivateSubstation extends React.Component {
               }
               else{
                 this.setState({listSubstation: response.data}) 
+                console.log(this.state.listSubstation)
+            }             
+        }).catch(error => console.log(error))
+
+        axios.get(c.api + 'assets/ActiveET',
+              {headers: { Authorization : `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            if( response.data.length > 0){
+                this.setState({listTransformers: response.data})
             }             
         }).catch(error => console.log(error))
     }
@@ -159,10 +172,7 @@ class DeactivateSubstation extends React.Component {
         window.location.reload(true);
     }
 
-
-
-
-    deactivate(){
+    confirmDeactivate(){
         axios.put(c.api + 'assets/Substation/'+this.state.substation.pk_substation+'/',
                     {   
                         pk_substation: this.state.substation.pk_substation,
@@ -181,13 +191,43 @@ class DeactivateSubstation extends React.Component {
                         }).catch(error => console.log(error))
         window.location.reload(true);
     }
-    closeModalModify(){
-        this.setState({ isModalModify: !this.state.isModalModify})
+
+    deactivate(){
+        let hasTransformers = this.state.listTransformers.some(
+            currentT => currentT.fk_substation === this.state.substation.pk_substation);
+        
+        if (hasTransformers){
+            this.setState({
+                isModalConfirm: true
+            })
+            return;
+        }
+        axios.put(c.api + 'assets/Substation/'+this.state.substation.pk_substation+'/',
+                    {   
+                        pk_substation: this.state.substation.pk_substation,
+                        name: this.state.substation.name,
+                        long: this.state.substation.long,
+                        lat: this.state.substation.lat,
+                        isActive: false,
+                    },
+                    {headers: { Authorization : `Token ${this.state.credentials.token}`}})
+                        .then( response => {
+                            console.log(response.data)
+                            if (!this.state.substation.isActive){
+                                this.setState({ isAlertEmpty: false,
+                                                substation: response.data});
+                            }
+                        }).catch(error => console.log(error))
         window.location.reload(true);
     }
+    closeModalConfirm(){
+        this.setState({ isModalConfirm: false})
+    }
+    closeModalModify(){
+        this.setState({ isModalModify: false})
+    }
     closeModal(){
-        this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
-        window.location.reload(true);
+        this.setState({ isAlertSuccess: false})
     }
     render() {
         return(
@@ -282,7 +322,7 @@ class DeactivateSubstation extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="warning">
-                        <strong>Deactivate electric transformer,</strong><br/>Are you sure?
+                        <strong>Deactivate substation,</strong><br/>Are you sure?
                         </Alert>
                         <strong>Information:</strong>
                         <br></br>
@@ -308,6 +348,38 @@ class DeactivateSubstation extends React.Component {
                         Close
                         </Button>
                     
+                    </div>
+                </Modal>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isModalConfirm}
+                    >
+                        <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="warning">
+                        <strong>Deactivate substation,</strong><br/>Are you sure?
+                        </Alert>
+                        <strong>This substation has transformers</strong>
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                    <Button
+                        color="danger"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.confirmDeactivate}
+                        >
+                        Deactivate
+                    </Button>
+                    <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModalConfirm}
+                        >
+                        Close
+                    </Button>
                     </div>
                 </Modal>
                 <Modal

@@ -84,7 +84,7 @@ class AddSubstation extends React.Component {
               }
               else{
                 console.log(response)
-                this.setState({listSubstation: response.data.results}) 
+                this.setState({listSubstation: response.data}) 
             }             
         }).catch(error => console.log(error))
     }
