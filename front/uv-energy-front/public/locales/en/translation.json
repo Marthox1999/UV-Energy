@@ -56,5 +56,114 @@
         "Account_info":{
             "1":"Account Information"
         }
+    },
+    "Sidebar":{
+        "Welcome":{
+            "1":"Welcome!"
+        },
+        "MyProfile":{
+            "1":"My profile"
+        },
+        "Settings":{
+            "1":"Settings"
+        },
+        "Activity":{
+            "1": "Activity"
+        },
+        "Support":{
+            "1":"Support"
+        },
+        "Logout":{
+            "1":"Logout"
+        },
+        "Manager":{
+            "1":"Manager"
+        },
+        "Administrator":{
+            "1":"Administrator"
+        },
+        "Operator":{
+            "1":"Operator"
+        },
+        "Substation":{
+            "1":"Substation"
+        },
+        "ElectricTransformer":{
+            "1":"Electric Transformer"
+        }
+    },
+    "ETransformer":{
+        "AddET":{
+            "1":"Add Electric Transformer"
+        },
+        "GeneralInfo":{
+            "1":"General Information"
+        },
+        "Warning":{
+            "1":"Warning!"
+        },
+        "EmptyFields":{
+            "1":"There are empty fields!"
+        },
+        "Substation":{
+            "1":"Substation"
+        },
+        "NoSubstation":{
+            "1":"There aren't substations"
+        },
+        "Reference":{
+            "1":"Reference"
+        },
+        "TensionLevel":{
+            "1":"Tension Level"
+        },
+        "ChoosePoint":{
+            "1":"Choosen the point:"
+        },
+        "ETSet":{
+            "1":"Electric transformer to set"
+        },
+        "ETActive":{
+            "1":"Electric transformers active"
+        },
+        "ChoosenPoint":{
+            "1":"Choosen point: "
+        },
+        "Add":{
+            "1": "Add"
+        },
+        "Congrats":{
+            "1":"Congratulations!"
+        },
+        "ETCreated":{
+            "1": "The electric transformer was created!"
+        },
+        "Information":{
+            "1":"Information:"
+        },
+        "NoTransformer":{
+            "1":"No. Transformer"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ModifyET":{
+            "1":"Modify Electric Transformer"
+        },
+        "Modify":{
+            "1":"Modify"
+        },
+        "Deactivate":{
+            "1":"Deactivate"
+        },
+        "DeactivateET":{
+            "1":"Deactivate electric transformer"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "SucessfullDeactivate":{
+            "1":"The Electric Transformer was deactivated successfully"
+        }
     }
 }

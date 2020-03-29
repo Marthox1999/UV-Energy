@@ -37,6 +37,7 @@ import {
     Popup
   } from "react-leaflet";
 
+import { withTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
 
 const setPoint = new L.icon({
@@ -84,14 +85,14 @@ class AddElectricTransformer extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation',
+        axios.get(c.api + 'assets/activeSubstation',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.count === 0){
                 alert("There are not substations registered")
               }
               else{
-                this.setState({listSubstation: response.data.results})
+                this.setState({listSubstation: response.data})
             }             
         }).catch(error => console.log(error))
         axios.get(c.api + 'assets/ActiveET',
@@ -100,7 +101,6 @@ class AddElectricTransformer extends React.Component {
             if (response.data.count === 0){
                 alert("There are not electric transformers registered")
             }else{
-                console.log(response.data)
                 this.setState({transformers: response.data})
             }
         }).catch(error => console.log(error))
@@ -158,20 +158,25 @@ class AddElectricTransformer extends React.Component {
             (this.state.electricTransformer.fk_substation === -1)){
             this.setState({isAlertEmpty: true})
         }else{
-            axios.post(c.api + 'assets/ElectricTransformer/',
-                       this.state.electricTransformer,
-                       {headers: 
-                        { 'Authorization' : `Token ${this.state.credentials.token}`}
-                       })
-            .then( response => {
-                console.log(response.data.pk_transformers !== -1)
-                if (response.data.pk_transformers !== -1){
-                    this.setState({ isAlertSuccess: true,
-                                    isAlertEmpty: false,
-                                    electricTransformer: response.data});
-                    
+            if (parseFloat(this.state.electricTransformer.long) === 283.48211288452154  &&
+                parseFloat(this.state.electricTransformer.lat) === 3.430283815687804){
+                    alert("Choose a point in the map");
                 }
-            }).catch(error => console.log(error))
+            else{
+                axios.post(c.api + 'assets/ElectricTransformer/',
+                        this.state.electricTransformer,
+                        {headers: 
+                            { 'Authorization' : `Token ${this.state.credentials.token}`}
+                        })
+                .then( response => {
+                    if (response.data.pk_transformers !== -1){
+                        this.setState({ isAlertSuccess: true,
+                                        isAlertEmpty: false,
+                                        electricTransformer: response.data});
+                        
+                    }
+                }).catch(error => console.log(error))
+            }
         }
     }
     closeModal(){
@@ -179,6 +184,7 @@ class AddElectricTransformer extends React.Component {
         window.location.reload(true);
     }
     render() {
+        const { t } = this.props
         return(
         <>
         <UVHeader/>
@@ -188,18 +194,18 @@ class AddElectricTransformer extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Electric Transformer</h3>
+                            <h3 className="mb-0">{t("ETransformer.AddET.1")}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.AddElectricTransformer}>
                         <h6 className="heading-small text-muted mb-4">
-                        General Information
+                        {t("ETransformer.GeneralInfo.1")}
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
+                                <strong>{t("ETransformer.Warning.1")}</strong> {t("ETransformer.EmptyFields.1")}
                             </Alert>
                             <Row>
                             <Col lg="3">
@@ -210,7 +216,7 @@ class AddElectricTransformer extends React.Component {
                                 <DropdownToggle className="pr-0">
                                 <Media className="align-items-center" >
                                     <span className="mb-0 text-sm font-weight-bold">
-                                        Substation  
+                                        {t("ETransformer.Substation.1")}  
                                     </span>
                                     <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
                                     <img
@@ -229,7 +235,7 @@ class AddElectricTransformer extends React.Component {
                                 </DropdownItem>) : 
                                 <DropdownItem to="#" tag={Link}>
                                 <i className=" ni ni-fat-remove"/>
-                                <span>There aren't substations</span>
+                                <span>{t("ETransformer.NoSubstation.1")}</span>
                                 </DropdownItem>}
                                 </DropdownMenu>
                                 </UncontrolledDropdown>
@@ -242,12 +248,12 @@ class AddElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Reference
+                                {t("ETransformer.Reference.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 name="reference"
-                                placeholder="reference"
+                                placeholder={t("ETransformer.Reference.1")}
                                 type="text"
                                 value={this.state.electricTransformer.reference}
                                 onChange={this.onChangeReference}
@@ -260,12 +266,12 @@ class AddElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Tension Level
+                                {t("ETransformer.TensionLevel.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 name="tension_level"
-                                placeholder="tension"
+                                placeholder={t("ETransformer.TensionLevel.1")}
                                 type="number"
                                 value={this.state.electricTransformer.tension_level}
                                 onChange={this.onChangeTensionLevel}
@@ -273,18 +279,18 @@ class AddElectricTransformer extends React.Component {
                             </FormGroup>
                             </Col>
                             </Row>
-                            <h2>Choose the point for the electric transformer</h2>
+                            <h2>{t("ETransformer.ChoosePoint.1")}</h2>
                             <img 
                                 alt="..."
                                 src={require("assets/img/theme/transformador.png")}
                                 style={{height: '35px', width: '35px'}}
-                            /> Electric transformer to set
+                            /> {t("ETransformer.ETSet.1")}
                             <br/>
                             <img 
                                 alt="..."
                                 src={require("assets/img/theme/pointerdone.png")}
                                 style={{height: '35px', width: '35px'}}
-                            /> Electric transformers active
+                            />{t("ETransformer.ETActive.1")}
                             <Map
                                 id="map-canvas"
                                 style={{width: '100%',height: '350px'}}
@@ -304,12 +310,12 @@ class AddElectricTransformer extends React.Component {
                                         position={this.state.coord}
                                         draggable={true}
                                         icon={setPoint}>
-                                        <Popup onClick={this.handleClick} position={this.state.coord}>Point choosen: <pre>{this.state.electricTransformer.lat}, {this.state.electricTransformer.long}</pre></Popup>
+                                        <Popup onClick={this.handleClick} position={this.state.coord}>{t("ETransformer.ChoosePoint.1")}<pre>{this.state.electricTransformer.lat}, {this.state.electricTransformer.long}</pre></Popup>
                                     </Marker>
                             </Map>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
-                                Add
+                                {t("ETransformer.Add.1")}
                             </Button>
                         </div>
                         </div>
@@ -324,14 +330,14 @@ class AddElectricTransformer extends React.Component {
                     <ModalBody>
                     <div className="modal-body">
                         <Alert color="success">
-                        <strong>Congratulations!</strong><br/>The electric transformer was created!
+                        <strong>{t("ETransformer.Congrats.1")}</strong><br/>{t("ETransformer.ETCreated.1")}
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("ETransformer.Information.1")}</strong>
                         <br></br>
-                        <strong> No. Transformer: </strong> {this.state.electricTransformer.pk_transformers}<br/>
-                        <strong> Reference: </strong> {this.state.electricTransformer.reference}<br/>
-                        <strong> Tension Level: </strong> {this.state.electricTransformer.tension_level}<br/>
-                        <strong> Substation: </strong> {this.state.listSubstation.map((data, id) => id !== this.state.electricTransformer.fk_substation ? data.name : <p></p>)}
+                        <strong> {t("ETransformer.NoTransformer.1")}: </strong> {this.state.electricTransformer.pk_transformers}<br/>
+                        <strong> {t("ETransformer.Reference.1")}: </strong> {this.state.electricTransformer.reference}<br/>
+                        <strong> {t("ETransformer.TensionLevel.1")}: </strong> {this.state.electricTransformer.tension_level}<br/>
+                        <strong> {t("ETransformer.Substation.1")}: </strong> {this.state.listSubstation.map((data, id) => data.pk_substation === this.state.electricTransformer.fk_substation ? data.name : "")}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -341,7 +347,7 @@ class AddElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.closeModal}
                         >
-                        Close
+                        {t("ETransformer.Close.1")}
                         </Button>
                     </div>
             </Modal>
@@ -351,4 +357,4 @@ class AddElectricTransformer extends React.Component {
     }
 }
 
-export default AddElectricTransformer;
+export default withTranslation()(AddElectricTransformer);

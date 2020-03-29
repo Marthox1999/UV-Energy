@@ -56,5 +56,115 @@
         "Account_info":{
             "1":"portuguesse"
         }
+    },
+    "Sidebar":{
+        "Welcome":{
+            "1":"Bem-vindo!"
+        },
+        "MyProfile":{
+            "1":"Meu profile"
+        },
+        "Settings":{
+            "1": "Configurações"
+        },
+        "Activity":{
+            "1": "Atividade"
+        },
+        "Support":{
+            "1":"Apoio, suporte"
+        },
+        "Logout":{
+            "1":"Sair"
+        },
+        "Manager":{
+            "1":"Gerente"
+        },
+        "Administrator":{
+            "1":"Administrador"
+        },
+        "Operator":{
+            "1":"Operador"
+        },
+        "Substation":{
+            "1":"Subestação"
+        },
+        "ElectricTransformer":{
+            "1":"Transformador elétrico"
+        }
+    },
+    "ETransformer":{
+        "AddET":{
+            "1":"Adicionar transformador elétrico"
+        },
+        "GeneralInfo":{
+            "1":"Informação geral"
+        },
+        "Warning":{
+            "1":"Aviso!"
+        },
+        "EmptyFields":{
+            "1":"Existem campos vazios!"
+        },
+        "Substation":{
+            "1":"Subestação"
+        },
+        "NoSubstation":{
+            "1":"Não há subestações"
+        },
+        "Reference":{
+            "1":"Referência"
+        },
+        "TensionLevel":{
+            "1":"Nível de tensão"
+        },
+        "ChoosePoint":{
+            "1":"ponto escolhido"
+        },
+        "ETSet":{
+            "1":"Transformador elétrico para estabelecer"
+        },
+        "ETActive":{
+            "1":"Transformadores elétricos ativos"
+        },
+        "ChoosenPoint":{
+            "1":"Ponto escolhido:"
+        },
+        "Add":{
+            "1": "Adicionar"
+        },
+        "Congrats":{
+            "1":"Parabéns!"
+        },
+        "ETCreated":{
+            "1": "O transformador elétrico foi criado!"
+        },
+        "Information":{
+            "1":"Em formação:"
+        },
+        "NoTransformer":{
+            "1":"No. Transformador "
+        },
+        "Close":{
+            "1":"Fechar"
+        },
+        "ModifyET":{
+            "1":"Modificar transformador elétrico"
+        },
+        "Modify":{
+            "1":"Modificar"
+        },
+        "Deactivate":{
+            "1":"Desativar"
+        },
+        "DeactivateET":{
+            "1":"Desativar transformador elétrico"
+        },
+        "AreYouSure":{
+            "1":"você tem certeza?"
+        },
+        "SucessfullDeactivate":{
+            "1":"O transformador elétrico foi desativado com sucesso"
+        }
+
     }
 }

@@ -33,6 +33,7 @@ import {
   
 import 'leaflet/dist/leaflet.css';
 import Cookies from 'universal-cookie';
+import { withTranslation } from 'react-i18next';
 
 const transformerDone = new L.icon({
     iconUrl: require("assets/img/theme/pointerdone.png"),
@@ -42,7 +43,7 @@ const transformerDone = new L.icon({
 const c = require('../constants')
 const cookie = new Cookies();
 
-class DeactivateElectricTransformer extends React.Component {
+class ModifyElectricTransformer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -64,6 +65,7 @@ class DeactivateElectricTransformer extends React.Component {
             transformers: [],
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isModalConfirm: false,
             isModalModify: false,
             modify: true,
             submitClicked: '',
@@ -78,6 +80,7 @@ class DeactivateElectricTransformer extends React.Component {
         this.deactivate = this.deactivate.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.closeModalModify = this.closeModalModify.bind(this);
+        this.closeModalConfirm = this.closeModalConfirm.bind(this);
     }
     componentDidMount(){
         if (typeof this.state.credentials === 'undefined'){
@@ -211,12 +214,11 @@ class DeactivateElectricTransformer extends React.Component {
                         .then( response => {
                             console.log(response.data)
                             if (!response.data.isActive){
-                                alert("falta modal bonito")
                                 this.setState({ isAlertEmpty: false,
+                                                isModalConfirm: true,
                                                 electricTransformer: response.data});
                             }
                         }).catch(error => console.log(error))
-        //window.location.reload(true);
     }
     closeModal(){
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
@@ -226,7 +228,12 @@ class DeactivateElectricTransformer extends React.Component {
         this.setState({ isModalModify: !this.state.isModalModify})
         window.location.reload(true);
     }
+    closeModalConfirm(){
+        this.setState({ isModalConfirm: false})
+        window.location.reload(true);
+    }
     render() {
+        const { t } = this.props
         return(
         <>
         <UVHeader/>
@@ -235,18 +242,18 @@ class DeactivateElectricTransformer extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Deactivate Electric Transformer</h3>
+                        <h3 className="mb-0">{t("ETransformer.ModifyET.1")}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.action}>
                         <h6 className="heading-small text-muted mb-4">
-                        General Information
+                        {t("ETransformer.GeneralInfo.1")}
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
+                                <strong>{t("ETransformer.Warning.1")}</strong>{t("ETransformer.EmptyFields.1")}
                             </Alert>
                             <Row>
                             <Col lg="4">
@@ -255,12 +262,12 @@ class DeactivateElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Substation
+                                {t("ETransformer.Substation.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 name="substation"
-                                placeholder="substation"
+                                placeholder={t("ETransformer.Substation.1")}
                                 type="text"
                                 disabled = {true}
                                 value={this.state.electricTransformer.fk_substation}
@@ -274,12 +281,12 @@ class DeactivateElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Reference
+                                {t("ETransformer.Reference.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 name="reference"
-                                placeholder="reference"
+                                placeholder={t("ETransformer.Reference.1")}
                                 type="text"
                                 maxLength="8"
                                 disabled = {this.state.modify}
@@ -294,11 +301,11 @@ class DeactivateElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Tension Level
+                                {t("ETransformer.TensionLevel.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
-                                name="tension_level"
+                                name={t("ETransformer.TensionLevel.1")}
                                 placeholder="tension"
                                 type="number"
                                 disabled = {this.state.modify}
@@ -312,7 +319,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 alt="..."
                                 src={require("assets/img/theme/pointerdone.png")}
                                 style={{height: '35px', width: '35px'}}
-                            /> Electric transformers active
+                            /> {t("ETransformer.ETActive.1")}
                             <Map
                                 id="map-canvas"
                                 style={{width: '100%',height: '350px'}}
@@ -336,12 +343,12 @@ class DeactivateElectricTransformer extends React.Component {
                             <Row>
                                 <Col lg="6">
                                     <Button className="mt-4" name="modify" onClick={()=>this.updateClicked('modify')} color="primary" type="submit">
-                                        Modify
+                                        {t("ETransformer.Modify.1")}
                                     </Button>
                                 </Col>
                                 <Col lg="6">
                                     <Button className="mt-4" name="deactivate" onClick={()=>this.updateClicked('deactivate')} color="primary" type="submit">
-                                        Deactivate
+                                        {t("ETransformer.Deactivate.1")}
                                     </Button>
                                 </Col>
                             </Row>
@@ -358,14 +365,14 @@ class DeactivateElectricTransformer extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="warning">
-                        <strong>Deactivate electric transformer,</strong><br/>are you sure?
+                        <strong>{t("ETransformer.DeactivateET.1")},</strong>{t("ETransformer.AreYouSure.1")}<br/>
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("ETransformer.Information.1")}</strong>
                         <br></br>
-                        <strong> No. Transformer: </strong> {this.state.electricTransformer.pk_transformers}<br/>
-                        <strong> Reference: </strong> {this.state.electricTransformer.reference}<br/>
-                        <strong> Tension Level: </strong> {this.state.electricTransformer.tension_level}<br/>
-                        <strong> Substation: </strong> {this.state.listSubstation.map((data, id) => id !== this.state.electricTransformer.fk_substation ? data.name : <p></p>)}
+                        <strong> {t("ETransformer.NoTransformer.1")}: </strong> {this.state.electricTransformer.pk_transformers}<br/>
+                        <strong> {t("ETransformer.Reference.1")}: </strong> {this.state.electricTransformer.reference}<br/>
+                        <strong> {t("ETransformer.TensionLevel.1")}: </strong> {this.state.electricTransformer.tension_level}<br/>
+                        <strong> {t("ETransformer.Substation.1")}: </strong> {this.state.listSubstation.map((data, id) => data.pk_substation === this.state.electricTransformer.fk_substation ? data.name : "")}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -375,7 +382,7 @@ class DeactivateElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.deactivate}
                         >
-                        Deactivate
+                        {t("ETransformer.Deactivate.1")}
                         </Button>
                         <Button
                         color="primary"
@@ -383,7 +390,7 @@ class DeactivateElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.closeModal}
                         >
-                        Close
+                        {t("ETransformer.Close.1")}
                         </Button>
                     
                     </div>
@@ -396,14 +403,14 @@ class DeactivateElectricTransformer extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="primary">
-                        <strong>Modify electric transformer</strong>
+                        <strong>{t("ETransformer.ModifyET.1")}</strong>
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("ETransformer.Information.1")}</strong>
                         <br></br>
-                        <strong> No. Transformer: </strong> {this.state.electricTransformer.pk_transformers}<br/>
-                        <strong> Reference: </strong> {this.state.electricTransformer.reference}<br/>
-                        <strong> Tension Level: </strong> {this.state.electricTransformer.tension_level}<br/>
-                        <strong> Substation: </strong> {this.state.listSubstation.map((data, id) => id !== this.state.electricTransformer.fk_substation ? data.name : <p></p>)}
+                        <strong>{t("ETransformer.NoTransformer.1")}:</strong> {this.state.electricTransformer.pk_transformers}<br/>
+                        <strong>{t("ETransformer.Reference.1")}:</strong> {this.state.electricTransformer.reference}<br/>
+                        <strong>{t("ETransformer.TensionLevel.1")}:</strong> {this.state.electricTransformer.tension_level}<br/>
+                        <strong> {t("ETransformer.Substation.1")}: </strong> {this.state.listSubstation.map((data, id) => data.pk_substation === this.state.electricTransformer.fk_substation ? data.name : "")}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -413,7 +420,7 @@ class DeactivateElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.modify}
                         >
-                        Modify
+                        {t("ETransformer.Modify.1")}
                         </Button>
                         <Button
                         color="primary"
@@ -421,15 +428,40 @@ class DeactivateElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.closeModalModify}
                         >
-                        Close
+                        {t("ETransformer.Close.1")}
                         </Button>
                     
                     </div>
             </Modal>
+            <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isModalConfirm}
+                    >
+                        <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="success">
+                        <strong>{t("ETransformer.Congrats.1")}</strong>
+                        </Alert>
+                        <br></br>
+                        &nbsp;{t("ETransformer.SucessfullDeactivate.1")}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                    <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModalConfirm}
+                        >
+                        {t("ETransformer.Close.1")}
+                    </Button>
+                    </div>
+                </Modal>
             </Container>
         </>
         );
     }
 }
 
-export default DeactivateElectricTransformer;
+export default withTranslation()(ModifyElectricTransformer);
