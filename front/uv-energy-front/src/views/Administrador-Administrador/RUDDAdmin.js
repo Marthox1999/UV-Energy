@@ -276,8 +276,8 @@ class RUDDAdmin extends React.Component {
         }
     }
     closeModal(){
-        this.setState({ isModal: !this.state.isModal})
-        window.location.reload(true);
+        this.setState({ isModal: !this.state.isModal, isAlertSuccess: !this.state.isAlertSuccess, isAlertEmpty: !this.state.isAlertEmpty, isBadinputs: !this.state.isBadinputs})
+        window.location.reload(true);     
     }
     render() {
         return(
@@ -297,16 +297,7 @@ class RUDDAdmin extends React.Component {
                     <Form onSubmit={this.AddAdmin}>
                         <h6 className="heading-small text-muted mb-4">
                         </h6>
-                        <div className="pl-lg-4">
-                            <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
-                            </Alert>
-                            <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                <strong>Warning!</strong> Wrong information on fields!
-                            </Alert>
-                            <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The Admin was modified!
-                            </Alert>
+                        <div className="pl-lg-4">        
                         <Row>
                             <Col lg="6">
                             <FormGroup>
@@ -479,6 +470,81 @@ class RUDDAdmin extends React.Component {
                             >
                             No
                         </Button>                    
+                    </div>
+                </Modal>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isAlertSuccess}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="success">
+                        <strong>Congratulations!</strong><br/>The administrator account was updated!
+                        </Alert>
+                        <strong>Information:</strong>
+                        <br></br>
+                        <strong> Name: </strong> {this.state.admin.first_name} {this.state.admin.last_name}<br/>
+                        <strong> Phone Number: </strong> {this.state.admin.cellphone}<br/>
+                        <strong> Username: </strong> {this.state.admin.username}<br/>
+                        <strong> Email: </strong> {this.state.admin.email}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        Close
+                        </Button>
+                    </div>
+                </Modal>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="warning"
+                    isOpen={this.state.isAlertEmpty}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="warning">
+                        <strong>Empty Fields</strong><br/>Restarting Fields
+                        </Alert>                        
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        Close
+                        </Button>
+                    </div>
+                </Modal>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="warning"
+                    isOpen={this.state.isBadinputs}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="warning">
+                        <strong>Bad Input on Fields</strong><br/>Restarting Fields
+                        </Alert>                        
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        Close
+                        </Button>
                     </div>
                 </Modal>
             </Container>
