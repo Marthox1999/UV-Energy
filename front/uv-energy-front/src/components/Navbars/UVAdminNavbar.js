@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
 // reactstrap components
 import {
   DropdownMenu,
@@ -12,7 +13,13 @@ import {
   Media
 } from "reactstrap";
 
+const cookie = new Cookies();
+
 class UVAdminNavbar extends React.Component {
+  handlelogout = (event) => {
+    event.preventDefault()
+    cookie.remove('notCredentials', { path: '/' })
+  }
   render() {
     return (
       <>
@@ -59,7 +66,10 @@ class UVAdminNavbar extends React.Component {
                   <DropdownItem divider />
                   <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                     <i className="ni ni-user-run" />
-                    <span>Logout</span>
+                    <span onClick={this.handlelogout}>
+                      <Link to="/login">Logout</Link>
+                    </span>
+                    
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

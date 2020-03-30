@@ -113,6 +113,7 @@ class RegisteredAdmins extends React.Component {
                                     <td>{item.username}</td>
                                     <td className="text-right">
                                         <Button
+
                                             className="text-blue"
                                             role="button"
                                             size="md"
@@ -120,7 +121,7 @@ class RegisteredAdmins extends React.Component {
                                             onClick={ () => this.props.history.push({pathname: this.state.path, state: { adminID: item.id }}) }
                                         >
                                             <i className="ni ni-settings" />
-                                            
+                 
                                         </Button>
                                     </td>
                                     </tr>

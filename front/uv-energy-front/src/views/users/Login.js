@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from "react";
+import { withTranslation } from 'react-i18next';
+
 import {
   Button, Card, CardBody, FormGroup, Form, Input,
   InputGroupAddon, InputGroupText, InputGroup,
@@ -8,12 +10,12 @@ import Recaptcha from 'react-recaptcha';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
+import i18n from '../../i18n'
+
 const cookie = new Cookies();
 const c = require('../constants')
 
-
-
-class Login extends React.Component {
+class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -21,8 +23,12 @@ class Login extends React.Component {
       credentials:{
         username: '',
         password: ''
-      },
+      }
     }
+  }
+
+  handleClick = (lang) => {
+    i18n.changeLanguage(lang)
   }
 
   verifyCallback = (response) => {
@@ -61,13 +67,13 @@ class Login extends React.Component {
     if(this.state.isVerified) {
       if(this.state.credentials.username === '' &&
          this.state.credentials.password === '') {
-           alert('Please fill out the username and password fields')
+           alert(i18n.t("Login.Fill_username_and_password.1"))
          }
       else if(this.state.credentials.username === '') {
-        alert('Please fill out the username field')
+        alert(i18n.t("Login.Fill_username.1"))
       }
       else if(this.state.credentials.password === '') {
-        alert('Please fill out the password field')
+        alert(i18n.t("Login.Fill_password.1"))
       }else {
         axios.post(
           c.api + 'users/auth/' , this.state.credentials
@@ -93,24 +99,29 @@ class Login extends React.Component {
                 })
               }
             }else {
-              alert("Invalid Credentials")
+              alert(i18n.t("Login.Invalid_credentials.1"))
             }
+          }
+        ).catch(
+          () => {
+            alert(i18n.t("Login.Invalid_credentials.1"))
           }
         )
       }
     }else{
-      alert('please verify the captcha')
+      alert(i18n.t("Login.Verify_captcha.1"))
     }
   }
-
+  
   render() {
+    const { t } = this.props
     return (
       <>
         <Col lg='5' md='7'>
           <Card className='bg-secondary shadow border-0'>
             <CardBody className='px-lg-5 py-lg-5'>
               <div className='text-center text-muted mb-4'>
-                <small>Sign in with credentials</small>
+                <small>{t("Login.Sign_credentials.1")}</small>
               </div>
               <Form role='form' id='log-in_form'>
                 <FormGroup className='mb-3'>
@@ -120,7 +131,7 @@ class Login extends React.Component {
                         <i className='ni ni-single-02' />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder='Username' type='username' autoComplete='username' 
+                    <Input placeholder={t("Login.Username.1")} type='username' autoComplete='username' 
                     value={this.state.credentials.username} onChange={this.onChangeUsername}/>
                   </InputGroup>
                 </FormGroup>
@@ -131,24 +142,10 @@ class Login extends React.Component {
                         <i className='ni ni-lock-circle-open' />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder='Password' type='password' autoComplete='new-password'
+                    <Input placeholder={t("Login.Password.1")} type='password' autoComplete='new-password'
                     onChange={this.onChangePassword} value={this.state.credentials.password}/>
                   </InputGroup>
                 </FormGroup>
-                <div className='custom-control custom-control-alternative custom-checkbox'>
-                  <input
-                    className='custom-control-input'
-                    id=' customCheckLogin'
-                    type='checkbox'
-                  />
-                  <label
-                    className='custom-control-label'
-                    htmlFor=' customCheckLogin'
-                  >
-                    <span className='text-muted'>Remember me</span>
-                  </label>
-                </div>
-                <br></br>
                 <div className='text-center'>
                   <Recaptcha
                     sitekey='6Lf_dt0UAAAAACDDGt8MhMEL_YhFj1F1U60dgFh1'
@@ -157,7 +154,7 @@ class Login extends React.Component {
                     verifyCallback={this.verifyCallback}
                   />
                   <Button className='my-4' color='primary' onClick={this.handleLogin}>
-                    Sign in
+                    {t("Login.Log_in.1")}
                   </Button>
                 </div>
               </Form>
@@ -167,18 +164,9 @@ class Login extends React.Component {
             <Col xs='6'>
               <a
                 className='text-light'
-                href='#pablo'
-                onClick={e => e.preventDefault()}
-              >
-                <small>Forgot password?</small>
-              </a>
-            </Col>
-            <Col className='text-right' xs='6'>
-              <a
-                className='text-light'
                 href='/auth/register'
               >
-                <small>Create new account</small>
+                <small>{t("Login.Create_account.1")}</small>
               </a>
             </Col>
           </Row>
@@ -188,4 +176,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withTranslation()(Login)

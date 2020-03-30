@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 // reactstrap components
@@ -16,13 +17,14 @@ import {
 
 import 'leaflet/dist/leaflet.css';
 
+import i18n from '../../i18n'
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
 const cookie = new Cookies();
 
-class RUDDManagerM extends React.Component {
+class RUDDManagerM extends Component {
     constructor(props){
         super(props);
         console.log(this.props.location.state)
@@ -41,6 +43,7 @@ class RUDDManagerM extends React.Component {
             credentials: cookie.get('notCredentials'),        
         }    
     }
+
     componentDidMount(){
         axios.get(c.api + 'users/user/'+this.state.manager.id+'/',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
@@ -55,6 +58,7 @@ class RUDDManagerM extends React.Component {
         }).catch(error => alert(error))
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -64,7 +68,7 @@ class RUDDManagerM extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{this.state.manager.first_name} Information</h3>
+                        <h3 className="mb-0">{this.state.manager.first_name} {t("General.Information.1")}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -80,13 +84,13 @@ class RUDDManagerM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-first-name"
                                     >
-                                    Name
+                                    {t("General.Name.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-first-name"
-                                    placeholder="Name"
+                                    placeholder={t("General.Name.1")}
                                     type="text"
                                     value={this.state.manager.first_name}
                                     />
@@ -98,13 +102,13 @@ class RUDDManagerM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-last-name"
                                     >
-                                    Last Name
+                                    {t("General.Last_name.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-last-name"
-                                    placeholder="Last Name"
+                                    placeholder={t("General.Last_name.1")}
                                     type="text"
                                     value={this.state.manager.last_name}
                                     />
@@ -119,13 +123,13 @@ class RUDDManagerM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-phone-number"
                                     >
-                                    Phone Number
+                                    {t("General.Phone.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-phone-number"
-                                    placeholder="Phone Number"
+                                    placeholder={t("General.Phone.1")}
                                     type="text"
                                     value={this.state.manager.cellphone}
                                     />
@@ -136,7 +140,7 @@ class RUDDManagerM extends React.Component {
 
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Account Information
+                        {t("General.Account_info.1")}
                         </h6>
                         <div className="pl-lg-4">                        
                             <Row>
@@ -146,7 +150,7 @@ class RUDDManagerM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-username"
                                     >
-                                    Username
+                                    {t("General.Username.1")}
                                     </label>
                                     <Input
                                     readOnly
@@ -187,4 +191,4 @@ class RUDDManagerM extends React.Component {
     }
 }
 
-export default RUDDManagerM;
+export default withTranslation()(RUDDManagerM)

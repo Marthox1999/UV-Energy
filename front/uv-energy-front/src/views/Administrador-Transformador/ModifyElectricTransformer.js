@@ -33,6 +33,8 @@ import {
   
 import 'leaflet/dist/leaflet.css';
 import Cookies from 'universal-cookie';
+import i18n from '../../i18n.js';
+import { withTranslation } from 'react-i18next';
 
 const transformerDone = new L.icon({
     iconUrl: require("assets/img/theme/pointerdone.png"),
@@ -42,7 +44,7 @@ const transformerDone = new L.icon({
 const c = require('../constants')
 const cookie = new Cookies();
 
-class DeactivateElectricTransformer extends React.Component {
+class ModifyElectricTransformer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -84,11 +86,21 @@ class DeactivateElectricTransformer extends React.Component {
             alert("no token");
             this.props.history.push('/auth/login');
         }
+        axios.get(c.api + 'assets/activeSubstation',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            if( response.data.count === 0){
+                alert(i18n.t("ETransformer.NoSubstationRegistered.1"))
+              }
+              else{
+                this.setState({listSubstation: response.data})
+            }             
+        }).catch(error => console.log(error))
         axios.get(c.api + 'assets/ActiveET',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then(response => {
             if (response.data.count === 0){
-                alert("There are not electric transformers registered.")
+                alert(i18n.t("ETransformer.NoETRegistered.1"))
             }else{
                 this.setState({transformers: response.data})
             }
@@ -153,7 +165,7 @@ class DeactivateElectricTransformer extends React.Component {
             if (this.state.submitClicked === 'modify'){
                 if (this.state.modify){
                     if (this.state.electricTransformer.fk_substation === -1){
-                        alert("Select a substation first")
+                        alert(i18n.t("ETransformer.SelectSubstation.1"))
                     }else{
                         this.setState({modify: !this.state.modify})
                     }
@@ -164,7 +176,7 @@ class DeactivateElectricTransformer extends React.Component {
             }else{
                 if (this.state.submitClicked === 'deactivate'){
                     if (this.state.electricTransformer.fk_substation === -1){
-                        alert("Select a substation first")
+                        alert(i18n.t("ETransformer.SelectSubstation.1"))
                     }else{
                         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
                     }
@@ -172,7 +184,8 @@ class DeactivateElectricTransformer extends React.Component {
             }
         }
     }
-    modify(){
+    modify(e){
+        e.preventDefault();
         if ((this.state.electricTransformer.tension_level === 0) ||
         (this.state.electricTransformer.reference === "") ||
         (this.state.electricTransformer.long === "") ||
@@ -191,12 +204,14 @@ class DeactivateElectricTransformer extends React.Component {
                     (this.state.electricTransformer.fk_substation === response.data.fk_substation)){
                     this.setState({ isAlertEmpty: false,
                                     electricTransformer: response.data});
+                    window.location.reload(true);
                 }
-            }).catch(error => console.log(error.response.data))
+            }).catch(error => console.log(error))
+
         }
-        window.location.reload(true);
     }
-    deactivate(){
+    deactivate(e){
+        e.preventDefault();
         axios.put(c.api + 'assets/ElectricTransformer/'+this.state.electricTransformer.pk_transformers+'/',
                 {
                     pk_transformers: this.state.electricTransformer.pk_transformers,
@@ -211,22 +226,20 @@ class DeactivateElectricTransformer extends React.Component {
                         .then( response => {
                             console.log(response.data)
                             if (!response.data.isActive){
-                                alert("falta modal bonito")
                                 this.setState({ isAlertEmpty: false,
                                                 electricTransformer: response.data});
+                                window.location.reload(true);
                             }
                         }).catch(error => console.log(error))
-        //window.location.reload(true);
     }
     closeModal(){
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
-        window.location.reload(true);
     }
     closeModalModify(){
         this.setState({ isModalModify: !this.state.isModalModify})
-        window.location.reload(true);
     }
     render() {
+        const { t } = this.props
         return(
         <>
         <UVHeader/>
@@ -235,18 +248,18 @@ class DeactivateElectricTransformer extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <font size="5">Deactivate Electric Transformer</font>
+                        <h3 className="mb-0">{t("ETransformer.ModifyET.1")}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.action}>
                         <h6 className="heading-small text-muted mb-4">
-                        General Information
+                        {t("ETransformer.GeneralInfo.1")}
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
+                                <strong>{t("ETransformer.Warning.1")}</strong>{t("ETransformer.EmptyFields.1")}
                             </Alert>
                             <Row>
                             <Col lg="4">
@@ -255,12 +268,12 @@ class DeactivateElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Substation
+                                {t("ETransformer.Substation.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 name="substation"
-                                placeholder="substation"
+                                placeholder={t("ETransformer.Substation.1")}
                                 type="text"
                                 disabled = {true}
                                 value={this.state.electricTransformer.fk_substation}
@@ -274,12 +287,12 @@ class DeactivateElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Reference
+                                {t("ETransformer.Reference.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 name="reference"
-                                placeholder="reference"
+                                placeholder={t("ETransformer.Reference.1")}
                                 type="text"
                                 maxLength="8"
                                 disabled = {this.state.modify}
@@ -294,11 +307,11 @@ class DeactivateElectricTransformer extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Tension Level
+                                {t("ETransformer.TensionLevel.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
-                                name="tension_level"
+                                name={t("ETransformer.TensionLevel.1")}
                                 placeholder="tension"
                                 type="number"
                                 disabled = {this.state.modify}
@@ -312,8 +325,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 alt="..."
                                 src={require("assets/img/theme/pointerdone.png")}
                                 style={{height: '35px', width: '35px'}}
-                            /> Electric transformers active
-                            <p/>
+                            /> {t("ETransformer.ETActive.1")}
                             <Map
                                 id="map-canvas"
                                 style={{width: '100%',height: '350px'}}
@@ -337,12 +349,12 @@ class DeactivateElectricTransformer extends React.Component {
                             <Row>
                                 <Col lg="6">
                                     <Button className="mt-4" name="modify" onClick={()=>this.updateClicked('modify')} color="primary" type="submit">
-                                        Modify
+                                        {t("ETransformer.Modify.1")}
                                     </Button>
                                 </Col>
                                 <Col lg="6">
                                     <Button className="mt-4" name="deactivate" onClick={()=>this.updateClicked('deactivate')} color="primary" type="submit">
-                                        Deactivate
+                                        {t("ETransformer.Deactivate.1")}
                                     </Button>
                                 </Col>
                             </Row>
@@ -359,14 +371,14 @@ class DeactivateElectricTransformer extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="warning">
-                        <strong>Deactivate electric transformer,</strong><br/>are you sure?
+                        <strong>{t("ETransformer.DeactivateET.1")},</strong>{t("ETransformer.AreYouSure.1")}<br/>
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("ETransformer.Information.1")}</strong>
                         <br></br>
-                        <strong> No. Transformer: </strong> {this.state.electricTransformer.pk_transformers}<br/>
-                        <strong> Reference: </strong> {this.state.electricTransformer.reference}<br/>
-                        <strong> Tension Level: </strong> {this.state.electricTransformer.tension_level}<br/>
-                        <strong> Substation: </strong> {this.state.listSubstation.map((data, id) => id !== this.state.electricTransformer.fk_substation ? data.name : <p></p>)}
+                        <strong> {t("ETransformer.NoTransformer.1")}: </strong> {this.state.electricTransformer.pk_transformers}<br/>
+                        <strong> {t("ETransformer.Reference.1")}: </strong> {this.state.electricTransformer.reference}<br/>
+                        <strong> {t("ETransformer.TensionLevel.1")}: </strong> {this.state.electricTransformer.tension_level}<br/>
+                        <strong> {t("ETransformer.Substation.1")}: </strong> {this.state.listSubstation.map((data, id) => data.pk_substation === this.state.electricTransformer.fk_substation ? data.name : "")}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -376,7 +388,7 @@ class DeactivateElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.deactivate}
                         >
-                        Deactivate
+                        {t("ETransformer.Deactivate.1")}
                         </Button>
                         <Button
                         color="primary"
@@ -384,7 +396,7 @@ class DeactivateElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.closeModal}
                         >
-                        Close
+                        {t("ETransformer.Close.1")}
                         </Button>
                     
                     </div>
@@ -397,14 +409,14 @@ class DeactivateElectricTransformer extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="primary">
-                        <strong>Modify electric transformer</strong>
+                        <strong>{t("ETransformer.ModifyET.1")}</strong>
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("ETransformer.Information.1")}</strong>
                         <br></br>
-                        <strong> No. Transformer: </strong> {this.state.electricTransformer.pk_transformers}<br/>
-                        <strong> Reference: </strong> {this.state.electricTransformer.reference}<br/>
-                        <strong> Tension Level: </strong> {this.state.electricTransformer.tension_level}<br/>
-                        <strong> Substation: </strong> {this.state.listSubstation.map((data, id) => id !== this.state.electricTransformer.fk_substation ? data.name : <p></p>)}
+                        <strong>{t("ETransformer.NoTransformer.1")}:</strong> {this.state.electricTransformer.pk_transformers}<br/>
+                        <strong>{t("ETransformer.Reference.1")}:</strong> {this.state.electricTransformer.reference}<br/>
+                        <strong>{t("ETransformer.TensionLevel.1")}:</strong> {this.state.electricTransformer.tension_level}<br/>
+                        <strong> {t("ETransformer.Substation.1")}: </strong> {this.state.listSubstation.map((data, id) => data.pk_substation === this.state.electricTransformer.fk_substation ? data.name : "")}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -414,7 +426,7 @@ class DeactivateElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.modify}
                         >
-                        Modify
+                        {t("ETransformer.Modify.1")}
                         </Button>
                         <Button
                         color="primary"
@@ -422,7 +434,7 @@ class DeactivateElectricTransformer extends React.Component {
                         type="button"
                         onClick={this.closeModalModify}
                         >
-                        Close
+                        {t("ETransformer.Close.1")}
                         </Button>
                     
                     </div>
@@ -433,4 +445,4 @@ class DeactivateElectricTransformer extends React.Component {
     }
 }
 
-export default DeactivateElectricTransformer;
+export default withTranslation()(ModifyElectricTransformer);
