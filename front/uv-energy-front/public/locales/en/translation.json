@@ -111,8 +111,8 @@
         "NoSubstation":{
             "1":"There aren't substations"
         },
-        "Reference":{
-            "1":"Reference"
+        "Name":{
+            "1":"Name"
         },
         "TensionLevel":{
             "1":"Tension Level"
@@ -176,6 +176,92 @@
         },
         "SelectSubstation":{
             "1":"Select a electric transformer first"
+        }
+    },
+
+
+
+    "Substation":{
+        "AddSubstation":{
+            "1":"Add Substation"
+        },
+        "GeneralInfo":{
+            "1":"General Information"
+        },
+        "Warning":{
+            "1":"Warning!"
+        },
+        "EmptyFields":{
+            "1":"There are empty fields!"
+        },
+        "Substation":{
+            "1":"Substation"
+        },
+        "NoSubstation":{
+            "1":"There aren't substations"
+        },
+        "Reference":{
+            "1":"Reference"
+        },
+        "ChoosePoint":{
+            "1":"Choosen the point:"
+        },
+        "SubstationSet":{
+            "1":"Substation to set"
+        },
+        "SubstationActive":{
+            "1":"Substation active"
+        },
+        "ChoosenPoint":{
+            "1":"Choosen point: "
+        },
+        "Add":{
+            "1": "Add"
+        },
+        "Congrats":{
+            "1":"Congratulations!"
+        },
+        "SubstationCreated":{
+            "1": "The Substation was created!"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "NSubstation":{
+            "1":"No. Substation: "
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ModifySubstation":{
+            "1":"Modify Substation"
+        },
+        "Modify":{
+            "1":"Modify"
+        },
+        "Deactivate":{
+            "1":"Deactivate"
+        },
+        "DeactivateSubstation":{
+            "1":"Deactivate Substation"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "NoSubstationRegistered":{
+            "1": "There are not substations registered"
+        },
+        "NoPointChoosen":{
+            "1":"Choose a point in the map"
+        },
+        "SelectSubstation":{
+            "1":"Select a substation first"
+        },
+        "HasTransformers":{
+            "1":"This substation has transformers"
+        },
+        "NewName":{
+            "1":"New name"
         }
     }
 }
