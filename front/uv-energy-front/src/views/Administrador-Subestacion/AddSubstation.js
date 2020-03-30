@@ -147,7 +147,7 @@ class AddSubstation extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Substation</h3>
+                        <h3 className="mb-0"> {t("Substation.AddSubstation.1")}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -158,7 +158,7 @@ class AddSubstation extends React.Component {
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
+                                <strong>{t("Substation.Warning.1")}</strong> {t("Substation.EmptyFields.1")}
                             </Alert>
 
                             <FormGroup>
@@ -166,30 +166,30 @@ class AddSubstation extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Name
+                                {t("Substation.Name.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 name="name"
-                                placeholder="name"
+                                placeholder={t("Substation.Name.1")}
                                 type="text"
                                 value={this.state.substation.name}
                                 onChange={this.onChangeName}
                                 />
                             </FormGroup>
 
-                            <h2>Choose the point for the electric transformer</h2>
+                            <h2> {t("Substation.ChoosePoint.1")} </h2>
                             <img 
                                 alt="..."
                                 src={require("assets/img/theme/substationmove.png")}
                                 style={{height: '35px', width: '35px'}}
-                            /> Substation to set
+                            /> {t("Substation.SubstationSet.1")}
                             <br/>
                             <img 
                                 alt="..."
                                 src={require("assets/img/theme/substationdone.png")}
                                 style={{height: '35px', width: '35px'}}
-                            /> Substations active
+                            /> {t("Substation.SubstationActive.1")}
                             <Map
                                 id="map-canvas"
                                 style={{width: '100%',height: '350px'}}
@@ -215,7 +215,7 @@ class AddSubstation extends React.Component {
                                         position={this.state.coord}
                                         draggable={true}
                                         icon={setPoint}>
-                                        <Popup onClick={this.handleClick} position={this.state.coord}>Point choosen: <pre>{this.state.substation.lat}, {this.state.substation.long}</pre></Popup>
+                                        <Popup onClick={this.handleClick} position={this.state.coord}> {t("Substation.ChoosenPoint.1")} <pre>{this.state.substation.lat}, {this.state.substation.long}</pre></Popup>
                                     </Marker>
                             </Map>
                         
@@ -236,12 +236,12 @@ class AddSubstation extends React.Component {
                     <ModalBody>
                     <div className="modal-body">
                         <Alert color="success">
-                        <strong>Congratulations!</strong><br/>The substation was created!
+                        <strong>{t("Substation.Congrats.1")}</strong><br/> {t("Substation.SubstationCreated.1")}
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("Substation.Information.1")}</strong>
                         <br></br>
-                        <strong> No. Substation: </strong> {this.state.substation.pk_substation}<br/>
-                        <strong> Name: </strong> {this.state.substation.name}
+                        <strong> {t("Substation.NSubstation.1")}: </strong> {this.state.substation.pk_substation}<br/>
+                        <strong> {t("Substation.Name.1")}: </strong> {this.state.substation.name}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">

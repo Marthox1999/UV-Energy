@@ -58,15 +58,6 @@
             "1":"Informacion de la cuenta"
         }
     },
-<<<<<<< HEAD
-
-
-
-
-    "Substation":{
-        "AddSubstation":{
-            "1":"Agregar Subestación"
-=======
     "Sidebar":{
         "Welcome":{
             "1":"Bienvenido!"
@@ -105,7 +96,6 @@
     "ETransformer":{
         "AddET":{
             "1":"Agregar Transformador Electrico"
->>>>>>> origin/master
         },
         "GeneralInfo":{
             "1":"Información General"
@@ -153,6 +143,91 @@
             "1":"Información:"
         },
         "NoTransformer":{
+            "1":"No. Transformador"
+        },
+        "Close":{
+            "1":"Cerrar"
+        },
+        "ModifyET":{
+            "1":"Modificar Transformador Electrico"
+        },
+        "Modify":{
+            "1":"Modificar"
+        },
+        "Deactivate":{
+            "1":"Desactivar"
+        },
+        "DeactivateET":{
+            "1":"Desactivar Transformador Electrico"
+        },
+        "AreYouSure":{
+            "1":"¿Esta seguro(a)?"
+        },
+        "SucessfullDeactivate":{
+            "1":"El transformador electrico fue desactivado correctamente"
+        },
+        "NoETRegistered":{
+            "1":"No hay transformadores electricos registrados."
+        },
+        "NoSubstationRegistered":{
+            "1": "No hay subestaciones registradas."
+        },
+        "NoPointChoosen":{
+            "1":"Escoja un punto en el mapa."
+        },
+        "SelectSubstation":{
+            "1":"Seleccione un transformador electrico primero."
+        }
+
+    },
+
+    "Substation":{
+        "AddSubstation":{
+            "1":"Agregar Subestación"
+        },
+        "GeneralInfo":{
+            "1":"Información General"
+        },
+        "Warning":{
+            "1":"¡Cuidado!"
+        },
+        "EmptyFields":{
+            "1":"¡Hay campos vacios!"
+        },
+        "Substation":{
+            "1":"Subestación"
+        },
+        "NoSubstation":{
+            "1":"No hay subestaciones"
+        },
+        "Name":{
+            "1":"Nombre"
+        },
+        "ChoosePoint":{
+            "1":"Punto escogido:"
+        },
+        "SubstationSet":{
+            "1":"Subestación por establecer"
+        },
+        "SubstationActive":{
+            "1":"Subestaciones activas"
+        },
+        "ChoosenPoint":{
+            "1":"Punto escogido: "
+        },
+        "Add":{
+            "1": "Agregar"
+        },
+        "Congrats":{
+            "1":"¡Felicitaciones!"
+        },
+        "SubstationCreated":{
+            "1": "¡La subestación fue creada!"
+        },
+        "Information":{
+            "1":"Información:"
+        },
+        "NSubstation":{
             "1":"No. Transformador"
         },
         "Close":{
