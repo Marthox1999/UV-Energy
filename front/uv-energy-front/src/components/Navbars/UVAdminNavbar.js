@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 
 import { withTranslation } from 'react-i18next';
-import i18n from '../i18n.js';
 
 const cookie = new Cookies();
 
@@ -52,7 +51,7 @@ class UVAdminNavbar extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-arrow" right>
                   <DropdownItem className="noti-title" header tag="div">
-                    <h6 className="text-overflow m-0">Welcome!</h6>
+                    <h6 className="text-overflow m-0">{t("Sidebar.Welcome.1")}</h6>
                   </DropdownItem>
                   <DropdownItem to="/admin/user-profile" tag={Link}>
                     <i className="ni ni-single-02" />
