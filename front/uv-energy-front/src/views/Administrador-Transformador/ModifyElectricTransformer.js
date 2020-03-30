@@ -321,6 +321,7 @@ class ModifyElectricTransformer extends React.Component {
                             </FormGroup>
                             </Col>
                             </Row>
+                            <h2>{t("ETransformer.ChoosePoint.1")}</h2>
                             <img 
                                 alt="..."
                                 src={require("assets/img/theme/pointerdone.png")}
