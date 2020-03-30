@@ -18,7 +18,7 @@ class ElectricTransformerViewSet(viewsets.ModelViewSet):
 
 class ActiveETViewSet(viewsets.ViewSet):
     def list(self, request):
-        queryset = ElectricTransformer.objects.filter(Q(isActive=True))
+        queryset = ElectricTransformer.objects.filter(Q(fk_substation__isActive=True), Q(isActive=True))
         serializer = ElectricTransformerSerializers(queryset, many=True)
         return Response(serializer.data)
 
