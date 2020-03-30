@@ -141,7 +141,7 @@ class AddSubstation extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Substation</h3>
+                        <font size="5">Add Substation</font>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -174,19 +174,25 @@ class AddSubstation extends React.Component {
                                 onChange={this.onChangeName}
                                 />
                             </FormGroup>
-
-                            <h2>Choose the point for the electric transformer</h2>
-                            <img 
+                            <font size="5">Choose the point for the substation</font>
+                            <p/>
+                            <Row>
+                                <Col>
+                                <img 
                                 alt="..."
                                 src={require("assets/img/theme/substationmove.png")}
                                 style={{height: '35px', width: '35px'}}
                             /> Substation to set
-                            <br/>
-                            <img 
+                                </Col>
+                                <Col>
+                                <img 
                                 alt="..."
                                 src={require("assets/img/theme/substationdone.png")}
                                 style={{height: '35px', width: '35px'}}
                             /> Substations active
+                                </Col>
+                            </Row>
+                            <br/>
                             <Map
                                 id="map-canvas"
                                 style={{width: '100%',height: '350px'}}

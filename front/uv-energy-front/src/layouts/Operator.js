@@ -30,7 +30,6 @@ class Operator extends React.Component {
           <Switch>
           </Switch>
           <Container fluid>
-            <AdminFooter />
           </Container>
         </div>
       </>

@@ -35,6 +35,21 @@
         },
         "Create_account":{
             "1":"Criar nova conta"
+        },
+        "Invalid_credentials":{
+            "1":"Credenciais inválidas"
+        },
+        "Fill_username":{
+            "1":"Por favor, preencha o campo de nome de usuário"
+        },
+        "Fill_password":{
+            "1":"Por favor, preencha o campo de senha"
+        },
+        "Fill_username_and_password":{
+            "1":"Preencha os campos de nome de usuário e senha"
+        },
+        "Verify_captcha":{
+            "1":"Verifique o captcha"
         }
     },
     "General":{

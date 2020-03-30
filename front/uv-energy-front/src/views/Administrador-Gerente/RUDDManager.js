@@ -251,13 +251,14 @@ class RUDDManager extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{this.state.manager.first_name} Information</h3>
+                        <font size="5">{this.state.manager.first_name} Information</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.AddManager}>
                         <h6 className="heading-small text-muted mb-4">
+                            Personal Information
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>

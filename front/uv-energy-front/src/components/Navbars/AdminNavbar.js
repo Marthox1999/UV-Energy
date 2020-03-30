@@ -92,15 +92,6 @@ class AdminNavbar extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <button onClick={()=>handleClick('en')}>
-                en
-              </button>
-              <button onClick={()=>handleClick('es')}>
-                es
-              </button>
-              <button onClick={()=>handleClick('pt')}>
-                pt
-              </button>
             </Nav>
           </Container>
         </Navbar>
