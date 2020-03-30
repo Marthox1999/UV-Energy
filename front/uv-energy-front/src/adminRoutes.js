@@ -6,7 +6,7 @@ import AddManager from "views/Administrador-Gerente/AddManager.js";
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js"
 import AddOperator from "views/Administrador-Operador/AddOperator";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
-import DeactivateSubstation from "views/Administrador-Subestacion/DeactivateSubstation.js";
+import ModifySubstation from "views/Administrador-Subestacion/ModifySubstation.js";
 
 
 var adminRoutes = [
@@ -79,10 +79,10 @@ var substationRoutes = [
     layout: "/admin"
   },
   {
-    path: "/deactivateSubstation",
+    path: "/modifySubstation",
     name: "Substation.ModifySubstation.1",
     icon: "ni ni-single-02 text-yellow",
-    component: DeactivateSubstation,
+    component: ModifySubstation,
     layout: "/admin"
   },
 ];

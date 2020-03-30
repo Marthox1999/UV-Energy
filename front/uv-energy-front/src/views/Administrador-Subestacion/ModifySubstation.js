@@ -46,7 +46,7 @@ const c = require('../constants')
 
 const cookie = new Cookies();
 
-class DeactivateSubstation extends React.Component {
+class ModifySubstation extends React.Component {
     constructor(props){
         super(props);
         console.log(this.props.location)
@@ -411,7 +411,7 @@ class DeactivateSubstation extends React.Component {
                         type="button"
                         onClick={this.modify}
                         >
-                        {t("Substation.Deactivate.1")}
+                        {t("Substation.Modify.1")}
                         </Button>
                         <Button
                         color="primary"
@@ -431,4 +431,4 @@ class DeactivateSubstation extends React.Component {
 }
 
 
-export default withTranslation()(DeactivateSubstation);
+export default withTranslation()(ModifySubstation);
