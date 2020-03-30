@@ -69,7 +69,6 @@ class UVAdminNavbar extends React.Component {
                     <span onClick={this.handlelogout}>
                       <Link to="/login">Logout</Link>
                     </span>
-                    
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
