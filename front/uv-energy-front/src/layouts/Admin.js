@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
@@ -15,7 +15,7 @@ import Cookies from 'universal-cookie';
 
 const cookie = new Cookies();
 
-class Admin extends React.Component {
+class Admin extends Component {
   constructor(props) {
     super(props)
     this.state = {
