@@ -276,6 +276,7 @@ class ModifySubstation extends React.Component {
                                 onChange={this.onChangeName}
                                 />
                             </FormGroup>
+                            <h2> {t("Substation.ChoosePoint.1")} </h2>
                             </Col>
                             </Row>
                             <img 
