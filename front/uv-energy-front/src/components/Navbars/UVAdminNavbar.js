@@ -16,7 +16,7 @@ import {
 const cookie = new Cookies();
 
 class UVAdminNavbar extends React.Component {
-  handlelogout = (event) => {
+  handlelogout = () => {
     cookie.remove('notCredentials', { path: '/' })
   }
   render() {
