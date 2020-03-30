@@ -13,6 +13,9 @@ import {
   Media
 } from "reactstrap";
 
+import { withTranslation } from 'react-i18next';
+import i18n from '../i18n.js';
+
 const cookie = new Cookies();
 
 class UVAdminNavbar extends React.Component {
@@ -20,6 +23,7 @@ class UVAdminNavbar extends React.Component {
     cookie.remove('notCredentials', { path: '/' })
   }
   render() {
+    const { t } = this.props
     return (
       <>
         <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -81,4 +85,4 @@ class UVAdminNavbar extends React.Component {
   }
 }
 
-export default UVAdminNavbar;
+export default withTranslation()(UVAdminNavbar);
