@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 import Cookies from 'universal-cookie';

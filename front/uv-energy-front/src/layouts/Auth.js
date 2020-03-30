@@ -1,5 +1,4 @@
-
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";431
 import { withTranslation } from 'react-i18next';
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components

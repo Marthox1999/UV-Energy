@@ -73,7 +73,7 @@ class AddSubstation extends React.Component {
         this.AddSubstation = this.AddSubstation.bind(this);
     }
     componentDidMount(){
-        axios.get(c.api + 'assets/Substation',
+        axios.get(c.api + 'assets/activeSubstation',
               {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.count === 0){
@@ -81,7 +81,7 @@ class AddSubstation extends React.Component {
               }
               else{
                 console.log(response)
-                this.setState({listSubstation: response.data.results}) 
+                this.setState({listSubstation: response.data}) 
             }             
         }).catch(error => console.log(error))
     }
