@@ -1,3 +1,4 @@
+
 import React, { Component, Suspense } from "react";
 import { withTranslation } from 'react-i18next';
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -90,10 +91,9 @@ class Auth extends Component {
             </Row>
           </Container>
         </div>
-        <AuthFooter />
       </>
     );
   }
 }
-
 export default withTranslation()(Auth)
+

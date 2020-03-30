@@ -1,5 +1,4 @@
-import React, { Component, Suspense } from "react";
-import { withTranslation } from 'react-i18next';
+import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 // reactstrap components
@@ -17,20 +16,19 @@ import {
 
 import 'leaflet/dist/leaflet.css';
 
-import i18n from '../../i18n'
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
 const cookie = new Cookies();
 
-class RUDDManagerM extends Component {
+class RUDDOperatorM extends React.Component {
     constructor(props){
         super(props);
         console.log(this.props.location.state)
         this.state = {
-            manager : {
-                id: this.props.location.state.managerID,
+            operator : {
+                id: this.props.location.state.operatorID,
                 username: "",
                 password: "",
                 email: "",
@@ -38,14 +36,13 @@ class RUDDManagerM extends Component {
                 last_name: "",
                 is_active: true,
                 cellphone: "",
-                position: "MGR"
+                position: "OP"
             },
             credentials: cookie.get('notCredentials'),        
         }    
     }
-
     componentDidMount(){
-        axios.get(c.api + 'users/user/'+this.state.manager.id+'/',
+        axios.get(c.api + 'users/user/'+this.state.operator.id+'/',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
@@ -53,12 +50,11 @@ class RUDDManagerM extends Component {
                 alert("Wrong Id")
               }
               else{
-                this.setState({manager: response.data})
+                this.setState({operator: response.data})
             }             
         }).catch(error => alert(error))
     }
     render() {
-        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -68,12 +64,12 @@ class RUDDManagerM extends Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{this.state.manager.first_name} {t("General.Information.1")}</h3>
+                        <h3 className="mb-0">{this.state.operator.first_name} Information</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
-                    <Form onSubmit={this.AddManager}>
+                    <Form onSubmit={this.AddOperator}>
                         <h6 className="heading-small text-muted mb-4">
                         </h6>
                         <div className="pl-lg-4">
@@ -84,15 +80,15 @@ class RUDDManagerM extends Component {
                                     className="form-control-label"
                                     htmlFor="input-first-name"
                                     >
-                                    {t("General.Name.1")}
+                                    Name
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-first-name"
-                                    placeholder={t("General.Name.1")}
+                                    placeholder="Name"
                                     type="text"
-                                    value={this.state.manager.first_name}
+                                    value={this.state.operator.first_name}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -102,15 +98,15 @@ class RUDDManagerM extends Component {
                                     className="form-control-label"
                                     htmlFor="input-last-name"
                                     >
-                                    {t("General.Last_name.1")}
+                                    Last Name
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-last-name"
-                                    placeholder={t("General.Last_name.1")}
+                                    placeholder="Last Name"
                                     type="text"
-                                    value={this.state.manager.last_name}
+                                    value={this.state.operator.last_name}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -123,15 +119,15 @@ class RUDDManagerM extends Component {
                                     className="form-control-label"
                                     htmlFor="input-phone-number"
                                     >
-                                    {t("General.Phone.1")}
+                                    Phone Number
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-phone-number"
-                                    placeholder={t("General.Phone.1")}
+                                    placeholder="Phone Number"
                                     type="text"
-                                    value={this.state.manager.cellphone}
+                                    value={this.state.operator.cellphone}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -140,7 +136,7 @@ class RUDDManagerM extends Component {
 
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        {t("General.Account_info.1")}
+                        Account Information
                         </h6>
                         <div className="pl-lg-4">                        
                             <Row>
@@ -150,7 +146,7 @@ class RUDDManagerM extends Component {
                                     className="form-control-label"
                                     htmlFor="input-username"
                                     >
-                                    {t("General.Username.1")}
+                                    Username
                                     </label>
                                     <Input
                                     readOnly
@@ -158,7 +154,7 @@ class RUDDManagerM extends Component {
                                     id="input-username"
                                     placeholder="Username"
                                     type="text"                                
-                                    value={this.state.manager.username}
+                                    value={this.state.operator.username}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -176,7 +172,7 @@ class RUDDManagerM extends Component {
                                     id="input-email"
                                     placeholder="jesse@example.com"
                                     type="email"
-                                    value={this.state.manager.email}
+                                    value={this.state.operator.email}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -191,4 +187,4 @@ class RUDDManagerM extends Component {
     }
 }
 
-export default withTranslation()(RUDDManagerM)
+export default RUDDOperatorM;

@@ -1,5 +1,6 @@
 import React, { Component, Suspense } from "react";
 import { withTranslation } from 'react-i18next';
+
 import {
   Button, Card, CardBody, FormGroup, Form, Input,
   InputGroupAddon, InputGroupText, InputGroup,
@@ -111,7 +112,7 @@ class Login extends Component {
       alert(i18n.t("Login.Verify_captcha.1"))
     }
   }
-
+  
   render() {
     const { t } = this.props
     return (

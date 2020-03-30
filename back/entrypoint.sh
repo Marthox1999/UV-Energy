@@ -7,7 +7,6 @@ python manage.py makemigrations sales
 python manage.py migrate
 
 # ejemplo cuando querramos precargar datos
-# python manage.py loaddata data.json
 python manage.py loaddata data.json
 
 

@@ -235,7 +235,7 @@ class DeactivateElectricTransformer extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Deactivate Electric Transformer</h3>
+                        <font size="5">Deactivate Electric Transformer</font>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -313,6 +313,7 @@ class DeactivateElectricTransformer extends React.Component {
                                 src={require("assets/img/theme/pointerdone.png")}
                                 style={{height: '35px', width: '35px'}}
                             /> Electric transformers active
+                            <p/>
                             <Map
                                 id="map-canvas"
                                 style={{width: '100%',height: '350px'}}

@@ -181,6 +181,7 @@ class Sidebar extends React.Component {
           <button
             className="navbar-toggler"
             type="button"
+            color="blue"
             onClick={this.toggleCollapse}
           >
             <span className="navbar-toggler-icon" />
@@ -203,7 +204,7 @@ class Sidebar extends React.Component {
                   <span className="avatar avatar-sm rounded-circle">
                     <img
                       alt="..."
-                      src={require("assets/img/theme/team-1-800x800.jpg")}
+                      src={require("assets/img/brand/favicon.png")}
                     />
                   </span>
                 </Media>
@@ -284,16 +285,16 @@ class Sidebar extends React.Component {
             </Form>
             {/* Navigation */}
             <Nav navbar>
-              &nbsp;&nbsp;&nbsp;&nbsp;Manager
-              {this.createManagerLinks(managerRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;Administrator
-              {this.createAdminLinks(adminRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;Operator
-              {this.createOperatorLinks(operatorRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;Substation
-              {this.createSubstationLinks(substationRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;Electric Transformer
-              {this.createElectricTransfomerLinks(electricTransformerRoutes)}
+              <font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;Manager</font>
+              {this.createManagerLinks(managerRoutes)}<br/>
+              <font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;Administrator</font>
+              {this.createAdminLinks(adminRoutes)}<br/>
+              <font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;Operator</font>
+              {this.createOperatorLinks(operatorRoutes)}<br/>
+              <font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;Substation</font>
+              {this.createSubstationLinks(substationRoutes)}<br/>
+              <font color="blue">&nbsp;&nbsp;&nbsp;&nbsp;Electric Transformer</font>
+              {this.createElectricTransfomerLinks(electricTransformerRoutes)}<br/>
               </Nav>
           </Collapse>
         </Container>

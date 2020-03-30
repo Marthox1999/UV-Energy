@@ -188,7 +188,7 @@ class AddElectricTransformer extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Electric Transformer</h3>
+                        <font size="5">Add Electric Transformer</font>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -207,7 +207,7 @@ class AddElectricTransformer extends React.Component {
                             <FormGroup>
                                 <br></br>
                                 <UncontrolledDropdown nav>
-                                <DropdownToggle className="pr-0">
+                                <DropdownToggle className="dropdown-menu-arrow">
                                 <Media className="align-items-center" >
                                     <span className="mb-0 text-sm font-weight-bold">
                                         Substation  
@@ -273,18 +273,25 @@ class AddElectricTransformer extends React.Component {
                             </FormGroup>
                             </Col>
                             </Row>
-                            <h2>Choose the point for the electric transformer</h2>
-                            <img 
+                            <font size="5">Choose the point for the electric transformer</font>
+                            <p/>
+                            <Row>
+                                <Col>
+                                <img 
                                 alt="..."
                                 src={require("assets/img/theme/transformador.png")}
                                 style={{height: '35px', width: '35px'}}
                             /> Electric transformer to set
-                            <br/>
-                            <img 
+                                </Col>
+                                <Col>
+                                <img 
                                 alt="..."
                                 src={require("assets/img/theme/pointerdone.png")}
                                 style={{height: '35px', width: '35px'}}
                             /> Electric transformers active
+                                </Col>
+                            </Row>
+                            <br/>
                             <Map
                                 id="map-canvas"
                                 style={{width: '100%',height: '350px'}}

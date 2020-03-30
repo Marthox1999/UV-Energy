@@ -12,6 +12,7 @@ import AuthLayout from "layouts/Auth.js";
 import ManagerLayout from "layouts/Manager.js";
 import OperatorLayout from "layouts/Operator.js"
 
+
 import './i18n';
 
 ReactDOM.render(
