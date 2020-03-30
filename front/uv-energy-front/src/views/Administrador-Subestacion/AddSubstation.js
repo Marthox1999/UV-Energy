@@ -83,10 +83,9 @@ class AddSubstation extends React.Component {
               {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.length === 0){
-                alert("There are not substations registered");
+                alert(i18n.t("Substation.NoSubstationRegistered.1"))
               }
               else{
-                console.log(response)
                 this.setState({listSubstation: response.data}) 
             }             
         }).catch(error => console.log(error))
@@ -110,26 +109,29 @@ class AddSubstation extends React.Component {
         }})
     }
     AddSubstation(e){
-        console.log(this.state.substation)
+        
         e.preventDefault()
         if ((this.state.substation.name === "") ||
             (this.state.substation.long === "") ||
             (this.state.substation.lat === "")){
-            console.log(this.state.substation)
             this.setState({isAlertEmpty: true})
         }else{
-            axios.post(c.api + 'assets/Substation/',
-                       this.state.substation,
-                       {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
-            .then( response => {
-                console.log(response.error)
-                if (response.data.pk_substation !== -1){
-                    this.setState({
-                        isAlertSuccess: true,
-                        isAlertEmpty: false,
-                        substation: response.data});
-                }
-            }).catch(error => console.log(error.response.request.responseText))
+            if (parseFloat(this.state.substation.long) === 283.48211288452154  &&
+                parseFloat(this.state.substation.lat) === 3.430283815687804){
+                    alert(i18n.t("Substation.NoPointChoosen.1"));
+            }else{
+                axios.post(c.api + 'assets/Substation/',
+                    this.state.substation,
+                    {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
+                .then( response => {
+                    if (response.data.pk_substation !== -1){
+                        this.setState({
+                            isAlertSuccess: true,
+                            isAlertEmpty: false,
+                            substation: response.data});
+                    }
+                }).catch(error => console.log(error.response.request.responseText))
+            }
         }
     }
 
@@ -222,7 +224,7 @@ class AddSubstation extends React.Component {
                         </div>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
-                                Add
+                                {t("Substation.Add.1")}
                             </Button>
                         </div>
                     </Form>
@@ -251,7 +253,7 @@ class AddSubstation extends React.Component {
                         type="button"
                         onClick={this.closeModal}
                         >
-                        Close
+                        {t("Substation.Close.1")}
                         </Button>
                     </div>
                 </Modal>

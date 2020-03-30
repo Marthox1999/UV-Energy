@@ -32,6 +32,9 @@ import {
   } from "react-leaflet";
   
 import 'leaflet/dist/leaflet.css';
+
+import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 import Cookies from 'universal-cookie';
 
 const substationDone = new L.icon({
@@ -40,6 +43,7 @@ const substationDone = new L.icon({
 })
 
 const c = require('../constants')
+
 const cookie = new Cookies();
 
 class DeactivateSubstation extends React.Component {
@@ -88,7 +92,7 @@ class DeactivateSubstation extends React.Component {
               {headers: { Authorization : `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.length === 0){
-                alert("There are not substations registered");
+                alert(i18n.t("Substation.NoSubstationRegistered.1"))
               }
               else{
                 this.setState({listSubstation: response.data}) 
@@ -129,7 +133,7 @@ class DeactivateSubstation extends React.Component {
             if (this.state.submitClicked === 'modify'){
                 if (this.state.modifySubstation){
                     if (this.state.substation.name === ""){
-                        alert("Select a substation first")
+                        alert(i18n.t("Substation.SelectSubstation.1"))
                     }else{
                         this.setState({
                             modifySubstation: !this.state.modifySubstation
@@ -141,7 +145,7 @@ class DeactivateSubstation extends React.Component {
             }else{
                 if (this.state.submitClicked === 'deactivate'){
                     if (this.state.substation.name === ""){
-                        alert("Select a substation first")
+                        alert(i18n.t("Substation.SelectSubstation.1"))
                     }else{
                         this.setState({ isAlertSuccess: true})
                     }
@@ -193,6 +197,7 @@ class DeactivateSubstation extends React.Component {
     }
 
     deactivate(){
+        
         let hasTransformers = this.state.listTransformers.some(
             currentT => currentT.fk_substation === this.state.substation.pk_substation);
         
@@ -230,6 +235,7 @@ class DeactivateSubstation extends React.Component {
         this.setState({ isAlertSuccess: false})
     }
     render() {
+        const { t } = this.props
         return(
         <>
         <UVHeader/>
@@ -238,18 +244,18 @@ class DeactivateSubstation extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Deactivate Substation</h3>
+                        <h3 className="mb-0">{t("Substation.DeactivateSubstation.1")}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.action}>
                         <h6 className="heading-small text-muted mb-4">
-                        General Information
+                        {t("Substation.GeneralInfo.1")}
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
+                                <strong>{t("Substation.Warning.1")}</strong> {t("Substation.EmptyFields.1")}
                             </Alert>
                             <Row>
                             <Col lg="4">
@@ -258,12 +264,12 @@ class DeactivateSubstation extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Name
+                                {t("Substation.Name.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 name="name"
-                                placeholder="name"
+                                placeholder={t("Substation.Name.1")}
                                 type="text"
                                 disabled = {this.state.modifySubstation}
                                 value={this.state.substation.name}
@@ -276,7 +282,7 @@ class DeactivateSubstation extends React.Component {
                                 alt="..."
                                 src={require("assets/img/theme/pointerdone.png")}
                                 style={{height: '35px', width: '35px'}}
-                            /> Electric transformers active
+                            /> {t("Substation.SubstationActive.1")}
                             <Map
                                 id="map-canvas"
                                 style={{width: '100%',height: '350px'}}
@@ -300,12 +306,12 @@ class DeactivateSubstation extends React.Component {
                             <Row>
                                 <Col lg="6">
                                     <Button className="mt-4" name="modify" onClick={()=>this.updateClicked('modify')} color="primary" type="submit">
-                                        Modify
+                                        {t("Substation.Modify.1")}
                                     </Button>
                                 </Col>
                                 <Col lg="6">
                                     <Button className="mt-4" name="deactivate" onClick={()=>this.updateClicked('deactivate')} color="primary" type="submit">
-                                        Deactivate
+                                        {t("Substation.Deactivate.1")}
                                     </Button>
                                 </Col>
                             </Row>
@@ -322,12 +328,12 @@ class DeactivateSubstation extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="warning">
-                        <strong>Deactivate substation,</strong><br/>Are you sure?
+                        <strong>{t("Substation.DeactivateSubstation.1")}.</strong><br/>{t("Substation.AreYouSure.1")}
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("Substation.Information.1")}</strong>
                         <br></br>
-                        <strong> No. Substation: </strong> {this.state.substation.pk_substation}<br/>
-                        <strong> Name: </strong> {this.state.substation.name}
+                        <strong> {t("Substation.NSubstation.1")}: </strong> {this.state.substation.pk_substation}<br/>
+                        <strong> {t("Substation.Name.1")}: </strong> {this.state.substation.name}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -337,7 +343,7 @@ class DeactivateSubstation extends React.Component {
                         type="button"
                         onClick={this.deactivate}
                         >
-                        Deactivate
+                        {t("Substation.Deactivate.1")}
                         </Button>
                         <Button
                         color="primary"
@@ -345,7 +351,7 @@ class DeactivateSubstation extends React.Component {
                         type="button"
                         onClick={this.closeModal}
                         >
-                        Close
+                        {t("Substation.Close.1")}
                         </Button>
                     
                     </div>
@@ -358,9 +364,9 @@ class DeactivateSubstation extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="warning">
-                        <strong>Deactivate substation,</strong><br/>Are you sure?
+                        <strong>{t("Substation.DeactivateSubstation.1")}.</strong><br/>{t("Substation.AreYouSure.1")}
                         </Alert>
-                        <strong>This substation has transformers</strong>
+                        <strong>{t("Substation.HasTransformers.1")}</strong>
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -370,7 +376,7 @@ class DeactivateSubstation extends React.Component {
                         type="button"
                         onClick={this.confirmDeactivate}
                         >
-                        Deactivate
+                        {t("Substation.Deactivate.1")}
                     </Button>
                     <Button
                         color="primary"
@@ -378,7 +384,7 @@ class DeactivateSubstation extends React.Component {
                         type="button"
                         onClick={this.closeModalConfirm}
                         >
-                        Close
+                        {t("Substation.Close.1")}
                     </Button>
                     </div>
                 </Modal>
@@ -390,12 +396,12 @@ class DeactivateSubstation extends React.Component {
                         <ModalBody>
                     <div className="modal-body">
                         <Alert color="primary">
-                        <strong>Modify substation,</strong><br/>Are you sure?
+                        <strong>{t("Substation.ModifySubstation.1")}.</strong><br/>{t("Substation.AreYouSure.1")}
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("Substation.Information.1")}:</strong>
                         <br></br>
-                        <strong> No. Substation: </strong> {this.state.substation.pk_substation}<br/>
-                        <strong> New name: </strong> {this.state.substation.name}
+                        <strong> {t("Substation.NSubstation.1")}: </strong> {this.state.substation.pk_substation}<br/>
+                        <strong> {t("Substation.NewName.1")}: </strong> {this.state.substation.name}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -405,7 +411,7 @@ class DeactivateSubstation extends React.Component {
                         type="button"
                         onClick={this.modify}
                         >
-                        Deactivate
+                        {t("Substation.Deactivate.1")}
                         </Button>
                         <Button
                         color="primary"
@@ -413,7 +419,7 @@ class DeactivateSubstation extends React.Component {
                         type="button"
                         onClick={this.closeModalModify}
                         >
-                        Close
+                        {t("Substation.Close.1")}
                         </Button>
                     
                     </div>
@@ -424,4 +430,5 @@ class DeactivateSubstation extends React.Component {
     }
 }
 
-export default DeactivateSubstation;
+
+export default withTranslation()(DeactivateSubstation);

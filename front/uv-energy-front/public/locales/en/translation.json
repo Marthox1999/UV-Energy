@@ -225,7 +225,7 @@
             "1": "The Substation was created!"
         },
         "Information":{
-            "1":"Information:"
+            "1":"Information"
         },
         "NSubstation":{
             "1":"No. Substation: "
@@ -233,8 +233,8 @@
         "Close":{
             "1":"Close"
         },
-        "ModifyET":{
-            "1":"Modify Electric Transformer"
+        "ModifySubstation":{
+            "1":"Modify Substation"
         },
         "Modify":{
             "1":"Modify"
@@ -242,17 +242,11 @@
         "Deactivate":{
             "1":"Deactivate"
         },
-        "DeactivateET":{
-            "1":"Deactivate electric transformer"
+        "DeactivateSubstation":{
+            "1":"Deactivate Substation"
         },
         "AreYouSure":{
             "1":"are you sure?"
-        },
-        "SucessfullDeactivate":{
-            "1":"The Electric Transformer was deactivated successfully"
-        },
-        "NoETRegistered":{
-            "1":"There are not electric transformer registered."
         },
         "NoSubstationRegistered":{
             "1": "There are not substations registered"
@@ -261,8 +255,13 @@
             "1":"Choose a point in the map"
         },
         "SelectSubstation":{
-            "1":"Select a electric transformer first"
+            "1":"Select a substation first"
+        },
+        "HasTransformers":{
+            "1":"This substation has transformers"
+        },
+        "NewName":{
+            "1":"New name"
         }
     }
-
 }

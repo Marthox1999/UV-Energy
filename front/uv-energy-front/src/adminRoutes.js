@@ -73,20 +73,19 @@ var operatorRoutes = [
 var substationRoutes = [
   {
     path: "/addSubstation",
-    name: "Add Substation",
+    name: "Substation.AddSubstation.1",
     icon: "ni ni-single-02 text-yellow",
     component: AddSubstation,
     layout: "/admin"
   },
   {
     path: "/deactivateSubstation",
-    name: "Deactivate Substation",
+    name: "Substation.ModifySubstation.1",
     icon: "ni ni-single-02 text-yellow",
     component: DeactivateSubstation,
     layout: "/admin"
   },
 ];
-
 export {
   adminRoutes,
   electricTransformerRoutes,

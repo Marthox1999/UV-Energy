@@ -225,7 +225,7 @@
             "1": "A subestação foi criada!"
         },
         "Information":{
-            "1":"Em formação:"
+            "1":"Em formação"
         },
         "NSubstation":{
             "1":"No. subestação "
@@ -233,8 +233,8 @@
         "Close":{
             "1":"Fechar"
         },
-        "ModifyET":{
-            "1":"Modificar transformador elétrico"
+        "ModifySubstation":{
+            "1":"Modificar subestação"
         },
         "Modify":{
             "1":"Modificar"
@@ -242,17 +242,11 @@
         "Deactivate":{
             "1":"Desativar"
         },
-        "DeactivateET":{
-            "1":"Desativar transformador elétrico"
+        "DeactivateSubstation":{
+            "1":"Desativar subestação"
         },
         "AreYouSure":{
             "1":"você tem certeza?"
-        },
-        "SucessfullDeactivate":{
-            "1":"O transformador elétrico foi desativado com sucesso"
-        },
-        "NoETRegistered":{
-            "1":"Não há transformador elétrico registrado."
         },
         "NoSubstationRegistered":{
             "1": "Não há subestações registradas"
@@ -261,8 +255,13 @@
             "1":"Escolha um ponto no mapa"
         },
         "SelectSubstation":{
-            "1":"Selecione um transformador elétrico primeiro"
+            "1":"Selecione uma subestação primeiro"
+        },
+        "HasTransformers":{
+            "1":"Esta subestação possui transformadores"
+        },
+        "NewName":{
+            "1":"Novo nome"
         }
-
     }
 }
