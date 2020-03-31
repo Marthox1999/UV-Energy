@@ -121,6 +121,15 @@
         },
         "Close":{
             "1":"Cerrar"
+        },
+        "ActiveOperators":{
+            "1":"Operadores Activos"
+        },
+        "DisabledNotification":{
+            "1":"Las cuentas de los operadores estan deshabilitadas! Por favor recargue la página para ve los cambios"
+        },
+        "DeletedNotification":{
+            "1":"Las cuentas de los operadores estan eliminadas! Por favor recargue la página para ver los cambios"
         }
     },
     "Manager":{
@@ -171,6 +180,15 @@
         },
         "Close":{
             "1":"Cerrar"
+        },
+        "ActiveManager":{
+            "1":"Gerentes Activos"
+        },
+        "DisabledNotification":{
+            "1":"Las cuentas de los gerentes estan deshabilitadas! Por favor recargue la página para ve los cambios"
+        },
+        "DeletedNotification":{
+            "1":"Las cuentas de los gerentes estan eliminadas! Por favor recargue la página para ver los cambios"
         }
     },
     "Sidebar":{

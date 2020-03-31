@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import { withTranslation, Trans } from 'react-i18next';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -77,6 +78,7 @@ class RegisteredOperators extends React.Component {
         }).catch(error => alert(error))
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -87,20 +89,20 @@ class RegisteredOperators extends React.Component {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                            <font size="5">Active Operators</font>
+                            <font size="5">{t("Operator.ActiveOperator.1")}</font>
                             </CardHeader>
                             <Alert color="info" isOpen={this.state.isdisabledOperator}>
-                                Operator account was disabled! Please reload the page to see the changes
+                                {t("Operator.DisabledNotification.1")}
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedOperator}>
-                                Operator account was deleted! Please reload the page to see the changes
+                                {t("Operator.DeletedNotification.1")}
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
                                 <tr>
                                 <th scope="col"><font size="2">Id</font></th>
-                                <th scope="col"><font size="2">Name</font></th>
-                                <th scope="col"><font size="2">Username</font></th>
+                                <th scope="col"><font size="2">{t("Operator.Name.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Operator.Username.1")}</font></th>
                                 <th scope="col" />
                                 </tr>
                             </thead>
@@ -139,4 +141,4 @@ class RegisteredOperators extends React.Component {
     }
 }
 
-export default RegisteredOperators;
+export default withTranslation()(RegisteredOperators);

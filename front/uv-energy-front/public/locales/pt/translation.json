@@ -120,6 +120,15 @@
         },
         "Close":{
             "1":"Fechar"
+        },
+        "ActiveOperator":{
+            "1":"Operador Ativo"
+        },
+        "DisabledNotification":{
+            "1":"A conta do operador foi desativada! Atualize a página para ver a alteração"
+        },
+        "DeletedNotification":{
+            "1":"A conta do operador foi excluída! Atualize a página para ver a alteraçãos"
         }
     },
     "Manager":{
@@ -170,6 +179,15 @@
         },
         "Close":{
             "1":"Fechar"
+        },
+        "ActiveManager":{
+            "1":"Gerente Ativo"
+        },
+        "DisabledNotification":{
+            "1":"A conta do gerente foi desativada! Atualize a página para ver a alteração"
+        },
+        "DeletedNotification":{
+            "1":"A conta do gerente foi excluída! Atualize a página para ver a alteração"
         }
     },
     "Sidebar":{

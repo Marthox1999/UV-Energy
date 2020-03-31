@@ -120,6 +120,15 @@
         },
         "Close":{
             "1":"Close"
+        },
+        "ActiveOperator":{
+            "1":"Active Operator"
+        },
+        "DisabledNotification":{
+            "1":"Operator account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"Operator account was deleted! Please reload the page to see the changes"
         }
     },
     "Manager":{
@@ -170,6 +179,15 @@
         },
         "Close":{
             "1":"Close"
+        },
+        "ActiveManager":{
+            "1":"Active Manager"
+        },
+        "DisabledNotification":{
+            "1":"Manager account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"Manager account was deleted! Please reload the page to see the changes"
         }
     },
     "Sidebar":{
