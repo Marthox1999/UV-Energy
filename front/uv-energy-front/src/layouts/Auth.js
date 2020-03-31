@@ -1,4 +1,4 @@
-import React, { Component } from "react";431
+import React, { Component } from "react";
 import { withTranslation } from 'react-i18next';
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
@@ -8,7 +8,7 @@ import { Container, Row, Col } from "reactstrap";
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
 
-import routes from "routes.js";
+import routes from "routes.js"; 
 
 // react in18 translate
 import i18n from '../i18n'

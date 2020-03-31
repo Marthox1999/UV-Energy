@@ -72,6 +72,56 @@
             "1":"portuguesse"
         }
     },
+    "Operator":{
+        "Warning":{
+            "1":"Advertencia"
+        },
+        "EmptyFields":{
+            "1":"Campos Vacios"
+        },
+        "AddOperator":{
+            "1":"Agregar Operador"
+        },
+        "BadInputs":{
+            "1":"Campos Incorrectos"
+        },
+        "PersonalInformation":{
+            "1":"Información Personal"
+        },
+        "Name":{
+            "1":"Nome"
+        },
+        "LastName":{
+            "1":"Último nome"
+        },         
+        "Phone":{
+            "1":"Celular"
+        },
+        "Username":{
+            "1":"Nome do usuário"
+        },
+        "AccountInformation":{
+            "1":"Informação da conta"
+        },
+        "Password":{
+            "1":"Senha"
+        },
+        "Add":{
+            "1":"Adicionar"
+        },
+        "Information":{
+            "1":"informação"
+        },
+        "Congratulations":{
+            "1":"Parabéns"
+        },
+        "CreateSuccesfull":{
+            "1":"O operador foi criado!"
+        },
+        "Close":{
+            "1":"Fechar"
+        }
+    },
     "Sidebar":{
         "Welcome":{
             "1":"Bem-vindo!"
