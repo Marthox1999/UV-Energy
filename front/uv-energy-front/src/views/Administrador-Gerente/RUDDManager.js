@@ -419,4 +419,4 @@ class RUDDManager extends React.Component {
     }
 }
 
-export default RUDDManager;
+export default withTranslation()(RUDDManager);
