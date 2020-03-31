@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import { withTranslation, Trans } from 'react-i18next';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -69,6 +70,7 @@ class RegistredManagers extends React.Component {
         }).catch(error => alert(error))
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -79,20 +81,20 @@ class RegistredManagers extends React.Component {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                            <font size="5">Active Managers</font>
+                            <font size="5">{t("Manager.ActiveManagers.1")}</font>
                             </CardHeader>
                             <Alert color="info" isOpen={this.state.isdisabledManager}>
-                                Manager account was disabled!
+                                {t("Manager.DisabledNotification.1")}
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedManager}>
-                                Manager account was deleted!
+                                {t("Manager.DeletedNotification.1")}
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
                                 <tr>
                                 <th scope="col"><font size="2">Id</font></th>
-                                <th scope="col"><font size="2">Name</font></th>
-                                <th scope="col"><font size="2">Username</font></th>
+                                <th scope="col"><font size="2">{t("Manager.Name.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Manager.Username.1")}</font></th>
                                 <th scope="col" />
                                 </tr>
                             </thead>

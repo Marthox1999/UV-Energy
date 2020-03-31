@@ -119,6 +119,9 @@
         "CreateSuccesfull":{
             "1":"El operador fue creado!"
         },
+        "ModifySuccesfull":{
+            "1":"El operador fue modificado!"
+        },
         "Close":{
             "1":"Cerrar"
         },
@@ -130,6 +133,15 @@
         },
         "DeletedNotification":{
             "1":"Las cuentas de los operadores estan eliminadas! Por favor recargue la página para ver los cambios"
+        },
+        "ModifyOperator":{
+            "1":"Modificar Operador"
+        },
+        "DisabledOperator":{
+            "1":"Deshabilitar Operador"
+        },
+        "DeletedOperator":{
+            "1":"Eliminar Operador"
         }
     },
     "Manager":{
@@ -178,6 +190,9 @@
         "CreateSuccesfull":{
             "1":"El gerente fue creado!"
         },
+        "ModifySuccesfull":{
+            "1":"El gerente fue modificado!"
+        },
         "Close":{
             "1":"Cerrar"
         },
@@ -189,6 +204,15 @@
         },
         "DeletedNotification":{
             "1":"Las cuentas de los gerentes estan eliminadas! Por favor recargue la página para ver los cambios"
+        },
+        "ModifyManager":{
+            "1":"Modificar Gerente"
+        },
+        "DisabledManager":{
+            "1":"Deshabilitar Gerente"
+        },
+        "DeletedManager":{
+            "1":"Eliminar Gerente"
         }
     },
     "Sidebar":{

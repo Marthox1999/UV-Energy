@@ -118,6 +118,9 @@
         "CreateSuccesfull":{
             "1":"The operator was created!"
         },
+        "ModifySuccesfull":{
+            "1":"The operator was modified!"
+        },
         "Close":{
             "1":"Close"
         },
@@ -129,6 +132,15 @@
         },
         "DeletedNotification":{
             "1":"Operator account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyOperator":{
+            "1":"Modify Operator"
+        },
+        "DisabledOperator":{
+            "1":"Disabled Operator"
+        },
+        "DeletedOperator":{
+            "1":"Deleted Operator"
         }
     },
     "Manager":{
@@ -177,6 +189,9 @@
         "CreateSuccesfull":{
             "1":"The manager was created!"
         },
+        "ModifySuccesfull":{
+            "1":"The manager was created!"
+        },
         "Close":{
             "1":"Close"
         },
@@ -188,6 +203,15 @@
         },
         "DeletedNotification":{
             "1":"Manager account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyManager":{
+            "1":"Modify Manager"
+        },
+        "DisabledManager":{
+            "1":"Disabled Manager"
+        },
+        "DeletedManager":{
+            "1":"Deleted Manager"
         }
     },
     "Sidebar":{
