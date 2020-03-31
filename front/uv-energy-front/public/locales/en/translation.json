@@ -79,7 +79,7 @@
         "EmptyFields":{
             "1":"Empty Fields"
         },
-        "Add_operator":{
+        "AddOperator":{
             "1":"Add Operator"
         },
         "BadInputs":{
@@ -117,6 +117,56 @@
         },
         "CreateSuccesfull":{
             "1":"The operator was created!"
+        },
+        "Close":{
+            "1":"Close"
+        }
+    },
+    "Manager":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddManager":{
+            "1":"Add Manager"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The manager was created!"
         },
         "Close":{
             "1":"Close"

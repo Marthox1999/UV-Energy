@@ -123,6 +123,56 @@
             "1":"Cerrar"
         }
     },
+    "Manager":{
+        "Warning":{
+            "1":"Advertencia"
+        },
+        "EmptyFields":{
+            "1":"Campos Vacios"
+        },
+        "AddManager":{
+            "1":"Agregar Gerente"
+        },
+        "BadInputs":{
+            "1":"Campos Incorrectos"
+        },
+        "PersonalInformation":{
+            "1":"Información Personal"
+        },
+        "Name":{
+            "1":"Nombre"
+        },
+        "LastName":{
+            "1":"Apellido"
+        },         
+        "Phone":{
+            "1":"Celular"
+        },
+        "Username":{
+            "1":"Usuario"
+        },
+        "AccountInformation":{
+            "1":"Información de la cuenta"
+        },
+        "Password":{
+            "1":"Contraseña"
+        },
+        "Add":{
+            "1":"Agregar"
+        },
+        "Information":{
+            "1":"Información"
+        },
+        "Congratulations":{
+            "1":"Felicidades"
+        },
+        "CreateSuccesfull":{
+            "1":"El gerente fue creado!"
+        },
+        "Close":{
+            "1":"Cerrar"
+        }
+    },
     "Sidebar":{
         "Welcome":{
             "1":"Bienvenido!"

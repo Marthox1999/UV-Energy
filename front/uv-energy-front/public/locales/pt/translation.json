@@ -74,19 +74,19 @@
     },
     "Operator":{
         "Warning":{
-            "1":"Advertencia"
+            "1":"Aviso"
         },
         "EmptyFields":{
-            "1":"Campos Vacios"
+            "1":"Campos vazios"
         },
         "AddOperator":{
-            "1":"Agregar Operador"
+            "1":"Adicionar Operador"
         },
         "BadInputs":{
-            "1":"Campos Incorrectos"
+            "1":"Campos errados"
         },
         "PersonalInformation":{
-            "1":"Información Personal"
+            "1":"informação pessoal"
         },
         "Name":{
             "1":"Nome"
@@ -117,6 +117,56 @@
         },
         "CreateSuccesfull":{
             "1":"O operador foi criado!"
+        },
+        "Close":{
+            "1":"Fechar"
+        }
+    },
+    "Manager":{
+        "Warning":{
+            "1":"Aviso"
+        },
+        "EmptyFields":{
+            "1":"Campos vazios"
+        },
+        "AddManager":{
+            "1":"Adicionar Gerente"
+        },
+        "BadInputs":{
+            "1":"Campos errados"
+        },
+        "PersonalInformation":{
+            "1":"informação pessoal"
+        },
+        "Name":{
+            "1":"Nome"
+        },
+        "LastName":{
+            "1":"Último nome"
+        },         
+        "Phone":{
+            "1":"Celular"
+        },
+        "Username":{
+            "1":"Nome do usuário"
+        },
+        "AccountInformation":{
+            "1":"Informação da conta"
+        },
+        "Password":{
+            "1":"Senha"
+        },
+        "Add":{
+            "1":"Adicionar"
+        },
+        "Information":{
+            "1":"informação"
+        },
+        "Congratulations":{
+            "1":"Parabéns"
+        },
+        "CreateSuccesfull":{
+            "1":"O gerente foi criado!"
         },
         "Close":{
             "1":"Fechar"
