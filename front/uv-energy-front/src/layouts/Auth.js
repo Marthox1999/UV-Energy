@@ -90,10 +90,9 @@ class Auth extends Component {
             </Row>
           </Container>
         </div>
-        <AuthFooter />
       </>
     );
   }
 }
-
 export default withTranslation()(Auth)
+

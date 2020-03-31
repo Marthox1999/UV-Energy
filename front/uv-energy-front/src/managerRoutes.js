@@ -6,7 +6,7 @@ var adminRoutes = [
   {
     path: "/registeredAdmins",
     name: "Registered Admins",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-fat-add text-blue",
     component: RegisteredAdmins,
     layout: "/manager"
   },
@@ -16,7 +16,7 @@ var managerRoutes = [
   {
     path: "/registeredManagers",
     name: "Registered Managers",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-single-02 text-blue",
     component: RegisteredManagers,
     layout: "/manager"
   },

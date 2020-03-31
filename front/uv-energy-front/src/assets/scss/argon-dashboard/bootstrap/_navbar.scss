@@ -68,6 +68,8 @@
   .nav-link {
     padding-right: 0;
     padding-left: 0;
+    margin-bottom: 0;
+    white-space: nowrap;
   }
 
   .dropdown-menu {
@@ -165,6 +167,7 @@
           .nav-link {
             padding-right: $navbar-nav-link-padding-x;
             padding-left: $navbar-nav-link-padding-x;
+            margin-bottom: 0;
           }
         }
 
@@ -232,6 +235,7 @@
 
   .navbar-toggler-icon {
     background-image: $navbar-light-toggler-icon-bg;
+    color: "blue";
   }
 
   .navbar-text {

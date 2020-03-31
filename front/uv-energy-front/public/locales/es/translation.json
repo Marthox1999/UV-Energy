@@ -36,6 +36,21 @@
         },
         "Create_account":{
             "1":"Crear una cuenta nueva"
+        },
+        "Invalid_credentials":{
+            "1":"Credenciales invalidas"
+        },
+        "Fill_username":{
+            "1":"Por favor llene el campo nombre de usuario"
+        },
+        "Fill_password":{
+            "1":"Por favor llene el campo contraseña"
+        },
+        "Fill_username_and_password":{
+            "1":"Por favor llene el campo nombre de usuario y contraseña"
+        },
+        "Verify_captcha":{
+            "1":"Por favor verifique el captcha"
         }
     },
     "General":{
@@ -64,6 +79,9 @@
         },
         "MyProfile":{
             "1":"Mi perfil"
+        },
+        "MyAccount":{
+            "1":"Mi cuenta"
         },
         "Settings":{
             "1":"Herramientas"

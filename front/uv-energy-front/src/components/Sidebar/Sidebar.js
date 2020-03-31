@@ -184,6 +184,7 @@ class Sidebar extends React.Component {
           <button
             className="navbar-toggler"
             type="button"
+            color="blue"
             onClick={this.toggleCollapse}
           >
             <span className="navbar-toggler-icon" />
@@ -206,7 +207,7 @@ class Sidebar extends React.Component {
                   <span className="avatar avatar-sm rounded-circle">
                     <img
                       alt="..."
-                      src={require("assets/img/theme/team-1-800x800.jpg")}
+                      src={require("assets/img/brand/favicon.png")}
                     />
                   </span>
                 </Media>

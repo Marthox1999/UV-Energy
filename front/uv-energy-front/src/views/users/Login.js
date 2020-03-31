@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from 'react-i18next';
+
 import {
   Button, Card, CardBody, FormGroup, Form, Input,
   InputGroupAddon, InputGroupText, InputGroup,
@@ -66,13 +67,13 @@ class Login extends Component {
     if(this.state.isVerified) {
       if(this.state.credentials.username === '' &&
          this.state.credentials.password === '') {
-           alert('Please fill out the username and password fields')
+           alert(i18n.t("Login.Fill_username_and_password.1"))
          }
       else if(this.state.credentials.username === '') {
-        alert('Please fill out the username field')
+        alert(i18n.t("Login.Fill_username.1"))
       }
       else if(this.state.credentials.password === '') {
-        alert('Please fill out the password field')
+        alert(i18n.t("Login.Fill_password.1"))
       }else {
         axios.post(
           c.api + 'users/auth/' , this.state.credentials
@@ -98,16 +99,20 @@ class Login extends Component {
                 })
               }
             }else {
-              alert("Invalid Credentials")
+              alert(i18n.t("Login.Invalid_credentials.1"))
             }
+          }
+        ).catch(
+          () => {
+            alert(i18n.t("Login.Invalid_credentials.1"))
           }
         )
       }
     }else{
-      alert('please verify the captcha')
+      alert(i18n.t("Login.Verify_captcha.1"))
     }
   }
-
+  
   render() {
     const { t } = this.props
     return (
