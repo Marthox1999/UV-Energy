@@ -81,7 +81,7 @@ class RegistredManagers extends React.Component {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                            <font size="5">{t("Manager.ActiveManagers.1")}</font>
+                            <font size="5">{t("Manager.ActiveManager.1")}</font>
                             </CardHeader>
                             <Alert color="info" isOpen={this.state.isdisabledManager}>
                                 {t("Manager.DisabledNotification.1")}
@@ -133,4 +133,4 @@ class RegistredManagers extends React.Component {
     }
 }
 
-export default RegistredManagers;
+export default withTranslation()(RegistredManagers);
