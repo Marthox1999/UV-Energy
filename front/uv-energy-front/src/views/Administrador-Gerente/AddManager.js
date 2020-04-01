@@ -316,7 +316,7 @@ class AddManager extends React.Component {
                     <ModalBody>
                     <div className="modal-body">
                     <Alert color="success">
-                        <strong>{t("Manager.Congratulations.1")}!</strong><br/>{t("Operator.CreateSuccesfull.1")}
+                        <strong>{t("Manager.Congratulations.1")}!</strong><br/>{t("Manager.CreateSuccesfull.1")}
                         </Alert>
                         <strong>{t("Manager.Information.1")}:</strong>
                         <br></br>

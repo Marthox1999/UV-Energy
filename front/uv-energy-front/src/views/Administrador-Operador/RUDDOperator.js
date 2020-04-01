@@ -267,7 +267,7 @@ class RUDDOperator extends React.Component {
                                 <strong>{t("Operator.Warning.1")}</strong> {t("Operator.EmptyFields.1")}!
                             </Alert>
                             <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                <strong>{t("Operator.Warning.1")}!</strong> {t("Operator.BanInputs.1")}!
+                                <strong>{t("Operator.Warning.1")}!</strong> {t("Operator.BadInputs.1")}!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
                                 <strong>{t("Operator.Congratulations.1")}!</strong> {t("Operator.ModifySuccesfull.1")}

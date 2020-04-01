@@ -134,7 +134,7 @@
             "1":"A conta do operador foi excluída! Atualize a página para ver a alteraçãos"
         },
         "ModifyOperator":{
-            "1":"Modify Operador"
+            "1":"Modificar Operador"
         },
         "DisabledOperator":{
             "1":"Desabilitar Operador"
@@ -205,7 +205,7 @@
             "1":"A conta do gerente foi excluída! Atualize a página para ver a alteração"
         },
         "ModifyManager":{
-            "1":"Modify Gerente"
+            "1":"Modificar Gerente"
         },
         "DisabledManager":{
             "1":"Desabilitar Gerente"

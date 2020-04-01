@@ -267,7 +267,7 @@ class RUDDManager extends React.Component {
                                 <strong>{t("Manager.Warning.1")}</strong> {t("Manager.EmptyFields.1")}!
                             </Alert>
                             <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                <strong>{t("Manager.Warning.1")}!</strong> {t("Manager.BanInputs.1")}!
+                                <strong>{t("Manager.Warning.1")}!</strong> {t("Manager.BadInputs.1")}!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
                                 <strong>{t("Manager.Congratulations.1")}!</strong> {t("Manager.ModifySuccesfull.1")}
