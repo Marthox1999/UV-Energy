@@ -1,6 +1,5 @@
 import RegisteredAdmins from "views/Administrador-Administrador/RegisteredAdmins.js";
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js"
-import { withTranslation, Trans } from 'react-i18next';
 
 var adminRoutes = [
   {
