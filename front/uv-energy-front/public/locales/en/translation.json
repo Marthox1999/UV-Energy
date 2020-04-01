@@ -141,6 +141,9 @@
         },
         "DeletedOperator":{
             "1":"Deleted Operator"
+        },
+        "RegisteredOperators":{
+            "1":"Registered Operators"
         }
     },
     "Manager":{
@@ -212,6 +215,9 @@
         },
         "DeletedManager":{
             "1":"Deleted Manager"
+        },
+        "RegisteredManagers":{
+            "1":"Registered Managers"
         }
     },
     "Sidebar":{

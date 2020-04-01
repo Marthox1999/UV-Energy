@@ -141,6 +141,9 @@
         },
         "DeletedOperator":{
             "1":"Remover Operador"
+        },
+        "RegisteredManagers":{
+            "1":"Operadores Registrados"
         }
     },
     "Manager":{
@@ -212,6 +215,9 @@
         },
         "DeletedManager":{
             "1":"Remover Gerente"
+        },
+        "RegisteredManagers":{
+            "1":"Gerentes Registrados"
         }
     },
     "Sidebar":{

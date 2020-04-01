@@ -48,14 +48,14 @@ var electricTransformerRoutes = [
 var managerRoutes = [
   {
       path: "/addManager",
-      name: "Add Manager",
+      name: "Manager.AddManager.1",
       icon: "ni ni-fat-add text-blue",
       component: AddManager,
       layout: "/admin"
   },
   {
     path: "/registeredManagers",
-    name: "Registered Managers",
+    name: "Manager.RegisteredManagers.1",
     icon: "ni ni-single-02 text-blue",
     component: RegisteredManagers,
     layout: "/admin"
@@ -65,14 +65,14 @@ var managerRoutes = [
 var operatorRoutes = [
   {
       path: "/addOperator",
-      name: "Add Operator",
+      name: "Operator.AddOperator.1",
       icon: "ni ni-fat-add text-blue",
       component: AddOperator,
       layout: "/admin"
   },
   {
     path: "/registeredOperators",
-    name: "Registered Operators",
+    name: "Operator.RegisteredOperators.1",
     icon: "ni ni-single-02 text-blue",
     component: RegisteredOperators,
     layout: "/admin"
