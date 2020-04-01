@@ -221,6 +221,9 @@
         "MyProfile":{
             "1":"Meu profile"
         },
+        "MyAccount":{
+            "1":"Minha conta"
+        },
         "Settings":{
             "1": "Configurações"
         },
@@ -335,5 +338,90 @@
             "1":"Selecione um transformador elétrico primeiro"
         }
 
+    },
+
+
+    "Substation":{
+        "AddSubstation":{
+            "1":"Adicionar subestação"
+        },
+        "GeneralInfo":{
+            "1":"Informação geral"
+        },
+        "Warning":{
+            "1":"Aviso!"
+        },
+        "EmptyFields":{
+            "1":"Existem campos vazios!"
+        },
+        "Substation":{
+            "1":"Subestação"
+        },
+        "NoSubstation":{
+            "1":"Não há subestações"
+        },
+        "Name":{
+            "1":"Nome"
+        },
+        "ChoosePoint":{
+            "1":"Ponto escolhido"
+        },
+        "SubstationSet":{
+            "1":"Subestação para estabelecer"
+        },
+        "SubstationActive":{
+            "1":"Subestações ativas"
+        },
+        "ChoosenPoint":{
+            "1":"Ponto escolhido:"
+        },
+        "Add":{
+            "1": "Adicionar"
+        },
+        "Congrats":{
+            "1":"Parabéns!"
+        },
+        "SubstationCreated":{
+            "1": "A subestação foi criada!"
+        },
+        "Information":{
+            "1":"Em formação"
+        },
+        "NSubstation":{
+            "1":"No. subestação "
+        },
+        "Close":{
+            "1":"Fechar"
+        },
+        "ModifySubstation":{
+            "1":"Modificar subestação"
+        },
+        "Modify":{
+            "1":"Modificar"
+        },
+        "Deactivate":{
+            "1":"Desativar"
+        },
+        "DeactivateSubstation":{
+            "1":"Desativar subestação"
+        },
+        "AreYouSure":{
+            "1":"você tem certeza?"
+        },
+        "NoSubstationRegistered":{
+            "1": "Não há subestações registradas"
+        },
+        "NoPointChoosen":{
+            "1":"Escolha um ponto no mapa"
+        },
+        "SelectSubstation":{
+            "1":"Selecione uma subestação primeiro"
+        },
+        "HasTransformers":{
+            "1":"Esta subestação possui transformadores"
+        },
+        "NewName":{
+            "1":"Novo nome"
+        }
     }
 }
