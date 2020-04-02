@@ -1,0 +1,714 @@
+[
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 1,
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 4,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 5,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 6,
+        "fields": {
+            "app_label": "authtoken",
+            "model": "token"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 7,
+        "fields": {
+            "app_label": "users",
+            "model": "user"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 8,
+        "fields": {
+            "app_label": "assets",
+            "model": "electrictransformer"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 9,
+        "fields": {
+            "app_label": "assets",
+            "model": "substation"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 10,
+        "fields": {
+            "app_label": "assets",
+            "model": "meter"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 11,
+        "fields": {
+            "app_label": "sales",
+            "model": "bank"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 12,
+        "fields": {
+            "app_label": "sales",
+            "model": "debitpayment"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 13,
+        "fields": {
+            "app_label": "sales",
+            "model": "bill"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "p1ppcu1p0x3xqqe6xnhjoq0x5nr3l5nh",
+        "fields": {
+            "session_data": "YzgxMGM1ZDM1NjdmMGUwYTVmMTk5ZTlkNTgwMDg4MjJjYmFmMjdkNDp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2ODYzOWZmNjFlYjM2NzE5N2Q1NGU5ZTYyOTlmN2IzMmJiMzIzZGM0In0=",
+            "expire_date": "2020-04-01T17:48:28.573Z"
+        }
+    },
+    {
+        "model": "assets.substation",
+        "pk": 1,
+        "fields": {
+            "name": "sub1",
+            "long": "283.50288391113287000000",
+            "lat": "3.46270340871090940000",
+            "isActive": true
+        }
+    },
+    {
+        "model": "assets.substation",
+        "pk": 2,
+        "fields": {
+            "name": "sub2",
+            "long": "283.43902587890630000000",
+            "lat": "3.42980402696740550000",
+            "isActive": true
+        }
+    },
+    {
+        "model": "assets.electrictransformer",
+        "pk": 1,
+        "fields": {
+            "tension_level": 2,
+            "reference": "123qwe",
+            "long": "283.50940704345710000000",
+            "lat": "3.46133262388436340000",
+            "fk_substation": 1,
+            "isActive": true
+        }
+    },
+    {
+        "model": "assets.electrictransformer",
+        "pk": 2,
+        "fields": {
+            "tension_level": 3,
+            "reference": "345wer",
+            "long": "283.44589233398443000000",
+            "lat": "3.42671965171278500000",
+            "fk_substation": 2,
+            "isActive": true
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add log entry",
+            "content_type": 1,
+            "codename": "add_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change log entry",
+            "content_type": 1,
+            "codename": "change_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete log entry",
+            "content_type": 1,
+            "codename": "delete_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view log entry",
+            "content_type": 1,
+            "codename": "view_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 2,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 2,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 2,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 2,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 3,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 3,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 3,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 3,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 4,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 4,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 4,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 4,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 5,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 5,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 5,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 5,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add Token",
+            "content_type": 6,
+            "codename": "add_token"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change Token",
+            "content_type": 6,
+            "codename": "change_token"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete Token",
+            "content_type": 6,
+            "codename": "delete_token"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view Token",
+            "content_type": 6,
+            "codename": "view_token"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 7,
+            "codename": "add_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 7,
+            "codename": "change_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 7,
+            "codename": "delete_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 7,
+            "codename": "view_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add electric transformer",
+            "content_type": 8,
+            "codename": "add_electrictransformer"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change electric transformer",
+            "content_type": 8,
+            "codename": "change_electrictransformer"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete electric transformer",
+            "content_type": 8,
+            "codename": "delete_electrictransformer"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view electric transformer",
+            "content_type": 8,
+            "codename": "view_electrictransformer"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add substation",
+            "content_type": 9,
+            "codename": "add_substation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change substation",
+            "content_type": 9,
+            "codename": "change_substation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete substation",
+            "content_type": 9,
+            "codename": "delete_substation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view substation",
+            "content_type": 9,
+            "codename": "view_substation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add meter",
+            "content_type": 10,
+            "codename": "add_meter"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change meter",
+            "content_type": 10,
+            "codename": "change_meter"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete meter",
+            "content_type": 10,
+            "codename": "delete_meter"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view meter",
+            "content_type": 10,
+            "codename": "view_meter"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can add bank",
+            "content_type": 11,
+            "codename": "add_bank"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can change bank",
+            "content_type": 11,
+            "codename": "change_bank"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can delete bank",
+            "content_type": 11,
+            "codename": "delete_bank"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can view bank",
+            "content_type": 11,
+            "codename": "view_bank"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 45,
+        "fields": {
+            "name": "Can add debit payment",
+            "content_type": 12,
+            "codename": "add_debitpayment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 46,
+        "fields": {
+            "name": "Can change debit payment",
+            "content_type": 12,
+            "codename": "change_debitpayment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 47,
+        "fields": {
+            "name": "Can delete debit payment",
+            "content_type": 12,
+            "codename": "delete_debitpayment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 48,
+        "fields": {
+            "name": "Can view debit payment",
+            "content_type": 12,
+            "codename": "view_debitpayment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 49,
+        "fields": {
+            "name": "Can add bill",
+            "content_type": 13,
+            "codename": "add_bill"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 50,
+        "fields": {
+            "name": "Can change bill",
+            "content_type": 13,
+            "codename": "change_bill"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 51,
+        "fields": {
+            "name": "Can delete bill",
+            "content_type": 13,
+            "codename": "delete_bill"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 52,
+        "fields": {
+            "name": "Can view bill",
+            "content_type": 13,
+            "codename": "view_bill"
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$qYGGH17pw5xt$kWxXlU3ji4eIxv42I3VHjeOGVlH8t0CVeNgZK5mlLEs=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "manager",
+            "first_name": "ma",
+            "last_name": "nager",
+            "email": "manager@manager.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-03-18T16:57:40.628Z",
+            "position": "MGR",
+            "cellphone": "1111111111",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$I0EiNSDtVXiw$/k9Bvl+mH18/me4Ni5lRiKXqAaRjPnB4v4ONPE/RMxo=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "admin",
+            "first_name": "ad",
+            "last_name": "min",
+            "email": "admin@admin.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-03-18T16:58:10.954Z",
+            "position": "ADMIN",
+            "cellphone": "2222222222",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$d8hOVgqKb50b$YclLlBXanwSd0JAyvQYBUDp0DSIjUcz4tC8wkf4RbVs=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "client",
+            "first_name": "cli",
+            "last_name": "ent",
+            "email": "client@client.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-03-18T17:04:54.083Z",
+            "position": "CLT",
+            "cellphone": "3333333333",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$ebIns0teaivG$FP8wB4mTP55Q+BMCjKzH/i5pseWsnwKYX1TR+aK3sHs=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "operator",
+            "first_name": "opera",
+            "last_name": "tor",
+            "email": "operator@operator.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-03-18T17:06:11.287Z",
+            "position": "OP",
+            "cellphone": "4444444444",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "authtoken.token",
+        "pk": "4d61a959f4348d5fdc0a9e6c958f1df4e157c95f",
+        "fields": {
+            "user": 2,
+            "created": "2020-03-18T17:21:25.287Z"
+        }
+    }
+]

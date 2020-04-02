@@ -12,7 +12,9 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Modal,
+  ModalBody
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -38,6 +40,7 @@ class AddOperator extends React.Component {
             },
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isBadinputs: false,
             credentials: cookie.get('notCredentials'),
         }
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -47,6 +50,7 @@ class AddOperator extends React.Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
         this.AddOperator = this.AddOperator.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     onChangeFirstName(e){
         this.setState({ user: {
@@ -128,27 +132,28 @@ class AddOperator extends React.Component {
             (this.state.user.first_name === "") ||
             (this.state.user.last_name === "") ||
             (this.state.user.cellphone === "")){
-            this.setState({isAlertEmpty: true, isAlertSuccess: false})
+            this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
         }else{
             console.log(this.state.user)
             Axios.post(c.api + 'users/user/', this.state.user,
                        {headers: { Authorization: `Token ${this.state.credentials.token}`}})
-            .then( response => {
-                this.setState({ isAlertEmpty: false,
-                                isAlertSuccess: true,
-                    user: {
-                        username: "",
-                        password: "",
-                        email: "",
-                        first_name: "",
-                        last_name: "",
-                        is_active: true,
-                        cellphone: "",
-                        position: "OP"
-                    }})
-            }).catch(error => console.log(error))
-        }
-    }
+                       .then( response => {
+                        this.setState({ isAlertEmpty: false,
+                                        isAlertSuccess: true,
+                                        isBadinputs: false,
+                                        user: response.data})
+                    }).catch(error => {
+                        console.log(error)
+                        this.setState({ isAlertSuccess: false,
+                                        isAlertEmpty: false,
+                                        isBadinputs: true})
+                    })
+                }
+            }
+            closeModal(){
+                this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+                window.location.reload(true);
+            }
     render() {
         return(
             <>
@@ -159,7 +164,7 @@ class AddOperator extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Operator</h3>
+                        <font size="5">Add Operator</font>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -167,8 +172,8 @@ class AddOperator extends React.Component {
                     <Alert color="warning" isOpen={this.state.isAlertEmpty}>
                         <strong>Warning!</strong> There are empty fields!
                     </Alert>
-                    <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                        <strong>Congratulations!</strong> The opertator was created!
+                    <Alert color="warning" isOpen={this.state.isBadinputs}>
+                        <strong>Warning!</strong> Wrong information on fields!
                     </Alert>
                     <Form onSubmit={this.AddOperator}>
                         <h6 className="heading-small text-muted mb-4">
@@ -223,7 +228,7 @@ class AddOperator extends React.Component {
                                 <Input 
                                 className="form-control-alternative"
                                 id="input-cellphone"
-                                placeholder="3111111111"
+                                placeholder="Phone Number"
                                 type="number"
                                 value={this.state.user.cellphone}
                                 onChange={this.onChangeCellphone}/>
@@ -301,6 +306,35 @@ class AddOperator extends React.Component {
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isAlertSuccess}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="success">
+                        <strong>Congratulations!</strong><br/>The manager was created!
+                        </Alert>
+                        <strong>Information:</strong>
+                        <br></br>
+                        <strong> Name: </strong> {this.state.user.first_name}<br/>
+                        <strong> Last Name: </strong> {this.state.user.last_name}<br/>
+                        <strong> Phone Number: </strong> {this.state.user.cellphone}<br/>
+                        <strong> Email: </strong> {this.state.user.email}<br/>
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        Close
+                        </Button>
+                    </div>
+            </Modal>
             </Container>
             </>
         );

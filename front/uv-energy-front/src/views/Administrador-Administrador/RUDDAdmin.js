@@ -289,7 +289,7 @@ class RUDDAdmin extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{this.state.admin.first_name} Information</h3>
+                        <font size="5">{this.state.admin.first_name} Information</font>
                         </Col>
                     </Row>
                     </CardHeader>

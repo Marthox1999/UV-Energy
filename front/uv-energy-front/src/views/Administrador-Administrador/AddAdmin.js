@@ -15,7 +15,7 @@ import {
   Col,
   Alert,
   Modal,
-  ModalBody,
+  ModalBody
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -54,6 +54,7 @@ class AddAdmin extends React.Component {
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.AddAdmin = this.AddAdmin.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     onChangeUsername(e){
         this.setState({ admin: {
@@ -147,7 +148,7 @@ class AddAdmin extends React.Component {
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
                                     isBadinputs: false,
-                                    });
+                                    admin : response.data});
                 }
             }).catch(error => {
                 console.log(error)
@@ -171,22 +172,22 @@ class AddAdmin extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Admin Information</h3>
+                        <font size="5">Add Admin</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
+                    <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                        <strong>Warning!</strong> There are empty fields!
+                    </Alert>
+                    <Alert color="warning" isOpen={this.state.isBadinputs}>
+                        <strong>Warning!</strong> Wrong information on fields!
+                    </Alert>
                     <Form onSubmit={this.AddAdmin}>
                         <h6 className="heading-small text-muted mb-4">
-                        Personal Information
+                            Personal Information
                         </h6>
                         <div className="pl-lg-4">
-                            <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
-                            </Alert>
-                            <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                <strong>Warning!</strong> Wrong information on fields!
-                            </Alert>
                         <Row>
                             <Col lg="6">
                             <FormGroup>
@@ -312,7 +313,7 @@ class AddAdmin extends React.Component {
                                 type="password" 
                                 autoComplete="new-password"
                                 value={this.state.admin.password}
-                                onChange={this.onChangePassword}
+                                onChange={this.onChangePassword}                               
                                 />
                             </FormGroup>
                             </Col>

@@ -39,6 +39,11 @@ Change icon size
   width: 0.8em;
 }
 
+.icon-md {
+  height: 1.2em;
+  width: 1.22em;
+}
+
 .icon-lg {
   height: 1.6em;
   width: 1.6em;
