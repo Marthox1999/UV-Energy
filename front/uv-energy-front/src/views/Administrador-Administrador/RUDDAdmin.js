@@ -276,7 +276,7 @@ class RUDDAdmin extends React.Component {
         }
     }
     closeModal(){
-        this.setState({ isModal: !this.state.isModal, isAlertSuccess: !this.state.isAlertSuccess, isAlertEmpty: !this.state.isAlertEmpty, isBadinputs: !this.state.isBadinputs})
+        this.setState({ isModal: !this.state.isModal})
         window.location.reload(true);     
     }
     render() {
@@ -294,147 +294,156 @@ class RUDDAdmin extends React.Component {
                     </Row>
                     </CardHeader>
                     <CardBody>
-                    <Form onSubmit={this.AddAdmin}>
-                        <h6 className="heading-small text-muted mb-4">
-                        </h6>
-                        <div className="pl-lg-4">        
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-first-name"
-                                >
-                                Name
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-first-name"
-                                placeholder="Name"
-                                type="text"
-                                value={this.state.admin.first_name}
-                                onChange={this.onChangeFirsName}
-                                />
-                            </FormGroup>
-                            </Col>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-last-name"
-                                >
-                                Last Name
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-last-name"
-                                placeholder="Last Name"
-                                type="text"
-                                value={this.state.admin.last_name}
-                                onChange={this.onChangeLastName}
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
+                        <Form onSubmit={this.AddAdmin}>
+                            <h6 className="heading-small text-muted mb-4">
+                            </h6>
+                            <div className="pl-lg-4">
+                                <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                                    <strong>Warning!</strong> There are empty fields!
+                                </Alert>
+                                <Alert color="warning" isOpen={this.state.isBadinputs}>
+                                    <strong>Warning!</strong> Wrong information on fields!
+                                </Alert>
+                                <Alert color="success" isOpen={this.state.isAlertSuccess}>
+                                    <strong>Congratulations!</strong> The Manager was modified!
+                                </Alert>
+                                <Row>
+                                    <Col lg="6">
+                                    <FormGroup>
+                                        <label
+                                        className="form-control-label"
+                                        htmlFor="input-first-name"
+                                        >
+                                        Name
+                                        </label>
+                                        <Input
+                                        className="form-control-alternative"
+                                        id="input-first-name"
+                                        placeholder="Name"
+                                        type="text"
+                                        value={this.state.admin.first_name}
+                                        onChange={this.onChangeFirsName}
+                                        />
+                                    </FormGroup>
+                                    </Col>
+                                    <Col lg="6">
+                                    <FormGroup>
+                                        <label
+                                        className="form-control-label"
+                                        htmlFor="input-last-name"
+                                        >
+                                        Last Name
+                                        </label>
+                                        <Input
+                                        className="form-control-alternative"
+                                        id="input-last-name"
+                                        placeholder="Last Name"
+                                        type="text"
+                                        value={this.state.admin.last_name}
+                                        onChange={this.onChangeLastName}
+                                        />
+                                    </FormGroup>
+                                    </Col>
+                                </Row>
 
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-phone-number"
-                                >
-                                Phone Number
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-phone-number"
-                                placeholder="Phone Number"
-                                type="text"
-                                value={this.state.admin.cellphone}
-                                onChange={this.onChangeCellphone}
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        </div>
+                                <Row>
+                                    <Col lg="6">
+                                    <FormGroup>
+                                        <label
+                                        className="form-control-label"
+                                        htmlFor="input-phone-number"
+                                        >
+                                        Phone Number
+                                        </label>
+                                        <Input
+                                        className="form-control-alternative"
+                                        id="input-phone-number"
+                                        placeholder="Phone Number"
+                                        type="text"
+                                        value={this.state.admin.cellphone}
+                                        onChange={this.onChangeCellphone}
+                                        />
+                                    </FormGroup>
+                                    </Col>
+                                </Row>
+                            </div>
 
-                        <hr className="my-4"></hr>
-                        <h6 className="heading-small text-muted mb-4">
-                        Account Information
-                        </h6>
-                        <div className="pl-lg-4">                        
-                        <Row>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-username"
-                                >
-                                Username
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-username"
-                                placeholder="Username"
-                                type="text"                                
-                                value={this.state.admin.username}
-                                onChange={this.onChangeUsername}
-                                />
-                            </FormGroup>
-                            </Col>
-                            <Col lg="6">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-email"
-                                >
-                                Email 
-                                </label>
-                                <Input
-                                className="form-control-alternative"
-                                id="input-email"
-                                placeholder="jesse@example.com"
-                                type="email"
-                                value={this.state.admin.email}
-                                onChange={this.onChangeEmail}
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="col-md-12">
-                            <FormGroup>
-                                <label
-                                className="form-control-label"
-                                htmlFor="input-password"
-                                >
-                                Password
-                                </label>
-                                <Input 
-                                className="form-control-alternative"
-                                placeholder="Password" 
-                                type="password" 
-                                autoComplete="new-password"
-                                value={this.state.adminPassword}
-                                onChange={this.onChangePassword}
-                                />
-                            </FormGroup>
-                            </Col>
-                        </Row>
-                        <div className="text-center">
-                            <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
-                                Modify Information
-                            </Button>
-                            <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Disable')}>
-                                Disable Admin
-                            </Button>
-                            <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Delete')}>
-                                Delete Register
-                            </Button>
-                        </div>
-                        </div>
-                    </Form>
+                            <hr className="my-4"></hr>
+                            <h6 className="heading-small text-muted mb-4">
+                            Account Information
+                            </h6>
+                            <div className="pl-lg-4">                        
+                                <Row>
+                                    <Col lg="6">
+                                    <FormGroup>
+                                        <label
+                                        className="form-control-label"
+                                        htmlFor="input-username"
+                                        >
+                                        Username
+                                        </label>
+                                        <Input
+                                        className="form-control-alternative"
+                                        id="input-username"
+                                        placeholder="Username"
+                                        type="text"                                
+                                        value={this.state.admin.username}
+                                        onChange={this.onChangeUsername}
+                                        />
+                                    </FormGroup>
+                                    </Col>
+                                    <Col lg="6">
+                                    <FormGroup>
+                                        <label
+                                        className="form-control-label"
+                                        htmlFor="input-email"
+                                        >
+                                        Email 
+                                        </label>
+                                        <Input
+                                        className="form-control-alternative"
+                                        id="input-email"
+                                        placeholder="jesse@example.com"
+                                        type="email"
+                                        value={this.state.admin.email}
+                                        onChange={this.onChangeEmail}
+                                        />
+                                    </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="col-md-12">
+                                    <FormGroup>
+                                        <label
+                                        className="form-control-label"
+                                        htmlFor="input-password"
+                                        >
+                                        Password
+                                        </label>
+                                        <Input 
+                                        className="form-control-alternative"
+                                        placeholder="Password" 
+                                        type="password" 
+                                        autoComplete="new-password"
+                                        value={this.state.adminPassword}
+                                        onChange={this.onChangePassword}
+                                        />
+                                    </FormGroup>
+                                    </Col>
+                                </Row>
+                                <div className="text-center">
+                                    <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
+                                        Modify Information
+                                    </Button>
+                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Disable')}>
+                                        Disable Admin
+                                    </Button>
+                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Delete')}>
+                                        Delete Register
+                                    </Button>
+                                </div>
+                            </div>
+                        </Form>
                     </CardBody>
                 </Card>
                 <Modal
@@ -470,81 +479,6 @@ class RUDDAdmin extends React.Component {
                             >
                             No
                         </Button>                    
-                    </div>
-                </Modal>
-                <Modal
-                    className="modal-dialog-centered"
-                    color="success"
-                    isOpen={this.state.isAlertSuccess}
-                    >
-                    <ModalBody>
-                    <div className="modal-body">
-                        <Alert color="success">
-                        <strong>Congratulations!</strong><br/>The administrator account was updated!
-                        </Alert>
-                        <strong>Information:</strong>
-                        <br></br>
-                        <strong> Name: </strong> {this.state.admin.first_name} {this.state.admin.last_name}<br/>
-                        <strong> Phone Number: </strong> {this.state.admin.cellphone}<br/>
-                        <strong> Username: </strong> {this.state.admin.username}<br/>
-                        <strong> Email: </strong> {this.state.admin.email}
-                    </div>
-                    </ModalBody>
-                    <div className="modal-footer">
-                        <Button
-                        color="primary"
-                        data-dismiss="modal"
-                        type="button"
-                        onClick={this.closeModal}
-                        >
-                        Close
-                        </Button>
-                    </div>
-                </Modal>
-                <Modal
-                    className="modal-dialog-centered"
-                    color="warning"
-                    isOpen={this.state.isAlertEmpty}
-                    >
-                    <ModalBody>
-                    <div className="modal-body">
-                        <Alert color="warning">
-                        <strong>Empty Fields</strong><br/>Restarting Fields
-                        </Alert>                        
-                    </div>
-                    </ModalBody>
-                    <div className="modal-footer">
-                        <Button
-                        color="primary"
-                        data-dismiss="modal"
-                        type="button"
-                        onClick={this.closeModal}
-                        >
-                        Close
-                        </Button>
-                    </div>
-                </Modal>
-                <Modal
-                    className="modal-dialog-centered"
-                    color="warning"
-                    isOpen={this.state.isBadinputs}
-                    >
-                    <ModalBody>
-                    <div className="modal-body">
-                        <Alert color="warning">
-                        <strong>Bad Input on Fields</strong><br/>Restarting Fields
-                        </Alert>                        
-                    </div>
-                    </ModalBody>
-                    <div className="modal-footer">
-                        <Button
-                        color="primary"
-                        data-dismiss="modal"
-                        type="button"
-                        onClick={this.closeModal}
-                        >
-                        Close
-                        </Button>
                     </div>
                 </Modal>
             </Container>
