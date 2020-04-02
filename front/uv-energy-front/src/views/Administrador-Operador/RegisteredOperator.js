@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import i18n from '../../i18n.js';
 import { withTranslation, Trans } from 'react-i18next';
 
 // core components
@@ -68,7 +69,7 @@ class RegisteredOperators extends React.Component {
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("There aren't any operators registered.")
+                alert(i18n.t("Operator.NoRegistered.1"))
               }
               else{
                 this.setState({listOperators: response.data})

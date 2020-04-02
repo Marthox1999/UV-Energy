@@ -32,7 +32,6 @@ var electricTransformerRoutes = [
     path: "/addElectricTransformer",
     name: "ETransformer.AddET.1",
     icon: "ni ni-single-02 text-yellow",
-
     component: AddElectricTransformer,
     layout: "/admin"
   },

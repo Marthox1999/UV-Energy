@@ -144,6 +144,12 @@
         },
         "RegisteredOperators":{
             "1":"Registered Operators"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any operators registered"
         }
     },
     "Manager":{
@@ -218,6 +224,12 @@
         },
         "RegisteredManagers":{
             "1":"Registered Managers"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any managers registered"
         }
     },
     "Sidebar":{

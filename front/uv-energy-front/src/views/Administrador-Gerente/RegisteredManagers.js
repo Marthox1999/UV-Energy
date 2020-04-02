@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import i18n from '../../i18n.js';
 import { withTranslation, Trans } from 'react-i18next';
 
 // core components
@@ -62,7 +63,7 @@ class RegistredManagers extends React.Component {
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("There are no registered managers")
+                alert(i18n.t("Manager.NoRegistered.1"))
               }
               else{
                 this.setState({listManagers: response.data})

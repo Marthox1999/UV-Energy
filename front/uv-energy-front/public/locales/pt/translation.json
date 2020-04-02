@@ -142,8 +142,14 @@
         "DeletedOperator":{
             "1":"Remover Operador"
         },
-        "RegisteredManagers":{
+        "RegisteredOperators":{
             "1":"Operadores Registrados"
+        },
+        "WrongId":{
+            "1":"Id Errado"
+        },
+        "NoRegistered":{
+            "1":"Não há operadores registrados"
         }
     },
     "Manager":{
@@ -218,6 +224,12 @@
         },
         "RegisteredManagers":{
             "1":"Gerentes Registrados"
+        },
+        "WrongId":{
+            "1":"Id Errado"
+        },
+        "NoRegistered":{
+            "1":"Não há gerentes registrados"
         }
     },
     "Sidebar":{

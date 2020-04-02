@@ -18,6 +18,7 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import i18n from '../../i18n.js';
 import { withTranslation, Trans } from 'react-i18next';
 
 // core components
@@ -76,7 +77,7 @@ class RUDDOperator extends React.Component {
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("Wrong Id")
+                alert(i18n.t("Operator.WrongId.1"))
               }
               else{
                 console.log(response.data)
