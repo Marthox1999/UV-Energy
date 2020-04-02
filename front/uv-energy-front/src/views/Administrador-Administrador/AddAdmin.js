@@ -20,6 +20,8 @@ import {
 
 import 'leaflet/dist/leaflet.css';
 import Cookies from 'universal-cookie';
+import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -163,6 +165,7 @@ class AddAdmin extends React.Component {
         window.location.reload(true);
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -172,20 +175,20 @@ class AddAdmin extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <font size="5">Add Admin</font>
+                        <font size="5">{t("Admin.AddAdmin.1")}</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                        <strong>Warning!</strong> There are empty fields!
+                        <strong>{t("Admin.Warning.1")}</strong> {t("Admin.EmptyFields.1")}
                     </Alert>
                     <Alert color="warning" isOpen={this.state.isBadinputs}>
-                        <strong>Warning!</strong> Wrong information on fields!
+                        <strong>{t("Admin.Warning.1")}</strong> {t("Admin.BadInputs.1")}
                     </Alert>
                     <Form onSubmit={this.AddAdmin}>
                         <h6 className="heading-small text-muted mb-4">
-                            Personal Information
+                            {t("Admin.PersonalInfo.1")}
                         </h6>
                         <div className="pl-lg-4">
                         <Row>
@@ -195,13 +198,13 @@ class AddAdmin extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Name
+                                {t("Admin.Name.1")}
                                 </label>
                                 <Input
                                 required
                                 className="form-control-alternative"
                                 id="input-first-name"
-                                placeholder="Name"
+                                placeholder={t("Admin.Name.1")}
                                 type="text"
                                 value={this.state.admin.first_name}
                                 onChange={this.onChangeFirsName}
@@ -214,13 +217,13 @@ class AddAdmin extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Last Name
+                                {t("Admin.LastName.1")}
                                 </label>
                                 <Input
                                 required
                                 className="form-control-alternative"
                                 id="input-last-name"
-                                placeholder="Last Name"
+                                placeholder={t("Admin.LastName.1")}
                                 type="text"
                                 value={this.state.admin.last_name}
                                 onChange={this.onChangeLastName}
@@ -236,13 +239,13 @@ class AddAdmin extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-phone-number"
                                 >
-                                Phone Number
+                                {t("Admin.PhoneNumber.1")}
                                 </label>
                                 <Input
                                 required
                                 className="form-control-alternative"
                                 id="input-phone-number"
-                                placeholder="Phone Number"
+                                placeholder={t("Admin.PhoneNumber.1")}
                                 type="text"
                                 value={this.state.admin.cellphone}
                                 onChange={this.onChangeCellphone}
@@ -254,7 +257,7 @@ class AddAdmin extends React.Component {
                         
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Account Information
+                        {t("Admin.AccountInfo.1")}
                         </h6>
                         <div className="pl-lg-4">                        
                         <Row>
@@ -264,13 +267,13 @@ class AddAdmin extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-username"
                                 >
-                                Username
+                                {t("Admin.Username.1")}
                                 </label>
                                 <Input
                                 required
                                 className="form-control-alternative"
                                 id="input-username"
-                                placeholder="Username"
+                                placeholder={t("Admin.Username.1")}
                                 type="text"
                                 value={this.state.admin.username}
                                 onChange={this.onChangeUsername}
@@ -283,13 +286,13 @@ class AddAdmin extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-email"
                                 >
-                                Email 
+                                {t("Admin.Email.1")}
                                 </label>
                                 <Input
                                 required
                                 className="form-control-alternative"
                                 id="input-email"
-                                placeholder="jesse@example.com"
+                                placeholder={t("Admin.EmailExample.1")}
                                 type="email"
                                 value={this.state.admin.email}
                                 onChange={this.onChangeEmail}
@@ -304,12 +307,12 @@ class AddAdmin extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-password"
                                 >
-                                Password
+                                {t("Admin.Password.1")}
                                 </label>
                                 <Input
                                 required
                                 className="form-control-alternative"
-                                placeholder="Password" 
+                                placeholder={t("Admin.Password.1")}
                                 type="password" 
                                 autoComplete="new-password"
                                 value={this.state.admin.password}
@@ -320,7 +323,7 @@ class AddAdmin extends React.Component {
                         </Row>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
-                                Add
+                                {t("Admin.AddButton.1")}
                             </Button>
                         </div>
                         </div>
@@ -335,14 +338,14 @@ class AddAdmin extends React.Component {
                     <ModalBody>
                     <div className="modal-body">
                         <Alert color="success">
-                        <strong>Congratulations!</strong><br/>The administrator account was created!
+                        <strong>{t("Admin.Congrat.1")}</strong><br/>{t("Admin.Congrat.2")}
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("Admin.Info.1")}</strong>
                         <br></br>
-                        <strong> Name: </strong> {this.state.admin.first_name} {this.state.admin.last_name}<br/>
-                        <strong> Phone Number: </strong> {this.state.admin.cellphone}<br/>
-                        <strong> Username: </strong> {this.state.admin.username}<br/>
-                        <strong> Email: </strong> {this.state.admin.email}
+                        <strong> {t("Admin.Name.2")} </strong> {this.state.admin.first_name} {this.state.admin.last_name}<br/>
+                        <strong> {t("Admin.PhoneNumber.2")} </strong> {this.state.admin.cellphone}<br/>
+                        <strong> {t("Admin.Username.2")} </strong> {this.state.admin.username}<br/>
+                        <strong> {t("Admin.Email.2")} </strong> {this.state.admin.email}
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -352,7 +355,7 @@ class AddAdmin extends React.Component {
                         type="button"
                         onClick={this.closeModal}
                         >
-                        Close
+                        {t("Admin.CloseButton.1")}
                         </Button>
                     </div>
                 </Modal>
@@ -362,4 +365,4 @@ class AddAdmin extends React.Component {
     }
 }
 
-export default AddAdmin;
+export default withTranslation()(AddAdmin);

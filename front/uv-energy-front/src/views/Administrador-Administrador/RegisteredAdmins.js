@@ -1,6 +1,8 @@
 import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 
 // reactstrap components
 import {
@@ -74,6 +76,7 @@ class RegisteredAdmins extends React.Component {
         }).catch(error => alert(error))
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -84,20 +87,20 @@ class RegisteredAdmins extends React.Component {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                            <font size="5">Active Administrators</font>
+                            <font size="5">{t("Admin.ActiveAdmins.1")}</font>
                             </CardHeader>
                             <Alert color="info" isOpen={this.state.isdisabledAdmin}>
-                                Admin account was disabled!
+                                {t("Admin.DisableAdmin.1")}
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedAdmin}>
-                                Admin account was deleted!
+                                {t("Admin.DeletedAdmin.1")}
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
                                 <tr>
-                                <th scope="col"><font size="2">Id</font></th>
-                                <th scope="col"><font size="2">Name</font></th>
-                                <th scope="col"><font size="2">Username</font></th>
+                                <th scope="col"><font size="2">{t("Admin.Id.2")}</font></th>
+                                <th scope="col"><font size="2">{t("Admin.Name.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Admin.Username.1")}</font></th>
                                 <th scope="col" />
                                 </tr>
                             </thead>
@@ -137,4 +140,4 @@ class RegisteredAdmins extends React.Component {
     }
 }
 
-export default RegisteredAdmins;
+export default withTranslation()(RegisteredAdmins);

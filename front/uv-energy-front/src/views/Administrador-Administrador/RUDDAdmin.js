@@ -1,6 +1,8 @@
 import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 
 // reactstrap components
 import {
@@ -269,9 +271,9 @@ class RUDDAdmin extends React.Component {
         this.setState({submitClicked: name,  isModal: !this.state.isModal})
     }
     accept(){
-        if(this.state.submitClicked==="Disable"){
+        if(this.state.submitClicked===i18n.t("Admin.Disable.1")){
             this.SubmitEvent(2);
-        }else if(this.state.submitClicked==="Delete"){
+        }else if(this.state.submitClicked===i18n.t("Admin.Delete.1")){
             this.SubmitEvent(3);
         }
     }
@@ -280,6 +282,7 @@ class RUDDAdmin extends React.Component {
         window.location.reload(true);     
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -289,23 +292,23 @@ class RUDDAdmin extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <font size="5">{this.state.admin.first_name} Information</font>
+                        <font size="5">{t("Admin.Info.2")} {this.state.admin.first_name}</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
-                        <Form onSubmit={this.AddAdmin}>
+                        <Form>
                             <h6 className="heading-small text-muted mb-4">
                             </h6>
                             <div className="pl-lg-4">
                                 <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                    <strong>Warning!</strong> There are empty fields!
+                                    <strong>{t("Admin.Warning.1")}</strong> {t("Admin.EmptyFields.1")}
                                 </Alert>
                                 <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                    <strong>Warning!</strong> Wrong information on fields!
+                                    <strong>{t("Admin.Warning.1")}</strong> {t("Admin.BadInputs.1")}
                                 </Alert>
                                 <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                    <strong>Congratulations!</strong> The Manager was modified!
+                                    <strong>{t("Admin.Congrat.1")}</strong> {t("Admin.Congrat.3")}
                                 </Alert>
                                 <Row>
                                     <Col lg="6">
@@ -314,12 +317,12 @@ class RUDDAdmin extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-first-name"
                                         >
-                                        Name
+                                        {t("Admin.Name.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-first-name"
-                                        placeholder="Name"
+                                        placeholder={t("Admin.Name.1")}
                                         type="text"
                                         value={this.state.admin.first_name}
                                         onChange={this.onChangeFirsName}
@@ -332,12 +335,12 @@ class RUDDAdmin extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-last-name"
                                         >
-                                        Last Name
+                                        {t("Admin.LastName.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-last-name"
-                                        placeholder="Last Name"
+                                        placeholder={t("Admin.LastName.1")}
                                         type="text"
                                         value={this.state.admin.last_name}
                                         onChange={this.onChangeLastName}
@@ -353,12 +356,12 @@ class RUDDAdmin extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-phone-number"
                                         >
-                                        Phone Number
+                                        {t("Admin.PhoneNumber.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-phone-number"
-                                        placeholder="Phone Number"
+                                        placeholder={t("Admin.PhoneNumber.1")}
                                         type="text"
                                         value={this.state.admin.cellphone}
                                         onChange={this.onChangeCellphone}
@@ -370,7 +373,7 @@ class RUDDAdmin extends React.Component {
 
                             <hr className="my-4"></hr>
                             <h6 className="heading-small text-muted mb-4">
-                            Account Information
+                            {t("Admin.AccountInfo.1")}
                             </h6>
                             <div className="pl-lg-4">                        
                                 <Row>
@@ -380,12 +383,12 @@ class RUDDAdmin extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-username"
                                         >
-                                        Username
+                                        {t("Admin.Username.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-username"
-                                        placeholder="Username"
+                                        placeholder={t("Admin.Username.1")}
                                         type="text"                                
                                         value={this.state.admin.username}
                                         onChange={this.onChangeUsername}
@@ -398,12 +401,12 @@ class RUDDAdmin extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-email"
                                         >
-                                        Email 
+                                        {t("Admin.Email.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-email"
-                                        placeholder="jesse@example.com"
+                                        placeholder={t("Admin.EmailExample.1")}
                                         type="email"
                                         value={this.state.admin.email}
                                         onChange={this.onChangeEmail}
@@ -418,11 +421,11 @@ class RUDDAdmin extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-password"
                                         >
-                                        Password
+                                        {t("Admin.Password.1")}
                                         </label>
                                         <Input 
                                         className="form-control-alternative"
-                                        placeholder="Password" 
+                                        placeholder={t("Admin.Password.1")}
                                         type="password" 
                                         autoComplete="new-password"
                                         value={this.state.adminPassword}
@@ -433,13 +436,13 @@ class RUDDAdmin extends React.Component {
                                 </Row>
                                 <div className="text-center">
                                     <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
-                                        Modify Information
+                                        {t("Admin.ModifyButton.1")}
                                     </Button>
-                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Disable')}>
-                                        Disable Admin
+                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked(i18n.t("Admin.Disable.1"))}>
+                                        {t("Admin.DisableButton.1")}
                                     </Button>
-                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked('Delete')}>
-                                        Delete Register
+                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked(i18n.t("Admin.Delete.1"))}>
+                                        {t("Admin.DeleteButton.1")}
                                     </Button>
                                 </div>
                             </div>
@@ -454,12 +457,12 @@ class RUDDAdmin extends React.Component {
                     <ModalBody>
                         <div className="modal-body">
                             <Alert color="warning">
-                            <strong>{this.state.submitClicked} admin register,</strong><br/>are you sure?
+                            <strong>{this.state.submitClicked} {t("Admin.AdminRegister.1")},</strong><br/>{t("Admin.AreYouSure.1")}
                             </Alert>
-                            <strong>Information:</strong>
+                            <strong>{t("Admin.Info.1")}</strong>
                             <br></br>
-                            <strong> ID: </strong> {this.state.adminData.id}<br/>
-                            <strong> Name: </strong> {this.state.adminData.name} {this.state.adminData.last_name}<br/>                                                        
+                            <strong> {t("Admin.Id.1")} </strong> {this.state.adminData.id}<br/>
+                            <strong> {t("Admin.Name.2")} </strong> {this.state.adminData.name} {this.state.adminData.last_name}<br/>                                                        
                         </div>
                     </ModalBody>
                     <div className="modal-footer">
@@ -469,7 +472,7 @@ class RUDDAdmin extends React.Component {
                             type="button"
                             onClick={this.accept}
                             >
-                            Sure
+                            {t("Admin.SureButton.1")}
                             </Button>
                             <Button
                             color="primary"
@@ -477,7 +480,7 @@ class RUDDAdmin extends React.Component {
                             type="button"
                             onClick={this.closeModal}
                             >
-                            No
+                            {t("Admin.NoButton.1")}
                         </Button>                    
                     </div>
                 </Modal>
@@ -487,4 +490,4 @@ class RUDDAdmin extends React.Component {
     }
 }
 
-export default RUDDAdmin;
+export default withTranslation()(RUDDAdmin);

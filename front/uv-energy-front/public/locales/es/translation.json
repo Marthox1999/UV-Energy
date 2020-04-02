@@ -281,5 +281,110 @@
         "NewName":{
             "1":"Nuevo nombre"
         }
+    },
+
+
+    "Admin":{
+        "AddAdmin":{
+            "1":"Adicionar Administrador"
+        },
+        "Warning":{
+            "1":"Advertencia!"
+        },
+        "EmptyFields":{
+            "1":"Hay campos vacíos!"
+        },
+        "BadInputs":{
+            "1":"Hay información erronea en campos!"
+        },
+        "PersonalInfo":{
+            "1":"Información Personal"
+        },
+        "Name":{
+            "1":"Nombre",
+            "2":"Nombre:"
+        },
+        "LastName":{
+            "1":"Apellido"
+        },
+        "PhoneNumber":{
+            "1":"Número de teléfono",
+            "2":"Número de teléfono:"
+        },
+        "AccountInfo":{
+            "1":"Información de cuenta"
+        },
+        "Username":{
+            "1":"Nombre de usuario",
+            "2":"Nombre de usuario:"
+        },
+        "Email":{
+            "1":"Correo",
+            "2":"Correo:"
+        },
+        "EmailExample":{
+            "1":"jesse@ejemplo.com"
+        },
+        "Password":{
+            "1":"Contrasena"
+        },
+        "AddButton":{
+            "1":"Adicionar"
+        },
+        "Congrat":{
+            "1":"Felicitaciones!",
+            "2":"La cuenta del administrador fue creada!",
+            "3":"La información del administrador fue modificada!"
+        },
+        "Info":{
+            "1":"Información:",
+            "2":"Información de"
+        },
+        "CloseButton":{
+            "1":"Cerrar"
+        },
+        "ModifyButton":{
+            "1":"Modificar Información"
+        },
+        "DisableButton":{
+            "1":"Deshabilitar Administrador"
+        },
+        "DeleteButton":{
+            "1":"Borrar Registro"
+        },
+        "AdminRegister":{
+            "1":"registro de administrador"
+        },
+        "AreYouSure":{
+            "1":"estas seguro?"
+        },
+        "Id":{
+            "1":"ID:",
+            "2":"Id"
+        },
+        "SureButton":{
+            "1":"Sí"
+        },
+        "NoButton":{
+            "1":"No"
+        },
+        "RegisteredAdmins":{
+            "1":"Administradores Registrados"
+        },
+        "ActiveAdmins":{
+            "1":"Administratodores Activos"
+        },
+        "DisableAdmin":{
+            "1":"La cuenta del administrador fue deshabilitada!"
+        },
+        "DeletedAdmin":{
+            "1":"La cuenta del administrador fue borrada!"
+        },
+        "Disable":{
+            "1":"Deshabilitar"
+        },
+        "Delete":{
+            "1":"Borrar"
+        }
     }
 }

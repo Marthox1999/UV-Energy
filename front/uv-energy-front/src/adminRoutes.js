@@ -13,14 +13,14 @@ import ModifySubstation from "views/Administrador-Subestacion/ModifySubstation.j
 var adminRoutes = [
   {
     path: "/addAdmin",
-    name: "Add Admin",
+    name: "Admin.AddAdmin.1",
     icon: "ni ni-fat-add text-blue",
     component: AddAdmin,
     layout: "/admin"
   },
   {
     path: "/registeredAdmins",
-    name: "Registered Admins",
+    name: "Admin.RegisteredAdmins.1",
     icon: "ni ni-single-02 text-blue",
     component: RegisteredAdmins,
     layout: "/admin"
