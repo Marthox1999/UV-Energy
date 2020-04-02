@@ -403,10 +403,10 @@ class RUDDOperator extends React.Component {
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                             {t("Operator.ModifyOperator.1")}
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Disable Operator?')){this.SubmitEvent(2)};} }>
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm(i18n.t("Operator.ConfirmationDisable.1"))){this.SubmitEvent(2)};} }>
                             {t("Operator.DisabledOperator.1")}
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Delete Operator?')){this.SubmitEvent(3)};} }>
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm(i18n.t("Operator.ConfirmationDelete.1"))){this.SubmitEvent(3)};} }>
                             {t("Operator.DeletedOperator.1")}
                             </Button>
                         </div>

@@ -150,6 +150,12 @@
         },
         "NoRegistered":{
             "1":"There aren't any operators registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Operator?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Operator?"
         }
     },
     "Manager":{
@@ -230,6 +236,12 @@
         },
         "NoRegistered":{
             "1":"There aren't any managers registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Manager?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Manager?"
         }
     },
     "Sidebar":{

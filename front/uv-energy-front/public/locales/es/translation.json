@@ -151,6 +151,12 @@
         },
         "NoRegistered":{
             "1":"No hay operadores registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"Eliminar Operador?"
+        },
+        "ConfirmationDisable":{
+            "1":"Deshabilitar Operador?"
         }
     },
     "Manager":{
@@ -231,6 +237,12 @@
         },
         "NoRegistered":{
             "1":"No hay gerentes registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"Eliminar Gerente?"
+        },
+        "ConfirmationDisable":{
+            "1":"Deshabilitar Gerente?"
         }
     },
     "Sidebar":{

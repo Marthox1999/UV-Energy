@@ -403,10 +403,10 @@ class RUDDManager extends React.Component {
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                             {t("Manager.ModifyManager.1")}
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Disable Manager?')){this.SubmitEvent(2)};} }>
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm(i18n.t("Manager.ConfirmationDisable.1"))){this.SubmitEvent(2)};} }>
                             {t("Manager.DisabledManager.1")}
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Delete Manager?')){this.SubmitEvent(3)};} }>
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm(i18n.t("Manager.ConfirmationDelete.1"))){this.SubmitEvent(3)};} }>
                             {t("Manager.DeletedManager.1")}
                             </Button>
                         </div>
