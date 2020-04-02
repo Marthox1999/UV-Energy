@@ -287,7 +287,7 @@ class Sidebar extends React.Component {
               </InputGroup>
             </Form>
             {/* Navigation */}
-            <Nav navbar>
+            <Nav navbar >  
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Manager.1")}
               {this.createManagerLinks(managerRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Administrator.1")}
