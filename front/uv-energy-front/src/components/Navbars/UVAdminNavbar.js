@@ -10,16 +10,22 @@ import {
   Navbar,
   Nav,
   Container,
-  Media
+  Media,
+  Row,
+  Col
 } from "reactstrap";
 
 import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n'
 
 const cookie = new Cookies();
 
 class UVAdminNavbar extends React.Component {
   handlelogout = () => {
     cookie.remove('notCredentials', { path: '/' })
+  }
+  handleClick = (lang) => {
+    i18n.changeLanguage(lang)
   }
   render() {
     const { t } = this.props
@@ -33,6 +39,24 @@ class UVAdminNavbar extends React.Component {
             >
             </Link>
             <Nav className="align-items-center d-none d-md-flex" navbar>
+              <UncontrolledDropdown nav>
+                <DropdownToggle className="pr-0" nav>
+                  <i class="ni ni-world"></i>
+                </DropdownToggle>
+                <DropdownMenu className="dropdown-menu-arrow" right>
+                  <DropdownItem className="noti-title" header tag="div">
+                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('en')}>English</button>
+                  </DropdownItem>
+                  <DropdownItem className="noti-title" header tag="div">
+                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('es')}>Español</button>
+                  </DropdownItem>
+                  <DropdownItem className="noti-title" header tag="div">
+                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('pt')}>Português</button>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+                      
+              <br></br>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="pr-0" nav>
                   <Media className="align-items-center">

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
-import { withTranslation } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import Cookies from 'universal-cookie';
 
 // reactstrap components
@@ -66,7 +66,7 @@ class SidebarM extends React.Component {
             activeClassName="active"
           >
             <i className={prop.icon} />
-            {prop.name}
+            <Trans>{prop.name}</Trans>
           </NavLink>
         </NavItem>
       );
@@ -84,7 +84,7 @@ class SidebarM extends React.Component {
             activeClassName="active"
           >
             <i className={prop.icon} />
-            {prop.name}
+            <Trans>{prop.name}</Trans>
           </NavLink>
         </NavItem>
       );
@@ -102,7 +102,25 @@ class SidebarM extends React.Component {
             activeClassName="active"
           >
             <i className={prop.icon} />
-            {prop.name}
+            <Trans>{prop.name}</Trans>
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+
+  createOperatorLinks = operatorRoutes => {
+    return operatorRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            <Trans>{prop.name}</Trans>
           </NavLink>
         </NavItem>
       );
@@ -112,7 +130,7 @@ class SidebarM extends React.Component {
     cookie.remove('notCredentials', { path: '/' })
   }
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, logo } = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -240,10 +258,12 @@ class SidebarM extends React.Component {
             </Form>
             {/* Navigation */}
             <Nav navbar>
-              &nbsp;&nbsp;&nbsp;&nbsp;Manager
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Manager.1")}
               {this.createManagerLinks(managerRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;Administrator
-              {this.createAdminLinks(adminRoutes)}              
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Administrator.1")}
+              {this.createAdminLinks(adminRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Operator.1")}
+              {this.createOperatorLinks(operatorRoutes)}
               </Nav>
           </Collapse>
         </Container>

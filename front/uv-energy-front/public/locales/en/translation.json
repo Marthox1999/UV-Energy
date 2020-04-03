@@ -70,6 +70,12 @@
         },
         "Account_info":{
             "1":"Account Information"
+        },
+        "Email":{
+            "1":"Email"
+        },
+        "EmailExample":{
+            "1":"jesse@example.com"
         }
     },
     "Operator":{
@@ -452,6 +458,111 @@
         },
         "NewName":{
             "1":"New name"
+        }
+    },
+
+
+    "Admin":{
+        "AddAdmin":{
+            "1":"Add Administrator"
+        },
+        "Warning":{
+            "1":"Warning!"
+        },
+        "EmptyFields":{
+            "1":"There are empty fields!"
+        },
+        "BadInputs":{
+            "1":"Wrong information on fields!"
+        },
+        "PersonalInfo":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name",
+            "2":"Name:"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },
+        "PhoneNumber":{
+            "1":"Phone Number",
+            "2":"Phone Number:"
+        },
+        "AccountInfo":{
+            "1":"Account Information"
+        },
+        "Username":{
+            "1":"Username",
+            "2":"Username:"
+        },
+        "Email":{
+            "1":"Email",
+            "2":"Email:"
+        },
+        "EmailExample":{
+            "1":"jesse@example.com"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "AddButton":{
+            "1":"Add"
+        },
+        "Congrat":{
+            "1":"Congratulations!",
+            "2":"The administrator account was created!",
+            "3":"The administrator was modified!"
+        },
+        "Info":{
+            "1":"Information:",
+            "2":"Information of"
+        },
+        "CloseButton":{
+            "1":"Close"
+        },
+        "ModifyButton":{
+            "1":"Modify Information"
+        },
+        "DisableButton":{
+            "1":"Disable Admin"
+        },
+        "DeleteButton":{
+            "1":"Delete Register"
+        },
+        "AdminRegister":{
+            "1":"administrator register"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "Id":{
+            "1":"ID:",
+            "2":"Id"
+        },
+        "SureButton":{
+            "1":"Sure"
+        },
+        "NoButton":{
+            "1":"No"
+        },
+        "RegisteredAdmins":{
+            "1":"Registered Administrators"
+        },
+        "ActiveAdmins":{
+            "1":"Active Administrators"
+        },
+        "DisableAdmin":{
+            "1":"Admin account was disabled!"
+        },
+        "DeletedAdmin":{
+            "1":"Admin account was deleted!"
+        },
+        "Disable":{
+            "1":"Disable"
+        },
+        "Delete":{
+            "1":"Delete"
         }
     }
 }

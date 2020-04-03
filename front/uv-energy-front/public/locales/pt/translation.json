@@ -54,22 +54,28 @@
     },
     "General":{
         "Information":{
-            "1":"portuguesse"
+            "1":"informação"
         },
         "Name":{
-            "1":"portuguesse"
+            "1":"Nome"
         },
         "Last_name":{
-            "1":"portuguesse"
+            "1":"Último nome"
         },
         "Phone":{
-            "1":"portuguesse"
+            "1":"Número de telefone"
         },
         "Username":{
-            "1":"portuguesse"
+            "1":"Nome do usuário"
         },
         "Account_info":{
-            "1":"portuguesse"
+            "1":"Informação da conta"
+        },
+        "Email":{
+            "1":"O email"
+        },
+        "EmailExample":{
+            "1":"jesse@exemplo.com"
         }
     },
     "Operator":{
@@ -452,6 +458,111 @@
         },
         "NewName":{
             "1":"Novo nome"
+        }
+    },
+
+
+    "Admin":{
+        "AddAdmin":{
+            "1":"Adicionar Administrador"
+        },
+        "Warning":{
+            "1":"Aviso!"
+        },
+        "EmptyFields":{
+            "1":"Existem campos vazios!"
+        },
+        "BadInputs":{
+            "1":"Informações incorretas nos campos!"
+        },
+        "PersonalInfo":{
+            "1":"Informação pessoal"
+        },
+        "Name":{
+            "1":"Nome",
+            "2":"Nome:"
+        },
+        "LastName":{
+            "1":"Último nome"
+        },
+        "PhoneNumber":{
+            "1":"Número de telefone",
+            "2":"Número de telefone:"
+        },
+        "AccountInfo":{
+            "1":"Informação da conta"
+        },
+        "Username":{
+            "1":"Nome do usuário",
+            "2":"Nome do usuário:"
+        },
+        "Email":{
+            "1":"O email",
+            "2":"O email:"
+        },
+        "EmailExample":{
+            "1":"jesse@exemplo.com"
+        },
+        "Password":{
+            "1":"Senha"
+        },
+        "AddButton":{
+            "1":"Adicionar"
+        },
+        "Congrat":{
+            "1":"Parabéns!",
+            "2":"A conta do administrador foi criada!",
+            "3":"As informações do administrador foram modificadas!"
+        },
+        "Info":{
+            "1":"Informação:",
+            "2":"Informação de"
+        },
+        "CloseButton":{
+            "1":"Fechar"
+        },
+        "ModifyButton":{
+            "1":"Modificar informações"
+        },
+        "DisableButton":{
+            "1":"Desativar administrador"
+        },
+        "DeleteButton":{
+            "1":"Excluir registro"
+        },
+        "AdminRegister":{
+            "1":"registro de administrador"
+        },
+        "AreYouSure":{
+            "1":"você tem certeza?"
+        },
+        "Id":{
+            "1":"ID:",
+            "2":"Id"
+        },
+        "SureButton":{
+            "1":"sim"
+        },
+        "NoButton":{
+            "1":"não"
+        },
+        "RegisteredAdmins":{
+            "1":"Administradores Registrados"
+        },
+        "ActiveAdmins":{
+            "1":"Administradores ativos"
+        },
+        "DisableAdmin":{
+            "1":"A conta de administrador foi desativada!"
+        },
+        "DeletedAdmin":{
+            "1":"A conta de administrador foi excluída!"
+        },
+        "Disable":{
+            "1":"Desativar"
+        },
+        "Delete":{
+            "1":"Excluir"
         }
     }
 }
