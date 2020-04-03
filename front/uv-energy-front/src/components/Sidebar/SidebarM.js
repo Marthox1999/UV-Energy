@@ -84,7 +84,7 @@ class SidebarM extends React.Component {
             activeClassName="active"
           >
             <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
+            {prop.name}
           </NavLink>
         </NavItem>
       );
