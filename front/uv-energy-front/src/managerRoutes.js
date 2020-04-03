@@ -2,6 +2,7 @@ import RegisteredAdmins from "views/Administrador-Administrador/RegisteredAdmins
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js";
 import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator.js";
 
+
 var adminRoutes = [
   {
     path: "/registeredAdmins",

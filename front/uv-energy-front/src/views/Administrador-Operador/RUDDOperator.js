@@ -18,6 +18,8 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import i18n from '../../i18n.js';
+import { withTranslation, Trans } from 'react-i18next';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -75,7 +77,7 @@ class RUDDOperator extends React.Component {
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("Wrong Id")
+                alert(i18n.t("Operator.WrongId.1"))
               }
               else{
                 console.log(response.data)
@@ -242,6 +244,7 @@ class RUDDOperator extends React.Component {
 
     
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -251,24 +254,24 @@ class RUDDOperator extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <font size="5">{this.state.operator.first_name} Information</font>
+                        <font size="5">{this.state.operator.first_name} {t("Operator.Information.1")}</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.AddOperator}>
                         <h6 className="heading-small text-muted mb-4">
-                            Personal Information
+                            {t("Operator.PersonalInformation.1")}
                         </h6>
                         <div className="pl-lg-4">
                             <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
+                                <strong>{t("Operator.Warning.1")}</strong> {t("Operator.EmptyFields.1")}!
                             </Alert>
                             <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                <strong>Warning!</strong> Wrong information on fields!
+                                <strong>{t("Operator.Warning.1")}!</strong> {t("Operator.BadInputs.1")}!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The Operator was modified!
+                                <strong>{t("Operator.Congratulations.1")}!</strong> {t("Operator.ModifySuccesfull.1")}
                             </Alert>
                         <Row>
                             <Col lg="6">
@@ -277,12 +280,12 @@ class RUDDOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Name
+                                {t("Operator.Name.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-first-name"
-                                placeholder="Name"
+                                placeholder={t("Operator.Name.1")}
                                 type="text"
                                 value={this.state.operator.first_name}
                                 onChange={this.onChangeFirsName}
@@ -295,12 +298,12 @@ class RUDDOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Last Name
+                                {t("Operator.LastName.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-last-name"
-                                placeholder="Last Name"
+                                placeholder={t("Operator.LastName.1")}
                                 type="text"
                                 value={this.state.operator.last_name}
                                 onChange={this.onChangeLastName}
@@ -316,12 +319,12 @@ class RUDDOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-phone-number"
                                 >
-                                Phone Number
+                                {t("Operator.Phone.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-phone-number"
-                                placeholder="Phone Number"
+                                placeholder={t("Operator.Phone.1")}
                                 type="text"
                                 value={this.state.operator.cellphone}
                                 onChange={this.onChangeCellphone}
@@ -333,7 +336,7 @@ class RUDDOperator extends React.Component {
 
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Account Information
+                        {t("Operator.AccountInformation.1")}
                         </h6>
                         <div className="pl-lg-4">                        
                         <Row>
@@ -343,12 +346,12 @@ class RUDDOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-username"
                                 >
-                                Username
+                                {t("Operator.Username.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-username"
-                                placeholder="Username"
+                                placeholder={t("Operator.Username.1")}
                                 type="text"                                
                                 value={this.state.operator.username}
                                 onChange={this.onChangeUsername}
@@ -374,6 +377,7 @@ class RUDDOperator extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
+                        {/* 
                         <Row>
                             <Col className="col-md-12">
                             <FormGroup>
@@ -394,15 +398,16 @@ class RUDDOperator extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
+                        */}
                         <div className="text-center">
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
-                                Modify Information
+                            {t("Operator.ModifyOperator.1")}
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Disable Operator?')){this.SubmitEvent(2)};} }>
-                                Disable Operator
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm(i18n.t("Operator.ConfirmationDisable.1"))){this.SubmitEvent(2)};} }>
+                            {t("Operator.DisabledOperator.1")}
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Delete Operator?')){this.SubmitEvent(3)};} }>
-                                Delete Register
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm(i18n.t("Operator.ConfirmationDelete.1"))){this.SubmitEvent(3)};} }>
+                            {t("Operator.DeletedOperator.1")}
                             </Button>
                         </div>
                         </div>
@@ -415,4 +420,4 @@ class RUDDOperator extends React.Component {
     }
 }
 
-export default RUDDOperator;
+export default withTranslation()(RUDDOperator);

@@ -79,6 +79,178 @@
             "1":"jesse@ejemplo.com"
         }
     },
+    "Operator":{
+        "Warning":{
+            "1":"Advertencia"
+        },
+        "EmptyFields":{
+            "1":"Campos Vacios"
+        },
+        "AddOperator":{
+            "1":"Agregar Operador"
+        },
+        "BadInputs":{
+            "1":"Campos Incorrectos"
+        },
+        "PersonalInformation":{
+            "1":"Información Personal"
+        },
+        "Name":{
+            "1":"Nombre"
+        },
+        "LastName":{
+            "1":"Apellido"
+        },         
+        "Phone":{
+            "1":"Celular"
+        },
+        "Username":{
+            "1":"Usuario"
+        },
+        "AccountInformation":{
+            "1":"Información de la cuenta"
+        },
+        "Password":{
+            "1":"Contraseña"
+        },
+        "Add":{
+            "1":"Agregar"
+        },
+        "Information":{
+            "1":"Información"
+        },
+        "Congratulations":{
+            "1":"Felicidades"
+        },
+        "CreateSuccesfull":{
+            "1":"El operador fue creado!"
+        },
+        "ModifySuccesfull":{
+            "1":"El operador fue modificado!"
+        },
+        "Close":{
+            "1":"Cerrar"
+        },
+        "ActiveOperators":{
+            "1":"Operadores Activos"
+        },
+        "DisabledNotification":{
+            "1":"Las cuentas de los operadores estan deshabilitadas! Por favor recargue la página para ve los cambios"
+        },
+        "DeletedNotification":{
+            "1":"Las cuentas de los operadores estan eliminadas! Por favor recargue la página para ver los cambios"
+        },
+        "ModifyOperator":{
+            "1":"Modificar Operador"
+        },
+        "DisabledOperator":{
+            "1":"Deshabilitar Operador"
+        },
+        "DeletedOperator":{
+            "1":"Eliminar Operador"
+        },
+        "RegisteredOperators":{
+            "1":"Operadores Registrados"
+        },
+        "WrongId":{
+            "1":"Id Incorrecto"
+        },
+        "NoRegistered":{
+            "1":"No hay operadores registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"Eliminar Operador?"
+        },
+        "ConfirmationDisable":{
+            "1":"Deshabilitar Operador?"
+        }
+    },
+    "Manager":{
+        "Warning":{
+            "1":"Advertencia"
+        },
+        "EmptyFields":{
+            "1":"Campos Vacios"
+        },
+        "AddManager":{
+            "1":"Agregar Gerente"
+        },
+        "BadInputs":{
+            "1":"Campos Incorrectos"
+        },
+        "PersonalInformation":{
+            "1":"Información Personal"
+        },
+        "Name":{
+            "1":"Nombre"
+        },
+        "LastName":{
+            "1":"Apellido"
+        },         
+        "Phone":{
+            "1":"Celular"
+        },
+        "Username":{
+            "1":"Usuario"
+        },
+        "AccountInformation":{
+            "1":"Información de la cuenta"
+        },
+        "Password":{
+            "1":"Contraseña"
+        },
+        "Add":{
+            "1":"Agregar"
+        },
+        "Information":{
+            "1":"Información"
+        },
+        "Congratulations":{
+            "1":"Felicidades"
+        },
+        "CreateSuccesfull":{
+            "1":"El gerente fue creado!"
+        },
+        "ModifySuccesfull":{
+            "1":"El gerente fue modificado!"
+        },
+        "Close":{
+            "1":"Cerrar"
+        },
+        "ActiveManager":{
+            "1":"Gerentes Activos"
+        },
+        "DisabledNotification":{
+            "1":"Las cuentas de los gerentes estan deshabilitadas! Por favor recargue la página para ve los cambios"
+        },
+        "DeletedNotification":{
+            "1":"Las cuentas de los gerentes estan eliminadas! Por favor recargue la página para ver los cambios"
+        },
+        "ModifyManager":{
+            "1":"Modificar Gerente"
+        },
+        "DisabledManager":{
+            "1":"Deshabilitar Gerente"
+        },
+        "DeletedManager":{
+            "1":"Eliminar Gerente"
+        },
+        "RegisteredManagers":{
+            "1":"Gerentes Registrados"
+        },
+        "WrongId":{
+            "1":"Id Incorrecto"
+        },
+        "NoRegistered":{
+            "1":"No hay gerentes registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"Eliminar Gerente?"
+        },
+        "ConfirmationDisable":{
+            "1":"Deshabilitar Gerente?"
+        }
+    },
     "Sidebar":{
         "Welcome":{
             "1":"Bienvenido!"

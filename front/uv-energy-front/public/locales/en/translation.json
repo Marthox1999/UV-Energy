@@ -78,6 +78,178 @@
             "1":"jesse@example.com"
         }
     },
+    "Operator":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddOperator":{
+            "1":"Add Operator"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The operator was created!"
+        },
+        "ModifySuccesfull":{
+            "1":"The operator was modified!"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ActiveOperator":{
+            "1":"Active Operator"
+        },
+        "DisabledNotification":{
+            "1":"Operator account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"Operator account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyOperator":{
+            "1":"Modify Operator"
+        },
+        "DisabledOperator":{
+            "1":"Disabled Operator"
+        },
+        "DeletedOperator":{
+            "1":"Deleted Operator"
+        },
+        "RegisteredOperators":{
+            "1":"Registered Operators"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any operators registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Operator?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Operator?"
+        }
+    },
+    "Manager":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddManager":{
+            "1":"Add Manager"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The manager was created!"
+        },
+        "ModifySuccesfull":{
+            "1":"The manager was modified!"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ActiveManager":{
+            "1":"Active Manager"
+        },
+        "DisabledNotification":{
+            "1":"Manager account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"Manager account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyManager":{
+            "1":"Modify Manager"
+        },
+        "DisabledManager":{
+            "1":"Disabled Manager"
+        },
+        "DeletedManager":{
+            "1":"Deleted Manager"
+        },
+        "RegisteredManagers":{
+            "1":"Registered Managers"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any managers registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Manager?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Manager?"
+        }
+    },
     "Sidebar":{
         "Welcome":{
             "1":"Welcome!"
