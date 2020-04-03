@@ -27,6 +27,7 @@ import {
 } from "reactstrap";
 
 import { withTranslation, Trans } from 'react-i18next';
+import i18n from '../../i18n'
 
 class Sidebar extends React.Component {
   state = {
@@ -35,6 +36,9 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.activeRoute.bind(this);
+  }
+  handleClick = (lang) => {
+    i18n.changeLanguage(lang)
   }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
