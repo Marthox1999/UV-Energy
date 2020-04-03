@@ -389,6 +389,7 @@ class RUDDAdmin extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
+                        {/*
                         <Row>
                             <Col className="col-md-12">
                             <FormGroup>
@@ -409,6 +410,7 @@ class RUDDAdmin extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
+                         */}
                         <div className="text-center">
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                                 Modify Information

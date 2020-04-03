@@ -1,5 +1,4 @@
 import RegisteredAdmins from "views/Administrador-Administrador/RegisteredAdmins.js";
-
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js"
 
 var adminRoutes = [

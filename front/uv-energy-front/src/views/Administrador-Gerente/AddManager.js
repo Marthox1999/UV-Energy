@@ -19,6 +19,7 @@ import {
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 import Axios from "axios";
+import { withTranslation, Trans } from 'react-i18next';
 import Cookies from 'universal-cookie';
 
 const c = require('../constants')
@@ -155,6 +156,7 @@ class AddManager extends React.Component {
         window.location.reload(true);
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -164,20 +166,20 @@ class AddManager extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <font size="5">Add Manager</font>
+                        <font size="5">{t("Manager.AddManager.1")}</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                        <strong>Warning!</strong> There are empty fields!
+                        <strong>{t("Manager.Warning.1")}</strong> {t("Manager.EmptyFields.1")}
                     </Alert>
                     <Alert color="warning" isOpen={this.state.isBadinputs}>
-                        <strong>Warning!</strong> Wrong information on fields!
+                    <strong>{t("Manager.Warning.1")}</strong> {t("Manager.BadInputs.1")}
                     </Alert>
                     <Form onSubmit={this.AddManager}>
                         <h6 className="heading-small text-muted mb-4">
-                        Personal Information
+                        {t("Manager.PersonalInformation.1")}
                         </h6>
                         <div className="pl-lg-4">
                         <Row>
@@ -187,12 +189,12 @@ class AddManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Name
+                                {t("Manager.Name.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-first-name"
-                                placeholder="Name"
+                                placeholder={t("Manager.Name.1")}
                                 type="text"
                                 value={this.state.user.first_name}
                                 onChange={this.onChangeFirstName}
@@ -205,12 +207,12 @@ class AddManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Last Name
+                                {t("Manager.LastName.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-last-name"
-                                placeholder="Last Name"
+                                placeholder={t("Manager.LastName.1")}
                                 type="text"
                                 value={this.state.user.last_name}
                                 onChange={this.onChangeLastName}
@@ -223,13 +225,13 @@ class AddManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-id"
                                 >
-                                Phone Number
+                                {t("Manager.Phone.1")}
                                 </label>
                                 <Input 
                                 className="form-control-alternative"
                                 id="input-cellphone"
-                                placeholder="Phone Number"
-                                type="text"
+                                placeholder={t("Manager.Phone.1")}
+                                type={t("Manager.Phone.1")}
                                 value={this.state.user.cellphone}
                                 onChange={this.onChangeCellphone}/>
                             </FormGroup>
@@ -237,22 +239,22 @@ class AddManager extends React.Component {
                         </Row>
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Account Information
+                        {t("Manager.AccountInformation.1")}
                         </h6>
                         <div className="pl-lg-4"></div>
                         <Row>
-                            <Col lg="6">
+                        <Col lg="6">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
                                 htmlFor="input-username"
                                 >
-                                Username
+                                {t("Manager.Username.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-username"
-                                placeholder="Username"
+                                placeholder={t("Manager.Username.1")}
                                 type="text"
                                 value={this.state.user.username}
                                 onChange={this.onChangeUsername}
@@ -279,17 +281,17 @@ class AddManager extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col lg="6">
+                        <Col lg="6">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
                                 htmlFor="input-password"
                                 >
-                                Password
+                                {t("Manager.Password.1")}
                                 </label>
                                 <Input 
                                 className="form-control-alternative"
-                                placeholder="Password" 
+                                placeholder={t("Manager.Password.1")}
                                 type="password" 
                                 autoComplete="new-password"
                                 value={this.state.user.password}
@@ -299,7 +301,7 @@ class AddManager extends React.Component {
                         </Row>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
-                                Add
+                            {t("Manager.Add.1")}
                             </Button>
                         </div>
                         </div>
@@ -313,14 +315,14 @@ class AddManager extends React.Component {
                     >
                     <ModalBody>
                     <div className="modal-body">
-                        <Alert color="success">
-                        <strong>Congratulations!</strong><br/>The manager was created!
+                    <Alert color="success">
+                        <strong>{t("Manager.Congratulations.1")}!</strong><br/>{t("Manager.CreateSuccesfull.1")}
                         </Alert>
-                        <strong>Information:</strong>
+                        <strong>{t("Manager.Information.1")}:</strong>
                         <br></br>
-                        <strong> Name: </strong> {this.state.user.first_name}<br/>
-                        <strong> Last Name: </strong> {this.state.user.last_name}<br/>
-                        <strong> Phone Number: </strong> {this.state.user.cellphone}<br/>
+                        <strong> {t("Manager.Name.1")}: </strong> {this.state.user.first_name}<br/>
+                        <strong> {t("Manager.LastName.1")}: </strong> {this.state.user.last_name}<br/>
+                        <strong> {t("Manager.Phone.1")}: </strong> {this.state.user.cellphone}<br/>
                         <strong> Email: </strong> {this.state.user.email}<br/>
                     </div>
                     </ModalBody>
@@ -331,7 +333,7 @@ class AddManager extends React.Component {
                         type="button"
                         onClick={this.closeModal}
                         >
-                        Close
+                        {t("Manager.Close.1")}
                         </Button>
                     </div>
             </Modal>
@@ -341,4 +343,4 @@ class AddManager extends React.Component {
     }
 }
 
-export default AddManager;
+export default withTranslation()(AddManager);
