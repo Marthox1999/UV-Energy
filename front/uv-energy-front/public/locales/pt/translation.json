@@ -54,22 +54,28 @@
     },
     "General":{
         "Information":{
-            "1":"portuguesse"
+            "1":"informação"
         },
         "Name":{
-            "1":"portuguesse"
+            "1":"Nome"
         },
         "Last_name":{
-            "1":"portuguesse"
+            "1":"Último nome"
         },
         "Phone":{
-            "1":"portuguesse"
+            "1":"Número de telefone"
         },
         "Username":{
-            "1":"portuguesse"
+            "1":"Nome do usuário"
         },
         "Account_info":{
-            "1":"portuguesse"
+            "1":"Informação da conta"
+        },
+        "Email":{
+            "1":"O email"
+        },
+        "EmailExample":{
+            "1":"jesse@exemplo.com"
         }
     },
     "Sidebar":{

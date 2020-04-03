@@ -1,12 +1,12 @@
 import RegisteredAdmins from "views/Administrador-Administrador/RegisteredAdmins.js";
-
-import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js"
+import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js";
+import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator.js";
 
 var adminRoutes = [
   {
     path: "/registeredAdmins",
-    name: "Registered Admins",
-    icon: "ni ni-fat-add text-blue",
+    name: "Admin.RegisteredAdmins.1",
+    icon: "ni ni-single-02 text-blue",
     component: RegisteredAdmins,
     layout: "/manager"
   },
@@ -22,7 +22,18 @@ var managerRoutes = [
   },
 ];
 
+var operatorRoutes = [
+  {
+    path: "/registeredOperators",
+    name: "Registered Operators",
+    icon: "ni ni-single-02 text-blue",
+    component: RegisteredOperators,
+    layout: "/manager"
+  },
+];
+
 export {
   adminRoutes,  
   managerRoutes,
+  operatorRoutes
 }

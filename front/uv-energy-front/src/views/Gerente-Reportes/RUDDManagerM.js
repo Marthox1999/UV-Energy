@@ -68,7 +68,7 @@ class RUDDManagerM extends Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{this.state.manager.first_name} {t("General.Information.1")}</h3>
+                        <h3 className="mb-0">{t("Admin.Info.2")} {this.state.manager.first_name}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -168,13 +168,13 @@ class RUDDManagerM extends Component {
                                     className="form-control-label"
                                     htmlFor="input-email"
                                     >
-                                    Email 
+                                    {t("General.Email.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-email"
-                                    placeholder="jesse@example.com"
+                                    placeholder={t("General.EmailExample.1")}
                                     type="email"
                                     value={this.state.manager.email}
                                     />

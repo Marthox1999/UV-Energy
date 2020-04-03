@@ -70,6 +70,12 @@
         },
         "Account_info":{
             "1":"Account Information"
+        },
+        "Email":{
+            "1":"Email"
+        },
+        "EmailExample":{
+            "1":"jesse@example.com"
         }
     },
     "Sidebar":{

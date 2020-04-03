@@ -1,6 +1,8 @@
 import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 // reactstrap components
 import {
   Card,
@@ -55,6 +57,7 @@ class RUDDOperatorM extends React.Component {
         }).catch(error => alert(error))
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -64,7 +67,7 @@ class RUDDOperatorM extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{this.state.operator.first_name} Information</h3>
+                        <h3 className="mb-0">{t("Admin.Info.2")} {this.state.operator.first_name}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -80,13 +83,13 @@ class RUDDOperatorM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-first-name"
                                     >
-                                    Name
+                                    {t("General.Name.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-first-name"
-                                    placeholder="Name"
+                                    placeholder={t("General.Name.1")}
                                     type="text"
                                     value={this.state.operator.first_name}
                                     />
@@ -98,13 +101,13 @@ class RUDDOperatorM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-last-name"
                                     >
-                                    Last Name
+                                    {t("General.Last_name.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-last-name"
-                                    placeholder="Last Name"
+                                    placeholder={t("General.Last_name.1")}
                                     type="text"
                                     value={this.state.operator.last_name}
                                     />
@@ -119,13 +122,13 @@ class RUDDOperatorM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-phone-number"
                                     >
-                                    Phone Number
+                                    {t("General.Phone.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-phone-number"
-                                    placeholder="Phone Number"
+                                    placeholder={t("General.Phone.1")}
                                     type="text"
                                     value={this.state.operator.cellphone}
                                     />
@@ -136,7 +139,7 @@ class RUDDOperatorM extends React.Component {
 
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Account Information
+                        {t("General.Account_info.1")}
                         </h6>
                         <div className="pl-lg-4">                        
                             <Row>
@@ -146,13 +149,13 @@ class RUDDOperatorM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-username"
                                     >
-                                    Username
+                                    {t("General.Username.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-username"
-                                    placeholder="Username"
+                                    placeholder={t("General.Username.1")}
                                     type="text"                                
                                     value={this.state.operator.username}
                                     />
@@ -164,13 +167,13 @@ class RUDDOperatorM extends React.Component {
                                     className="form-control-label"
                                     htmlFor="input-email"
                                     >
-                                    Email 
+                                    {t("General.Email.1")}
                                     </label>
                                     <Input
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-email"
-                                    placeholder="jesse@example.com"
+                                    placeholder={t("General.EmailExample.1")}
                                     type="email"
                                     value={this.state.operator.email}
                                     />
@@ -187,4 +190,4 @@ class RUDDOperatorM extends React.Component {
     }
 }
 
-export default RUDDOperatorM;
+export default withTranslation()(RUDDOperatorM);

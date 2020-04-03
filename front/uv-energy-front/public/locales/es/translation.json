@@ -71,6 +71,12 @@
         },
         "Account_info":{
             "1":"Informacion de la cuenta"
+        },
+        "Email":{
+            "1":"Correo"
+        },
+        "EmailExample":{
+            "1":"jesse@ejemplo.com"
         }
     },
     "Sidebar":{
