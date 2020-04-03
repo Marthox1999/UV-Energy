@@ -16,7 +16,7 @@ var adminRoutes = [
 var managerRoutes = [
   {
     path: "/registeredManagers",
-    name: "Registered Managers",
+    name: "Manager.AddManager.1",
     icon: "ni ni-single-02 text-blue",
     component: RegisteredManagers,
     layout: "/manager"
@@ -26,7 +26,7 @@ var managerRoutes = [
 var operatorRoutes = [
   {
     path: "/registeredOperators",
-    name: "Registered Operators",
+    name: "Operator.RegisteredOperators.1",
     icon: "ni ni-single-02 text-blue",
     component: RegisteredOperators,
     layout: "/manager"
