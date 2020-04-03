@@ -110,7 +110,7 @@ var routes = [
     name: "Selected Operator",
     icon: "ni ni-single-02 text-blue",
     component: RUDDOperatorM,
-    layout: "/admin"
+    layout: "/manager"
   },
 ];
 export default routes;
