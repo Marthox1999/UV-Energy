@@ -17,7 +17,7 @@ import {
 
 import 'leaflet/dist/leaflet.css';
 
-import i18n from '../../i18n'
+import i18n from '../../i18n';
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 

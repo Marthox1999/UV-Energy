@@ -26,9 +26,7 @@ import {
   Col
 } from "reactstrap";
 
-import { withTranslation, Trans } from 'react-i18next';
-
-class Sidebar extends React.Component {
+class SidebarM extends React.Component {
   state = {
     collapseOpen: false
   };
@@ -82,7 +80,7 @@ class Sidebar extends React.Component {
             activeClassName="active"
           >
             <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
+            {prop.name}
           </NavLink>
         </NavItem>
       );
@@ -100,66 +98,14 @@ class Sidebar extends React.Component {
             activeClassName="active"
           >
             <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
-
-  createOperatorLinks = operatorRoutes => {
-    return operatorRoutes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
-  createSubstationLinks = substationRoutes => {
-    return substationRoutes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
-  createElectricTransfomerLinks = electricTransformerRoutes => {
-    return electricTransformerRoutes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
+            {prop.name}
           </NavLink>
         </NavItem>
       );
     });
   };
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo} = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -172,7 +118,6 @@ class Sidebar extends React.Component {
         target: "_blank"
       };
     }
-    const { t } = this.props
     return (
       <Navbar
         className="navbar-vertical fixed-left navbar-light bg-white"
@@ -184,7 +129,6 @@ class Sidebar extends React.Component {
           <button
             className="navbar-toggler"
             type="button"
-            color="blue"
             onClick={this.toggleCollapse}
           >
             <span className="navbar-toggler-icon" />
@@ -207,35 +151,35 @@ class Sidebar extends React.Component {
                   <span className="avatar avatar-sm rounded-circle">
                     <img
                       alt="..."
-                      src={require("assets/img/brand/favicon.png")}
+                      src={require("assets/img/theme/team-1-800x800.jpg")}
                     />
                   </span>
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
                 <DropdownItem className="noti-title" header tag="div">
-                  <h6 className="text-overflow m-0">{t("Sidebar.Welcome.1")}</h6>
+                  <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-single-02" />
-                  <span>{t("Sidebar.MyProfile.1")}</span>
+                  <span>My profile</span>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-settings-gear-65" />
-                  <span>{t("Sidebar.Settings.1")}</span>
+                  <span>Settings</span>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-calendar-grid-58" />
-                  <span>{t("Sidebar.Activity.1")}</span>
+                  <span>Activity</span>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-support-16" />
-                  <span>{t("Sidebar.Support.1")}</span>
+                  <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                   <i className="ni ni-user-run" />
-                  <span>{t("Sidebar.Logout.1")}</span>
+                  <span>Logout</span>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -287,17 +231,7 @@ class Sidebar extends React.Component {
               </InputGroup>
             </Form>
             {/* Navigation */}
-            <Nav navbar >  
-              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Manager.1")}
-              {this.createManagerLinks(managerRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Administrator.1")}
-              {this.createAdminLinks(adminRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Operator.1")}
-              {this.createOperatorLinks(operatorRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Substation.1")}
-              {this.createSubstationLinks(substationRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.ElectricTransformer.1")}
-              {this.createElectricTransfomerLinks(electricTransformerRoutes)}
+            <Nav navbar>             
               </Nav>
           </Collapse>
         </Container>
@@ -306,14 +240,14 @@ class Sidebar extends React.Component {
   }
 }
 
-Sidebar.defaultProps = {
+SidebarM.defaultProps = {
   adminRoutes: [{}],
   managerRoutes: [{}],
   operatorRoutes: [{}],
   electricTransformerRoutes: [{}]
 };
 
-Sidebar.propTypes = {
+SidebarM.propTypes = {
   // links that will be displayed inside the component
   adminRoutes: PropTypes.arrayOf(PropTypes.object),
   managerRoutes: PropTypes.arrayOf(PropTypes.object),
@@ -333,4 +267,4 @@ Sidebar.propTypes = {
   })
 };
 
-export default withTranslation()(Sidebar);
+export default SidebarM;
