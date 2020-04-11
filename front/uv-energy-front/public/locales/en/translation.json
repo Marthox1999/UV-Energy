@@ -307,6 +307,9 @@
         "NoSubstation":{
             "1":"There aren't substations"
         },
+        "Reference":{
+            "1":"Reference"
+        },
         "Name":{
             "1":"Name"
         },
@@ -396,8 +399,8 @@
         "NoSubstation":{
             "1":"There aren't substations"
         },
-        "Reference":{
-            "1":"Reference"
+        "Name":{
+            "1":"Name"
         },
         "ChoosePoint":{
             "1":"Choosen the point:"

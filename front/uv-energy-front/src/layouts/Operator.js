@@ -1,17 +1,14 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
 import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import SidebarO from "components/Sidebar/SidebarO.js";
+
 import routes from "routes.js";
-/*
-import adminRoutes from "adminRoutes.js";
-import managerRoutes from "managerRoutes.js";
-import operatorRoutes from "operatorRoutes.js";
-*/
+import {clientRoutes, electricTransformerRoutes, substationRoutes} from "operatorRoutes.js";
 
 import Cookies from 'universal-cookie';
 
@@ -63,6 +60,51 @@ class Operator extends React.Component {
       }
     });
   };
+  getClientRoutes = clientRoutes => {
+    return clientRoutes.map((prop, key) => {
+      if (prop.layout === "/operator") {
+        return (
+          <Route  
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getTransformerRoutes = transformerRoutes => {
+    return transformerRoutes.map((prop, key) => {
+      if (prop.layout === "/operator") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getsubstationRoutes = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      if (prop.layout === "/operator") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -74,24 +116,34 @@ class Operator extends React.Component {
         }
       }
       return "Brand";
-  }; 
+  };
   render() {
-    console.log(this.state)
     return (
       <>
         <SidebarO
-        {...this.props}        
+          {...this.props}
+          routes={routes}
+          clientRoutes={clientRoutes}
+          electricTransformerRoutes={electricTransformerRoutes}
+          substationRoutes={substationRoutes}
           logo={{
             innerLink: "/operator/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
             imgAlt: "..."
           }}
-          />
+        />
+        <div className="main-content" ref="mainContent">
           <UVAdminNavbar/>
           <Switch>
+            {this.getRoutes(routes)}
+            {this.getsubstationRoutes(substationRoutes)}
+            {this.getsubstationRoutes(substationRoutes)}
+            {this.getTransformerRoutes(electricTransformerRoutes)}
+            <Redirect from="*" to="/operator/index" />
           </Switch>
           <Container fluid>
           </Container>
+        </div>
       </>
     );
   }

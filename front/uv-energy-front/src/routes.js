@@ -92,6 +92,13 @@ var routes = [
     layout: "/admin"
   },
   {
+    path: "/index",
+    name: "Dashboard",
+    icon: "ni ni-tv-2 text-primary",
+    component: Index,
+    layout: "/manager"
+  },
+  {
     path: "/RUDDAdminM",
     name: "Selected Admin",
     icon: "ni ni-single-02 text-blue",
@@ -111,6 +118,13 @@ var routes = [
     icon: "ni ni-single-02 text-blue",
     component: RUDDOperatorM,
     layout: "/manager"
+  },
+  {
+    path: "/index",
+    name: "Dashboard",
+    icon: "ni ni-tv-2 text-primary",
+    component: Index,
+    layout: "/operator"
   },
 ];
 export default routes;
