@@ -70,6 +70,184 @@
         },
         "Account_info":{
             "1":"Account Information"
+        },
+        "Email":{
+            "1":"Email"
+        },
+        "EmailExample":{
+            "1":"jesse@example.com"
+        }
+    },
+    "Operator":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddOperator":{
+            "1":"Add Operator"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The operator was created!"
+        },
+        "ModifySuccesfull":{
+            "1":"The operator was modified!"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ActiveOperator":{
+            "1":"Active Operator"
+        },
+        "DisabledNotification":{
+            "1":"Operator account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"Operator account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyOperator":{
+            "1":"Modify Operator"
+        },
+        "DisabledOperator":{
+            "1":"Disabled Operator"
+        },
+        "DeletedOperator":{
+            "1":"Deleted Operator"
+        },
+        "RegisteredOperators":{
+            "1":"Registered Operators"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any operators registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Operator?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Operator?"
+        }
+    },
+    "Manager":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddManager":{
+            "1":"Add Manager"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The manager was created!"
+        },
+        "ModifySuccesfull":{
+            "1":"The manager was modified!"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ActiveManager":{
+            "1":"Active Manager"
+        },
+        "DisabledNotification":{
+            "1":"Manager account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"Manager account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyManager":{
+            "1":"Modify Manager"
+        },
+        "DisabledManager":{
+            "1":"Disabled Manager"
+        },
+        "DeletedManager":{
+            "1":"Deleted Manager"
+        },
+        "RegisteredManagers":{
+            "1":"Registered Managers"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any managers registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Manager?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Manager?"
         }
     },
     "Sidebar":{
@@ -280,6 +458,111 @@
         },
         "NewName":{
             "1":"New name"
+        }
+    },
+
+
+    "Admin":{
+        "AddAdmin":{
+            "1":"Add Administrator"
+        },
+        "Warning":{
+            "1":"Warning!"
+        },
+        "EmptyFields":{
+            "1":"There are empty fields!"
+        },
+        "BadInputs":{
+            "1":"Wrong information on fields!"
+        },
+        "PersonalInfo":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name",
+            "2":"Name:"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },
+        "PhoneNumber":{
+            "1":"Phone Number",
+            "2":"Phone Number:"
+        },
+        "AccountInfo":{
+            "1":"Account Information"
+        },
+        "Username":{
+            "1":"Username",
+            "2":"Username:"
+        },
+        "Email":{
+            "1":"Email",
+            "2":"Email:"
+        },
+        "EmailExample":{
+            "1":"jesse@example.com"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "AddButton":{
+            "1":"Add"
+        },
+        "Congrat":{
+            "1":"Congratulations!",
+            "2":"The administrator account was created!",
+            "3":"The administrator was modified!"
+        },
+        "Info":{
+            "1":"Information:",
+            "2":"Information of"
+        },
+        "CloseButton":{
+            "1":"Close"
+        },
+        "ModifyButton":{
+            "1":"Modify Information"
+        },
+        "DisableButton":{
+            "1":"Disable Admin"
+        },
+        "DeleteButton":{
+            "1":"Delete Register"
+        },
+        "AdminRegister":{
+            "1":"administrator register"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "Id":{
+            "1":"ID:",
+            "2":"Id"
+        },
+        "SureButton":{
+            "1":"Sure"
+        },
+        "NoButton":{
+            "1":"No"
+        },
+        "RegisteredAdmins":{
+            "1":"Registered Administrators"
+        },
+        "ActiveAdmins":{
+            "1":"Active Administrators"
+        },
+        "DisableAdmin":{
+            "1":"Admin account was disabled!"
+        },
+        "DeletedAdmin":{
+            "1":"Admin account was deleted!"
+        },
+        "Disable":{
+            "1":"Disable"
+        },
+        "Delete":{
+            "1":"Delete"
         }
     }
 }

@@ -17,6 +17,8 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import i18n from '../../i18n.js';
+import { withTranslation, Trans } from 'react-i18next';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -74,7 +76,7 @@ class RUDDManager extends React.Component {
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("Wrong Id")
+                alert(i18n.t("Manager.WrongId.1"))
               }
               else{
                 console.log(response.data)
@@ -242,6 +244,7 @@ class RUDDManager extends React.Component {
         
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -251,24 +254,24 @@ class RUDDManager extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <font size="5">{this.state.manager.first_name} Information</font>
+                        <font size="5">{this.state.manager.first_name} {t("Manager.Information.1")}</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Form onSubmit={this.AddManager}>
                         <h6 className="heading-small text-muted mb-4">
-                            Personal Information
+                        {t("Manager.PersonalInformation.1")}
                         </h6>
                         <div className="pl-lg-4">
-                            <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                <strong>Warning!</strong> There are empty fields!
+                        <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                                <strong>{t("Manager.Warning.1")}</strong> {t("Manager.EmptyFields.1")}!
                             </Alert>
                             <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                <strong>Warning!</strong> Wrong information on fields!
+                                <strong>{t("Manager.Warning.1")}!</strong> {t("Manager.BadInputs.1")}!
                             </Alert>
                             <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                                <strong>Congratulations!</strong> The Manager was modified!
+                                <strong>{t("Manager.Congratulations.1")}!</strong> {t("Manager.ModifySuccesfull.1")}
                             </Alert>
                         <Row>
                             <Col lg="6">
@@ -277,12 +280,12 @@ class RUDDManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Name
+                                {t("Manager.Name.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-first-name"
-                                placeholder="Name"
+                                placeholder={t("Manager.Name.1")}
                                 type="text"
                                 value={this.state.manager.first_name}
                                 onChange={this.onChangeFirsName}
@@ -295,12 +298,12 @@ class RUDDManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Last Name
+                                {t("Manager.LastName.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-last-name"
-                                placeholder="Last Name"
+                                placeholder={t("Manager.LastName.1")}
                                 type="text"
                                 value={this.state.manager.last_name}
                                 onChange={this.onChangeLastName}
@@ -316,12 +319,12 @@ class RUDDManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-phone-number"
                                 >
-                                Phone Number
+                                {t("Manager.Phone.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-phone-number"
-                                placeholder="Phone Number"
+                                placeholder={t("Manager.Phone.1")}
                                 type="text"
                                 value={this.state.manager.cellphone}
                                 onChange={this.onChangeCellphone}
@@ -333,7 +336,7 @@ class RUDDManager extends React.Component {
 
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Account Information
+                        {t("Manager.AccountInformation.1")}
                         </h6>
                         <div className="pl-lg-4">                        
                         <Row>
@@ -343,12 +346,12 @@ class RUDDManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-username"
                                 >
-                                Username
+                                {t("Manager.Username.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-username"
-                                placeholder="Username"
+                                placeholder={t("Manager.Username.1")}
                                 type="text"                                
                                 value={this.state.manager.username}
                                 onChange={this.onChangeUsername}
@@ -374,6 +377,7 @@ class RUDDManager extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
+                        {/*
                         <Row>
                             <Col className="col-md-12">
                             <FormGroup>
@@ -394,15 +398,16 @@ class RUDDManager extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
+                        */}
                         <div className="text-center">
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
-                                Modify Information
+                            {t("Manager.ModifyManager.1")}
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Disable Manager?')){this.SubmitEvent(2)};} }>
-                                Disable Manager
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm(i18n.t("Manager.ConfirmationDisable.1"))){this.SubmitEvent(2)};} }>
+                            {t("Manager.DisabledManager.1")}
                             </Button>
-                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm('Delete Manager?')){this.SubmitEvent(3)};} }>
-                                Delete Register
+                            <Button className="mt-4" color="primary" onClick={ () => {if(window.confirm(i18n.t("Manager.ConfirmationDelete.1"))){this.SubmitEvent(3)};} }>
+                            {t("Manager.DeletedManager.1")}
                             </Button>
                         </div>
                         </div>
@@ -415,4 +420,4 @@ class RUDDManager extends React.Component {
     }
 }
 
-export default RUDDManager;
+export default withTranslation()(RUDDManager);

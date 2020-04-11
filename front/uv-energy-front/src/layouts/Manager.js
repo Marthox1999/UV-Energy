@@ -8,7 +8,7 @@ import AdminFooter from "components/Footers/AdminFooter.js";
 import SidebarM from "components/Sidebar/SidebarM.js";
 
 import routes from "routes.js";
-import {managerRoutes, adminRoutes} from "managerRoutes.js";
+import {managerRoutes, adminRoutes, operatorRoutes} from "managerRoutes.js";
 
 import Cookies from 'universal-cookie';
 
@@ -90,6 +90,21 @@ class Manager extends React.Component {
       }
     });
   };
+  getOperatorRoutes = operatorRoutes => {
+    return operatorRoutes.map((prop, key) => {
+      if (prop.layout === "/manager") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -122,7 +137,8 @@ class Manager extends React.Component {
           {...this.props}
           routes={routes}
           managerRoutes={managerRoutes}
-          adminRoutes={adminRoutes}          
+          adminRoutes={adminRoutes}
+          operatorRoutes={operatorRoutes}
           logo={{
             innerLink: "/manager/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -135,6 +151,7 @@ class Manager extends React.Component {
             {this.getRoutes(routes)}
             {this.getManagerRoutes(managerRoutes)}
             {this.getAdminRoutes(adminRoutes)}
+            {this.getOperatorRoutes(operatorRoutes)}
             <Redirect from="*" to="/manager/index" />
           </Switch>
           <Container fluid>
