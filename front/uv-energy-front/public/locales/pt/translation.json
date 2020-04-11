@@ -396,6 +396,9 @@
         "NoSubstation":{
             "1":"Não há subestações"
         },
+        "AlreadyExists":{
+            "1":"Subestação com esse nome já existe"
+        },
         "Name":{
             "1":"Nome"
         },

@@ -396,6 +396,12 @@
         "NoSubstation":{
             "1":"There aren't substations"
         },
+        "AlreadyExists":{
+            "1":"Substation with this name already exists"
+        },
+        "Name":{
+            "1":"Name"
+        },
         "Reference":{
             "1":"Reference"
         },
