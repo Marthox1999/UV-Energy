@@ -1,5 +1,6 @@
 import ReadSubstation from "views/Operador-Subestacion/ReadSubstation.js";
-import ReadElectricTransformer from "views/Operador-Subestacion/ReadElectricTransformer.js";
+import ReadElectricTransformer from "views/Operador-Transformador/ReadElectricTransformer.js";
+import addClient from "views/Operator-Client/AddClient.js"
 
 var electricTransformerRoutes = [
   {
@@ -26,7 +27,7 @@ var clientRoutes = [
     path: "/AddClient",
     name: "Add Client",
     icon: "ni ni-fat-delete text-blue",
-    component: ReadSubstation,
+    component: addClient,
     layout: "/operator"
   },
 ];

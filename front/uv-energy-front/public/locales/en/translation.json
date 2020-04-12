@@ -567,5 +567,91 @@
         "Delete":{
             "1":"Delete"
         }
+    },
+    "Client":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddClient":{
+            "1":"Add Client"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The client was created!"
+        },
+        "ModifySuccesfull":{
+            "1":"The client was modified!"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ActiveClient":{
+            "1":"Active client"
+        },
+        "DisabledNotification":{
+            "1":"Client account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"CLient account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyClient":{
+            "1":"Modify Client"
+        },
+        "DisabledClient":{
+            "1":"Disabled Client"
+        },
+        "DeletedClient":{
+            "1":"Deleted Client"
+        },
+        "RegisteredClient":{
+            "1":"Registered Clients"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any clients registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Client?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Client?"
+        }
     }
 }

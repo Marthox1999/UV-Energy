@@ -136,7 +136,7 @@ class Operator extends React.Component {
           <UVAdminNavbar/>
           <Switch>
             {this.getRoutes(routes)}
-            {this.getsubstationRoutes(substationRoutes)}
+            {this.getClientRoutes(clientRoutes)}
             {this.getsubstationRoutes(substationRoutes)}
             {this.getTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/operator/index" />
