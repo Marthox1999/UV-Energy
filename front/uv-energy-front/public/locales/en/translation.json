@@ -289,6 +289,9 @@
         }
     },
     "ETransformer":{
+        "Registered":{
+            "1":"Registered Electrical Transformers"
+        },
         "AddET":{
             "1":"Add Electric Transformer"
         },

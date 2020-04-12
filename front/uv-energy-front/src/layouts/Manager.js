@@ -8,7 +8,7 @@ import AdminFooter from "components/Footers/AdminFooter.js";
 import SidebarM from "components/Sidebar/SidebarM.js";
 
 import routes from "routes.js";
-import {managerRoutes, adminRoutes, operatorRoutes} from "managerRoutes.js";
+import {managerRoutes, adminRoutes, electricTransformerRoutes, operatorRoutes} from "managerRoutes.js";
 
 import Cookies from 'universal-cookie';
 
@@ -105,6 +105,21 @@ class Manager extends React.Component {
       }
     });
   };
+  getTransformerRoutes = transformerRoutes => {
+    return transformerRoutes.map((prop, key) => {
+      if (prop.layout === "/manager") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -130,6 +145,8 @@ class Manager extends React.Component {
     }
     return "Brand";
   };
+
+
   render() {
     return (
       <>
@@ -139,6 +156,7 @@ class Manager extends React.Component {
           managerRoutes={managerRoutes}
           adminRoutes={adminRoutes}
           operatorRoutes={operatorRoutes}
+          electricTransformerRoutes={electricTransformerRoutes}
           logo={{
             innerLink: "/manager/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -152,6 +170,7 @@ class Manager extends React.Component {
             {this.getManagerRoutes(managerRoutes)}
             {this.getAdminRoutes(adminRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
+            {this.getTransformerRoutes(electricTransformerRoutes)}
             <Redirect from="*" to="/manager/index" />
           </Switch>
           <Container fluid>

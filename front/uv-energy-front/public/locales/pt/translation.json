@@ -285,10 +285,13 @@
             "1":"Subestação"
         },
         "ElectricTransformer":{
-            "1":"Transformador elétrico"
+            "1":"Transformador Elétrico"
         }
     },
     "ETransformer":{
+        "Registered":{
+            "1":"Transformadores Elétricos Registrados"
+        },
         "AddET":{
             "1":"Adicionar transformador elétrico"
         },

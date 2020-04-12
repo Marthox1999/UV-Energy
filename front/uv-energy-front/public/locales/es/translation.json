@@ -290,6 +290,9 @@
         }
     },
     "ETransformer":{
+        "Registered":{
+            "1":"Transformadores Eléctricos Registrados"
+        },
         "AddET":{
             "1":"Agregar Transformador Electrico"
         },
