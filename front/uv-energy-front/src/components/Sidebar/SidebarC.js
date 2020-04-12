@@ -26,7 +26,9 @@ import {
   Col
 } from "reactstrap";
 
-class SidebarM extends React.Component {
+import { withTranslation, Trans } from 'react-i18next';
+
+class SidebarC extends React.Component {
   state = {
     collapseOpen: false
   };
@@ -51,8 +53,8 @@ class SidebarM extends React.Component {
     });
   };
   // creates the links that appear in the left menu / Sidebar
-  createLinks = routes => {
-    return routes.map((prop, key) => {
+  createClientLinks = clientRoutes => {
+    return clientRoutes.map((prop, key) => {
       return (
         <NavItem key={key}>
           <NavLink
@@ -62,16 +64,15 @@ class SidebarM extends React.Component {
             activeClassName="active"
           >
             <i className={prop.icon} />
-            {prop.name}
+            <Trans>{prop.name}</Trans>
           </NavLink>
         </NavItem>
       );
     });
   };
 
-
   render() {
-    const { /*bgColor,*/ logo } = this.props;
+    const { /*bgColor,*/ clientRoutes,logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -84,6 +85,7 @@ class SidebarM extends React.Component {
         target: "_blank"
       };
     }
+    const { t } = this.props
     return (
       <Navbar
         className="navbar-vertical fixed-left navbar-light bg-white"
@@ -124,28 +126,28 @@ class SidebarM extends React.Component {
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
                 <DropdownItem className="noti-title" header tag="div">
-                  <h6 className="text-overflow m-0">Welcome!</h6>
+                  <h6 className="text-overflow m-0">{t("Sidebar.Welcome.1")}</h6>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-single-02" />
-                  <span>My profile</span>
+                  <span>{t("Sidebar.MyProfile.1")}</span>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-settings-gear-65" />
-                  <span>Settings</span>
+                  <span>{t("Sidebar.Settings.1")}</span>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-calendar-grid-58" />
-                  <span>Activity</span>
+                  <span>{t("Sidebar.Activity.1")}</span>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-support-16" />
-                  <span>Support</span>
+                  <span>{t("Sidebar.Support.1")}</span>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                   <i className="ni ni-user-run" />
-                  <span>Logout</span>
+                  <span>{t("Sidebar.Logout.1")}</span>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -197,7 +199,9 @@ class SidebarM extends React.Component {
               </InputGroup>
             </Form>
             {/* Navigation */}
-            <Nav navbar>             
+            <Nav navbar>
+            &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Bill.1")}
+              {this.createClientLinks(clientRoutes)}             
               </Nav>
           </Collapse>
         </Container>
@@ -206,15 +210,13 @@ class SidebarM extends React.Component {
   }
 }
 
-SidebarM.defaultProps = {
-  operatorRoutes: [{}],
-  electricTransformerRoutes: [{}]
+SidebarC.defaultProps = {
+  clientRoutes: [{}]
 };
 
-SidebarM.propTypes = {
+SidebarC.propTypes = {
   // links that will be displayed inside the component
-  operatorRoutes: PropTypes.arrayOf(PropTypes.object),
-  electricTransformerRoutes: PropTypes.arrayOf(PropTypes.object),
+  clientRoutes: PropTypes.arrayOf(PropTypes.object),
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag
@@ -229,4 +231,4 @@ SidebarM.propTypes = {
   })
 };
 
-export default SidebarM;
+export default withTranslation()(SidebarC);

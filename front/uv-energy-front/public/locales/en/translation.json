@@ -286,6 +286,9 @@
         },
         "ElectricTransformer":{
             "1":"Electric Transformer"
+        },
+        "Bill":{
+            "1":"My Bills"
         }
     },
     "ETransformer":{
@@ -458,6 +461,27 @@
         },
         "NewName":{
             "1":"New name"
+        }
+    },
+
+    "Bill":{
+        "NoBill":{
+            "1":"There aren't bills"
+        },
+        "MyBills":{
+            "1":"My Bills"
+        },
+        "expirationDate":{
+            "1":"Expiration Date!"
+        },
+        "IsPaid":{
+            "1":"State"
+        },
+        "Id":{
+            "1":"Bill Number"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
         }
     },
 
