@@ -39,7 +39,8 @@ class CheckBill extends React.Component {
         }
     }
     componentDidMount(){
-        axios.get(c.api + 'sales/activeBill/',
+        console.log(this.state.credentials.token)
+        axios.get(c.api + 'sales/billList/', {params: { pk_Cliente: this.state.credentials.id}}, 
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
@@ -47,7 +48,7 @@ class CheckBill extends React.Component {
               }
               else{
                 this.setState({listBills: response.data})
-                /*console.log(this.state.listAdmins)*/
+               /* console.log(this.state.listBills)*/
                  /*console.log(response.config)*/
             }             
         }).catch(error => alert(error))
@@ -76,7 +77,6 @@ class CheckBill extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/*
                                 {this.state.listBills.map((item, key) => 
                                     <tr key={'bill-'+key}>
                                     <td>{item.pk_bill}</td>
@@ -87,12 +87,10 @@ class CheckBill extends React.Component {
                                     </th>
                                     <td>{item.expirationDate}</td>
                                     <td className="text-right">
-                                        <Button>       
-                                        </Button>
                                     </td>
                                     </tr>
                                 )}
-                                */}
+                                
                             </tbody>
                             </Table>
                         </Card>
