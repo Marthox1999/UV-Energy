@@ -69,7 +69,7 @@ class RegisteredAdmins extends React.Component {
               }
               else{
                 this.setState({listAdmins: response.data})
-                //console.log(this.state.listAdmins)
+                console.log(this.state.listAdmins)
                 //console.log(response.config)
             }             
         }).catch(error => alert(error))

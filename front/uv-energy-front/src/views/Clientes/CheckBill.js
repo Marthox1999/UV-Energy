@@ -39,16 +39,16 @@ class CheckBill extends React.Component {
         }
     }
     componentDidMount(){
-        console.log(this.state.credentials.token)
-        axios.get(c.api + 'sales/billList/', {params: { pk_Cliente: this.state.credentials.id}}, 
-                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+        console.log(this.state.credentials)
+        axios.get(c.api + 'sales/billList/', {params: { pk_cliente: this.state.credentials.id}, 
+                headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
               }
               else{
                 this.setState({listBills: response.data})
-               /* console.log(this.state.listBills)*/
+               /*console.log(this.state.listBills)*/
                  /*console.log(response.config)*/
             }             
         }).catch(error => alert(error))
@@ -78,14 +78,15 @@ class CheckBill extends React.Component {
                             </thead>
                             <tbody>
                                 {this.state.listBills.map((item, key) => 
-                                    <tr key={'bill-'+key}>
+                                    
+                                    <tr key={'bill-'+ key}>
                                     <td>{item.pk_bill}</td>
                                     <th scope="row">
                                         <span className="mb-0 text-sm">
-                                        {item.is_paid}
+                                        {item.read}
                                         </span>
                                     </th>
-                                    <td>{item.expirationDate}</td>
+                                    <td>{}</td>
                                     <td className="text-right">
                                     </td>
                                     </tr>
