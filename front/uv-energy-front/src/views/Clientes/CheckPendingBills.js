@@ -17,7 +17,7 @@ import Cookies from 'universal-cookie';
 const c = require('../constants')
 const cookie = new Cookies();
 
-class CheckBill extends React.Component {
+class CheckPendingBills extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -40,7 +40,7 @@ class CheckBill extends React.Component {
     }
     componentDidMount(){
         console.log(this.state.credentials)
-        axios.get(c.api + 'sales/billList/', {params: { pk_cliente: this.state.credentials.id}, 
+        axios.get(c.api + 'sales/pendingbillList/', {params: { pk_cliente: this.state.credentials.id}, 
                 headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
@@ -86,7 +86,7 @@ class CheckBill extends React.Component {
                                         {item.read}
                                         </span>
                                     </th>
-                                    <td>{}</td>
+                                    <td>{item.expirationDate}</td>
                                     <td className="text-right">
                                     </td>
                                     </tr>
@@ -103,4 +103,4 @@ class CheckBill extends React.Component {
     }
 }
 
-export default withTranslation()(CheckBill);
+export default withTranslation()(CheckPendingBills);
