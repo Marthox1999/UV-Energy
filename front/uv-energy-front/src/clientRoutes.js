@@ -6,21 +6,21 @@ import CheckPendingBills from "views/Clientes/CheckPendingBills.js";
 var clientRoutes = [
   {
       path: "/checkAllBills",
-      name: "All Bills",
+      name: "Bill.AllBills.1",
       icon: "ni ni-fat-add text-blue",
       component: CheckAllBills,
       layout: "/client"
   },
   {
       path: "/checkPaidBills",
-      name: "Paid Bills",
+      name: "Bill.PaidBills.1",
       icon: "ni ni-fat-add text-blue",
       component: CheckPaidBills,
       layout: "/client"
   },
   {
       path: "/checkPendingBills",
-      name: "Pending Bills",
+      name: "Bill.PendingBills.1",
       icon: "ni ni-fat-add text-blue",
       component: CheckPendingBills,
       layout: "/client"

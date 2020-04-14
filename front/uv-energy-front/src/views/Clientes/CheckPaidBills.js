@@ -6,7 +6,8 @@ import {
   CardHeader,
   Table,
   Container,
-  Row
+  Row,
+  Button
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -68,26 +69,45 @@ class CheckPaidBills extends React.Component {
                             <font size="5">{t("Bill.MyBills.1")}</font>
                             </CardHeader>
                             <Table className="align-items-center table-flush" responsive>
-                            <thead className="thead-light">
+                            <thead className="thead-light" align="center">
                                 <tr>
                                 <th scope="col"><font size="2">{t("Bill.Id.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.IsPaid.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Bill.expeditionDate.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.expirationDate.1")}</font></th>
-                                <th scope="col" />
+                                <th scope="col"><font size="2">{t("Bill.Visualize.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Bill.Download.1")}</font></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody  >
                                 {this.state.listBills.map((item, key) => 
                                     
                                     <tr key={'bill-'+ key}>
-                                    <td>{item.pk_bill}</td>
-                                    <th scope="row">
-                                        <span className="mb-0 text-sm">
-                                        {item.read}
-                                        </span>
-                                    </th>
-                                    <td>{item.expirationDate}</td>
-                                    <td className="text-right">
+                                    <td align="center">{item.pk_bill}</td>
+                                    <td align="center"> {item.pk_bill} </td>
+                                    <td align="center">{item.expirationDate}</td>
+                                    <td className="text-center">
+                                        <Button
+                                            align="center"
+                                            className="text-blue"
+                                            role="button"
+                                            size="md"
+                                            color="white"
+                                        >
+                                            <i className="ni ni-single-copy-04" />
+                 
+                                        </Button>
+                                    </td>
+                                    <td className="text-center">
+                                        <Button
+                                            align="center"
+                                            className="text-blue"
+                                            role="button"
+                                            size="md"
+                                            color="white"
+                                        >
+                                            <i className="ni ni-cloud-download-95" />
+                 
+                                        </Button>
                                     </td>
                                     </tr>
                                 )}

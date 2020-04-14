@@ -287,6 +287,9 @@
         },
         "ElectricTransformer":{
             "1":"Transformador Electrico"
+        },
+        "Bill":{
+            "1":"Mis Facturas"
         }
     },
     "ETransformer":{
@@ -563,6 +566,45 @@
         },
         "Delete":{
             "1":"Borrar"
+        }
+    },
+
+    "Bill":{
+        "NoBill":{
+            "1":"No hay Facturas"
+        },
+        "MyBills":{
+            "1":"Mis Facturas"
+        },
+        "expirationDate":{
+            "1":"Fecha de Vencimiento"
+        },
+        "IsPaid":{
+            "1":"Estado"
+        },
+        "Id":{
+            "1":"Numero de Factura"
+        },
+        "AreYouSure":{
+            "1":"Esta Seguro?"
+        },
+        "expeditionDate":{
+            "1":"Fecha de Expedicion"
+        },
+        "Download":{
+            "1":"Descargar"
+        },
+        "Visualize":{
+            "1":"Visulizar"
+        },
+        "AllBills":{
+            "1":"Todas las Facturas"
+        },
+        "PaidBills":{
+            "1":"Facturas Pagadas"
+        },
+        "PendingBills":{
+            "1":"Facturas Pendientes"
         }
     }
 }
