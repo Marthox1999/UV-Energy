@@ -27,7 +27,7 @@ class CheckAllBills extends React.Component {
                 start_date: "",
                 end_date: "",
                 read: 1,
-                expedition_date: "",
+                expedition_date: "2",
                 expiration_date: "",
                 is_paid: true,
                 fk_debit_payment: -1,
@@ -79,12 +79,13 @@ class CheckAllBills extends React.Component {
                                 </tr>
                             </thead>
                             <tbody  >
+                                {console.log(this.state.listBills)}
                                 {this.state.listBills.map((item, key) => 
                                     
                                     <tr key={'bill-'+ key}>
                                     <td align="center">{item.pk_bill}</td>
-                                    <td align="center"> {item.pk_bill} </td>
-                                    <td align="center">{item.expirationDate}</td>
+                                    <td align="center"> {item.expedition_date} </td>
+                                    <td align="center">{item.expiration_date}</td>
                                     <td className="text-center">
                                         <Button
                                             align="center"

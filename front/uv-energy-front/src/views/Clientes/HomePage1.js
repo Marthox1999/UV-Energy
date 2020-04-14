@@ -1,4 +1,5 @@
 import React from "react";
+
 // reactstrap components
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -27,8 +28,7 @@ class HomePage extends React.Component {
             isBadinputs: false,
             credentials: cookie.get('notCredentials'),
         }
-    }
-
+    }            
     render() {
         return(
             <>
