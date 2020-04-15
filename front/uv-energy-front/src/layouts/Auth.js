@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withTranslation } from 'react-i18next';
 import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
@@ -51,9 +51,6 @@ class Auth extends Component {
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
                   <Col lg="5" md="6">
-                    <button onClick={() => this.handleClick('en')}>en</button>
-                    <button onClick={() => this.handleClick('es')}>es</button>
-                    <button onClick={() => this.handleClick('pt')}>pt</button>
                     <h1 className="text-white">{t("Login.Welcome.1")}</h1>
                     <p className="text-lead text-light">
                       {t("Login.Awesome_forms.1")}
