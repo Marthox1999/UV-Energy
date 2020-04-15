@@ -1,8 +1,6 @@
 import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { withTranslation } from 'react-i18next';
-import i18n from '../../i18n.js';
 
 // reactstrap components
 import {
@@ -16,27 +14,27 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import i18n from '../../i18n.js';
+import { withTranslation, Trans } from 'react-i18next';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
-
 const cookie = new Cookies();
 
-class RegisteredAdmins extends React.Component {
+class RegisteredOperators extends React.Component {
     constructor(props){
         super(props);
         if(this.props.location.state === null){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: false, reload: false}}
-        }else if(this.props.location.state.disabledAdmin){
-            this.props = { state:{disabledAdmin: true, deletedAdmin: false, reload: true}}
-        }else if(this.props.location.state.deletedAdmin){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: true, reload: true}}
+            this.props = { state:{disabledOperator: false, deletedOperator: false}}
+        }else if(this.props.location.state.disabledOperator){
+            this.props = { state:{disabledOperator: true, deletedOperator: false}}
+        }else if(this.props.location.state.deletedOperator){
+            this.props = { state:{disabledOperator: false, deletedOperator: true}}
         }
-
         this.state = {
-            admin : {
+            operator : {
                 username: "Username",
                 password: "",
                 email: "Email",
@@ -44,34 +42,39 @@ class RegisteredAdmins extends React.Component {
                 last_name: "Last name",
                 is_active: true,
                 cellphone: "123",
-                position: "ADMIN"
+                position: "OP"
             },
-            path: '',
-            listAdmins: [],
-            isdisabledAdmin: this.props.state.disabledAdmin,
-            isdeletedAdmin: this.props.state.deletedAdmin,
-            credentials: cookie.get('notCredentials'),           
+            listOperators: [],
+            isdisabledOperator: this.props.state.disabledOperator,
+            isdeletedOperator: this.props.state.deletedOperator,
+            credentials: cookie.get('notCredentials'),
+            filter: {
+                where: {
+                    position: "OP",
+                    is_active: true,
+                }
+            }
         }
     }
     componentDidMount(){
         console.log(this.state.credentials)
         if(this.state.credentials.position === 'ADMIN'){
-            this.setState({path: '/admin/RUDDAdmin'})
+            this.setState({path: '/admin/RUDDOperator'})
         }else if(this.state.credentials.position === 'MGR'){
-            this.setState({path: '/manager/RUDDAdminM'})
+            this.setState({path: '/manager/RUDDOperatorM'})
 
         }
-        axios.get(c.api + 'users/activeAdmin/',
+        axios.get(c.api + 'users/activeOperator/',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("There are no registered administrators.")
+                alert(i18n.t("Operator.NoRegistered.1"))
               }
               else{
-                this.setState({listAdmins: response.data})
-                //console.log(this.state.listAdmins)
-                //console.log(response.config)
+                this.setState({listOperators: response.data})
+                console.log(this.state.listOperators)
+                console.log(response.config)
             }             
         }).catch(error => alert(error))
     }
@@ -87,26 +90,26 @@ class RegisteredAdmins extends React.Component {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                            <font size="5">{t("Admin.ActiveAdmins.1")}</font>
+                            <font size="5">{t("Operator.ActiveOperator.1")}</font>
                             </CardHeader>
-                            <Alert color="info" isOpen={this.state.isdisabledAdmin}>
-                                {t("Admin.DisableAdmin.1")}
+                            <Alert color="info" isOpen={this.state.isdisabledOperator}>
+                                {t("Operator.DisabledNotification.1")}
                             </Alert>
-                            <Alert color="info" isOpen={this.state.isdeletedAdmin}>
-                                {t("Admin.DeletedAdmin.1")}
+                            <Alert color="info" isOpen={this.state.isdeletedOperator}>
+                                {t("Operator.DeletedNotification.1")}
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
                                 <tr>
-                                <th scope="col"><font size="2">{t("Admin.Id.2")}</font></th>
-                                <th scope="col"><font size="2">{t("Admin.Name.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Admin.Username.1")}</font></th>
+                                <th scope="col"><font size="2">Id</font></th>
+                                <th scope="col"><font size="2">{t("Operator.Name.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Operator.Username.1")}</font></th>
                                 <th scope="col" />
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.listAdmins.map((item, key) => 
-                                    <tr key={'admin-'+key}>
+                                {this.state.listOperators.map((item, key) => 
+                                    <tr key={'operator-'+key}>
                                     <td>{item.id}</td>
                                     <th scope="row">
                                         <span className="mb-0 text-sm">
@@ -116,15 +119,14 @@ class RegisteredAdmins extends React.Component {
                                     <td>{item.username}</td>
                                     <td className="text-right">
                                         <Button
-
                                             className="text-blue"
                                             role="button"
                                             size="md"
                                             color="white"
-                                            onClick={ () => this.props.history.push({pathname: this.state.path, state: { adminID: item.id }}) }
+                                            onClick={ () => this.props.history.push({pathname: this.state.path, state: { operatorID: item.id }}) }
                                         >
                                             <i className="ni ni-settings" />
-                 
+                                            
                                         </Button>
                                     </td>
                                     </tr>
@@ -140,4 +142,4 @@ class RegisteredAdmins extends React.Component {
     }
 }
 
-export default withTranslation()(RegisteredAdmins);
+export default withTranslation()(RegisteredOperators);

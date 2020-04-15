@@ -12,11 +12,14 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Modal,
+  ModalBody
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 import Axios from "axios";
+import { withTranslation, Trans } from 'react-i18next';
 import Cookies from 'universal-cookie';
 
 const c = require('../constants')
@@ -38,6 +41,7 @@ class AddManager extends React.Component {
             },
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isBadinputs: false,
             credentials: cookie.get('notCredentials'),
         }
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -47,6 +51,7 @@ class AddManager extends React.Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
         this.AddManager = this.AddManager.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     onChangeFirstName(e){
         this.setState({ user: {
@@ -128,7 +133,7 @@ class AddManager extends React.Component {
             (this.state.user.first_name === "") ||
             (this.state.user.last_name === "") ||
             (this.state.user.cellphone === "")){
-            this.setState({isAlertEmpty: true, isAlertSuccess: false})
+            this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
         }else{
             console.log(this.state.user)
             Axios.post(c.api + 'users/user/', this.state.user,
@@ -136,20 +141,22 @@ class AddManager extends React.Component {
             .then( response => {
                 this.setState({ isAlertEmpty: false,
                                 isAlertSuccess: true,
-                    user: {
-                        username: "",
-                        password: "",
-                        email: "",
-                        first_name: "",
-                        last_name: "",
-                        is_active: true,
-                        cellphone: "",
-                        position: "MGR"
-                    }})
-            }).catch(error => console.log(error))
+                                isBadinputs: false,
+                                user: response.data})
+            }).catch(error => {
+                console.log(error)
+                this.setState({ isAlertSuccess: false,
+                                isAlertEmpty: false,
+                                isBadinputs: true})
+            })
         }
     }
+    closeModal(){
+        this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+        window.location.reload(true);
+    }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -159,20 +166,20 @@ class AddManager extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Manager</h3>
+                        <font size="5">{t("Manager.AddManager.1")}</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                        <strong>Warning!</strong> There are empty fields!
+                        <strong>{t("Manager.Warning.1")}</strong> {t("Manager.EmptyFields.1")}
                     </Alert>
-                    <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                        <strong>Congratulations!</strong> The manager was created!
+                    <Alert color="warning" isOpen={this.state.isBadinputs}>
+                    <strong>{t("Manager.Warning.1")}</strong> {t("Manager.BadInputs.1")}
                     </Alert>
                     <Form onSubmit={this.AddManager}>
                         <h6 className="heading-small text-muted mb-4">
-                        Personal Information
+                        {t("Manager.PersonalInformation.1")}
                         </h6>
                         <div className="pl-lg-4">
                         <Row>
@@ -182,12 +189,12 @@ class AddManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Name
+                                {t("Manager.Name.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-first-name"
-                                placeholder="Name"
+                                placeholder={t("Manager.Name.1")}
                                 type="text"
                                 value={this.state.user.first_name}
                                 onChange={this.onChangeFirstName}
@@ -200,12 +207,12 @@ class AddManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Last Name
+                                {t("Manager.LastName.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-last-name"
-                                placeholder="Last Name"
+                                placeholder={t("Manager.LastName.1")}
                                 type="text"
                                 value={this.state.user.last_name}
                                 onChange={this.onChangeLastName}
@@ -218,13 +225,13 @@ class AddManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-id"
                                 >
-                                Phone Number
+                                {t("Manager.Phone.1")}
                                 </label>
                                 <Input 
                                 className="form-control-alternative"
                                 id="input-cellphone"
-                                placeholder="3111111111"
-                                type="text"
+                                placeholder={t("Manager.Phone.1")}
+                                type={t("Manager.Phone.1")}
                                 value={this.state.user.cellphone}
                                 onChange={this.onChangeCellphone}/>
                             </FormGroup>
@@ -232,22 +239,22 @@ class AddManager extends React.Component {
                         </Row>
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Account Information
+                        {t("Manager.AccountInformation.1")}
                         </h6>
                         <div className="pl-lg-4"></div>
                         <Row>
-                            <Col lg="6">
+                        <Col lg="6">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
                                 htmlFor="input-username"
                                 >
-                                Username
+                                {t("Manager.Username.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-username"
-                                placeholder="Username"
+                                placeholder={t("Manager.Username.1")}
                                 type="text"
                                 value={this.state.user.username}
                                 onChange={this.onChangeUsername}
@@ -274,17 +281,17 @@ class AddManager extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col lg="6">
+                        <Col lg="6">
                             <FormGroup>
                                 <label
                                 className="form-control-label"
                                 htmlFor="input-password"
                                 >
-                                Password
+                                {t("Manager.Password.1")}
                                 </label>
                                 <Input 
                                 className="form-control-alternative"
-                                placeholder="Password" 
+                                placeholder={t("Manager.Password.1")}
                                 type="password" 
                                 autoComplete="new-password"
                                 value={this.state.user.password}
@@ -294,17 +301,46 @@ class AddManager extends React.Component {
                         </Row>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
-                                Add
+                            {t("Manager.Add.1")}
                             </Button>
                         </div>
                         </div>
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isAlertSuccess}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                    <Alert color="success">
+                        <strong>{t("Manager.Congratulations.1")}!</strong><br/>{t("Manager.CreateSuccesfull.1")}
+                        </Alert>
+                        <strong>{t("Manager.Information.1")}:</strong>
+                        <br></br>
+                        <strong> {t("Manager.Name.1")}: </strong> {this.state.user.first_name}<br/>
+                        <strong> {t("Manager.LastName.1")}: </strong> {this.state.user.last_name}<br/>
+                        <strong> {t("Manager.Phone.1")}: </strong> {this.state.user.cellphone}<br/>
+                        <strong> Email: </strong> {this.state.user.email}<br/>
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        {t("Manager.Close.1")}
+                        </Button>
+                    </div>
+            </Modal>
             </Container>
             </>
         );
     }
 }
 
-export default AddManager;
+export default withTranslation()(AddManager);

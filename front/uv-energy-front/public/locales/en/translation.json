@@ -35,6 +35,21 @@
         },
         "Create_account":{
             "1":"Create new account"
+        },
+        "Invalid_credentials":{
+            "1":"Invalid Credentials"
+        },
+        "Fill_username":{
+            "1":"Please fill out the username field"
+        },
+        "Fill_password":{
+            "1":"Please fill out the password field"
+        },
+        "Fill_username_and_password":{
+            "1":"Please fill out the username and password fields"
+        },
+        "Verify_captcha":{
+            "1":"Please verify the captcha"
         }
     },
     "General":{
@@ -55,6 +70,184 @@
         },
         "Account_info":{
             "1":"Account Information"
+        },
+        "Email":{
+            "1":"Email"
+        },
+        "EmailExample":{
+            "1":"jesse@example.com"
+        }
+    },
+    "Operator":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddOperator":{
+            "1":"Add Operator"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The operator was created!"
+        },
+        "ModifySuccesfull":{
+            "1":"The operator was modified!"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ActiveOperator":{
+            "1":"Active Operator"
+        },
+        "DisabledNotification":{
+            "1":"Operator account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"Operator account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyOperator":{
+            "1":"Modify Operator"
+        },
+        "DisabledOperator":{
+            "1":"Disabled Operator"
+        },
+        "DeletedOperator":{
+            "1":"Deleted Operator"
+        },
+        "RegisteredOperators":{
+            "1":"Registered Operators"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any operators registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Operator?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Operator?"
+        }
+    },
+    "Manager":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddManager":{
+            "1":"Add Manager"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The manager was created!"
+        },
+        "ModifySuccesfull":{
+            "1":"The manager was modified!"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ActiveManager":{
+            "1":"Active Manager"
+        },
+        "DisabledNotification":{
+            "1":"Manager account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"Manager account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyManager":{
+            "1":"Modify Manager"
+        },
+        "DisabledManager":{
+            "1":"Disabled Manager"
+        },
+        "DeletedManager":{
+            "1":"Deleted Manager"
+        },
+        "RegisteredManagers":{
+            "1":"Registered Managers"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any managers registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Manager?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Manager?"
         }
     },
     "Sidebar":{
@@ -63,6 +256,9 @@
         },
         "MyProfile":{
             "1":"My profile"
+        },
+        "MyAccount":{
+            "1":"My account"
         },
         "Settings":{
             "1":"Settings"
@@ -111,8 +307,8 @@
         "NoSubstation":{
             "1":"There aren't substations"
         },
-        "Reference":{
-            "1":"Reference"
+        "Name":{
+            "1":"Name"
         },
         "TensionLevel":{
             "1":"Tension Level"
@@ -176,6 +372,197 @@
         },
         "SelectSubstation":{
             "1":"Select a electric transformer first"
+        }
+    },
+
+
+
+    "Substation":{
+        "AddSubstation":{
+            "1":"Add Substation"
+        },
+        "GeneralInfo":{
+            "1":"General Information"
+        },
+        "Warning":{
+            "1":"Warning!"
+        },
+        "EmptyFields":{
+            "1":"There are empty fields!"
+        },
+        "Substation":{
+            "1":"Substation"
+        },
+        "NoSubstation":{
+            "1":"There aren't substations"
+        },
+        "Reference":{
+            "1":"Reference"
+        },
+        "ChoosePoint":{
+            "1":"Choosen the point:"
+        },
+        "SubstationSet":{
+            "1":"Substation to set"
+        },
+        "SubstationActive":{
+            "1":"Substation active"
+        },
+        "ChoosenPoint":{
+            "1":"Choosen point: "
+        },
+        "Add":{
+            "1": "Add"
+        },
+        "Congrats":{
+            "1":"Congratulations!"
+        },
+        "SubstationCreated":{
+            "1": "The Substation was created!"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "NSubstation":{
+            "1":"No. Substation: "
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ModifySubstation":{
+            "1":"Modify Substation"
+        },
+        "Modify":{
+            "1":"Modify"
+        },
+        "Deactivate":{
+            "1":"Deactivate"
+        },
+        "DeactivateSubstation":{
+            "1":"Deactivate Substation"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "NoSubstationRegistered":{
+            "1": "There are not substations registered"
+        },
+        "NoPointChoosen":{
+            "1":"Choose a point in the map"
+        },
+        "SelectSubstation":{
+            "1":"Select a substation first"
+        },
+        "HasTransformers":{
+            "1":"This substation has transformers"
+        },
+        "NewName":{
+            "1":"New name"
+        }
+    },
+
+
+    "Admin":{
+        "AddAdmin":{
+            "1":"Add Administrator"
+        },
+        "Warning":{
+            "1":"Warning!"
+        },
+        "EmptyFields":{
+            "1":"There are empty fields!"
+        },
+        "BadInputs":{
+            "1":"Wrong information on fields!"
+        },
+        "PersonalInfo":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name",
+            "2":"Name:"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },
+        "PhoneNumber":{
+            "1":"Phone Number",
+            "2":"Phone Number:"
+        },
+        "AccountInfo":{
+            "1":"Account Information"
+        },
+        "Username":{
+            "1":"Username",
+            "2":"Username:"
+        },
+        "Email":{
+            "1":"Email",
+            "2":"Email:"
+        },
+        "EmailExample":{
+            "1":"jesse@example.com"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "AddButton":{
+            "1":"Add"
+        },
+        "Congrat":{
+            "1":"Congratulations!",
+            "2":"The administrator account was created!",
+            "3":"The administrator was modified!"
+        },
+        "Info":{
+            "1":"Information:",
+            "2":"Information of"
+        },
+        "CloseButton":{
+            "1":"Close"
+        },
+        "ModifyButton":{
+            "1":"Modify Information"
+        },
+        "DisableButton":{
+            "1":"Disable Admin"
+        },
+        "DeleteButton":{
+            "1":"Delete Register"
+        },
+        "AdminRegister":{
+            "1":"administrator register"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "Id":{
+            "1":"ID:",
+            "2":"Id"
+        },
+        "SureButton":{
+            "1":"Sure"
+        },
+        "NoButton":{
+            "1":"No"
+        },
+        "RegisteredAdmins":{
+            "1":"Registered Administrators"
+        },
+        "ActiveAdmins":{
+            "1":"Active Administrators"
+        },
+        "DisableAdmin":{
+            "1":"Admin account was disabled!"
+        },
+        "DeletedAdmin":{
+            "1":"Admin account was deleted!"
+        },
+        "Disable":{
+            "1":"Disable"
+        },
+        "Delete":{
+            "1":"Delete"
         }
     }
 }

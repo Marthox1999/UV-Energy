@@ -10329,9 +10329,9 @@ a.btn-icon-only {
       background-color: transparent; }
 
 .main-content {
-  position: relative; }
+  position: fixed; }
   .main-content .navbar-top {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -10357,7 +10357,8 @@ a.btn-icon-only {
     margin-right: 250px; } }
 
 @media (min-width: 768px) {
-  .navbar-vertical.navbar-expand-md.fixed-left + .main-content {
+  
+  .fixed-left + .main-content {
     margin-left: 250px; }
   .navbar-vertical.navbar-expand-md.fixed-right + .main-content {
     margin-right: 250px; } }

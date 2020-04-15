@@ -35,26 +35,219 @@
         },
         "Create_account":{
             "1":"Criar nova conta"
+        },
+        "Invalid_credentials":{
+            "1":"Credenciais inválidas"
+        },
+        "Fill_username":{
+            "1":"Por favor, preencha o campo de nome de usuário"
+        },
+        "Fill_password":{
+            "1":"Por favor, preencha o campo de senha"
+        },
+        "Fill_username_and_password":{
+            "1":"Preencha os campos de nome de usuário e senha"
+        },
+        "Verify_captcha":{
+            "1":"Verifique o captcha"
         }
     },
     "General":{
         "Information":{
-            "1":"portuguesse"
+            "1":"informação"
         },
         "Name":{
-            "1":"portuguesse"
+            "1":"Nome"
         },
         "Last_name":{
-            "1":"portuguesse"
+            "1":"Último nome"
         },
         "Phone":{
-            "1":"portuguesse"
+            "1":"Número de telefone"
         },
         "Username":{
-            "1":"portuguesse"
+            "1":"Nome do usuário"
         },
         "Account_info":{
-            "1":"portuguesse"
+            "1":"Informação da conta"
+        },
+        "Email":{
+            "1":"O email"
+        },
+        "EmailExample":{
+            "1":"jesse@exemplo.com"
+        }
+    },
+    "Operator":{
+        "Warning":{
+            "1":"Aviso"
+        },
+        "EmptyFields":{
+            "1":"Campos vazios"
+        },
+        "AddOperator":{
+            "1":"Adicionar Operador"
+        },
+        "BadInputs":{
+            "1":"Campos errados"
+        },
+        "PersonalInformation":{
+            "1":"informação pessoal"
+        },
+        "Name":{
+            "1":"Nome"
+        },
+        "LastName":{
+            "1":"Último nome"
+        },         
+        "Phone":{
+            "1":"Celular"
+        },
+        "Username":{
+            "1":"Nome do usuário"
+        },
+        "AccountInformation":{
+            "1":"Informação da conta"
+        },
+        "Password":{
+            "1":"Senha"
+        },
+        "Add":{
+            "1":"Adicionar"
+        },
+        "Information":{
+            "1":"informação"
+        },
+        "Congratulations":{
+            "1":"Parabéns"
+        },
+        "CreateSuccesfull":{
+            "1":"O operador foi criado!"
+        },
+        "ModifySuccesfull":{
+            "1":"O operador foi modificado!"
+        },
+        "Close":{
+            "1":"Fechar"
+        },
+        "ActiveOperator":{
+            "1":"Operador Ativo"
+        },
+        "DisabledNotification":{
+            "1":"A conta do operador foi desativada! Atualize a página para ver a alteração"
+        },
+        "DeletedNotification":{
+            "1":"A conta do operador foi excluída! Atualize a página para ver a alteraçãos"
+        },
+        "ModifyOperator":{
+            "1":"Modificar Operador"
+        },
+        "DisabledOperator":{
+            "1":"Desabilitar Operador"
+        },
+        "DeletedOperator":{
+            "1":"Remover Operador"
+        },
+        "RegisteredOperators":{
+            "1":"Operadores Registrados"
+        },
+        "WrongId":{
+            "1":"Id Errado"
+        },
+        "NoRegistered":{
+            "1":"Não há operadores registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"Remover Operador?"
+        },
+        "ConfirmationDisable":{
+            "1":"Desabilitar Operador?"
+        }
+    },
+    "Manager":{
+        "Warning":{
+            "1":"Aviso"
+        },
+        "EmptyFields":{
+            "1":"Campos vazios"
+        },
+        "AddManager":{
+            "1":"Adicionar Gerente"
+        },
+        "BadInputs":{
+            "1":"Campos errados"
+        },
+        "PersonalInformation":{
+            "1":"informação pessoal"
+        },
+        "Name":{
+            "1":"Nome"
+        },
+        "LastName":{
+            "1":"Último nome"
+        },         
+        "Phone":{
+            "1":"Celular"
+        },
+        "Username":{
+            "1":"Nome do usuário"
+        },
+        "AccountInformation":{
+            "1":"Informação da conta"
+        },
+        "Password":{
+            "1":"Senha"
+        },
+        "Add":{
+            "1":"Adicionar"
+        },
+        "Information":{
+            "1":"informação"
+        },
+        "Congratulations":{
+            "1":"Parabéns"
+        },
+        "CreateSuccesfull":{
+            "1":"O gerente foi criado!"
+        },
+        "ModifySuccesfull":{
+            "1":"O gerente foi modificado!"
+        },
+        "Close":{
+            "1":"Fechar"
+        },
+        "ActiveManager":{
+            "1":"Gerente Ativo"
+        },
+        "DisabledNotification":{
+            "1":"A conta do gerente foi desativada! Atualize a página para ver a alteração"
+        },
+        "DeletedNotification":{
+            "1":"A conta do gerente foi excluída! Atualize a página para ver a alteração"
+        },
+        "ModifyManager":{
+            "1":"Modificar Gerente"
+        },
+        "DisabledManager":{
+            "1":"Desabilitar Gerente"
+        },
+        "DeletedManager":{
+            "1":"Remover Gerente"
+        },
+        "RegisteredManagers":{
+            "1":"Gerentes Registrados"
+        },
+        "WrongId":{
+            "1":"Id Errado"
+        },
+        "NoRegistered":{
+            "1":"Não há gerentes registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"Remover Gerente?"
+        },
+        "ConfirmationDisable":{
+            "1":"Desabilitar Gerente?"
         }
     },
     "Sidebar":{
@@ -63,6 +256,9 @@
         },
         "MyProfile":{
             "1":"Meu profile"
+        },
+        "MyAccount":{
+            "1":"Minha conta"
         },
         "Settings":{
             "1": "Configurações"
@@ -178,5 +374,195 @@
             "1":"Selecione um transformador elétrico primeiro"
         }
 
+    },
+
+
+    "Substation":{
+        "AddSubstation":{
+            "1":"Adicionar subestação"
+        },
+        "GeneralInfo":{
+            "1":"Informação geral"
+        },
+        "Warning":{
+            "1":"Aviso!"
+        },
+        "EmptyFields":{
+            "1":"Existem campos vazios!"
+        },
+        "Substation":{
+            "1":"Subestação"
+        },
+        "NoSubstation":{
+            "1":"Não há subestações"
+        },
+        "Name":{
+            "1":"Nome"
+        },
+        "ChoosePoint":{
+            "1":"Ponto escolhido"
+        },
+        "SubstationSet":{
+            "1":"Subestação para estabelecer"
+        },
+        "SubstationActive":{
+            "1":"Subestações ativas"
+        },
+        "ChoosenPoint":{
+            "1":"Ponto escolhido:"
+        },
+        "Add":{
+            "1": "Adicionar"
+        },
+        "Congrats":{
+            "1":"Parabéns!"
+        },
+        "SubstationCreated":{
+            "1": "A subestação foi criada!"
+        },
+        "Information":{
+            "1":"Em formação"
+        },
+        "NSubstation":{
+            "1":"No. subestação "
+        },
+        "Close":{
+            "1":"Fechar"
+        },
+        "ModifySubstation":{
+            "1":"Modificar subestação"
+        },
+        "Modify":{
+            "1":"Modificar"
+        },
+        "Deactivate":{
+            "1":"Desativar"
+        },
+        "DeactivateSubstation":{
+            "1":"Desativar subestação"
+        },
+        "AreYouSure":{
+            "1":"você tem certeza?"
+        },
+        "NoSubstationRegistered":{
+            "1": "Não há subestações registradas"
+        },
+        "NoPointChoosen":{
+            "1":"Escolha um ponto no mapa"
+        },
+        "SelectSubstation":{
+            "1":"Selecione uma subestação primeiro"
+        },
+        "HasTransformers":{
+            "1":"Esta subestação possui transformadores"
+        },
+        "NewName":{
+            "1":"Novo nome"
+        }
+    },
+
+
+    "Admin":{
+        "AddAdmin":{
+            "1":"Adicionar Administrador"
+        },
+        "Warning":{
+            "1":"Aviso!"
+        },
+        "EmptyFields":{
+            "1":"Existem campos vazios!"
+        },
+        "BadInputs":{
+            "1":"Informações incorretas nos campos!"
+        },
+        "PersonalInfo":{
+            "1":"Informação pessoal"
+        },
+        "Name":{
+            "1":"Nome",
+            "2":"Nome:"
+        },
+        "LastName":{
+            "1":"Último nome"
+        },
+        "PhoneNumber":{
+            "1":"Número de telefone",
+            "2":"Número de telefone:"
+        },
+        "AccountInfo":{
+            "1":"Informação da conta"
+        },
+        "Username":{
+            "1":"Nome do usuário",
+            "2":"Nome do usuário:"
+        },
+        "Email":{
+            "1":"O email",
+            "2":"O email:"
+        },
+        "EmailExample":{
+            "1":"jesse@exemplo.com"
+        },
+        "Password":{
+            "1":"Senha"
+        },
+        "AddButton":{
+            "1":"Adicionar"
+        },
+        "Congrat":{
+            "1":"Parabéns!",
+            "2":"A conta do administrador foi criada!",
+            "3":"As informações do administrador foram modificadas!"
+        },
+        "Info":{
+            "1":"Informação:",
+            "2":"Informação de"
+        },
+        "CloseButton":{
+            "1":"Fechar"
+        },
+        "ModifyButton":{
+            "1":"Modificar informações"
+        },
+        "DisableButton":{
+            "1":"Desativar administrador"
+        },
+        "DeleteButton":{
+            "1":"Excluir registro"
+        },
+        "AdminRegister":{
+            "1":"registro de administrador"
+        },
+        "AreYouSure":{
+            "1":"você tem certeza?"
+        },
+        "Id":{
+            "1":"ID:",
+            "2":"Id"
+        },
+        "SureButton":{
+            "1":"sim"
+        },
+        "NoButton":{
+            "1":"não"
+        },
+        "RegisteredAdmins":{
+            "1":"Administradores Registrados"
+        },
+        "ActiveAdmins":{
+            "1":"Administradores ativos"
+        },
+        "DisableAdmin":{
+            "1":"A conta de administrador foi desativada!"
+        },
+        "DeletedAdmin":{
+            "1":"A conta de administrador foi excluída!"
+        },
+        "Disable":{
+            "1":"Desativar"
+        },
+        "Delete":{
+            "1":"Excluir"
+        }
     }
 }

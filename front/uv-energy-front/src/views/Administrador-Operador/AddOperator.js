@@ -12,11 +12,15 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Modal,
+  ModalBody
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 import Axios from "axios";
+import { withTranslation, Trans } from 'react-i18next';
+import i18n from '../../i18n.js';
 import Cookies from 'universal-cookie';
 
 const c = require('../constants')
@@ -38,6 +42,7 @@ class AddOperator extends React.Component {
             },
             isAlertEmpty: false,
             isAlertSuccess: false,
+            isBadinputs: false,
             credentials: cookie.get('notCredentials'),
         }
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -47,6 +52,7 @@ class AddOperator extends React.Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
         this.AddOperator = this.AddOperator.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
     onChangeFirstName(e){
         this.setState({ user: {
@@ -128,28 +134,31 @@ class AddOperator extends React.Component {
             (this.state.user.first_name === "") ||
             (this.state.user.last_name === "") ||
             (this.state.user.cellphone === "")){
-            this.setState({isAlertEmpty: true, isAlertSuccess: false})
+            this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
         }else{
             console.log(this.state.user)
             Axios.post(c.api + 'users/user/', this.state.user,
                        {headers: { Authorization: `Token ${this.state.credentials.token}`}})
-            .then( response => {
-                this.setState({ isAlertEmpty: false,
-                                isAlertSuccess: true,
-                    user: {
-                        username: "",
-                        password: "",
-                        email: "",
-                        first_name: "",
-                        last_name: "",
-                        is_active: true,
-                        cellphone: "",
-                        position: "OP"
-                    }})
-            }).catch(error => console.log(error))
-        }
-    }
+                       .then( response => {
+                        this.setState({ isAlertEmpty: false,
+                                        isAlertSuccess: true,
+                                        isBadinputs: false,
+                                        user: response.data})
+                    }).catch(error => {
+                        console.log(error)
+                        this.setState({ isAlertSuccess: false,
+                                        isAlertEmpty: false,
+                                        isBadinputs: true})
+                    })
+                }
+            }
+            closeModal(){
+                this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
+                window.location.reload(true);
+            }
+            
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -159,20 +168,20 @@ class AddOperator extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">Add Operator</h3>
+                        <font size="5">{t("Operator.AddOperator.1")}</font>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
                     <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                        <strong>Warning!</strong> There are empty fields!
+                        <strong>{t("Operator.Warning.1")}</strong> {t("Operator.EmptyFields.1")}
                     </Alert>
-                    <Alert color="success" isOpen={this.state.isAlertSuccess}>
-                        <strong>Congratulations!</strong> The opertator was created!
+                    <Alert color="warning" isOpen={this.state.isBadinputs}>
+                    <strong>{t("Operator.Warning.1")}</strong> {t("Operator.BadInputs.1")}
                     </Alert>
                     <Form onSubmit={this.AddOperator}>
                         <h6 className="heading-small text-muted mb-4">
-                        Personal Information
+                        {t("Operator.PersonalInformation.1")}
                         </h6>
                         <div className="pl-lg-4">
                         <Row>
@@ -182,12 +191,12 @@ class AddOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-first-name"
                                 >
-                                Name
+                                {t("Operator.Name.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-first-name"
-                                placeholder="Name"
+                                placeholder={t("Operator.Name.1")}
                                 type="text"
                                 value={this.state.user.first_name}
                                 onChange={this.onChangeFirstName}
@@ -200,12 +209,12 @@ class AddOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-last-name"
                                 >
-                                Last Name
+                                {t("Operator.LastName.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-last-name"
-                                placeholder="Last Name"
+                                placeholder={t("Operator.LastName.1")}
                                 type="text"
                                 value={this.state.user.last_name}
                                 onChange={this.onChangeLastName}
@@ -218,13 +227,13 @@ class AddOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-id"
                                 >
-                                Phone Number
+                                {t("Operator.Phone.1")}
                                 </label>
                                 <Input 
                                 className="form-control-alternative"
                                 id="input-cellphone"
-                                placeholder="3111111111"
-                                type="number"
+                                placeholder={t("Operator.Phone.1")}
+                                type={t("Operator.Phone.1")}
                                 value={this.state.user.cellphone}
                                 onChange={this.onChangeCellphone}/>
                             </FormGroup>
@@ -232,7 +241,7 @@ class AddOperator extends React.Component {
                         </Row>
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Account Information
+                        {t("Operator.AccountInformation.1")}
                         </h6>
                         <div className="pl-lg-4"></div>
                         <Row>
@@ -242,12 +251,12 @@ class AddOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-username"
                                 >
-                                Username
+                                {t("Operator.Username.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
                                 id="input-username"
-                                placeholder="Username"
+                                placeholder={t("Operator.Username.1")}
                                 type="text"
                                 value={this.state.user.username}
                                 onChange={this.onChangeUsername}
@@ -280,11 +289,11 @@ class AddOperator extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-password"
                                 >
-                                Password
+                                {t("Operator.Password.1")}
                                 </label>
                                 <Input 
                                 className="form-control-alternative"
-                                placeholder="Password" 
+                                placeholder={t("Operator.Password.1")}
                                 type="password" 
                                 autoComplete="new-password"
                                 value={this.state.user.password}
@@ -294,17 +303,46 @@ class AddOperator extends React.Component {
                         </Row>
                         <div className="text-center">
                             <Button className="mt-4" color="primary" type="submit">
-                                Add
+                            {t("Operator.Add.1")}
                             </Button>
                         </div>
                         </div>
                     </Form>
                     </CardBody>
                 </Card>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="success"
+                    isOpen={this.state.isAlertSuccess}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="success">
+                        <strong>{t("Operator.Congratulations.1")}!</strong><br/>{t("Operator.CreateSuccesfull.1")}
+                        </Alert>
+                        <strong>{t("Operator.Information.1")}:</strong>
+                        <br></br>
+                        <strong> {t("Operator.Name.1")}: </strong> {this.state.user.first_name}<br/>
+                        <strong> {t("Operator.LastName.1")}: </strong> {this.state.user.last_name}<br/>
+                        <strong> {t("Operator.Phone.1")}: </strong> {this.state.user.cellphone}<br/>
+                        <strong> Email: </strong> {this.state.user.email}<br/>
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        {t("Operator.Close.1")}
+                        </Button>
+                    </div>
+            </Modal>
             </Container>
             </>
         );
     }
 }
 
-export default AddOperator;
+export default withTranslation()(AddOperator);

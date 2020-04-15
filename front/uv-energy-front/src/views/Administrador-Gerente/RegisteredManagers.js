@@ -13,6 +13,8 @@ import {
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
+import i18n from '../../i18n.js';
+import { withTranslation, Trans } from 'react-i18next';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -61,7 +63,7 @@ class RegistredManagers extends React.Component {
         .then( response => {
             if( response.data.error != null){
                 alert(response.data.error);
-                alert("There are no registered managers")
+                alert(i18n.t("Manager.NoRegistered.1"))
               }
               else{
                 this.setState({listManagers: response.data})
@@ -69,6 +71,7 @@ class RegistredManagers extends React.Component {
         }).catch(error => alert(error))
     }
     render() {
+        const { t } = this.props
         return(
             <>
             <UVHeader />
@@ -79,21 +82,20 @@ class RegistredManagers extends React.Component {
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
-                            <h3 className="mb-0">Active Managers</h3>
+                            <font size="5">{t("Manager.ActiveManager.1")}</font>
                             </CardHeader>
-                            <br></br>
                             <Alert color="info" isOpen={this.state.isdisabledManager}>
-                                Manager account was disabled!
+                                {t("Manager.DisabledNotification.1")}
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedManager}>
-                                Manager account was deleted!
+                                {t("Manager.DeletedNotification.1")}
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">
                                 <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Username</th>
+                                <th scope="col"><font size="2">Id</font></th>
+                                <th scope="col"><font size="2">{t("Manager.Name.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Manager.Username.1")}</font></th>
                                 <th scope="col" />
                                 </tr>
                             </thead>
@@ -109,13 +111,13 @@ class RegistredManagers extends React.Component {
                                     <td>{item.username}</td>
                                     <td className="text-right">
                                         <Button
-                                            className="btn-icon-only text-light"
+                                            className="text-blue"
                                             role="button"
-                                            size="sm"
-                                            color=""
+                                            size="md"
+                                            color="white"
                                             onClick={ () => this.props.history.push({pathname: this.state.path, state: { managerID: item.id }}) }
                                         >
-                                            <i className="fas fa-ellipsis-v" />
+                                            <i className="ni ni-settings" />
                                             
                                         </Button>
                                     </td>
@@ -132,4 +134,4 @@ class RegistredManagers extends React.Component {
     }
 }
 
-export default RegistredManagers;
+export default withTranslation()(RegistredManagers);

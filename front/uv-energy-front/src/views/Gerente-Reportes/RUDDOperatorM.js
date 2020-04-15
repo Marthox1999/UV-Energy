@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { withTranslation } from 'react-i18next';
+import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 // reactstrap components
 import {
   Card,
@@ -17,20 +18,19 @@ import {
 
 import 'leaflet/dist/leaflet.css';
 
-import i18n from '../../i18n';
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 
 const c = require('../constants')
 const cookie = new Cookies();
 
-class RUDDManagerM extends Component {
+class RUDDOperatorM extends React.Component {
     constructor(props){
         super(props);
         console.log(this.props.location.state)
         this.state = {
-            manager : {
-                id: this.props.location.state.managerID,
+            operator : {
+                id: this.props.location.state.operatorID,
                 username: "",
                 password: "",
                 email: "",
@@ -38,14 +38,13 @@ class RUDDManagerM extends Component {
                 last_name: "",
                 is_active: true,
                 cellphone: "",
-                position: "MGR"
+                position: "OP"
             },
             credentials: cookie.get('notCredentials'),        
         }    
     }
-
     componentDidMount(){
-        axios.get(c.api + 'users/user/'+this.state.manager.id+'/',
+        axios.get(c.api + 'users/user/'+this.state.operator.id+'/',
                   {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             if( response.data.error != null){
@@ -53,7 +52,7 @@ class RUDDManagerM extends Component {
                 alert("Wrong Id")
               }
               else{
-                this.setState({manager: response.data})
+                this.setState({operator: response.data})
             }             
         }).catch(error => alert(error))
     }
@@ -68,12 +67,12 @@ class RUDDManagerM extends Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{t("Admin.Info.2")} {this.state.manager.first_name}</h3>
+                        <h3 className="mb-0">{t("Admin.Info.2")} {this.state.operator.first_name}</h3>
                         </Col>
                     </Row>
                     </CardHeader>
                     <CardBody>
-                    <Form onSubmit={this.AddManager}>
+                    <Form onSubmit={this.AddOperator}>
                         <h6 className="heading-small text-muted mb-4">
                         </h6>
                         <div className="pl-lg-4">
@@ -92,7 +91,7 @@ class RUDDManagerM extends Component {
                                     id="input-first-name"
                                     placeholder={t("General.Name.1")}
                                     type="text"
-                                    value={this.state.manager.first_name}
+                                    value={this.state.operator.first_name}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -110,7 +109,7 @@ class RUDDManagerM extends Component {
                                     id="input-last-name"
                                     placeholder={t("General.Last_name.1")}
                                     type="text"
-                                    value={this.state.manager.last_name}
+                                    value={this.state.operator.last_name}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -131,7 +130,7 @@ class RUDDManagerM extends Component {
                                     id="input-phone-number"
                                     placeholder={t("General.Phone.1")}
                                     type="text"
-                                    value={this.state.manager.cellphone}
+                                    value={this.state.operator.cellphone}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -156,9 +155,9 @@ class RUDDManagerM extends Component {
                                     readOnly
                                     className="form-control-alternative"
                                     id="input-username"
-                                    placeholder="Username"
+                                    placeholder={t("General.Username.1")}
                                     type="text"                                
-                                    value={this.state.manager.username}
+                                    value={this.state.operator.username}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -176,7 +175,7 @@ class RUDDManagerM extends Component {
                                     id="input-email"
                                     placeholder={t("General.EmailExample.1")}
                                     type="email"
-                                    value={this.state.manager.email}
+                                    value={this.state.operator.email}
                                     />
                                 </FormGroup>
                                 </Col>
@@ -191,4 +190,4 @@ class RUDDManagerM extends Component {
     }
 }
 
-export default withTranslation()(RUDDManagerM)
+export default withTranslation()(RUDDOperatorM);

@@ -19,12 +19,12 @@ import {
 } from "reactstrap";
 
 class AdminNavbar extends React.Component {
-  
-
   handleClick = (lang) => {
     i18n.changeLanguage(lang)
   }
-
+  handlelogout = () => {
+    cookie.remove('notCredentials', { path: '/' })
+  }
   render() {
     return (
       <>
@@ -86,21 +86,12 @@ class AdminNavbar extends React.Component {
                     <span>{t('Support.1')}</span>
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                  <DropdownItem to="/login" tag={Link} onClick={this.handlelogout}>
                     <i className="ni ni-user-run" />
                     <span>{t('Logout.1')}</span>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <button onClick={()=>handleClick('en')}>
-                en
-              </button>
-              <button onClick={()=>handleClick('es')}>
-                es
-              </button>
-              <button onClick={()=>handleClick('pt')}>
-                pt
-              </button>
             </Nav>
           </Container>
         </Navbar>
