@@ -46,12 +46,12 @@ class Auth extends Component {
       <>
         <div className="main-content">
           <AuthNavbar />
-          <div className="header bg-gradient-info py-7 py-lg-8">
+          <div className="header bg-gradient-info py-4 py-lg-6">
             <Container>
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
-                  <Col lg="5" md="6">
-                    <h1 className="text-white">{t("Login.Welcome.1")}</h1>
+                  <Col lg="5" md="5">
+                    <h1 className="text-white"><font size="6">{t("Login.Welcome.1")}</font></h1>
                     <p className="text-lead text-light">
                       {t("Login.Awesome_forms.1")}
                     </p>
