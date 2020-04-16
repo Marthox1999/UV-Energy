@@ -31,14 +31,14 @@ var electricTransformerRoutes = [
   {
     path: "/addElectricTransformer",
     name: "ETransformer.AddET.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-fat-add text-blue",
     component: AddElectricTransformer,
     layout: "/admin"
   },
   {
     path: "/ModifyElectricTransformer",
     name: "ETransformer.ModifyET.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-settings text-blue",
     component: ModifyElectricTransformer,
     layout: "/admin"
   },
@@ -83,14 +83,14 @@ var substationRoutes = [
     path: "/addSubstation",
 
     name: "Substation.AddSubstation.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-fat-add text-blue",
     component: AddSubstation,
     layout: "/admin"
   },
   {
     path: "/modifySubstation",
     name: "Substation.ModifySubstation.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-settings text-blue",
     component: ModifySubstation,
     layout: "/admin"
   },

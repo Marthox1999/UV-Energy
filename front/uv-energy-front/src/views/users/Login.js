@@ -93,7 +93,7 @@ class Login extends Component {
                 this.props.history.push({
                   pathname: '/operator/index'
                 })
-              } else if (response.data.notCredentials.position === "CLR"){
+              } else if (response.data.notCredentials.position === "CLT"){
                 this.props.history.push({
                   pathname: '/client/index'
                 })

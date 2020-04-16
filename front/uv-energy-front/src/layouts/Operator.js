@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import { Container } from "reactstrap";
 // core components
 import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
-import AdminFooter from "components/Footers/AdminFooter.js";
 import SidebarO from "components/Sidebar/SidebarO.js";
 import routes from "routes.js";
 /*

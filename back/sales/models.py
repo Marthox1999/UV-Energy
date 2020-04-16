@@ -9,6 +9,9 @@ from assets.models import Meter
 
 
 class Bank(models.Model):
+    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$',
+                                  'Only alphanumeric characters are allowed.')
+
     name = models.CharField(max_length=100, unique=True, primary_key=True)
     email = models.EmailField(max_length=50, blank=False,
                               unique=True, validators=[validate_email])
@@ -17,6 +20,9 @@ class Bank(models.Model):
 
 
 class DebitPayment(models.Model):
+    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$',
+                                  'Only alphanumeric characters are allowed.')
+
     pk_debit_payment = models.AutoField(primary_key=True)
     fk_bank = models.ForeignKey(Bank, on_delete=models.SET_NULL,
                                 null=True)
@@ -27,6 +33,9 @@ class DebitPayment(models.Model):
 
 
 class Bill(models.Model):
+    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$',
+                                  'Only alphanumeric characters are allowed.')
+
     pk_bill = models.AutoField(primary_key=True)
     start_date = models.DateField()
     end_date = models.DateField()
