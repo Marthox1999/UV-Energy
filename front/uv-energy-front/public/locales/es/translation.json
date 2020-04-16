@@ -605,6 +605,9 @@
         },
         "PendingBills":{
             "1":"Facturas Pendientes"
+        },
+        "value":{
+            "1":"Valor"
         }
     }
 }

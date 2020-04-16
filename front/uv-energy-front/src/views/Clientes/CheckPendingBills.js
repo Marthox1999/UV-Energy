@@ -74,6 +74,7 @@ class CheckPendingBills extends React.Component {
                                 <th scope="col"><font size="2">{t("Bill.Id.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.expeditionDate.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.expirationDate.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Bill.value.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.Visualize.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.Download.1")}</font></th>
                                 </tr>
@@ -85,6 +86,7 @@ class CheckPendingBills extends React.Component {
                                     <td align="center">{item.pk_bill}</td>
                                     <td align="center"> {item.expedition_date} </td>
                                     <td align="center">{item.expiration_date}</td>
+                                    <td align="center">valor</td>
                                     <td className="text-center">
                                         <Button
                                             align="center"

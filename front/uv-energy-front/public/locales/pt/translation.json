@@ -605,6 +605,9 @@
         },
         "PendingBills":{
             "1":"Contas Pendentes"
+        },
+        "value":{
+            "1":"Valor"
         }
     }
 }
