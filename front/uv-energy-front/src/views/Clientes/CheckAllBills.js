@@ -2,12 +2,12 @@ import React from "react";
 
 // reactstrap components
 import {
-  Card,
-  CardHeader,
-  Table,
-  Container,
-  Row,
-  Button
+    Card,
+    CardHeader,
+    Table,
+    Container,
+    Row,
+    Button
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -19,10 +19,10 @@ const c = require('../constants')
 const cookie = new Cookies();
 
 class CheckAllBills extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            bill : {
+            bill: {
                 pk_bill: -1,
                 start_date: "",
                 end_date: "",
@@ -36,91 +36,115 @@ class CheckAllBills extends React.Component {
             },
             path: '',
             listBills: [],
-            credentials: cookie.get('notCredentials'),           
+            credentials: cookie.get('notCredentials'),
         }
+        this.sendpdf = this.sendpdf.bind(this)
     }
-    componentDidMount(){
-        console.log(this.state.credentials)
-        axios.get(c.api + 'sales/billList/', {params: { pk_cliente: this.state.credentials.id}, 
-                headers: { Authorization: `Token ${this.state.credentials.token}`}})
-        .then( response => {
-            if( response.data.error != null){
-                alert(response.data.error);
-              }
-              else{
-                this.setState({listBills: response.data})
-               /*console.log(this.state.listBills)*/
-                 /*console.log(response.config)*/
-            }             
-        }).catch(error => alert(error))
+    componentDidMount() {
+        axios.get(c.api + 'sales/billList/', {
+            params: { pk_cliente: this.state.credentials.id },
+            headers: { Authorization: `Token ${this.state.credentials.token}` }
+        })
+            .then(response => {
+                if (response.data.error != null) {
+                    alert(response.data.error);
+                }
+                else {
+                    this.setState({ listBills: response.data })
+                    /*console.log(this.state.listBills)*/
+                    /*console.log(response.config)*/
+                }
+            }).catch(error => alert(error))
+    }
+    sendpdf(key) {
+        console.log(key);
+        console.log(this.state.listBills[key]);
+        axios({
+            url: c.api + 'sales/generatepdf/',
+            method: 'POST',
+            params: { pk_bill : key },
+            headers: { Authorization : `Token ${this.state.credentials.token}` },
+            responseType: 'blob'
+        }).then(response => {
+            if (response.data.error != null) {
+                console.log(response.data.error);
+            }
+            else {
+                const file = new Blob([response.data], { type: 'application/pdf' });
+                const fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            }
+        }).catch(error => console.log(error))
     }
     render() {
         const { t } = this.props
-        return(
+        return (
             <>
-            <UVHeader />
-            {/* Page content */}
-            <Container className="mt--7" fluid>
-                {/* Table */}
-                <Row>
-                    <div className="col">
-                        <Card className="shadow">
-                            <CardHeader className="border-0">
-                            <font size="5">{t("Bill.MyBills.1")}</font>
-                            </CardHeader>
-                            <Table className="align-items-center table-flush" responsive>
-                            <thead className="thead-light" align="center">
-                                <tr>
-                                <th scope="col"><font size="2">{t("Bill.Id.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.expeditionDate.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.expirationDate.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.value.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.Visualize.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.Download.1")}</font></th>
-                                </tr>
-                            </thead>
-                            <tbody  >
-                                {console.log(this.state.listBills)}
-                                {this.state.listBills.map((item, key) => 
-                                    
-                                    <tr key={'bill-'+ key}>
-                                    <td align="center">{item.pk_bill}</td>
-                                    <td align="center"> {item.expedition_date} </td>
-                                    <td align="center">{item.expiration_date}</td>
-                                    <td align="center">valor</td>
-                                    <td className="text-center">
-                                        <Button
-                                            align="center"
-                                            className="text-blue"
-                                            role="button"
-                                            size="md"
-                                            color="white"
-                                        >
-                                            <i className="ni ni-single-copy-04" />
-                 
-                                        </Button>
-                                    </td>
-                                    <td className="text-center">
-                                        <Button
-                                            align="center"
-                                            className="text-blue"
-                                            role="button"
-                                            size="md"
-                                            color="white"
-                                        >
-                                            <i className="ni ni-cloud-download-95" />
-                 
-                                        </Button>
-                                    </td>
-                                    </tr>
-                                )}
-                                
-                            </tbody>
-                            </Table>
-                        </Card>
-                    </div>
-                </Row>
-            </Container>
+                <UVHeader />
+                {/* Page content */}
+                <Container className="mt--7" fluid>
+                    {/* Table */}
+                    <Row>
+                        <div className="col">
+                            <Card className="shadow">
+                                <CardHeader className="border-0">
+                                    <font size="5">{t("Bill.MyBills.1")}</font>
+                                </CardHeader>
+                                <Table className="align-items-center table-flush" responsive>
+                                    <thead className="thead-light" align="center">
+                                        <tr>
+                                            <th scope="col"><font size="2">{t("Bill.Id.1")}</font></th>
+                                            <th scope="col"><font size="2">{t("Bill.expeditionDate.1")}</font></th>
+                                            <th scope="col"><font size="2">{t("Bill.expirationDate.1")}</font></th>
+                                            <th scope="col"><font size="2">{t("Bill.value.1")}</font></th>
+                                            <th scope="col"><font size="2">{t("Bill.Visualize.1")}</font></th>
+                                            <th scope="col"><font size="2">{t("Bill.Download.1")}</font></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody  >
+                                        {this.state.listBills.map((item, key) =>
+
+                                            <tr key={'bill-' + key}>
+                                                <td align="center">{item.pk_bill}</td>
+                                                <td align="center"> {item.expedition_date} </td>
+                                                <td align="center">{item.expiration_date}</td>
+                                                <td align="center">{item.value}</td>
+                                                <td className="text-center">
+                                                    <Button
+                                                        onClick={() => this.sendpdf(item.pk_bill)}
+                                                        align="center"
+                                                        id={"visualizar-" + key}
+                                                        className="text-blue"
+                                                        role="button"
+                                                        size="md"
+                                                        color="white"
+                                                    >
+                                                        <i className="ni ni-single-copy-04" />
+
+                                                    </Button>
+                                                </td>
+                                                <td className="text-center">
+                                                    <Button
+                                                        align="center"
+                                                        id={"descargar-" + key}
+                                                        className="text-blue"
+                                                        role="button"
+                                                        size="md"
+                                                        color="white"
+                                                    >
+                                                        <i className="ni ni-cloud-download-95" />
+
+                                                    </Button>
+                                                </td>
+                                            </tr>
+                                        )}
+
+                                    </tbody>
+                                </Table>
+                            </Card>
+                        </div>
+                    </Row>
+                </Container>
             </>
         );
     }

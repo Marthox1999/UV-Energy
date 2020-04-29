@@ -58,7 +58,9 @@ ROOT_URLCONF = 'UVEnergyBack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            '/code/template',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

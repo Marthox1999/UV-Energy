@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>UV-Energy</title>
+  </head>
+  <body>
+      <p></p>
+      <h3>Titulo: {{data.model}} </h3>
+      <br>
+      <p> pk : {{ data.pk }} </p>
+      <p> Id Contador: {{ data.fields.fk_meter }} </p>
+      <p> Fecha inicio facturación: {{ data.fields.start_date }} </p>
+      <p> Fecha fin facturación: {{ data.fields.end_date }} </p>
+      <p> Expedición de la factura: {{ data.fields.expedition_date }} </p>
+      <p> Vencimiento de la factura: {{ data.fields.expiration_date }} </p>
+      <p> Pagado: {{ data.fields.is_paid }} </p>
+      <p> Valor a pagar: {{ data.fields.value }} </p>
+
+      <p>Un hermoso histograma que no hemos hecho</p>
+  </body>
+</html>

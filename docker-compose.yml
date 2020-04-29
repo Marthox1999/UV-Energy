@@ -38,9 +38,9 @@ services:
       - db
   #    - elasticsearch
   react:
-    build: ./front/uv-energy-front
+    build: ./front/uv-energy-front/
     volumes:
-      - ./front/uv-energy-front:/code
+      - ./front/uv-energy-front/:/code
     ports:
       - "8000:3000"
     depends_on:
