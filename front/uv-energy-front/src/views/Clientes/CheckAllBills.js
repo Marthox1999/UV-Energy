@@ -57,8 +57,6 @@ class CheckAllBills extends React.Component {
             }).catch(error => alert(error))
     }
     sendpdf(key) {
-        console.log(key);
-        console.log(this.state.listBills[key]);
         axios({
             url: c.api + 'sales/generatepdf/',
             method: 'POST',
@@ -74,7 +72,7 @@ class CheckAllBills extends React.Component {
                 const fileURL = URL.createObjectURL(file);
                 window.open(fileURL);
             }
-        }).catch(error => console.log(error))
+        }).catch(error => alert(error))
     }
     render() {
         const { t } = this.props

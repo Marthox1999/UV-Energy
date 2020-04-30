@@ -40,7 +40,6 @@ class CheckPendingBills extends React.Component {
         }
     }
     componentDidMount(){
-        console.log(this.state.credentials)
         axios.get(c.api + 'sales/pendingbillList/', {params: { pk_cliente: this.state.credentials.id}, 
                 headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
@@ -86,7 +85,7 @@ class CheckPendingBills extends React.Component {
                                     <td align="center">{item.pk_bill}</td>
                                     <td align="center"> {item.expedition_date} </td>
                                     <td align="center">{item.expiration_date}</td>
-                                    <td align="center">valor</td>
+                                    <td align="center">{item.value}</td>
                                     <td className="text-center">
                                         <Button
                                             align="center"

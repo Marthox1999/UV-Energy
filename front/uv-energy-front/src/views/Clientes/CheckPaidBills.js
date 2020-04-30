@@ -86,7 +86,7 @@ class CheckPaidBills extends React.Component {
                                     <td align="center">{item.pk_bill}</td>
                                     <td align="center"> {item.expedition_date} </td>
                                     <td align="center">{item.expiration_date}</td>
-                                    <td align="center">valor</td>
+                                    <td align="center">{item.value}</td>
                                     <td className="text-center">
                                         <Button
                                             align="center"

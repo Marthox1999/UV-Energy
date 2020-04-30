@@ -710,5 +710,94 @@
             "user": 2,
             "created": "2020-03-18T17:21:25.287Z"
         }
+    },
+    {
+        "model": "sales.bank",
+        "pk": "Banco1",
+        "fields": {
+            "email": "banco@banco.com"
+        }
+    },
+    {
+        "model": "sales.debitpayment",
+        "pk": 1,
+        "fields": {
+            "fk_bank": "Banco1",
+            "fk_employee": 4
+        }
+    },
+    {
+        "model": "sales.bill",
+        "pk": 1,
+        "fields": {
+            "start_date": "2020-04-13",
+            "end_date": "2020-04-15",
+            "read": 1,
+            "expedition_date": "2020-04-12",
+            "expiration_date": "2020-04-19",
+            "is_paid": true,
+            "value": 1000,
+            "fk_debit_payment": 1,
+            "fk_meter": 1,
+            "fk_employee": 4
+        }
+    },
+    {
+        "model": "sales.bill",
+        "pk": 2,
+        "fields": {
+            "start_date": "2020-04-13",
+            "end_date": "2020-04-13",
+            "read": 1,
+            "expedition_date": "2020-04-13",
+            "expiration_date": "2020-04-13",
+            "is_paid": true,
+            "value": 2000,
+            "fk_debit_payment": 1,
+            "fk_meter": 1,
+            "fk_employee": 4
+        }
+    },
+    {
+        "model": "sales.bill",
+        "pk": 3,
+        "fields": {
+            "start_date": "2020-04-13",
+            "end_date": "2020-04-13",
+            "read": 1,
+            "expedition_date": "2020-04-13",
+            "expiration_date": "2020-04-13",
+            "is_paid": false,
+            "value": 3000,
+            "fk_debit_payment": 1,
+            "fk_meter": 1,
+            "fk_employee": 4
+        }
+    },
+    {
+        "model": "assets.meter",
+        "pk": 1,
+        "fields": {
+            "address": "cra 1a no 2-3",
+            "stratum": 2,
+            "city": "CALI",
+            "use": "RES",
+            "fk_electric_transformers": 1,
+            "fk_client": 3,
+            "isActive": true
+        }
+    },
+    {
+        "model": "assets.meter",
+        "pk": 2,
+        "fields": {
+            "address": "cra 1a no 3-44",
+            "stratum": 3,
+            "city": "CALI",
+            "use": "RES",
+            "fk_electric_transformers": 2,
+            "fk_client": 3,
+            "isActive": true
+        }
     }
 ]
