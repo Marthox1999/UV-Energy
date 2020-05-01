@@ -1,5 +1,4 @@
 import Index from "views/Index.js";
-import Profile from "views/examples/Profile.js";
 import LMaps from "views/examples/Maps.js";
 import Register from "views/examples/Register.js";
 import Login from "views/users/Login.js";
@@ -12,6 +11,7 @@ import RUDDOperator from "views/Administrador-Operador/RUDDOperator.js"
 import RUDDAdminM from "views/Gerente-Reportes/RUDDAdminM.js"
 import RUDDManagerM from "views/Gerente-Reportes/RUDDManagerM.js"
 import RUDDOperatorM from "views/Gerente-Reportes/RUDDOperatorM.js"
+import HomePage from "views/Clientes/HomePage.js"
 
 var routes = [
   {
@@ -20,6 +20,13 @@ var routes = [
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/admin"
+  },
+  {
+    path: "/index",
+    name: "Dashboard",
+    icon: "ni ni-tv-2 text-primary",
+    component: HomePage,
+    layout: "/client"
   },
   {
     path: "/icons",
@@ -33,13 +40,6 @@ var routes = [
     name: "Maps",
     icon: "ni ni-pin-3 text-orange",
     component: LMaps,
-    layout: "/admin"
-  },
-  {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-blue",
-    component: Profile,
     layout: "/admin"
   },
   {

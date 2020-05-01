@@ -286,6 +286,9 @@
         },
         "ElectricTransformer":{
             "1":"Electric Transformer"
+        },
+        "Bill":{
+            "1":"My Bills"
         }
     },
     "ETransformer":{
@@ -461,6 +464,48 @@
         },
         "NewName":{
             "1":"New name"
+        }
+    },
+
+    "Bill":{
+        "NoBill":{
+            "1":"There aren't bills"
+        },
+        "MyBills":{
+            "1":"My Bills"
+        },
+        "expirationDate":{
+            "1":"Expiration Date"
+        },
+        "IsPaid":{
+            "1":"State"
+        },
+        "Id":{
+            "1":"Bill Number"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "expeditionDate":{
+            "1":"Expedition Date"
+        },
+        "Download":{
+            "1":"Download"
+        },
+        "Visualize":{
+            "1":"Visualize"
+        },
+        "AllBills":{
+            "1":"All Bills"
+        },
+        "PaidBills":{
+            "1":"Paid Bills"
+        },
+        "PendingBills":{
+            "1":"Pending Bills"
+        },
+        "value":{
+            "1":"Value"
         }
     },
 

@@ -2,8 +2,6 @@ import React from "react";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
-import { withTranslation, Trans } from 'react-i18next';
-import Cookies from 'universal-cookie';
 
 // reactstrap components
 import {
@@ -28,9 +26,9 @@ import {
   Col
 } from "reactstrap";
 
-const cookie = new Cookies();
+import { withTranslation, Trans } from 'react-i18next';
 
-class SidebarM extends React.Component {
+class SidebarC extends React.Component {
   state = {
     collapseOpen: false
   };
@@ -55,24 +53,6 @@ class SidebarM extends React.Component {
     });
   };
   // creates the links that appear in the left menu / Sidebar
-  createLinks = routes => {
-    return routes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
-
   createClientLinks = clientRoutes => {
     return clientRoutes.map((prop, key) => {
       return (
@@ -91,47 +71,8 @@ class SidebarM extends React.Component {
     });
   };
 
-  createSubstationLinks = substationRoutes => {
-    return substationRoutes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
-
-  createElectricTransfomerLinks = electricTransformerRoutes => {
-    return electricTransformerRoutes.map((prop, key) => {
-      return (
-        <NavItem key={key}>
-          <NavLink
-            to={prop.layout + prop.path}
-            tag={NavLinkRRD}
-            onClick={this.closeCollapse}
-            activeClassName="active"
-          >
-            <i className={prop.icon} />
-            <Trans>{prop.name}</Trans>
-          </NavLink>
-        </NavItem>
-      );
-    });
-  };
-
-  handlelogout = () => {
-    cookie.remove('notCredentials', { path: '/' })
-  }
   render() {
-    const { /*bgColor,*/ clientRoutes, electricTransformerRoutes, substationRoutes, logo } = this.props;
+    const { /*bgColor,*/ clientRoutes,logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -184,31 +125,31 @@ class SidebarM extends React.Component {
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
-                  <DropdownItem className="noti-title" header tag="div">
-                    <h6 className="text-overflow m-0">{t('Sidebar.Welcome.1')}</h6>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-single-02" />
-                    <span>{t('Sidebar.MyProfile.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-settings-gear-65" />
-                    <span>{t('Sidebar.Settings.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-calendar-grid-58" />
-                    <span>{t('Sidebar.Activity.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-support-16" />
-                    <span>{t('Sidebar.Support.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem to="/login" tag={Link} onClick={this.handlelogout}>
-                    <i className="ni ni-user-run" />
-                    <span>{t('Sidebar.Logout.1')}</span>
-                  </DropdownItem>
-                </DropdownMenu>
+                <DropdownItem className="noti-title" header tag="div">
+                  <h6 className="text-overflow m-0">{t("Sidebar.Welcome.1")}</h6>
+                </DropdownItem>
+                <DropdownItem to="/admin/user-profile" tag={Link}>
+                  <i className="ni ni-single-02" />
+                  <span>{t("Sidebar.MyProfile.1")}</span>
+                </DropdownItem>
+                <DropdownItem to="/admin/user-profile" tag={Link}>
+                  <i className="ni ni-settings-gear-65" />
+                  <span>{t("Sidebar.Settings.1")}</span>
+                </DropdownItem>
+                <DropdownItem to="/admin/user-profile" tag={Link}>
+                  <i className="ni ni-calendar-grid-58" />
+                  <span>{t("Sidebar.Activity.1")}</span>
+                </DropdownItem>
+                <DropdownItem to="/admin/user-profile" tag={Link}>
+                  <i className="ni ni-support-16" />
+                  <span>{t("Sidebar.Support.1")}</span>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                  <i className="ni ni-user-run" />
+                  <span>{t("Sidebar.Logout.1")}</span>
+                </DropdownItem>
+              </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
           {/* Collapse */}
@@ -259,12 +200,8 @@ class SidebarM extends React.Component {
             </Form>
             {/* Navigation */}
             <Nav navbar>
-              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Operator.1")}
-              {this.createClientLinks(clientRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Substation.1")}
-              {this.createSubstationLinks(substationRoutes)}
-              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.ElectricTransformer.1")}
-              {this.createElectricTransfomerLinks(electricTransformerRoutes)}
+            &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Bill.1")}
+              {this.createClientLinks(clientRoutes)}             
               </Nav>
           </Collapse>
         </Container>
@@ -273,14 +210,13 @@ class SidebarM extends React.Component {
   }
 }
 
-SidebarM.defaultProps = {
-  operatorRoutes: [{}],
-  electricTransformerRoutes: [{}]
+SidebarC.defaultProps = {
+  clientRoutes: [{}]
 };
 
-SidebarM.propTypes = {
+SidebarC.propTypes = {
   // links that will be displayed inside the component
-  operatorRoutes: PropTypes.arrayOf(PropTypes.object),
+  clientRoutes: PropTypes.arrayOf(PropTypes.object),
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app
     // it will be rendered as <Link to="...">...</Link> tag
@@ -295,4 +231,4 @@ SidebarM.propTypes = {
   })
 };
 
-export default  withTranslation()(SidebarM);
+export default withTranslation()(SidebarC);

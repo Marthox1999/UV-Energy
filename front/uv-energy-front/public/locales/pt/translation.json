@@ -286,6 +286,9 @@
         },
         "ElectricTransformer":{
             "1":"Transformador elétrico"
+        },
+        "Bill":{
+            "1":"Minhas contas"
         }
     },
     "ETransformer":{
@@ -564,6 +567,45 @@
             "1":"Excluir"
         }
     },
+    "Bill":{
+        "NoBill":{
+            "1": "Não há contas"
+        },
+        "MyBills":{
+            "1": "Minhas contas"
+        },
+        "expirationDate":{
+            "1": "Data de validade"
+        },
+        "IsPaid":{
+            "1": "Estado"
+        },
+        "Id":{
+            "1": "Número da conta"
+        },
+        "AreYouSure":{
+            "1": "você tem certeza?"
+        },
+        "expeditionDate":{
+            "1": "Data da expedição"
+        },
+        "Download":{
+            "1":"Baixar"
+        },
+        "Visualize":{
+            "1":"Visualizar"
+        },
+        "AllBills":{
+            "1":"Todas as Contas"
+        },
+        "PaidBills":{
+            "1":"Contas Pagas"
+        },
+        "PendingBills":{
+            "1":"Contas Pendentes"
+        },
+        "value":{
+            "1":"Valor"
     "Client":{
         "Warning":{
             "1":"Aviso"
