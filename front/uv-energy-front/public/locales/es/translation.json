@@ -377,7 +377,6 @@
         "SelectSubstation":{
             "1":"Seleccione un transformador electrico primero."
         }
-
     },
 
     "Substation":{
@@ -568,7 +567,6 @@
             "1":"Borrar"
         }
     },
-
     "Bill":{
         "NoBill":{
             "1":"No hay Facturas"
@@ -608,6 +606,90 @@
         },
         "value":{
             "1":"Valor"
+    "Client":{
+        "Warning":{
+            "1":"Advertencia"
+        },
+        "EmptyFields":{
+            "1":"Campos vacíos"
+        },
+        "AddClient":{
+            "1":"Agregar cliente"
+        },
+        "BadInputs":{
+            "1":"Entradas incorrectas"
+        },
+        "PersonalInformation":{
+            "1":"Información personal"
+        },
+        "Name":{
+            "1":"Nombre"
+        },
+        "LastName":{
+            "1":"Apellido"
+        },         
+        "Phone":{
+            "1":"Número de teléfono"
+        },
+        "Username":{
+            "1":"Nombre de usuario"
+        },
+        "AccountInformation":{
+            "1":"Información de cuenta"
+        },
+        "Password":{
+            "1":"Contraseña"
+        },
+        "Add":{
+            "1":"Agregar"
+        },
+        "Information":{
+            "1":"Información"
+        },
+        "Congratulations":{
+            "1":"¡Felicitaciones!"
+        },
+        "CreateSuccesfull":{
+            "1":"¡El cliente fue creado!"
+        },
+        "ModifySuccesfull":{
+            "1":"¡El cliente fue modificado!"
+        },
+        "Close":{
+            "1":"Cerrar"
+        },
+        "ActiveClient":{
+            "1":"Cliente activo"
+        },
+        "DisabledNotification":{
+            "1":"¡Se desactivo la cuenta del cliente! Vuelva a cargar la página para ver el cambio"
+        },
+        "DeletedNotification":{
+            "1":"¡Se eliminó la cuenta del cliente! Vuelva a cargar la página para ver los cambios"
+        },
+        "ModifyClient":{
+            "1":"Modificar cliente"
+        },
+        "DisabledClient":{
+            "1":"Cliente deshabilitado"
+        },
+        "DeletedClient":{
+            "1":"Cliente eliminado"
+        },
+        "RegisteredClient":{
+            "1":"Clientes registrados"
+        },
+        "WrongId":{
+            "1":"Identificación incorrecta"
+        },
+        "NoRegistered":{
+            "1":"No hay clientes registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"¿Eliminar cliente?"
+        },
+        "ConfirmationDisable":{
+            "1":"¿Deshabilitar cliente?"
         }
     }
 }
