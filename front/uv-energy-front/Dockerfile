@@ -1,4 +1,4 @@
-FROM node
+FROM node:13.8.0
 
 #donde esta mi codigo
 WORKDIR /code
@@ -9,10 +9,10 @@ ENV PATH ./node_modules/.bin:$PATH
 COPY package*.json ./
 #
 
-#a ejecutar
-RUN ls
-#RUN npm install
-#RUN npm install react-scripts@3.3.1 -g
+#RUN npm --version
+RUN npm install
+RUN npm install react-scripts@3.3.1 -g
+RUN npm install node-sass --save
 
 COPY . .
 #al iniciar el contenedor
