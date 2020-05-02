@@ -606,6 +606,8 @@
         },
         "value":{
             "1":"Valor"
+        }
+    },
     "Client":{
         "Warning":{
             "1":"Advertencia"
