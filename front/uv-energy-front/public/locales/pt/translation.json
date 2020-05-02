@@ -285,7 +285,10 @@
             "1":"Subestação"
         },
         "ElectricTransformer":{
-            "1":"Transformador Elétrico"
+            "1":"Transformador elétrico"
+        },
+        "Bill":{
+            "1":"Minhas contas"
         }
     },
     "ETransformer":{
@@ -378,7 +381,6 @@
         }
 
     },
-
 
     "Substation":{
         "AddSubstation":{
@@ -569,6 +571,133 @@
         },
         "Delete":{
             "1":"Excluir"
+        }
+    },
+    "Bill":{
+        "NoBill":{
+            "1": "Não há contas"
+        },
+        "MyBills":{
+            "1": "Minhas contas"
+        },
+        "expirationDate":{
+            "1": "Data de validade"
+        },
+        "IsPaid":{
+            "1": "Estado"
+        },
+        "Id":{
+            "1": "Número da conta"
+        },
+        "AreYouSure":{
+            "1": "você tem certeza?"
+        },
+        "expeditionDate":{
+            "1": "Data da expedição"
+        },
+        "Download":{
+            "1":"Baixar"
+        },
+        "Visualize":{
+            "1":"Visualizar"
+        },
+        "AllBills":{
+            "1":"Todas as Contas"
+        },
+        "PaidBills":{
+            "1":"Contas Pagas"
+        },
+        "PendingBills":{
+            "1":"Contas Pendentes"
+        },
+        "value":{
+            "1":"Valor"
+        }
+    },
+    "Client":{
+        "Warning":{
+            "1":"Aviso"
+        },
+        "EmptyFields":{
+            "1":"Campos vazios"
+        },
+        "AddClient":{
+            "1":"Adicionar cliente"
+        },
+        "BadInputs":{
+            "1":"Entradas incorretas"
+        },
+        "PersonalInformation":{
+            "1":"Informações pessoais"
+        },
+        "Name":{
+            "1":"Nome"
+        },
+        "LastName":{
+            "1":"Sobrenome"
+        },         
+        "Phone":{
+            "1":"Número de telefone"
+        },
+        "Username":{
+            "1":"Nome de usuário"
+        },
+        "AccountInformation":{
+            "1":"Informações da conta"
+        },
+        "Password":{
+            "1":"Senha"
+        },
+        "Add":{
+            "1":"Adicionar"
+        },
+        "Information":{
+            "1":"Informações!"
+        },
+        "Congratulations":{
+            "1":"Parabéns!"
+        },
+        "CreateSuccesfull":{
+            "1":"O cliente foi criado!"
+        },
+        "ModifySuccesfull":{
+            "1":"O cliente foi modificado!"
+        },
+        "Close":{
+            "1":"Fechar"
+        },
+        "ActiveClient":{
+            "1":"Cliente ativo"
+        },
+        "DisabledNotification":{
+            "1":"A conta do cliente foi desativada! Atualize a página para ver a alteração"
+        },
+        "DeletedNotification":{
+            "1":"A conta do cliente foi excluída! Atualize a página para ver as alterações"
+        },
+        "ModifyClient":{
+            "1":"Modificar cliente"
+        },
+        "DisabledClient":{
+            "1":"Cliente desativado"
+        },
+        "DeletedClient":{
+            "1":"Cliente excluído"
+        },
+        "RegisteredClient":{
+            "1":"Clientes Registrados"
+        },
+        "WrongId":{
+            "1":"ID errado"
+        },
+        "NoRegistered":{
+            "1":"Não há clientes registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"Excluir cliente?"
+        },
+        "ConfirmationDisable":{
+            "1":"Desativar cliente?"
         }
     }
 }

@@ -10,9 +10,7 @@ import {
   Navbar,
   Nav,
   Container,
-  Media,
-  Row,
-  Col
+  Media
 } from "reactstrap";
 
 import { withTranslation } from 'react-i18next';

@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  
+ <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">-->
+  <!--<link href="{% static 'style.css' %"} rel="stylesheet" >-->
+  <title>UV-Energy</title>
+</head>
+<style>
+  table {width: 100%;}
+  tr {border-style: solid; border-width: 1px; padding: 10px; border-radius: 15px;}
+  td {border-style: solid ; border-width: 1px; border-radius: 15px;}
+  
+  div#container {
+    font: normal 10px Arial, Helvetica, Sans-serif;
+    background: white;
+}
+</style>
+<body>
+  <div id="container">
+<table cellspacing=10> 
+  <thead>
+    <tr>
+      <td style="border-style: none; display: block; margin-left: auto; margin-right: auto; width: 50%;">
+        <img src="file:///code/static/logo.png" height="100px" width="100px"><br>
+      </td>
+      <td>
+        Datos personales
+        pk : {{ data.pk }}
+        <p> Fecha inicio facturación: {{ data.fields.start_date }} </p>
+        <p> Fecha fin facturación: {{ data.fields.end_date }} </p>
+      </td>
+      <td>
+        <table>
+         <tr>
+            <td style="font-weight: bold; text-align: left; border-style: hidden; width: 50%;"></td>
+            <td style="font-weight: bold; text-align: right; border-style: hidden;">
+               Esta es tu factura
+            </td>
+         </tr>
+         <tr>
+            <td style="font-weight: bold; text-align: left; border-style: hidden; width: 50%;">
+               Id Contador: 
+            </td>
+            <td style="text-align: center;">
+               {{ data.fields.fk_meter }}
+            </td>
+         </tr>
+         <tr>
+            <td style="font-weight: bold; text-align: left; border-style: hidden; width: 50%;">
+               Valor a pagar:
+            </td>
+            <td style="text-align: center;">
+               {{ data.fields.value }}
+            </td>
+         </tr>   
+         <tr>
+            <td style="font-weight: bold; text-align: left; border-style: hidden; width: 50%;">
+               Expedición de la factura:
+            </td>
+            <td style="text-align: center;">
+               {{ data.fields.expedition_date }}
+            </td>
+         </tr>
+         <tr>
+            <td style="font-weight: bold; text-align: left; border-style: hidden; width: 50%;">
+               Vencimiento de la factura:
+            </td>
+            <td style="text-align: center;">
+               {{ data.fields.expiration_date }}
+            </td>
+         </tr>
+        </table>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Datos de consumo
+        <p> Consumo: {{ data.fields.read }} </p>
+      </td>
+      <td>
+        Grafico de histograma
+        <p>Un hermoso histograma que no hemos hecho</p>
+      </td>
+      <td>Esta deberia poder ser mas amplia con otra tabla dentro</td>
+    </tr>
+    <tr>
+      <td>Propiedades del transformador</td>
+      <td>componentes del costo</td>
+      <td>Otra tabla que ni idea</t>
+    </tr>
+  </tbody>
+
+<tfoot>
+    <tr>
+      <td style="border-style: none; display: block; margin-left: auto; margin-right: auto; width: 50%;">
+        <img src="file:///code/static/logo.png" height="100px" width="100px">
+      </td>
+      <td>
+        Datos personales
+        pk : {{ data.pk }}
+        <p> Fecha inicio facturación: {{ data.fields.start_date }} </p>
+        <p> Fecha fin facturación: {{ data.fields.end_date }} </p>
+      </td>
+      <td>
+         <table>
+            <tr>
+               <td style="font-weight: bold; text-align: center;">
+                  Numero de pago electronico?
+               </td>
+               
+            </tr>
+            <tr>
+               <td style="font-weight: bold; text-align: left; border-style: hidden; width: 50%;">
+                  Valor a pagar:
+               </td>
+               <td style="text-align: center;">
+                  {{ data.fields.value }}
+               </td>
+            </tr>   
+            <tr>
+               <td style="font-weight: bold; text-align: left; border-style: hidden; width: 50%;">
+                  Expedición de la factura:
+               </td>
+               <td style="text-align: center;">
+                  {{ data.fields.expedition_date }}
+               </td>
+            </tr>
+            <tr>
+               <td style="font-weight: bold; text-align: left; border-style: hidden; width: 50%;">
+                  Vencimiento de la factura:
+               </td>
+               <td style="text-align: center;">
+                  {{ data.fields.expiration_date }}
+               </td>
+            </tr>
+           </table>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+</body>
+</html>

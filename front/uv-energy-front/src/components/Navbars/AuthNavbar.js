@@ -20,7 +20,10 @@ import { Link } from "react-router-dom";
 // reactstrap components
 import {
   UncontrolledCollapse,
-  NavbarBrand,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  DropdownToggle,
   Navbar,
   NavItem,
   NavLink,
@@ -30,7 +33,13 @@ import {
   Col
 } from "reactstrap";
 
+import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n'
+
 class AdminNavbar extends React.Component {
+  handleClick = (lang) => {
+    i18n.changeLanguage(lang)
+  }
   render() {
     return (
       <>
@@ -39,9 +48,6 @@ class AdminNavbar extends React.Component {
           expand="md"
         >
           <Container className="px-4">
-            <NavbarBrand to="/" tag={Link}>
-              <img alt="..." src={require("assets/img/brand/argon-react-white.png")} />
-            </NavbarBrand>
             <button className="navbar-toggler" id="navbar-collapse-main">
               <span className="navbar-toggler-icon" />
             </button>
@@ -79,6 +85,25 @@ class AdminNavbar extends React.Component {
                   </NavLink>
                 </NavItem>
               </Nav>
+              <Nav className="align-items-center d-none d-md-flex" navbar>
+              <UncontrolledDropdown nav>
+                <DropdownToggle className="pr-0" nav>
+                  <i class="ni ni-world" color="white" size="lg"></i>
+                </DropdownToggle>
+                <DropdownMenu className="dropdown-menu-arrow" right>
+                  <DropdownItem className="noti-title" header tag="div">
+                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('en')}>English</button>
+                  </DropdownItem>
+                  <DropdownItem className="noti-title" header tag="div">
+                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('es')}>Español</button>
+                  </DropdownItem>
+                  <DropdownItem className="noti-title" header tag="div">
+                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('pt')}>Português</button>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              </Nav>
+              <br></br>
             </UncontrolledCollapse>
           </Container>
         </Navbar>
@@ -87,4 +112,4 @@ class AdminNavbar extends React.Component {
   }
 }
 
-export default AdminNavbar;
+export default withTranslation()(AdminNavbar);
