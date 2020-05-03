@@ -1,5 +1,6 @@
 from sales.models import Bill
 from assets.models import Meter
+from users.models import User
 from rest_framework import viewsets, permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
@@ -18,12 +19,17 @@ class GenerateBillViewSet(viewsets.ViewSet):
     def create(self, request):
         # recibe el parametro de la factura a generar
         pk = request.query_params.get('pk_bill')
-        # buscar el registro de dicha factura
-        bill = Bill.objects.filter(pk_bill=pk)
+        # buscar el registros asociados de dicha factura
+        bill = Bill.objects.get(pk_bill=pk)
+        meter = Meter.objects.get(pk_meter=bill.fk_meter_id)
+        client = User.objects.get(id=meter.fk_client_id)
+        
         # convertir el queryset en json para pasarlo al context
-        billJson = json.loads(serializers.serialize('json',bill))
+        billJson = json.loads(serializers.serialize('json',[bill,]))
+        meterJson = json.loads(serializers.serialize('json',[meter,]))
+        clientJson = json.loads(serializers.serialize('json',[client,]))
         # guardarlo en un contexto
-        context = { "data" : billJson[0]}
+        context = { "bill" : billJson[0], "meter" : meterJson[0], "client" : clientJson[0]}
         # busca el template a utilizar
         template = get_template("bill.html")
         # llena el template con la informacion que se recupero de la factura
