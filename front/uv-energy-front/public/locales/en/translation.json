@@ -275,6 +275,9 @@
         "Manager":{
             "1":"Manager"
         },
+        "Configuration":{
+            "1": "System configuration"
+        },
         "Administrator":{
             "1":"Administrator"
         },
@@ -706,6 +709,15 @@
         },
         "ConfirmationDisable":{
             "1":"Disable Client?"
+        }
+    },
+
+    "Settings":{
+        "Configuration":{
+            "1": "System configuration"
+        },
+        "setUpInvoices":{
+            "1": "Set up invoices"
         }
     }
 }

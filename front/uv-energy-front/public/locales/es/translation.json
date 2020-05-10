@@ -276,6 +276,9 @@
         "Manager":{
             "1":"Gerente"
         },
+        "Configuration":{
+            "1": "Configuración del sistema"
+        },
         "Administrator":{
             "1":"Administrador"
         },
@@ -698,6 +701,15 @@
         },
         "ConfirmationDisable":{
             "1":"¿Deshabilitar cliente?"
+        }
+    },
+
+    "Settings":{
+        "Configuration":{
+            "1": "Configuración del sistema"
+        },
+        "setUpInvoices":{
+            "1": "Configurar facturas"
         }
     }
 }
