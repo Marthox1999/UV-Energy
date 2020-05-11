@@ -52,6 +52,7 @@ class Meter(models.Model):
         ('BOG', 'Bogotá'),
         ('MED', 'Medellín'),
         ('CALI', 'Cali'),
+        ('JAM','Jamundi'),
         ('B/Q', 'Barranquilla'),
         ('CART', 'Cartagena'),
         ('CUC', 'Cucuta'),
