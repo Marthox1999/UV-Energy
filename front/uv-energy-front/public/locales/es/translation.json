@@ -731,6 +731,12 @@
         },
         "ReconnectionCost":{
             "1": "Costo de reconexión"
+        },
+        "Default":{
+            "1": "Restaurar valores predeterminados"
+        },
+        "GenerateInvoices":{
+            "1": "Generar facturas"
         }
     }
 }

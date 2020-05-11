@@ -739,6 +739,12 @@
         },
         "ReconnectionCost":{
             "1": "Reconnection cost"
+        },
+        "Default":{
+            "1": "Restore defaults"
+        },
+        "GenerateInvoices":{
+            "1": "Generate invoices"
         }
     }
 }

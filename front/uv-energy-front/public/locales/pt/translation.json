@@ -731,6 +731,12 @@
         },
         "ReconnectionCost":{
             "1": "Custo de reconexão"
+        },
+        "Default":{
+            "1": "Restaurar padrões"
+        },
+        "GenerateInvoices":{
+            "1": "Gerar faturas"
         }
     }
 }

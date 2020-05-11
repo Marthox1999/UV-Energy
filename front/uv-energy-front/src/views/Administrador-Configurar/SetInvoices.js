@@ -54,8 +54,11 @@ class SetInvoices extends React.Component {
         }
         this.onChangeStratum = this.onChangeStratum.bind(this);
         this.onChangeMoraReconexion = this.onChangeMoraReconexion.bind(this);
-        
+        this.getInitState = this.getInitState.bind(this);
+        this.inputsNumbers = this.inputsNumbers.bind(this);
     }
+
+    
 
     onChangeStratum(e){
         const target = e.target;
@@ -71,15 +74,50 @@ class SetInvoices extends React.Component {
     }
 
     onChangeMoraReconexion(e){
+        
         const target = e.target;
         const value = target.value;
         const name = target.name;
+
         
         this.setState({
             [name]:value
         })
+        
+    }
+    
+    getInitState(){
+        let obj = new Object();
+        obj.residencial=["416.58715",
+                             "446.64775",
+                             "548.2377",
+                             "592.6894",
+                             "711.2273"];
+        obj.industrial=["711.2273",
+                            "711.2273",
+                            "711.2273",
+                            "711.2273",
+                            "711.2273"];
+        obj.mora="0.5";
+        obj.reconexion="50000";
+        
+        return obj;
     }
 
+    inputsNumbers(){
+        const isNumber = (number) => !isNaN(number);
+        let numeroResidencial = this.state.residencial.every(isNumber)
+        let numeroIndustrial = this.state.industrial.every(isNumber);
+        return !isNaN(this.state.mora) && !isNaN(this.state.reconexion);
+    }
+    SubmitEvent(buttonVal){
+        if(buttonVal===1){
+            this.setState(this.getInitState());
+        }
+        else if (buttonVal===2){
+            console.log(this.inputsNumbers())
+        }
+    }
 
     render() {
         const { t } = this.props
@@ -215,7 +253,14 @@ class SetInvoices extends React.Component {
                             value={this.state.reconexion}
                             onChange={this.onChangeMoraReconexion}
                             />
-                    
+                        <div className="text-center">
+                            <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
+                                {t("Settings.Default.1")}
+                            </Button>
+                            <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(2) }>
+                                {t("Settings.GenerateInvoices.1")}
+                            </Button>
+                        </div>
                     
                     </Form>
                     </CardBody>
