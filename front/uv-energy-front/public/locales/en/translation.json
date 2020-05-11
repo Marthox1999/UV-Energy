@@ -731,8 +731,14 @@
         "DebtInformation":{
             "1": "Debt information"
         },
-        "":{
+        "DebtPercentage":{
             "1": "Debt percentage"
+        },
+        "ReconnectionInformation":{
+            "1": "Reconnection information"
+        },
+        "ReconnectionCost":{
+            "1": "Reconnection cost"
         }
     }
 }

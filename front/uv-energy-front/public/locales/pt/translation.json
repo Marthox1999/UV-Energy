@@ -725,6 +725,12 @@
         },
         "DebtPercentage":{
             "1": "Percentual da dívida"
+        },
+        "ReconnectionInformation":{
+            "1": "Informações de reconexão"
+        },
+        "ReconnectionCost":{
+            "1": "Custo de reconexão"
         }
     }
 }

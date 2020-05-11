@@ -48,11 +48,13 @@ class SetInvoices extends React.Component {
                          "711.2273",
                          "711.2273"],
             
-            mora:"0,5",
-            reconexion:"",
+            mora:"0.5",
+            reconexion:"50000",
             credentials: cookie.get('notCredentials'),
         }
         this.onChangeStratum = this.onChangeStratum.bind(this);
+        this.onChangeMoraReconexion = this.onChangeMoraReconexion.bind(this);
+        
     }
 
     onChangeStratum(e){
@@ -61,18 +63,23 @@ class SetInvoices extends React.Component {
         const estrato = target.name[target.name.length-1];
         const tipo = target.name.substring(0, target.name.length-1);
         const temp  = this.state[tipo];
-        console.log(temp)
+        
         temp[parseInt(estrato,10)]=value;
         this.setState({
             [tipo]: temp
         });
     }
 
-    onChangeMora(e){
+    onChangeMoraReconexion(e){
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        
         this.setState({
-            [e.target.name]:e.target.value
+            [name]:value
         })
     }
+
 
     render() {
         const { t } = this.props
@@ -94,6 +101,9 @@ class SetInvoices extends React.Component {
 
                         
                     <Form>
+                    
+                    
+
                         <h6 className="heading-small text-muted mb-4">
                             {t("Settings.StratumInformation.1")}
                         </h6>
@@ -158,28 +168,55 @@ class SetInvoices extends React.Component {
                             )}
                         </tbody>
                         </Table>
-                        
-
+                    
+                    <hr className="my-4"></hr>
+                    
                         <h6 className="heading-small text-muted mb-4">
                             {t("Settings.DebtInformation.1")}
                         </h6>
 
-                        <label
-                        className="form-control-label"
-                        htmlFor="input-first-name"
-                        >
-                        {t("Settings.DebtPercentage.1")} (%)
-                        </label>
-                        <Input
-                        required
-                        className="form-control-alternative"
-                        name="mora"
-                        placeholder={t("Settings.DebtPercentage.1")}
-                        type="number"
-                        value={this.state.mora}
-                        onChange={this.onChangeMora}
-                        />
+                            <label
+                            className="form-control-label"
+                            htmlFor="input-first-name"
+                            >
+                            {t("Settings.DebtPercentage.1")} (%)
+                            </label>
+                            <Input
+                            required
+                            className="form-control-alternative"
+                            name="mora"
+                            placeholder={t("Settings.DebtPercentage.1")}
+                            type="number"
+                            value={this.state.mora}
+                            onChange={this.onChangeMoraReconexion}
+                            />
+                    
+                    
+                    <hr className="my-4"></hr>
 
+                    
+                        <h6 className="heading-small text-muted mb-4">
+                            {t("Settings.ReconnectionInformation.1")}
+                        </h6>
+                        <label
+                            className="form-control-label"
+                            htmlFor="input-first-name"
+                            >
+                            {t("Settings.ReconnectionCost.1")}
+                            </label>
+
+
+                            <Input
+                            required
+                            className="form-control-alternative"
+                            name="reconexion"
+                            placeholder={t("Settings.ReconnectionCost.1")}
+                            type="number"
+                            value={this.state.reconexion}
+                            onChange={this.onChangeMoraReconexion}
+                            />
+                    
+                    
                     </Form>
                     </CardBody>
                 </Card>
