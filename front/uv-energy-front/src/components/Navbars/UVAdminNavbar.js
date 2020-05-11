@@ -72,26 +72,6 @@ class UVAdminNavbar extends React.Component {
                   </Media>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-arrow" right>
-                  <DropdownItem className="noti-title" header tag="div">
-                    <h6 className="text-overflow m-0">{t("Sidebar.Welcome.1")}</h6>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-single-02" />
-                    <span>{t('Sidebar.MyProfile.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-settings-gear-65" />
-                    <span>{t('Sidebar.Settings.1')}</span>
-                  </DropdownItem> 
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-calendar-grid-58" />
-                    <span>{t('Sidebar.Activity.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-support-16" />
-                    <span>{t('Sidebar.Support.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem divider />
                   <DropdownItem to="/login" tag={Link} onClick={this.handlelogout}>
                     <i className="ni ni-user-run" />
                     <span>{t('Sidebar.Logout.1')}</span>
