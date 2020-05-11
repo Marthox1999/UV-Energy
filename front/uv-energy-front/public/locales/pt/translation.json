@@ -740,6 +740,9 @@
         },
         "Invalid":{
             "1": "Todos os campos devem ser numéricos. Foi encontrado um campo que não está em conformidade."
+        },
+        "Error":{
+            "1":"Ocorreu um erro ao gerar as faturas."
         }
     }
 }

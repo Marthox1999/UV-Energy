@@ -748,6 +748,9 @@
         },
         "Invalid":{
             "1": "All fields must be numeric. A field was found that does not comply."
+        },
+        "Error":{
+            "1":"An error occurred generating the invoices"
         }
     }
 }

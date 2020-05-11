@@ -7,7 +7,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  FormGroup,
   Form,
   Input,
   Container,
@@ -15,8 +14,6 @@ import {
   Col,
   Table,
   Alert,
-  Modal,
-  ModalBody
 } from "reactstrap";
 // core components
 
@@ -118,21 +115,40 @@ class SetInvoices extends React.Component {
             this.setState({
                 isInvalidNumber:true
             })
-            return;
+            return false;
         }
         this.setState({
             isInvalidNumber:false
         })
-        return;
+        return true;
     }
     SubmitEvent(buttonVal){
+        //Si buttonVal es 1
         if(buttonVal===1){
             this.setState(this.getInitState());
+            return;
         }
-        else if (buttonVal===2){
-            
-            this.checkNumbers();
+        //Si buttonVal es 2
+        //Verificar que sean números, si alguno no lo es entonces no post
+        if(!this.checkNumbers()){
+            return;
         }
+        axios.post(c.api + 'sales/generateInvoices',
+            {
+                residencial: this.state.industrial,
+                industrial: this.state.industrial,
+                mora:this.state.mora,
+                reconexion:this.state.reconexion,
+            },      
+            {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            this.setState(this.getInitState());
+        }).catch(
+            error => {
+                alert(i18n.t("Settings.Error.1"));
+                console.log(error.response.request.responseText);
+            }
+        )        
     }
 
     render() {
@@ -165,7 +181,9 @@ class SetInvoices extends React.Component {
                         <Alert color="warning" isOpen={this.state.isInvalidNumber}>
                              {t("Settings.Invalid.1")}
                         </Alert>
-
+                            {/**
+                         * Tabla de estratos
+                         */}
                         <Table className="align-items-center table-flush" responsive>
                         <thead className="thead-light">
                             <tr>
@@ -228,7 +246,9 @@ class SetInvoices extends React.Component {
                         </Table>
                     
                     <hr className="my-4"></hr>
-                    
+                        {/**
+                         * Porcentaje de mora
+                         */}
                         <h6 className="heading-small text-muted mb-4">
                             {t("Settings.DebtInformation.1")}
                         </h6>
@@ -252,7 +272,9 @@ class SetInvoices extends React.Component {
                     
                     <hr className="my-4"></hr>
 
-                    
+                        {/**
+                         * Reconexión
+                         */}
                         <h6 className="heading-small text-muted mb-4">
                             {t("Settings.ReconnectionInformation.1")}
                         </h6>
