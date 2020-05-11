@@ -713,11 +713,26 @@
     },
 
     "Settings":{
-        "Configuration":{
-            "1": "System configuration"
-        },
-        "setUpInvoices":{
+        "SetUpInvoices":{
             "1": "Set up invoices"
+        },
+        "StratumInformation":{
+            "1": "Stratum information"
+        },
+        "Stratum":{
+            "1": "Stratum"
+        },
+        "Residential":{
+            "1": "Residential"
+        },
+        "Industrial":{
+            "1": "Industrial"
+        },
+        "DebtInformation":{
+            "1": "Debt information"
+        },
+        "":{
+            "1": "Debt percentage"
         }
     }
 }

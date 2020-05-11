@@ -14,7 +14,7 @@ var settingRoutes = [
   
   {
     path: "/invoices",
-    name: "Settings.setUpInvoices.1",
+    name: "Settings.SetUpInvoices.1",
     icon: "ni ni-settings text-blue",
     component: SetInvoices,
     layout: "/admin"

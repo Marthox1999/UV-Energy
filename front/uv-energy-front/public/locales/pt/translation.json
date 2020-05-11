@@ -705,11 +705,26 @@
     },
 
     "Settings":{
-        "Configuration":{
-            "1": "Configuração do sistema"
-        },
-        "setUpInvoices":{
+        "SetUpInvoices":{
             "1": "Configurar faturas"
+        },
+        "StratumInformation":{
+            "1": "Informações do estrato"
+        },
+        "Stratum":{
+            "1": "Estrato"
+        },
+        "Residential":{
+            "1": "Residencial"
+        },
+        "Industrial":{
+            "1": "Industrial"
+        },
+        "DebtInformation":{
+            "1": "Informações tardias"
+        },
+        "DebtPercentage":{
+            "1": "Percentual da dívida"
         }
     }
 }
