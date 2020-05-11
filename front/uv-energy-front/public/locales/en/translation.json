@@ -292,6 +292,9 @@
         },
         "Bill":{
             "1":"My Bills"
+        },
+        "Reports":{
+            "1":"Reports"
         }
     },
     "ETransformer":{
@@ -386,9 +389,6 @@
             "1":"Select a electric transformer first"
         }
     },
-
-
-
     "Substation":{
         "AddSubstation":{
             "1":"Add Substation"
@@ -751,6 +751,12 @@
         },
         "Error":{
             "1":"An error occurred generating the invoices"
+        }
+    },
+
+    "Report":{
+        "Name":{
+            "1": "Reportes"
         }
     }
 }

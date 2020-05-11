@@ -292,6 +292,9 @@
         },
         "Bill":{
             "1":"Minhas contas"
+        },
+        "Reports":{
+            "1":"Reports"
         }
     },
     "ETransformer":{

@@ -293,6 +293,9 @@
         },
         "Bill":{
             "1":"Mis Facturas"
+        },
+        "Reports":{
+            "1":"Reports"
         }
     },
     "ETransformer":{
