@@ -26,8 +26,6 @@ class DebitPayment(models.Model):
     pk_debit_payment = models.AutoField(primary_key=True)
     fk_bank = models.ForeignKey(Bank, on_delete=models.SET_NULL,
                                 null=True)
-    fk_employee = models.ForeignKey(User, on_delete=models.SET_NULL,
-                                    null=True)
 
 # Bill
 

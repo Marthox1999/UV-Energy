@@ -69,10 +69,10 @@ class GenerateBillsViewSet(viewsets.ViewSet):
         new_end_date = new_start_date + timedelta(days=30)
         new_expedition_date = datetime.now().date()
         new_expiration_date = new_expedition_date + timedelta(days=15)
-        # print("new_start_date ", new_start_date)
-        # print("new_end_date ", new_end_date)
-        # print("new_expedition_date ", new_expedition_date)
-        # print("new_expiration_date ", new_expiration_date)
+        print("new_start_date ", new_start_date)
+        print("new_end_date ", new_end_date)
+        print("new_expedition_date ", new_expedition_date)
+        print("new_expiration_date ", new_expiration_date)
         # tomo la ultima factura de cada meter (suponiendo uno cada uno)
         for meter in meters:
             # tomo la ultima factura del contador 
@@ -183,7 +183,7 @@ class BillListViewSet (viewsets.ViewSet):
         meter_ids=[]
         for meter in meters:
             meter_ids.append(meter.pk_meter)
-        queryset = Bill.objects.filter(fk_meter__in=meter_ids)
+        queryset = Bill.objects.filter(fk_meter__in=meter_ids).order_by('-end_date')
         serializer = BillSerializers(queryset, many=True)
         return Response(serializer.data)
 
@@ -199,7 +199,7 @@ class PaidBillListViewSet (viewsets.ViewSet):
             meter_ids.append(meter.pk_meter)
             print(meter.pk_meter)
         print(meter)
-        queryset = Bill.objects.filter(Q(is_paid=True), Q(fk_meter__in=meter_ids))
+        queryset = Bill.objects.filter(Q(is_paid=True), Q(fk_meter__in=meter_ids)).order_by('-end_date')
         serializer = BillSerializers(queryset, many=True)
         return Response(serializer.data)
 
@@ -215,6 +215,6 @@ class PendingBillListViewSet (viewsets.ViewSet):
             meter_ids.append(meter.pk_meter)
             print(meter.pk_meter)
         print(meter)
-        queryset = Bill.objects.filter(Q(is_paid=False), Q(fk_meter__in=meter_ids))
+        queryset = Bill.objects.filter(Q(is_paid=False), Q(fk_meter__in=meter_ids)).order_by('-end_date')
         serializer = BillSerializers(queryset, many=True)
         return Response(serializer.data)
