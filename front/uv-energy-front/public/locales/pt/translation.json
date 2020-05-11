@@ -737,6 +737,9 @@
         },
         "GenerateInvoices":{
             "1": "Gerar faturas"
+        },
+        "Invalid":{
+            "1": "Todos os campos devem ser numéricos. Foi encontrado um campo que não está em conformidade."
         }
     }
 }

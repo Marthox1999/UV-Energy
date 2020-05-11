@@ -51,11 +51,12 @@ class SetInvoices extends React.Component {
             mora:"0.5",
             reconexion:"50000",
             credentials: cookie.get('notCredentials'),
+            isInvalidNumber: false
         }
         this.onChangeStratum = this.onChangeStratum.bind(this);
         this.onChangeMoraReconexion = this.onChangeMoraReconexion.bind(this);
         this.getInitState = this.getInitState.bind(this);
-        this.inputsNumbers = this.inputsNumbers.bind(this);
+        this.checkNumbers = this.checkNumbers.bind(this);
     }
 
     
@@ -69,7 +70,8 @@ class SetInvoices extends React.Component {
         
         temp[parseInt(estrato,10)]=value;
         this.setState({
-            [tipo]: temp
+            [tipo]: temp,
+            isInvalidNumber: false
         });
     }
 
@@ -81,7 +83,8 @@ class SetInvoices extends React.Component {
 
         
         this.setState({
-            [name]:value
+            [name]:value,
+            isInvalidNumber: false
         })
         
     }
@@ -100,22 +103,35 @@ class SetInvoices extends React.Component {
                             "711.2273"];
         obj.mora="0.5";
         obj.reconexion="50000";
+        obj.isInvalidNumber=false;
         
         return obj;
     }
 
-    inputsNumbers(){
-        const isNumber = (number) => !isNaN(number);
+    checkNumbers(){
+        let isNumber = (number) =>  /^(\d+(\.\d+)?|\.\d+)$/.test(number);
         let numeroResidencial = this.state.residencial.every(isNumber)
         let numeroIndustrial = this.state.industrial.every(isNumber);
-        return !isNaN(this.state.mora) && !isNaN(this.state.reconexion);
+        
+        //Si alguno no es número
+        if(!(isNumber(this.state.mora) && isNumber(this.state.reconexion) && numeroResidencial && numeroIndustrial)){
+            this.setState({
+                isInvalidNumber:true
+            })
+            return;
+        }
+        this.setState({
+            isInvalidNumber:false
+        })
+        return;
     }
     SubmitEvent(buttonVal){
         if(buttonVal===1){
             this.setState(this.getInitState());
         }
         else if (buttonVal===2){
-            console.log(this.inputsNumbers())
+            
+            this.checkNumbers();
         }
     }
 
@@ -145,6 +161,10 @@ class SetInvoices extends React.Component {
                         <h6 className="heading-small text-muted mb-4">
                             {t("Settings.StratumInformation.1")}
                         </h6>
+                        
+                        <Alert color="warning" isOpen={this.state.isInvalidNumber}>
+                             {t("Settings.Invalid.1")}
+                        </Alert>
 
                         <Table className="align-items-center table-flush" responsive>
                         <thead className="thead-light">

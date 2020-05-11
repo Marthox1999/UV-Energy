@@ -745,6 +745,9 @@
         },
         "GenerateInvoices":{
             "1": "Generate invoices"
+        },
+        "Invalid":{
+            "1": "All fields must be numeric. A field was found that does not comply."
         }
     }
 }
