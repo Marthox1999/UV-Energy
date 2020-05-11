@@ -2,6 +2,8 @@ import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { withTranslation } from 'react-i18next';
+import {Bar} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 
 // reactstrap components
 import {
@@ -22,6 +24,36 @@ import UVHeader from "components/Headers/UVHeader.js";
 const c = require('../constants')
 
 const cookie = new Cookies();
+
+const state = {
+    labels: ['January', 'February', 'March',
+             'April', 'May'],
+    datasets: [
+      {
+        label: 'Rainfall',
+        backgroundColor: 'rgba(75,192,192,1)',
+        borderColor: 'rgba(0,0,0,1)',
+        borderWidth: 2,
+        data: [65, 59, 80, 81, 56]
+      }
+    ]
+  }
+
+const state2 = {
+    labels: ['January', 'February', 'March',
+             'April', 'May'],
+    datasets: [
+      {
+        label: 'Rainfall',
+        fill: false,
+        lineTension: 0.5,
+        backgroundColor: 'rgba(75,192,192,1)',
+        borderColor: 'rgba(0,0,0,1)',
+        borderWidth: 2,
+        data: [65, 59, 80, 81, 56]
+      }
+    ]
+  }
 
 class managerReport extends React.Component {
     constructor(props){
@@ -80,60 +112,39 @@ class managerReport extends React.Component {
             <>
             <UVHeader />
             {/* Page content */}
-            <Container className="mt--7" fluid>
-                {/* Table */}
-                <Row>
-                    <div className="col">
-                        <Card className="shadow">
-                            <CardHeader className="border-0">
-                            <font size="5">{t("Admin.ActiveAdmins.1")}</font>
-                            </CardHeader>
-                            <Alert color="info" isOpen={this.state.isdisabledAdmin}>
-                                {t("Admin.DisableAdmin.1")}
-                            </Alert>
-                            <Alert color="info" isOpen={this.state.isdeletedAdmin}>
-                                {t("Admin.DeletedAdmin.1")}
-                            </Alert>
-                            <Table className="align-items-center table-flush" responsive>
-                            <thead className="thead-light">
-                                <tr>
-                                <th scope="col"><font size="2">{t("Admin.Id.2")}</font></th>
-                                <th scope="col"><font size="2">{t("Admin.Name.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Admin.Username.1")}</font></th>
-                                <th scope="col" />
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.listAdmins.map((item, key) => 
-                                    <tr key={'admin-'+key}>
-                                    <td>{item.id}</td>
-                                    <th scope="row">
-                                        <span className="mb-0 text-sm">
-                                        {item.first_name}
-                                        </span>
-                                    </th>
-                                    <td>{item.username}</td>
-                                    <td className="text-right">
-                                        <Button
-
-                                            className="text-blue"
-                                            role="button"
-                                            size="md"
-                                            color="white"
-                                            onClick={ () => this.props.history.push({pathname: this.state.path, state: { adminID: item.id }}) }
-                                        >
-                                            <i className="ni ni-settings" />
-                 
-                                        </Button>
-                                    </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                            </Table>
-                        </Card>
-                    </div>
-                </Row>
-            </Container>
+            <div>
+        <Bar
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+      </div>
+      <div>
+        <Line
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+      </div>
+            
             </>
         );
     }
