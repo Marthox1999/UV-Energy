@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="utf-8" />
+
+   <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">-->
+   <!--<link href="{% static 'style.css' %"} rel="stylesheet" >-->
+   <title>UV-Energy</title>
+</head>
+<style>
+   body{
+      min-height: 100%;
+   }
+   table {
+      width: 100%;
+      border-width: 1px;
+      border-radius: 15px;
+   }
+
+   tr {
+      border-style: none;
+      border-width: 1px;
+      padding: 10px;
+      border-radius: 15px;
+   }
+
+   td {
+      border-style: none;
+      border-width: 1px;
+      border-radius: 15px;
+   }
+
+   div#container {
+      font: normal 10px Arial, Helvetica, Sans-serif;
+      background: white;
+   }
+
+  
+#ontop{
+   display:block;
+}
+
+#pie{
+   position: absolute;
+   bottom: 0;
+}
+@media only screen and (max-height: 620px) {
+   #pie{
+   position: relative;
+}
+}
+</style>
+
+<body>
+   <div id="container">
+      <thead>
+         <!--  -----------------------------CABECERA------------------------------  -->
+         <table cellspacing=10>
+            <tr>
+               <!--  -----------------------------LOGO------------------------------  -->
+               <td style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+                  <img src="file:///code/static/logo.png" height="100px" width="100px"><br>
+               </td>
+               <td>
+                  <!--  -----------------------------DATOS PERSONALES------------------------------  -->
+                  <table style="text-align: left; border-style: solid;">
+                     <tr>
+                        <td style="font-weight: bold;"> UVEnergy </td>
+                     </tr>
+                     <tr>
+                        <td style="text-transform: uppercase; font-weight: bold;">
+                           {{ client.fields.first_name }} {{ client.fields.last_name }}</td>
+                     </tr>
+                     <tr>
+                        <td>{{ client.fields.username }}</td>
+                     </tr>
+                     <tr>
+                        <td> {{ meter.fields.address }}</td>
+                     </tr>
+                     <tr>
+                        <td> {{ meter.fields.city }}</td>
+                     </tr>
+                     <tr>
+                        <td> Periodo facturado: {{ bill.fields.start_date }} /
+                           {{ bill.fields.end_date }} </td>
+                     </tr>
+                  </table>
+               </td>
+               <td>
+                  <!--  -----------------------------DATOS FACTURA------------------------------  -->
+                  <table cellspacing=4 style="border-style: solid;">
+                     <tr>
+                        <td style="font-weight: bold; text-align: left; width: 50%;"></td>
+                        <td style="font-weight: bold; text-align: right;">
+                           Esta es tu factura <br>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="font-weight: bold; text-align: left; width: 50%;">
+                           Id Contador:
+                        </td>
+                        <td style="text-align: center; border-style: solid;">
+                           {{ meter.pk }}
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="font-weight: bold; text-align: left; width: 50%;">
+                           Valor a pagar:
+                        </td>
+                        <td style="text-align: center; border-style: solid;">
+                           {{ bill.fields.value }}
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="font-weight: bold; text-align: left; width: 50%;">
+                           Expedición de la factura:
+                        </td>
+                        <td style="text-align: center; border-style: solid;">
+                           {{ bill.fields.expedition_date }}
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="font-weight: bold; text-align: left; width: 50%;">
+                           Vencimiento de la factura:
+                        </td>
+                        <td style="text-align: center; border-style: solid;">
+                           {{ bill.fields.expiration_date }}
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+         <img src="file:///code/static/publicidad.png" height="100px" width="100%"><br>
+      </thead>
+      <!--  -----------------------------CUERPO------------------------------  -->
+      <tbody >
+      <h4 style="font-weight: bold; text-align: center;"> ENERGÍA</h4>
+      <!--  -----------------------------SECCION CONSUMO------------------------------  -->
+         <table style="border-style: solid;">
+            <tr>
+               <td>
+                  <!--  -----------------------------PRIMERA COLUMNA DATOS MEDIDOR------------------------------  -->
+               <table cellspacing=0>
+                  <tr>
+                     <td>Dirección:</td><td style="text-align: justify;" >{{ meter.fields.address }}</td>
+                  </tr>
+                  <tr >
+                     <td>Uso:</td><td style="text-align: rigth;">{{ meter.fields.use }}</td>
+                  </tr>
+                  <tr>
+                     <td>Estrato:</td><td style="text-align: rigth;">{{ meter.fields.stratum }}</td>
+                  </tr>
+                  <tr></tr>
+                  <tr>
+                     <td>Consumo de energia activa</td> <td></td>
+                  </tr>
+                  <tr>
+                     <td>No Medidor:</td><td style="text-align: rigth;">{{ meter.pk }}</td>
+                  </tr>
+                  <tr>
+                     <td>Lectura Actual:</td><td style="text-align: rigth;">666</td>
+                  </tr>
+                  <tr>
+                     <td>Lectura Anterior:</td><td style="text-align: rigth;">666</td>
+                  </tr>
+                  <tr>
+                     <td>Diferencia:</td><td style="text-align: rigth;">666</td>
+                  </tr>
+                  <tr>
+                     <td>Consumo:</td><td style="text-align: rigth;">{{ bill.fields.read }}</td>
+                  </tr>
+               </table>
+            </td>
+            <!--  -----------------------------SEGUNDA COLUMNA HISTOGRAMA------------------------------  -->
+            <td style=" height: 100%; width: 15%; position:relative;">
+               <p style="font-weight: bold;">Consumos Anteriores</p>
+                  histograma todo lindo
+            </td>
+            <!--  -----------------------------TERCERA COLUMNA TABLA CONSUMO------------------------------  -->
+               <td id="ontop" >
+                  <table style="border-style: solid; border-color: black; height:100%" cellspacing=0>
+                     <tr> <th style=" border-right: solid 1px #000; border-bottom: solid 1px #000;">CONCEPTOS</th> 
+                         <th style=" border-right: solid 1px #000; border-bottom: solid 1px #000;"> Cantidad</th> 
+                         <th style=" border-right: solid 1px #000; border-bottom: solid 1px #000;">Valor Unitario</th> 
+                         <th style="border-bottom: solid 1px #000;">Total a Pagar</th></tr>
+                     <tr>
+                        <td style="border-right: solid 1px #000; border-radius: 0px;"> Consumo de Energia Activa</td>
+                        <td style="text-align: right; border-right: solid 1px #000;  border-radius: 0px;"> {{ bill.fields.read }} </td>
+                        <td style="text-align: right; border-right: solid 1px #000;  border-radius: 0px;"> 565.56 </td>
+                        <td style="text-align: right;"> {{ bill.fields.value}} </td>
+                     </tr>
+                     <tr>
+                        <td style=" border-right: solid 1px #000; border-radius: 0px; border-top: solid 1px #000; font-weight: bold; background-color: lightgrey;">Total</td>
+                        <td style=" border-right: solid 1px #000; border-radius: 0px; border-top: solid 1px #000; font-weight: bold; background-color: lightgrey;"></td>
+                        <td style=" border-right: solid 1px #000; border-radius: 0px; border-top: solid 1px #000; font-weight: bold; background-color: lightgrey;"></td>
+                        <td style=" border-radius: 0px; border-top: solid 1px #000; font-weight: bold; background-color: lightgrey; text-align: right;">{{ bill.fields.value}}</td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+         <!--  -----------------------------SECCION TRANSFORMADORES Y SUBESTACIONES DATOS ------------------------------  -->
+         <table cellspacing=10 style="border-style: solid;">
+
+            <td>Propiedades del transformador
+               componentes del costo
+               Otra tabla que ni idea</td>
+         </table>
+      </tbody>
+      <!--  -----------------------------PIE DE PAGINA FACTURA------------------------------  -->
+      <tfoot>
+         <div id="pie">
+            <table cellspacing=10>
+               <tr>
+                  <!--  -----------------------------LOGO------------------------------  -->
+                  <td style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+                     <img src="file:///code/static/logo.png" height="100px" width="100px" ><br>
+                  </td>
+                  <td style="width: 38%">
+                     <!--  -----------------------------SEGUNDA COLUMNA DATOS PERSONALES------------------------------  -->
+                     <table cellspacing=6 style="text-align: left; border-style: solid;">
+                        <tr>
+                           <td style="text-transform: uppercase; font-weight: bold;">
+                              {{ client.fields.first_name }} {{ client.fields.last_name }}</td>
+                        </tr>
+                        <tr>
+                           <td>{{ client.fields.username }}</td>
+                        </tr>
+                        <tr>
+                           <td> Periodo facturado: {{ bill.fields.start_date }} /
+                              {{ bill.fields.end_date }} </td>
+                        </tr>
+                        <tr>
+                           <td style="font-weight: bold; text-align: left; width: 50%;">
+                              Id Contador: {{ meter.pk }}
+                           </td>
+                        </tr>
+                     </table>
+                  </td>
+                  <td style="width: 45%">
+                     <!--  -----------------------------TERCERA COLUMNA DATOS FACTURA------------------------------  -->
+                     <table cellspacing=4 style="border-style: solid;">
+      
+                        <tr>
+                           <td style="font-weight: bold; text-align: left; width: 50%;">
+                              Pago Electronico:
+                           </td>
+                           <td style="text-align: center; border-style: solid;">
+                              {{ bill.pk }}
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="font-weight: bold; text-align: left; width: 50%;">
+                              Valor a pagar:
+                           </td>
+                           <td style="text-align: center; border-style: solid;">
+                              {{ bill.fields.value }}
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="font-weight: bold; text-align: left; width: 50%;">
+                              Expedición de la factura:
+                           </td>
+                           <td style="text-align: center; border-style: solid;">
+                              {{ bill.fields.expedition_date }}
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="font-weight: bold; text-align: left; width: 50%;">
+                              Vencimiento de la factura:
+                           </td>
+                           <td style="text-align: center; border-style: solid;">
+                              {{ bill.fields.expiration_date }}
+                           </td>
+                        </tr>
+                     </table>
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </tfoot>
+   </div>
+  
+</body>
+
+</html>

@@ -43,6 +43,7 @@ class Bill(models.Model):
     expedition_date = models.DateField()
     expiration_date = models.DateField()
     is_paid = models.BooleanField(default=False)
+    value = models.IntegerField(default=-1)
     fk_debit_payment = models.ForeignKey(DebitPayment,
                                          on_delete=models.SET_NULL,
                                          null=True)

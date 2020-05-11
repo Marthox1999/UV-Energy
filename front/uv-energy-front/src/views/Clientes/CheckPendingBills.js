@@ -40,7 +40,6 @@ class CheckPendingBills extends React.Component {
         }
     }
     componentDidMount(){
-        console.log(this.state.credentials)
         axios.get(c.api + 'sales/pendingbillList/', {params: { pk_cliente: this.state.credentials.id}, 
                 headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
@@ -76,7 +75,6 @@ class CheckPendingBills extends React.Component {
                                 <th scope="col"><font size="2">{t("Bill.expirationDate.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.value.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.Visualize.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.Download.1")}</font></th>
                                 </tr>
                             </thead>
                             <tbody  >
@@ -86,7 +84,7 @@ class CheckPendingBills extends React.Component {
                                     <td align="center">{item.pk_bill}</td>
                                     <td align="center"> {item.expedition_date} </td>
                                     <td align="center">{item.expiration_date}</td>
-                                    <td align="center">valor</td>
+                                    <td align="center">{item.value}</td>
                                     <td className="text-center">
                                         <Button
                                             align="center"
@@ -99,21 +97,8 @@ class CheckPendingBills extends React.Component {
                  
                                         </Button>
                                     </td>
-                                    <td className="text-center">
-                                        <Button
-                                            align="center"
-                                            className="text-blue"
-                                            role="button"
-                                            size="md"
-                                            color="white"
-                                        >
-                                            <i className="ni ni-cloud-download-95" />
-                 
-                                        </Button>
-                                    </td>
                                     </tr>
                                 )}
-                                
                             </tbody>
                             </Table>
                         </Card>
