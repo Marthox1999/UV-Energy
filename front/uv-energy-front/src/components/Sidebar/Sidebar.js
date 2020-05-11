@@ -75,6 +75,26 @@ class Sidebar extends React.Component {
     });
   };
 
+  createSettingLinks = settingRoutes => {
+    return settingRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            <Trans>{prop.name}</Trans>
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+
+
+  
   createManagerLinks = managerRoutes => {
     return managerRoutes.map((prop, key) => {
       return (
@@ -163,7 +183,7 @@ class Sidebar extends React.Component {
     });
   };
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo} = this.props;
+    const { /*bgColor,*/ settingRoutes, adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo} = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -272,6 +292,8 @@ class Sidebar extends React.Component {
             </Form>
             {/* Navigation */}
             <Nav navbar >  
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Configuration.1")}
+              {this.createSettingLinks(settingRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Manager.1")}
               {this.createManagerLinks(managerRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Administrator.1")}
@@ -291,6 +313,7 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.defaultProps = {
+  settingRoutes: [{}],
   adminRoutes: [{}],
   managerRoutes: [{}],
   operatorRoutes: [{}],
@@ -299,6 +322,7 @@ Sidebar.defaultProps = {
 
 Sidebar.propTypes = {
   // links that will be displayed inside the component
+  settingRoutes: PropTypes.arrayOf(PropTypes.object),
   adminRoutes: PropTypes.arrayOf(PropTypes.object),
   managerRoutes: PropTypes.arrayOf(PropTypes.object),
   operatorRoutes: PropTypes.arrayOf(PropTypes.object),

@@ -126,11 +126,45 @@ class SidebarM extends React.Component {
       );
     });
   };
+  createElectricTransfomerLinks = electricTransformerRoutes => {
+    return electricTransformerRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            <Trans>{prop.name}</Trans>
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+  createReportLinks = reportRoutes => {
+    return reportRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            <Trans>{prop.name}</Trans>
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
   handlelogout = () => {
     cookie.remove('notCredentials', { path: '/' })
   }
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, logo } = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, reportRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -244,6 +278,10 @@ class SidebarM extends React.Component {
               {this.createAdminLinks(adminRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Operator.1")}
               {this.createOperatorLinks(operatorRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.ElectricTransformer.1")}
+              {this.createElectricTransfomerLinks(electricTransformerRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Reports.1")}
+              {this.createReportLinks(reportRoutes)}
               </Nav>
           </Collapse>
         </Container>

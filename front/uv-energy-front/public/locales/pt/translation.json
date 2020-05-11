@@ -275,6 +275,9 @@
         "Manager":{
             "1":"Gerente"
         },
+        "Configuration":{
+            "1": "Configuração do sistema"
+        },
         "Administrator":{
             "1":"Administrador"
         },
@@ -289,9 +292,15 @@
         },
         "Bill":{
             "1":"Minhas contas"
+        },
+        "Reports":{
+            "1":"Reports"
         }
     },
     "ETransformer":{
+        "Registered":{
+            "1":"Transformadores Elétricos Registrados"
+        },
         "AddET":{
             "1":"Adicionar transformador elétrico"
         },
@@ -397,6 +406,9 @@
         },
         "NoSubstation":{
             "1":"Não há subestações"
+        },
+        "AlreadyExists":{
+            "1":"Subestação com esse nome já existe"
         },
         "Name":{
             "1":"Nome"
@@ -692,6 +704,48 @@
         },
         "ConfirmationDisable":{
             "1":"Desativar cliente?"
+        }
+    },
+
+    "Settings":{
+        "SetUpInvoices":{
+            "1": "Configurar faturas"
+        },
+        "StratumInformation":{
+            "1": "Informações do estrato"
+        },
+        "Stratum":{
+            "1": "Estrato"
+        },
+        "Residential":{
+            "1": "Residencial"
+        },
+        "Industrial":{
+            "1": "Industrial"
+        },
+        "DebtInformation":{
+            "1": "Informações tardias"
+        },
+        "DebtPercentage":{
+            "1": "Percentual da dívida"
+        },
+        "ReconnectionInformation":{
+            "1": "Informações de reconexão"
+        },
+        "ReconnectionCost":{
+            "1": "Custo de reconexão"
+        },
+        "Default":{
+            "1": "Restaurar padrões"
+        },
+        "GenerateInvoices":{
+            "1": "Gerar faturas"
+        },
+        "Invalid":{
+            "1": "Todos os campos devem ser numéricos. Foi encontrado um campo que não está em conformidade."
+        },
+        "Error":{
+            "1":"Ocorreu um erro ao gerar as faturas."
         }
     }
 }
