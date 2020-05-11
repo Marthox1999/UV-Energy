@@ -20,6 +20,7 @@ import {
 import 'leaflet/dist/leaflet.css';
 import Cookies from 'universal-cookie';
 import { withTranslation } from 'react-i18next';
+import i18n from '../../i18n.js';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
