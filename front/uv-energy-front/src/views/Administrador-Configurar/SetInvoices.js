@@ -48,8 +48,8 @@ class SetInvoices extends React.Component {
                          "711.2273",
                          "711.2273"],
             
-            mora:"0.5",
-            reconexion:"50000",
+            mora:"1",
+            reconexion:"34000",
             credentials: cookie.get('notCredentials'),
             isInvalidNumber: false
         }
@@ -101,8 +101,8 @@ class SetInvoices extends React.Component {
                             "711.2273",
                             "711.2273",
                             "711.2273"];
-        obj.mora="0.5";
-        obj.reconexion="50000";
+        obj.mora="1";
+        obj.reconexion="34000";
         obj.isInvalidNumber=false;
         
         return obj;
