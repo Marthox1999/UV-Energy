@@ -8,6 +8,18 @@ import AddOperator from "views/Administrador-Operador/AddOperator";
 import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator.js";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 import ModifySubstation from "views/Administrador-Subestacion/ModifySubstation.js";
+import SetInvoices from "views/Administrador-Configurar/SetInvoices.js";
+
+var settingRoutes = [
+  
+  {
+    path: "/invoices",
+    name: "Settings.SetUpInvoices.1",
+    icon: "ni ni-settings text-blue",
+    component: SetInvoices,
+    layout: "/admin"
+  },
+]
 
 
 var adminRoutes = [
@@ -96,6 +108,7 @@ var substationRoutes = [
   },
 ];
 export {
+  settingRoutes,
   adminRoutes,
   electricTransformerRoutes,
   managerRoutes,

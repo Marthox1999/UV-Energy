@@ -275,6 +275,9 @@
         "Manager":{
             "1":"Manager"
         },
+        "Configuration":{
+            "1": "System configuration"
+        },
         "Administrator":{
             "1":"Administrator"
         },
@@ -292,6 +295,9 @@
         }
     },
     "ETransformer":{
+        "Registered":{
+            "1":"Registered Electrical Transformers"
+        },
         "AddET":{
             "1":"Add Electric Transformer"
         },
@@ -402,8 +408,14 @@
         "NoSubstation":{
             "1":"There aren't substations"
         },
+        "AlreadyExists":{
+            "1":"Substation with this name already exists"
+        },
         "Name":{
             "1":"Name"
+        },
+        "Reference":{
+            "1":"Reference"
         },
         "ChoosePoint":{
             "1":"Choosen the point:"
@@ -697,6 +709,48 @@
         },
         "ConfirmationDisable":{
             "1":"Disable Client?"
+        }
+    },
+
+    "Settings":{
+        "SetUpInvoices":{
+            "1": "Set up invoices"
+        },
+        "StratumInformation":{
+            "1": "Stratum information"
+        },
+        "Stratum":{
+            "1": "Stratum"
+        },
+        "Residential":{
+            "1": "Residential"
+        },
+        "Industrial":{
+            "1": "Industrial"
+        },
+        "DebtInformation":{
+            "1": "Debt information"
+        },
+        "DebtPercentage":{
+            "1": "Debt percentage"
+        },
+        "ReconnectionInformation":{
+            "1": "Reconnection information"
+        },
+        "ReconnectionCost":{
+            "1": "Reconnection cost"
+        },
+        "Default":{
+            "1": "Restore defaults"
+        },
+        "GenerateInvoices":{
+            "1": "Generate invoices"
+        },
+        "Invalid":{
+            "1": "All fields must be numeric. A field was found that does not comply."
+        },
+        "Error":{
+            "1":"An error occurred generating the invoices"
         }
     }
 }

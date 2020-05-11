@@ -1,6 +1,7 @@
 import RegisteredAdmins from "views/Administrador-Administrador/RegisteredAdmins.js";
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js";
 import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator.js";
+import RegisteredElectricTransformer from "views/Gerente-Transformador/RegisteredTransformer.js";
 
 
 var adminRoutes = [
@@ -33,8 +34,19 @@ var operatorRoutes = [
   },
 ];
 
+var electricTransformerRoutes = [
+  {
+    path: "/registeredElectricTransformer",
+    name: "ETransformer.Registered.1",
+    icon: "ni ni-single-02 text-yellow",
+    component: RegisteredElectricTransformer,
+    layout: "/manager"
+  },
+];
+
 export {
   adminRoutes,  
   managerRoutes,
-  operatorRoutes
+  operatorRoutes,
+  electricTransformerRoutes
 }
