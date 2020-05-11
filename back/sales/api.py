@@ -12,7 +12,7 @@ from django.core import serializers
 import pdfkit
 import json
 
-class GenerateBillViewSet(viewsets.ViewSet):
+class GeneratePDFViewSet(viewsets.ViewSet):
     permission_classes = [
         permissions.IsAuthenticated
     ]
@@ -23,7 +23,6 @@ class GenerateBillViewSet(viewsets.ViewSet):
         bill = Bill.objects.get(pk_bill=pk)
         meter = Meter.objects.get(pk_meter=bill.fk_meter_id)
         client = User.objects.get(id=meter.fk_client_id)
-        
         # convertir el queryset en json para pasarlo al context
         billJson = json.loads(serializers.serialize('json',[bill,]))
         meterJson = json.loads(serializers.serialize('json',[meter,]))
@@ -45,6 +44,34 @@ class GenerateBillViewSet(viewsets.ViewSet):
         #f.close()
         # envia la respuesta
         return response
+
+
+class GenerateBillsViewSet(viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    # el nombre de la funcion es default y recibe post no necesito verificar metodo
+    def create(self, request):
+        # obtengo la informacion entrante    
+            
+        # cantidad de meters activos
+        meters = Meter.objects.filter( isActive = True)
+        # tomo la ultima factura de cada meter (suponiendo uno cada uno)
+        for meter in meters:
+            # tomo la ultima factura del contador 
+            # print(meter._meta.fields)
+            bill = Bill.objects.filter(fk_meter_id=meter.pk_meter).order_by('-end_date').first()
+            # si no hay bill es nuevo genero normal
+            # if bill is None:      
+                # meters que no tiene factura solo genero
+
+        # si una factura no esta pagada busco la anterior a ella
+            # si la anterior a ella no esta apagada genero corte
+            # si esta pagada genero con mora
+        # de la lista de facturas si estan pagadas solo genero
+        return
+
+
 
 class BillListViewSet (viewsets.ViewSet):
     permission_classes = [
