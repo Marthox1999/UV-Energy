@@ -1,14 +1,39 @@
-import AddOperator from "views/Administrador-Operador/AddOperator";
+import ReadSubstation from "views/Operador-Subestacion/ReadSubstation.js";
+import ReadElectricTransformer from "views/Operador-Transformador/ReadElectricTransformer.js";
+import addClient from "views/Operator-Client/AddClient.js"
 
-
-var operatorRoutes = [
-
+var electricTransformerRoutes = [
   {
-      path: "/addOperator",
-      name: "Add Operator",
-      icon: "ni ni-fat-add text-blue",
-      component: AddOperator,
-      layout: "/admin"
+    path: "/ReadElectricTransformer",
+    name: "Registered Electric Transformer",
+    icon: "ni ni-fat-delete text-blue",
+    component: ReadElectricTransformer,
+    layout: "/operator"
   },
 ];
-export default operatorRoutes;
+
+var substationRoutes = [
+  {
+    path: "/ReadSubstation",
+    name: "Registered Substation",
+    icon: "ni ni-fat-delete text-blue",
+    component: ReadSubstation,
+    layout: "/operator"
+  },
+];
+
+var clientRoutes = [
+  {
+    path: "/AddClient",
+    name: "Add Client",
+    icon: "ni ni-fat-delete text-blue",
+    component: addClient,
+    layout: "/operator"
+  },
+];
+
+export {
+  clientRoutes,
+  electricTransformerRoutes,
+  substationRoutes
+}
