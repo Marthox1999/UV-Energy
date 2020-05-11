@@ -96,7 +96,6 @@ class CheckAllBills extends React.Component {
                                             <th scope="col"><font size="2">{t("Bill.expirationDate.1")}</font></th>
                                             <th scope="col"><font size="2">{t("Bill.value.1")}</font></th>
                                             <th scope="col"><font size="2">{t("Bill.Visualize.1")}</font></th>
-                                            <th scope="col"><font size="2">{t("Bill.Download.1")}</font></th>
                                         </tr>
                                     </thead>
                                     <tbody  >
@@ -121,22 +120,8 @@ class CheckAllBills extends React.Component {
 
                                                     </Button>
                                                 </td>
-                                                <td className="text-center">
-                                                    <Button
-                                                        align="center"
-                                                        id={"descargar-" + key}
-                                                        className="text-blue"
-                                                        role="button"
-                                                        size="md"
-                                                        color="white"
-                                                    >
-                                                        <i className="ni ni-cloud-download-95" />
-
-                                                    </Button>
-                                                </td>
                                             </tr>
                                         )}
-
                                     </tbody>
                                 </Table>
                             </Card>

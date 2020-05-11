@@ -276,6 +276,9 @@
         "Manager":{
             "1":"Gerente"
         },
+        "Configuration":{
+            "1": "Configuración del sistema"
+        },
         "Administrator":{
             "1":"Administrador"
         },
@@ -293,6 +296,9 @@
         }
     },
     "ETransformer":{
+        "Registered":{
+            "1":"Transformadores Eléctricos Registrados"
+        },
         "AddET":{
             "1":"Agregar Transformador Electrico"
         },
@@ -397,6 +403,9 @@
         },
         "NoSubstation":{
             "1":"No hay subestaciones"
+        },
+        "AlreadyExists":{
+            "1":"La subestación con este nombre ya existe"
         },
         "Name":{
             "1":"Nombre"
@@ -692,6 +701,48 @@
         },
         "ConfirmationDisable":{
             "1":"¿Deshabilitar cliente?"
+        }
+    },
+
+    "Settings":{
+        "SetUpInvoices":{
+            "1": "Configurar facturas"
+        },
+        "StratumInformation":{
+            "1": "Información del estrato"
+        },
+        "Stratum":{
+            "1": "Estrato"
+        },
+        "Residential":{
+            "1": "Residencial"
+        },
+        "Industrial":{
+            "1": "Industrial"
+        },
+        "DebtInformation":{
+            "1": "Información de mora"
+        },
+        "DebtPercentage":{
+            "1": "Porcentaje de mora"
+        },
+        "ReconnectionInformation":{
+            "1": "Información de reconexión"
+        },
+        "ReconnectionCost":{
+            "1": "Costo de reconexión"
+        },
+        "Default":{
+            "1": "Restaurar valores predeterminados"
+        },
+        "GenerateInvoices":{
+            "1": "Generar facturas"
+        },
+        "Invalid":{
+            "1": "Todos los campos deben ser numéricos. Se encontró un campo que no lo cumple."
+        },
+        "Error":{
+            "1":"Se produjo un error al generar las facturas."
         }
     }
 }
