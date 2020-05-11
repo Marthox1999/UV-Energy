@@ -134,9 +134,9 @@ class SetInvoices extends React.Component {
         if(!this.checkNumbers()){
             return;
         }
-        axios.post(c.api + 'sales/generateInvoices',
+        axios.post(c.api + 'sales/generateInvoices/',
             {
-                residencial: this.state.industrial,
+                residencial: this.state.residencial,
                 industrial: this.state.industrial,
                 mora:this.state.mora,
                 reconexion:this.state.reconexion,
@@ -144,6 +144,7 @@ class SetInvoices extends React.Component {
             {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.setState(this.getInitState());
+            alert(response.data);
         }).catch(
             error => {
                 alert(i18n.t("Settings.Error.1"));

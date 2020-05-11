@@ -9,6 +9,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.core import serializers
+from django.core.exceptions import ValidationError
 import pdfkit
 import json
 
@@ -52,24 +53,123 @@ class GenerateBillsViewSet(viewsets.ViewSet):
     ]
     # el nombre de la funcion es default y recibe post no necesito verificar metodo
     def create(self, request):
+        from datetime import datetime, timedelta
+        from random import randint
         # obtengo la informacion entrante    
-            
+        residencial = request.data["residencial"]
+        industrial = request.data["industrial"]
+        mora = request.data["mora"]
+        reconexion = request.data["reconexion"]
+        # print(residencial)
         # cantidad de meters activos
         meters = Meter.objects.filter( isActive = True)
+        aux = Bill.objects.filter(fk_meter_id=meters[0].pk_meter).order_by('-end_date').first()
+        # info necesaria para las nuevas facturas
+        new_start_date = aux.end_date + timedelta(days=1)
+        new_end_date = new_start_date + timedelta(days=30)
+        new_expedition_date = datetime.now().date()
+        new_expiration_date = new_expedition_date + timedelta(days=15)
+        # print("new_start_date ", new_start_date)
+        # print("new_end_date ", new_end_date)
+        # print("new_expedition_date ", new_expedition_date)
+        # print("new_expiration_date ", new_expiration_date)
         # tomo la ultima factura de cada meter (suponiendo uno cada uno)
         for meter in meters:
             # tomo la ultima factura del contador 
             # print(meter._meta.fields)
             bill = Bill.objects.filter(fk_meter_id=meter.pk_meter).order_by('-end_date').first()
+            # encuentro el factor para multiplicar la lectura
+            if meter.use == "RES":
+                valorUnitario = float(residencial[int(meter.stratum)-1])
+            else:
+                valorUnitario = float(industrial[int(meter.stratum)-1])
+            # lectura de consumo
+            read = randint(400,1000)
             # si no hay bill es nuevo genero normal
-            # if bill is None:      
+            if bill is None:      
                 # meters que no tiene factura solo genero
-
-        # si una factura no esta pagada busco la anterior a ella
-            # si la anterior a ella no esta apagada genero corte
-            # si esta pagada genero con mora
-        # de la lista de facturas si estan pagadas solo genero
-        return
+                aux = Bill(
+                    fk_meter = meter,
+                    fk_debit_payment = None,
+                    fk_employee = None,
+                    start_date = new_start_date,
+                    end_date = new_end_date,
+                    expedition_date = new_expedition_date,
+                    expiration_date = new_expiration_date,
+                    is_paid = False,
+                    value = int(valorUnitario * read),
+                    read = read,
+                )
+            else:
+                # si la factura no esta pagada 
+                if not bill.is_paid:
+                    # busco la anterior a ella
+                    secondbill = Bill.objects.filter(fk_meter_id=meter.pk_meter).order_by('-end_date')
+                    if secondbill.count() == 1:
+                        # solo existe un recibo y se no se apago genero mora
+                        aux = Bill(
+                            fk_meter = meter,
+                            fk_debit_payment = None,
+                            fk_employee = None,
+                            start_date = new_start_date,
+                            end_date = new_end_date,
+                            expedition_date = new_expedition_date,
+                            expiration_date = new_expiration_date,
+                            is_paid = False,
+                            value = int(valorUnitario * read), ####################
+                            read = read,
+                        )
+                    else:
+                        if not secondbill[1].is_paid:
+                            # si la anterior a ella no esta apagada genero corte
+                            aux = Bill(
+                                fk_meter = meter,
+                                fk_debit_payment = None,
+                                fk_employee = None,
+                                start_date = new_start_date,
+                                end_date = new_end_date,
+                                expedition_date = new_expedition_date,
+                                expiration_date = new_expiration_date,
+                                is_paid = False,
+                                value = int(valorUnitario * read),####################
+                                read = read,
+                            )
+                        else:
+                            # si esta pagada genero mora
+                            aux = Bill(
+                                fk_meter = meter,
+                                fk_debit_payment = None,
+                                fk_employee = None,
+                                start_date = new_start_date,
+                                end_date = new_end_date,
+                                expedition_date = new_expedition_date,
+                                expiration_date = new_expiration_date,
+                                is_paid = False,
+                                value = int(valorUnitario * read), ####################
+                                read = read,
+                            )
+                else:
+                    # si la encontrada esta pagada
+                    # genero una normal
+                    aux = Bill(
+                        fk_meter = meter,
+                        fk_debit_payment = None,
+                        fk_employee = None,
+                        start_date = new_start_date,
+                        end_date = new_end_date,
+                        expedition_date = new_expedition_date,
+                        expiration_date = new_expiration_date,
+                        is_paid = False,
+                        value = int(valorUnitario * read),
+                        read = read,
+                    )
+            try:
+                aux.full_clean()
+            except ValidationError as e:
+                print("error de validacion de datos de generacion automatica !!!!!!!!!!!!!!", e)
+            aux.save()
+            print("biennnnnnnnnnnnnnnnnnnnnnnnn")
+        return Response("Las facturas se han generado correctamente")
 
 
 
