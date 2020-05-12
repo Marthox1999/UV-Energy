@@ -6,6 +6,6 @@ router.register(r'billList', BillListViewSet, 'billList')
 router.register(r'paidbillList', PaidBillListViewSet, 'paidbillList')
 router.register(r'pendingbillList', PendingBillListViewSet, 'pendingbillList')
 router.register(r'generatepdf', GeneratePDFViewSet, 'api-generatepdf')
-router.register(r'createInvoices', GenerateBillsViewSet, 'createInvoices')
+router.register(r'generateInvoices', GenerateBillsViewSet, 'createInvoices')
 
 urlpatterns = router.urls

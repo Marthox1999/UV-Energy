@@ -26,8 +26,6 @@ class DebitPayment(models.Model):
     pk_debit_payment = models.AutoField(primary_key=True)
     fk_bank = models.ForeignKey(Bank, on_delete=models.SET_NULL,
                                 null=True)
-    fk_employee = models.ForeignKey(User, on_delete=models.SET_NULL,
-                                    null=True)
 
 # Bill
 
@@ -44,11 +42,16 @@ class Bill(models.Model):
     expiration_date = models.DateField()
     is_paid = models.BooleanField(default=False)
     value = models.IntegerField(default=-1)
+    unit_value = models.FloatField(default=1)
+    mora = models.FloatField(default=1)
     fk_debit_payment = models.ForeignKey(DebitPayment,
                                          on_delete=models.SET_NULL,
+                                         blank=True,
                                          null=True)
     fk_meter = models.ForeignKey(Meter,
                                  on_delete=models.SET_NULL,
                                  null=True)
-    fk_employee = models.ForeignKey(User, on_delete=models.SET_NULL,
+    fk_employee = models.ForeignKey(User,
+                                    on_delete=models.SET_NULL,
+                                    blank=True,
                                     null=True)

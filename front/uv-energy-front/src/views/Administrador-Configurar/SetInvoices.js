@@ -47,12 +47,10 @@ class SetInvoices extends React.Component {
                          "711.2273"],
             
             mora:"1",
-            reconexion:"34000",
             credentials: cookie.get('notCredentials'),
             isInvalidNumber: false
         }
         this.onChangeStratum = this.onChangeStratum.bind(this);
-        this.onChangeMoraReconexion = this.onChangeMoraReconexion.bind(this);
         this.getInitState = this.getInitState.bind(this);
         this.checkNumbers = this.checkNumbers.bind(this);
     }
@@ -72,21 +70,6 @@ class SetInvoices extends React.Component {
             isInvalidNumber: false
         });
     }
-
-    onChangeMoraReconexion(e){
-        
-        const target = e.target;
-        const value = target.value;
-        const name = target.name;
-
-        
-        this.setState({
-            [name]:value,
-            isInvalidNumber: false
-        })
-        
-    }
-    
     getInitState(){
         let obj = new Object();
         obj.residencial=["416.58715",
@@ -100,7 +83,6 @@ class SetInvoices extends React.Component {
                             "711.2273",
                             "711.2273"];
         obj.mora="1";
-        obj.reconexion="34000";
         obj.isInvalidNumber=false;
         
         return obj;
@@ -112,7 +94,7 @@ class SetInvoices extends React.Component {
         let numeroIndustrial = this.state.industrial.every(isNumber);
         
         //Si alguno no es número
-        if(!(isNumber(this.state.mora) && isNumber(this.state.reconexion) && numeroResidencial && numeroIndustrial)){
+        if(!(isNumber(this.state.mora) && numeroResidencial && numeroIndustrial)){
             this.setState({
                 isInvalidNumber:true
             })
@@ -134,16 +116,16 @@ class SetInvoices extends React.Component {
         if(!this.checkNumbers()){
             return;
         }
-        axios.post(c.api + 'sales/generateInvoices',
+        axios.post(c.api + 'sales/generateInvoices/',
             {
-                residencial: this.state.industrial,
+                residencial: this.state.residencial,
                 industrial: this.state.industrial,
                 mora:this.state.mora,
-                reconexion:this.state.reconexion,
             },      
             {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.setState(this.getInitState());
+            alert(response.data);
         }).catch(
             error => {
                 alert(i18n.t("Settings.Error.1"));
@@ -269,33 +251,7 @@ class SetInvoices extends React.Component {
                             value={this.state.mora}
                             onChange={this.onChangeMoraReconexion}
                             />
-                    
-                    
-                    <hr className="my-4"></hr>
 
-                        {/**
-                         * Reconexión
-                         */}
-                        <h6 className="heading-small text-muted mb-4">
-                            {t("Settings.ReconnectionInformation.1")}
-                        </h6>
-                        <label
-                            className="form-control-label"
-                            htmlFor="input-first-name"
-                            >
-                            {t("Settings.ReconnectionCost.1")}
-                            </label>
-
-
-                            <Input
-                            required
-                            className="form-control-alternative"
-                            name="reconexion"
-                            placeholder={t("Settings.ReconnectionCost.1")}
-                            type="number"
-                            value={this.state.reconexion}
-                            onChange={this.onChangeMoraReconexion}
-                            />
                         <div className="text-center">
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                                 {t("Settings.Default.1")}
