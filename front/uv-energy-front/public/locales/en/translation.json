@@ -162,6 +162,12 @@
         },
         "ConfirmationDisable":{
             "1":"Disable Operator?"
+        },
+        "PayWithInvoices":{
+            "1": "Pay bills with its reference"
+        },
+        "PayWithClient":{
+            "1": "Pay bills with customer code"
         }
     },
     "Manager":{
@@ -751,6 +757,66 @@
         },
         "Error":{
             "1":"An error occurred generating the invoices"
+        }
+    },
+    "PayBills":{
+        "PayWithInvoices":{
+            "1": "Pay bills with its reference"
+        },
+        "EnterReferenceInvoice":{
+            "1":"Enter the reference of the invoice to pay"
+        },
+        "Reference":{
+            "1": "Invoice reference"
+        },
+        "PayWithClient":{
+            "1": "Pay bills with customer code"
+        },
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1": "The search field is empty."
+        },
+        "Search":{
+            "1": "Search"
+        },
+        "Expired":{
+            "1": "The invoice expired"
+        },
+        "Close":{
+            "1": "Close"
+        },
+        "NoFound":{
+            "1": "The invoice with the indicated reference was not found."
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Paid":{
+            "1":"The invoice has already been paid."
+        },
+        "Reconnection":{
+            "1":"Reconnection",
+            "2":"The service is suspended, you must pay all your bills and reconnect."
+        },
+        "PayReconnection":{
+            "1":"Pay associated invoices and reconnection"
+        },
+        "Value":{
+            "1":"Value"
+        },
+        "Debt":{
+            "1":"Debt"
+        },
+        "Total":{
+            "1":"Total"
+        },
+        "PayInvoice":{
+            "1":"Pay invoice"
         }
     }
 }
