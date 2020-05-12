@@ -18,27 +18,53 @@ class GeneratePDFViewSet(viewsets.ViewSet):
         permissions.IsAuthenticated
     ]
     def create(self, request):
+        from django.core.serializers.json import DjangoJSONEncoder
+        from matplotlib import pyplot as plt
+        import numpy as np
         # recibe el parametro de la factura a generar
         pk = request.query_params.get('pk_bill')
         # buscar el registros asociados de dicha factura
         bill = Bill.objects.get(pk_bill=pk)
         meter = Meter.objects.get(pk_meter=bill.fk_meter_id)
         client = User.objects.get(id=meter.fk_client_id)
+        hdatequery = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('start_date')[:6]
+        hreadquery = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('read')[:6]
         # convertir el queryset en json para pasarlo al context
         billJson = json.loads(serializers.serialize('json',[bill,]))
         meterJson = json.loads(serializers.serialize('json',[meter,]))
         clientJson = json.loads(serializers.serialize('json',[client,]))
-        # guardarlo en un contexto
-        print(billJson[0]['fields']['value'])
-        context = { "bill" : billJson[0], "meter" : meterJson[0], "client" : clientJson[0], "unit" : round(billJson[0]['fields']['value'] / billJson[0]['fields']['read'],3)}
+        # generar histograma
+        hread = []
+        hdate = []
+        for r, d in zip(hreadquery, hdatequery):
+            hread.append(r['read'])
+            hdate.append(d['start_date'].strftime('%B')[:3])
+        hread.append(np.average(hread))
+        hdate.append("PROM")
+        fig, ax = plt.subplots()
+        ax.barh(np.arange(len(hread)) ,hread ,align="center")# orientation="horizontal"
+        ax.set_yticks(np.arange(len(hdate)))
+        ax.set_yticklabels(hdate, fontsize=30)
+        plt.xticks(fontsize= 20)
+        ax.invert_yaxis()
+        plt.show()
+        plt.savefig("static/hist.png",  bbox_inches = "tight")
+        # guardarlo en un context
+        context = { "bill"   : billJson[0],
+                    "meter"  : meterJson[0],
+                    "client" : clientJson[0],
+                    "unit"   : round(billJson[0]['fields']['value'] / billJson[0]['fields']['read'],3),
+                    "before" : hreadquery[1]['read'],
+                    "last"   : hreadquery[1]['read'] + hreadquery[0]['read']
+                  }
         # busca el template a utilizar
         template = get_template("bill.html")
         # llena el template con la informacion que se recupero de la factura
         html = template.render(context)
         # convierte el template generado en pdf
-        pdfkit.from_string(html,'out.pdf')
+        pdfkit.from_string(html,'output.pdf')
         # lee el pdf
-        with open('out.pdf','rb') as f:
+        with open('output.pdf','rb') as f:
             pdf = f.read()
         # prepara la cabecera de la peticion
         response = HttpResponse(pdf, content_type='application/pdf')
@@ -103,11 +129,11 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                 )
             else:
                 # si la factura no esta pagada 
-                print("# si la factura no esta pagada :", bill.is_paid)
+                print("# si la factura no esta pagada : not ", bill.is_paid)
                 if not bill.is_paid:
                     # busco la anterior a ella
                     secondbill = Bill.objects.filter(fk_meter_id=meter.pk_meter).order_by('-end_date')
-                    print("# busco la anterior a ella :", secondbill.count() == 1)
+                    print("# busco la anterior a ella : not ", secondbill.count() == 1)
                     if secondbill.count() == 1:
                         print("# solo existe un recibo y no se a pagado genero mora")
                         # solo existe un recibo y se no se apago genero mora
@@ -132,7 +158,7 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                             read = read,
                         )
                     else:
-                        print("hace dos meses no se pago: ", secondbill[1].is_paid)
+                        print("hace dos meses no se pago: not ", secondbill[1].is_paid)
                         if not secondbill[1].is_paid:
                             print("# si la anterior a ella no esta apagada genero corte")
                             # si la anterior a ella no esta apagada genero corte

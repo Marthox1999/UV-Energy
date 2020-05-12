@@ -161,23 +161,23 @@
                      <td>No Medidor:</td><td style="text-align: rigth;">{{ meter.pk }}</td>
                   </tr>
                   <tr>
-                     <td>Lectura Actual:</td><td style="text-align: rigth;">666</td>
+                     <td>Lectura Actual:</td><td style="text-align: rigth;">{{ last }}</td>
                   </tr>
                   <tr>
-                     <td>Lectura Anterior:</td><td style="text-align: rigth;">666</td>
+                     <td>Lectura Anterior:</td><td style="text-align: rigth;">{{ before }}</td>
                   </tr>
                   <tr>
-                     <td>Diferencia:</td><td style="text-align: rigth;">666</td>
+                     <td>Diferencia:</td><td style="text-align: rigth;">{{ bill.fields.read }}</td>
                   </tr>
                   <tr>
-                     <td>Consumo:</td><td style="text-align: rigth;">{{ bill.fields.read }}</td>
+                     <td>Consumo:</td><td style="text-align: rigth;">{{ bill.fields.read }} KWH</td>
                   </tr>
                </table>
             </td>
             <!--  -----------------------------SEGUNDA COLUMNA HISTOGRAMA------------------------------  -->
-            <td style=" height: 100%; width: 15%; position:relative;">
-               <p style="font-weight: bold;">Consumos Anteriores</p>
-                  histograma todo lindo
+            <td style="width: 20%; position:relative; height: 100%; text-align: left;">
+               <p style="font-weight: bold;">Consumos Anteriores (kWh)</p>
+               <img src="file:///code/static/hist.png" height="100px" width="155px"><br>
             </td>
             <!--  -----------------------------TERCERA COLUMNA TABLA CONSUMO------------------------------  -->
                <td id="ontop" >
