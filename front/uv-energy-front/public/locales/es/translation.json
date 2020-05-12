@@ -747,5 +747,11 @@
         "Error":{
             "1":"Se produjo un error al generar las facturas."
         }
+    },
+    "Report":{
+        "Name":{
+            "1": "Reports"
+        }
     }
+}
 }

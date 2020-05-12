@@ -294,7 +294,7 @@
             "1":"My Bills"
         },
         "Reports":{
-            "1":"Reports"
+            "1":"Reportes"
         }
     },
     "ETransformer":{
@@ -756,7 +756,7 @@
 
     "Report":{
         "Name":{
-            "1": "Reportes"
+            "1": "Reports"
         }
     }
 }

@@ -294,7 +294,7 @@
             "1":"Minhas contas"
         },
         "Reports":{
-            "1":"Reports"
+            "1":"Relatórios"
         }
     },
     "ETransformer":{
@@ -747,5 +747,11 @@
         "Error":{
             "1":"Ocorreu um erro ao gerar as faturas."
         }
+    },
+    "Report":{
+        "Name":{
+            "1": "Relatórios"
+        }
     }
+}
 }
