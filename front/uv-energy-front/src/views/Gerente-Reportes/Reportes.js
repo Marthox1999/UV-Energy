@@ -12,8 +12,19 @@ import {
   CardHeader,
   Container,
   Row,
-  Table,
+  Col,
+  FormGroup,
   Alert,
+  CardBody,
+  Form,
+  UncontrolledDropdown,
+  Media,
+  Link,
+  DropdownToggle,   
+  DropdownItem,
+  DropdownMenu,
+  Input
+
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -31,8 +42,8 @@ const state = {
     datasets: [
       {
         label: 'Rainfall',
-        backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(0,0,0,1)',
+        backgroundColor: "blue",
+        borderColor: 'rgba(0,0,0,0)',
         borderWidth: 2,
         data: [65, 59, 80, 81, 56]
       }
@@ -58,13 +69,6 @@ const state2 = {
 class managerReport extends React.Component {
     constructor(props){
         super(props);
-        if(this.props.location.state === null){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: false, reload: false}}
-        }else if(this.props.location.state.disabledAdmin){
-            this.props = { state:{disabledAdmin: true, deletedAdmin: false, reload: true}}
-        }else if(this.props.location.state.deletedAdmin){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: true, reload: true}}
-        }
 
         this.state = {
             admin : {
@@ -77,73 +81,190 @@ class managerReport extends React.Component {
                 cellphone: "123",
                 position: "ADMIN"
             },
+            labels: [],
+            datasets: [
+            {
+                label: "",
+                fill: false,
+                lineTension: 0.5,
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: []
+            }
+            ],
+            date:{
+                year: 0,
+                month:0,
+            },
             path: '',
-            listAdmins: [],
-            isdisabledAdmin: this.props.state.disabledAdmin,
-            isdeletedAdmin: this.props.state.deletedAdmin,
             credentials: cookie.get('notCredentials'),           
         }
+        this.onChangeYear = this.onChangeYear.bind(this);
+        this.onChangeMonth = this.onChangeMonth.bind(this);
     }
     componentDidMount(){
-        console.log(this.state.credentials)
-        if(this.state.credentials.position === 'ADMIN'){
-            this.setState({path: '/admin/RUDDAdmin'})
-        }else if(this.state.credentials.position === 'MGR'){
-            this.setState({path: '/manager/RUDDAdminM'})
-
-        }
-        axios.get(c.api + 'users/activeAdmin/',
-                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
-        .then( response => {
-            if( response.data.error != null){
-                alert(response.data.error);
-                alert("There are no registered administrators.")
-              }
-              else{
-                this.setState({listAdmins: response.data})
-                console.log(this.state.listAdmins)
-                //console.log(response.config)
-            }             
-        }).catch(error => alert(error))
+   
     }
+
+    onChangeYear(e){
+        this.setState({ date: {
+                                                year: this.state.date.year,
+                                                month: this.state.date.month,
+                                            }})
+    }
+    onChangeMonth(e){
+        this.setState({ date: {
+                                                year: this.state.date.year,
+                                                month: this.state.date.month,
+                                            }})
+    }
+
     render() {
         const { t } = this.props
         return(
             <>
             <UVHeader />
             {/* Page content */}
-            <div>
-        <Bar
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
-      <div>
-        <Line
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
+            <Container className="mt--7" fluid>
+                <Card className="bg-secondary shadow">
+                    <CardHeader className="bg-white border-0">
+                    <Row className="align-items-center">
+                        <Col xs="8">
+                        <h3 className="mb-0">{t("Report.Name.1")}</h3>
+                        </Col>
+                    </Row>
+                    </CardHeader>
+                    <CardBody>
+                    <Form>
+                        <Row>
+                            <Col lg="3">
+                            <center>
+                            <FormGroup>
+                                <br></br>
+                                <UncontrolledDropdown nav>
+                                <DropdownToggle className="dropdown-menu-arrow">
+                                <Media className="align-items-center" >
+                                    <span className="mb-0 text-sm font-weight-bold">
+                                        {t("Report.Type.1")}
+                                    </span>
+                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
+                                    </span>
+                                </Media>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                <DropdownItem>
+                                    {t("Report.Bills.1")}
+                                </DropdownItem>
+                                <DropdownItem>
+                                    {t("Report.Payments.1")}
+                                </DropdownItem>
+                                <DropdownItem>
+                                    {t("Report.Income.1")}
+                                </DropdownItem>
+                                <DropdownItem>
+                                    {t("Report.Consumption.1")}
+                                </DropdownItem>
+                                </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </FormGroup>
+                            </center>
+                            </Col>
+                            <Col lg="3">
+                            <FormGroup>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-year"
+                                >
+                                {t("Report.Year.1")}
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                name="year"
+                                placeholder={t("Report.Year.1")}
+                                type="number"
+                                onChange={this.onChangeYear}
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col lg="3">
+                            <FormGroup>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-last-name"
+                                >
+                                {t("Report.Month.1")}
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                name="month"
+                                placeholder={t("Report.Month.1")}
+                                type="number"
+                                onChange={this.onChangeMonth}
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col lg="3">
+                            <FormGroup>
+                                <Button className="mt-4" color="primary" type="submit">
+                                {t("Report.Generate.1")}
+                                </Button>
+                            </FormGroup>
+                            </Col>
+
+                        </Row>
+                    </Form>
+                    {/*
+                    <Row className="align-items-center">
+                        <Col xs="8">
+                        <select id="report" className=" btn-white rounded" margin="0.5">
+                            <option value="bill">{t("Report.Bills.1")}</option>
+                            <option value="income">{t("Report.Income.1")}</option>
+                            <option value="payment">{t("Report.Payments.1")}</option>
+                            <option value="comsuption">{t("Report.Consumption.1")}</option>
+                        </select>
+                        </Col>
+                        <Col xs="8">
+                        </Col>
+                    </Row>
+                    <Bar
+                        data={state}
+                        display="none"
+                        options={{
+                            title:{
+                            display:true,
+                            text:'Average Rainfall per month',
+                            fontSize:15
+                            },
+                            legend:{
+                            display:true,
+                            position:'right'
+                            }
+                        }}
+                        />
+                        <Line
+                        data={state}
+                        options={{
+                            title:{
+                            display:true,
+                            text:'Average Rainfall per month',
+                            fontSize:15
+                            },
+                            legend:{
+                            display:true,
+                            position:'right'
+                            }
+                        }}
+                        />
+                        */}
+                    </CardBody>
+                </Card>                
+            </Container>
+
+
+                        
+
+            
             
             </>
         );
