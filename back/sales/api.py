@@ -1,5 +1,5 @@
 from sales.models import Bill
-from assets.models import Meter
+from assets.models import Meter, ElectricTransformer
 from users.models import User
 from rest_framework import viewsets, permissions
 from rest_framework.authentication import TokenAuthentication
@@ -13,49 +13,94 @@ from django.core.exceptions import ValidationError
 import pdfkit
 import json
 
+# funcion auxiliar para generar histogramas 
+
+
+def histogramGenerate(meter_id, expedition_date):
+        from matplotlib import pyplot as plt
+        import numpy as np
+        # queries con informacion del histograma maximo 6 meses
+        hdatequery = Bill.objects.filter(fk_meter_id=meter_id, expedition_date__lte=expedition_date).order_by('-end_date').values('start_date')[:6]
+        hreadquery = Bill.objects.filter(fk_meter_id=meter_id, expedition_date__lte=expedition_date).order_by('-end_date').values('read')[:6]
+        hread = []
+        hdate = []
+        # creando lista a entregar a plt
+        for r, d in zip(hreadquery, hdatequery):
+            hread.append(r['read'])
+            hdate.append(d['start_date'].strftime('%B')[:3])
+        # barra promedio
+        hread.append(np.average(hread))
+        hdate.append("PROM")
+        # creacion de el diagrama de barras
+        fig, ax = plt.subplots()
+        ax.barh(np.arange(len(hread)) ,hread ,align="center")
+        # etiquetas
+        ax.set_yticks(np.arange(len(hdate)))
+        ax.set_yticklabels(hdate, fontsize=30)
+        plt.xticks(fontsize= 20)
+        ax.invert_yaxis()
+        # guardando la imagen
+        plt.savefig("static/hist.png",  bbox_inches = "tight")
+        return hreadquery
+
+
 class GeneratePDFViewSet(viewsets.ViewSet):
     permission_classes = [
         permissions.IsAuthenticated
     ]
     def create(self, request):
-        from django.core.serializers.json import DjangoJSONEncoder
-        from matplotlib import pyplot as plt
-        import numpy as np
         # recibe el parametro de la factura a generar
         pk = request.query_params.get('pk_bill')
         # buscar el registros asociados de dicha factura
         bill = Bill.objects.get(pk_bill=pk)
         meter = Meter.objects.get(pk_meter=bill.fk_meter_id)
         client = User.objects.get(id=meter.fk_client_id)
-        hdatequery = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('start_date')[:6]
-        hreadquery = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('read')[:6]
+        transformer = ElectricTransformer.objects.get(pk_transformers=meter.fk_electric_transformers_id)
+        lastpayment = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('value','unit_value','is_paid','read','mora')[:2]
+        # generar histograma
+        hreadquery = histogramGenerate(bill.fk_meter_id, bill.expedition_date)
+        # verificando si tienen historial o no
+        lastpay = islastpay = before = last = ""
+        unit = mora = value = 0
+        if lastpayment.count() <= 1 or hreadquery.count() <= 1:
+            lastpay = islastpay = before = last = "No hay historial"
+        else:
+            lastpay = lastpayment[1]['value']
+            islastpay = "Si" if lastpayment[1]['is_paid'] else "No pagado"
+            before = hreadquery[1]['read']
+            last = hreadquery[1]['read'] + hreadquery[0]['read']
         # convertir el queryset en json para pasarlo al context
         billJson = json.loads(serializers.serialize('json',[bill,]))
         meterJson = json.loads(serializers.serialize('json',[meter,]))
         clientJson = json.loads(serializers.serialize('json',[client,]))
-        # generar histograma
-        hread = []
-        hdate = []
-        for r, d in zip(hreadquery, hdatequery):
-            hread.append(r['read'])
-            hdate.append(d['start_date'].strftime('%B')[:3])
-        hread.append(np.average(hread))
-        hdate.append("PROM")
-        fig, ax = plt.subplots()
-        ax.barh(np.arange(len(hread)) ,hread ,align="center")# orientation="horizontal"
-        ax.set_yticks(np.arange(len(hdate)))
-        ax.set_yticklabels(hdate, fontsize=30)
-        plt.xticks(fontsize= 20)
-        ax.invert_yaxis()
-        plt.show()
-        plt.savefig("static/hist.png",  bbox_inches = "tight")
+        transformerJson = json.loads(serializers.serialize('json',[transformer,]))
+        # si no esta pagado el ultimo agregar mora
+        if islastpay == "No pagado":
+            unit = billJson[0]['fields']['unit_value']
+            value = int(billJson[0]['fields']['read'] * billJson[0]['fields']['unit_value'])
+            mora = int(billJson[0]['fields']['value'] - lastpay - value)
+            
+        else:
+            unit = billJson[0]['fields']['unit_value']
+            value = billJson[0]['fields']['value']
+        # barcode
+        # from barcode import EAN13
+        # from barcode.writer import ImageWriter
+        # with open("bar.png","wb") as f:
+        #     EAN13(pk, writer=ImageWriter()).write(f)
         # guardarlo en un context
         context = { "bill"   : billJson[0],
                     "meter"  : meterJson[0],
                     "client" : clientJson[0],
-                    "unit"   : round(billJson[0]['fields']['value'] / billJson[0]['fields']['read'],3),
-                    "before" : hreadquery[1]['read'],
-                    "last"   : hreadquery[1]['read'] + hreadquery[0]['read']
+                    "transformer" : transformerJson[0],
+                    "substation" : transformer.fk_substation.name,
+                    "lastpayment" : lastpay,
+                    "islastpayment" :  islastpay,
+                    "unit"   : unit,
+                    "mora"   : mora,
+                    "before" : before,
+                    "last"   : last,
+                    "value"  : value,
                   }
         # busca el template a utilizar
         template = get_template("bill.html")
@@ -126,6 +171,8 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                     is_paid = False,
                     value = int(valorUnitario * read),
                     read = read,
+                    unit_value = valorUnitario,
+                    mora = mora,
                 )
             else:
                 # si la factura no esta pagada 
@@ -140,11 +187,13 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                         print("tiempo mora--solo uno --", datetime.now().date() - bill.expiration_date)
                         now =  datetime.now().date().year*1000 + datetime.now().date().month*100 + datetime.now().date().day
                         past = bill.expiration_date.year*1000 + bill.expiration_date.month*100 + bill.expiration_date.day
-                        print("tiempo mora--anterior pagada", now - past)
+                        print("interes", bill.value * abs(now - past)* (mora/100.0))
+                        print("valor anterior", bill.value)
+                        print("mora total", bill.value * abs(now - past)* (mora/100.0) + bill.value)
                         if (abs(now - past) >= 30):
                             interest = bill.value * 0.3
                         else:
-                            interest = bill.value * abs(now - past)* mora + bill.value
+                            interest = bill.value * abs(now - past)* (mora/100.0) + bill.value
                         aux = Bill(
                             fk_meter = meter,
                             fk_debit_payment = None,
@@ -156,6 +205,8 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                             is_paid = False,
                             value = int(valorUnitario * read) + interest, ####################
                             read = read,
+                            unit_value = valorUnitario,
+                            mora = mora,
                         )
                     else:
                         print("hace dos meses no se pago: not ", secondbill[1].is_paid)
@@ -171,10 +222,13 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                             now =  datetime.now().date().year*1000 + datetime.now().date().month*100 +datetime.now().date().day
                             past = bill.expiration_date.year*1000 + bill.expiration_date.month*100 + bill.expiration_date.day
                             print("tiempo mora--anterior pagada", now - past)
+                            print("interes", bill.value * abs(now - past)* (mora/100.0))
+                            print("valor anterior", bill.value)
+                            print("mora total", bill.value * abs(now - past)* (mora/100.0) + bill.value)
                             if (abs(now - past) >= 30):
                                 interest = bill.value * 0.3
                             else:
-                                interest = bill.value * abs(now - past)* mora + bill.value
+                                interest = bill.value * abs(now - past)* (mora/100.0) + bill.value
                             aux = Bill(
                                 fk_meter = meter,
                                 fk_debit_payment = None,
@@ -186,6 +240,8 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                                 is_paid = False,
                                 value = int(valorUnitario * read) + interest, ####################
                                 read = read,
+                                unit_value = valorUnitario,
+                                mora = mora,
                             )
                 else:
                     print("# si la encontrada esta pagada")
@@ -202,6 +258,8 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                         is_paid = False,
                         value = int(valorUnitario * read),
                         read = read,
+                        unit_value = valorUnitario,
+                        mora = mora,
                     )
             try:
                 aux.full_clean()

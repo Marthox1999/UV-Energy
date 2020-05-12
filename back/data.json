@@ -1,1 +1,2585 @@
-[{"model": "contenttypes.contenttype", "pk": 1, "fields": {"app_label": "admin", "model": "logentry"}}, {"model": "contenttypes.contenttype", "pk": 2, "fields": {"app_label": "auth", "model": "permission"}}, {"model": "contenttypes.contenttype", "pk": 3, "fields": {"app_label": "auth", "model": "group"}}, {"model": "contenttypes.contenttype", "pk": 4, "fields": {"app_label": "contenttypes", "model": "contenttype"}}, {"model": "contenttypes.contenttype", "pk": 5, "fields": {"app_label": "sessions", "model": "session"}}, {"model": "contenttypes.contenttype", "pk": 6, "fields": {"app_label": "authtoken", "model": "token"}}, {"model": "contenttypes.contenttype", "pk": 7, "fields": {"app_label": "users", "model": "user"}}, {"model": "contenttypes.contenttype", "pk": 8, "fields": {"app_label": "assets", "model": "electrictransformer"}}, {"model": "contenttypes.contenttype", "pk": 9, "fields": {"app_label": "assets", "model": "substation"}}, {"model": "contenttypes.contenttype", "pk": 10, "fields": {"app_label": "assets", "model": "meter"}}, {"model": "contenttypes.contenttype", "pk": 11, "fields": {"app_label": "sales", "model": "bank"}}, {"model": "contenttypes.contenttype", "pk": 12, "fields": {"app_label": "sales", "model": "debitpayment"}}, {"model": "contenttypes.contenttype", "pk": 13, "fields": {"app_label": "sales", "model": "bill"}}, {"model": "sessions.session", "pk": "p1ppcu1p0x3xqqe6xnhjoq0x5nr3l5nh", "fields": {"session_data": "YzgxMGM1ZDM1NjdmMGUwYTVmMTk5ZTlkNTgwMDg4MjJjYmFmMjdkNDp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2ODYzOWZmNjFlYjM2NzE5N2Q1NGU5ZTYyOTlmN2IzMmJiMzIzZGM0In0=", "expire_date": "2020-04-01T17:48:28.573Z"}}, {"model": "sessions.session", "pk": "zfe2a17umerhbr23v6pow5p7hnmgxld7", "fields": {"session_data": "YTJjYmIxYzk0YzJmYzY3NjJjYWI1OTE0MWRjMjU2MmQxZDNjMzhhNTp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3MDk0OGZkZTFjZGE3MDc1Y2I1MWM2MzA2OWU0YTcwNDU0MGZjMjZkIn0=", "expire_date": "2020-05-25T16:36:47.813Z"}}, {"model": "assets.substation", "pk": 1, "fields": {"name": "sub1", "long": "283.50288391113287000000", "lat": "3.46270340871090940000", "isActive": true}}, {"model": "assets.substation", "pk": 2, "fields": {"name": "sub2", "long": "283.43902587890630000000", "lat": "3.42980402696740550000", "isActive": true}}, {"model": "assets.substation", "pk": 3, "fields": {"name": "subJamundi", "long": "283.46307992935186000000", "lat": "3.26758259186647600000", "isActive": true}}, {"model": "assets.substation", "pk": 4, "fields": {"name": "subPalmira", "long": "283.69651794433600000000", "lat": "3.53295345656683720000", "isActive": true}}, {"model": "assets.substation", "pk": 5, "fields": {"name": "subFlorida", "long": "283.76621246337896000000", "lat": "3.32938541670079900000", "isActive": true}}, {"model": "assets.electrictransformer", "pk": 1, "fields": {"tension_level": 2, "reference": "123qwe", "long": "283.50940704345710000000", "lat": "3.46133262388436340000", "fk_substation": 1, "isActive": true}}, {"model": "assets.electrictransformer", "pk": 2, "fields": {"tension_level": 3, "reference": "345wer", "long": "283.44589233398443000000", "lat": "3.42671965171278500000", "fk_substation": 2, "isActive": true}}, {"model": "assets.electrictransformer", "pk": 3, "fields": {"tension_level": 6, "reference": "678ert", "long": "283.50700378417974000000", "lat": "3.48583510274171850000", "fk_substation": 1, "isActive": true}}, {"model": "assets.electrictransformer", "pk": 4, "fields": {"tension_level": 4, "reference": "100jam", "long": "283.46353054046637000000", "lat": "3.26675781423603250000", "fk_substation": 3, "isActive": true}}, {"model": "assets.electrictransformer", "pk": 5, "fields": {"tension_level": 3, "reference": "224fgh", "long": "283.68656158447270000000", "lat": "3.54357617427628120000", "fk_substation": 4, "isActive": true}}, {"model": "assets.electrictransformer", "pk": 6, "fields": {"tension_level": 6, "reference": "rfv367", "long": "283.76458168029700000000", "lat": "3.32253052724576000000", "fk_substation": 5, "isActive": true}}, {"model": "sales.bank", "pk": "Banco1", "fields": {"email": "banco@banco.com"}}, {"model": "sales.bank", "pk": "MiBanco", "fields": {"email": "MiBanquito@gmail.com"}}, {"model": "sales.debitpayment", "pk": 1, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 2, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 3, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 4, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 5, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 6, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 7, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 8, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 9, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 10, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 11, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 12, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 13, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 14, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 15, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 16, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 17, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 18, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 19, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 20, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 21, "fields": {"fk_bank": "MiBanco"}}, {"model": "sales.debitpayment", "pk": 22, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 23, "fields": {"fk_bank": "Banco1"}}, {"model": "sales.debitpayment", "pk": 24, "fields": {"fk_bank": "Banco1"}}, {"model": "auth.permission", "pk": 1, "fields": {"name": "Can add log entry", "content_type": 1, "codename": "add_logentry"}}, {"model": "auth.permission", "pk": 2, "fields": {"name": "Can change log entry", "content_type": 1, "codename": "change_logentry"}}, {"model": "auth.permission", "pk": 3, "fields": {"name": "Can delete log entry", "content_type": 1, "codename": "delete_logentry"}}, {"model": "auth.permission", "pk": 4, "fields": {"name": "Can view log entry", "content_type": 1, "codename": "view_logentry"}}, {"model": "auth.permission", "pk": 5, "fields": {"name": "Can add permission", "content_type": 2, "codename": "add_permission"}}, {"model": "auth.permission", "pk": 6, "fields": {"name": "Can change permission", "content_type": 2, "codename": "change_permission"}}, {"model": "auth.permission", "pk": 7, "fields": {"name": "Can delete permission", "content_type": 2, "codename": "delete_permission"}}, {"model": "auth.permission", "pk": 8, "fields": {"name": "Can view permission", "content_type": 2, "codename": "view_permission"}}, {"model": "auth.permission", "pk": 9, "fields": {"name": "Can add group", "content_type": 3, "codename": "add_group"}}, {"model": "auth.permission", "pk": 10, "fields": {"name": "Can change group", "content_type": 3, "codename": "change_group"}}, {"model": "auth.permission", "pk": 11, "fields": {"name": "Can delete group", "content_type": 3, "codename": "delete_group"}}, {"model": "auth.permission", "pk": 12, "fields": {"name": "Can view group", "content_type": 3, "codename": "view_group"}}, {"model": "auth.permission", "pk": 13, "fields": {"name": "Can add content type", "content_type": 4, "codename": "add_contenttype"}}, {"model": "auth.permission", "pk": 14, "fields": {"name": "Can change content type", "content_type": 4, "codename": "change_contenttype"}}, {"model": "auth.permission", "pk": 15, "fields": {"name": "Can delete content type", "content_type": 4, "codename": "delete_contenttype"}}, {"model": "auth.permission", "pk": 16, "fields": {"name": "Can view content type", "content_type": 4, "codename": "view_contenttype"}}, {"model": "auth.permission", "pk": 17, "fields": {"name": "Can add session", "content_type": 5, "codename": "add_session"}}, {"model": "auth.permission", "pk": 18, "fields": {"name": "Can change session", "content_type": 5, "codename": "change_session"}}, {"model": "auth.permission", "pk": 19, "fields": {"name": "Can delete session", "content_type": 5, "codename": "delete_session"}}, {"model": "auth.permission", "pk": 20, "fields": {"name": "Can view session", "content_type": 5, "codename": "view_session"}}, {"model": "auth.permission", "pk": 21, "fields": {"name": "Can add Token", "content_type": 6, "codename": "add_token"}}, {"model": "auth.permission", "pk": 22, "fields": {"name": "Can change Token", "content_type": 6, "codename": "change_token"}}, {"model": "auth.permission", "pk": 23, "fields": {"name": "Can delete Token", "content_type": 6, "codename": "delete_token"}}, {"model": "auth.permission", "pk": 24, "fields": {"name": "Can view Token", "content_type": 6, "codename": "view_token"}}, {"model": "auth.permission", "pk": 25, "fields": {"name": "Can add user", "content_type": 7, "codename": "add_user"}}, {"model": "auth.permission", "pk": 26, "fields": {"name": "Can change user", "content_type": 7, "codename": "change_user"}}, {"model": "auth.permission", "pk": 27, "fields": {"name": "Can delete user", "content_type": 7, "codename": "delete_user"}}, {"model": "auth.permission", "pk": 28, "fields": {"name": "Can view user", "content_type": 7, "codename": "view_user"}}, {"model": "auth.permission", "pk": 29, "fields": {"name": "Can add electric transformer", "content_type": 8, "codename": "add_electrictransformer"}}, {"model": "auth.permission", "pk": 30, "fields": {"name": "Can change electric transformer", "content_type": 8, "codename": "change_electrictransformer"}}, {"model": "auth.permission", "pk": 31, "fields": {"name": "Can delete electric transformer", "content_type": 8, "codename": "delete_electrictransformer"}}, {"model": "auth.permission", "pk": 32, "fields": {"name": "Can view electric transformer", "content_type": 8, "codename": "view_electrictransformer"}}, {"model": "auth.permission", "pk": 33, "fields": {"name": "Can add substation", "content_type": 9, "codename": "add_substation"}}, {"model": "auth.permission", "pk": 34, "fields": {"name": "Can change substation", "content_type": 9, "codename": "change_substation"}}, {"model": "auth.permission", "pk": 35, "fields": {"name": "Can delete substation", "content_type": 9, "codename": "delete_substation"}}, {"model": "auth.permission", "pk": 36, "fields": {"name": "Can view substation", "content_type": 9, "codename": "view_substation"}}, {"model": "auth.permission", "pk": 37, "fields": {"name": "Can add meter", "content_type": 10, "codename": "add_meter"}}, {"model": "auth.permission", "pk": 38, "fields": {"name": "Can change meter", "content_type": 10, "codename": "change_meter"}}, {"model": "auth.permission", "pk": 39, "fields": {"name": "Can delete meter", "content_type": 10, "codename": "delete_meter"}}, {"model": "auth.permission", "pk": 40, "fields": {"name": "Can view meter", "content_type": 10, "codename": "view_meter"}}, {"model": "auth.permission", "pk": 41, "fields": {"name": "Can add bank", "content_type": 11, "codename": "add_bank"}}, {"model": "auth.permission", "pk": 42, "fields": {"name": "Can change bank", "content_type": 11, "codename": "change_bank"}}, {"model": "auth.permission", "pk": 43, "fields": {"name": "Can delete bank", "content_type": 11, "codename": "delete_bank"}}, {"model": "auth.permission", "pk": 44, "fields": {"name": "Can view bank", "content_type": 11, "codename": "view_bank"}}, {"model": "auth.permission", "pk": 45, "fields": {"name": "Can add debit payment", "content_type": 12, "codename": "add_debitpayment"}}, {"model": "auth.permission", "pk": 46, "fields": {"name": "Can change debit payment", "content_type": 12, "codename": "change_debitpayment"}}, {"model": "auth.permission", "pk": 47, "fields": {"name": "Can delete debit payment", "content_type": 12, "codename": "delete_debitpayment"}}, {"model": "auth.permission", "pk": 48, "fields": {"name": "Can view debit payment", "content_type": 12, "codename": "view_debitpayment"}}, {"model": "auth.permission", "pk": 49, "fields": {"name": "Can add bill", "content_type": 13, "codename": "add_bill"}}, {"model": "auth.permission", "pk": 50, "fields": {"name": "Can change bill", "content_type": 13, "codename": "change_bill"}}, {"model": "auth.permission", "pk": 51, "fields": {"name": "Can delete bill", "content_type": 13, "codename": "delete_bill"}}, {"model": "auth.permission", "pk": 52, "fields": {"name": "Can view bill", "content_type": 13, "codename": "view_bill"}}, {"model": "users.user", "pk": 1, "fields": {"password": "pbkdf2_sha256$150000$qYGGH17pw5xt$kWxXlU3ji4eIxv42I3VHjeOGVlH8t0CVeNgZK5mlLEs=", "last_login": null, "is_superuser": false, "username": "manager", "first_name": "ma", "last_name": "nager", "email": "manager@manager.com", "is_staff": false, "is_active": true, "date_joined": "2020-03-18T16:57:40.628Z", "position": "MGR", "cellphone": "1111111111", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 2, "fields": {"password": "pbkdf2_sha256$150000$I0EiNSDtVXiw$/k9Bvl+mH18/me4Ni5lRiKXqAaRjPnB4v4ONPE/RMxo=", "last_login": null, "is_superuser": false, "username": "admin", "first_name": "ad", "last_name": "min", "email": "admin@admin.com", "is_staff": false, "is_active": true, "date_joined": "2020-03-18T16:58:10.954Z", "position": "ADMIN", "cellphone": "2222222222", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 3, "fields": {"password": "pbkdf2_sha256$150000$d8hOVgqKb50b$YclLlBXanwSd0JAyvQYBUDp0DSIjUcz4tC8wkf4RbVs=", "last_login": null, "is_superuser": false, "username": "client", "first_name": "cli", "last_name": "ent", "email": "client@client.com", "is_staff": false, "is_active": true, "date_joined": "2020-03-18T17:04:54.083Z", "position": "CLT", "cellphone": "3333333333", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 4, "fields": {"password": "pbkdf2_sha256$150000$ebIns0teaivG$FP8wB4mTP55Q+BMCjKzH/i5pseWsnwKYX1TR+aK3sHs=", "last_login": null, "is_superuser": false, "username": "operator", "first_name": "opera", "last_name": "tor", "email": "operator@operator.com", "is_staff": false, "is_active": true, "date_joined": "2020-03-18T17:06:11.287Z", "position": "OP", "cellphone": "4444444444", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 5, "fields": {"password": "pbkdf2_sha256$150000$nahJVBlvq04L$eXBxsMIXu5ADvBNaG0ANRmV56M1fBK7agReNvmeE36E=", "last_login": "2020-05-11T16:36:47.812Z", "is_superuser": true, "username": "superuser", "first_name": "", "last_name": "", "email": "", "is_staff": true, "is_active": true, "date_joined": "2020-05-11T16:30:43.691Z", "position": "CLT", "cellphone": "", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 6, "fields": {"password": "pbkdf2_sha256$150000$tJKHqfcHohdk$4GBefrBMXZg2Fnv/aE+UAtPsulu5agoGo5NQvWaERGY=", "last_login": null, "is_superuser": false, "username": "Mateo", "first_name": "Mateo", "last_name": "Gregory", "email": "mateo.gregory@correounivalle.edu.co", "is_staff": false, "is_active": true, "date_joined": "2020-05-11T16:31:30.729Z", "position": "CLT", "cellphone": "3166443198", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 7, "fields": {"password": "pbkdf2_sha256$150000$pZmLibwRZsrz$yrSsIvZXoT+qeJuSqKASiRpK4N04npxpUPFd3f2wpuE=", "last_login": null, "is_superuser": false, "username": "Valeria", "first_name": "Valeria", "last_name": "Rivera", "email": "valeria.rivera@correounivalle.edu.co", "is_staff": false, "is_active": true, "date_joined": "2020-05-11T16:31:53.027Z", "position": "CLT", "cellphone": "3012617187", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 8, "fields": {"password": "pbkdf2_sha256$150000$E9aSi6xyIPps$hD2fxLYQjGmj/Rpzyjv4MZtLX2c0RjGCLpqtYvBt/8w=", "last_login": null, "is_superuser": false, "username": "Emily", "first_name": "Emily", "last_name": "Carvajal", "email": "emily.carvajal@correounivalle.edu.co", "is_staff": false, "is_active": true, "date_joined": "2020-05-11T16:32:09.568Z", "position": "CLT", "cellphone": "3206973669", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 9, "fields": {"password": "pbkdf2_sha256$150000$8PhDc85wCBGU$J9ub675NIxMo9VpeWimhSr0d8v/9ez/b4pyfVXEDoIk=", "last_login": null, "is_superuser": false, "username": "Felipe", "first_name": "Felipe", "last_name": "Gil", "email": "juan.felipe.gil@correounivalle.edu.co", "is_staff": false, "is_active": true, "date_joined": "2020-05-11T16:32:24.253Z", "position": "CLT", "cellphone": "3148080739", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 10, "fields": {"password": "pbkdf2_sha256$150000$COG4vmAVctoQ$oGC1NKFAFjAAzgci+Ra3gQUQnLniXk/awZXFJSnESrY=", "last_login": null, "is_superuser": false, "username": "Jaime", "first_name": "Jaime", "last_name": "Cuartas", "email": "jaime.cuartas@correounivalle.edu.co", "is_staff": false, "is_active": true, "date_joined": "2020-05-11T16:32:37.807Z", "position": "CLT", "cellphone": "3107307371", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 11, "fields": {"password": "pbkdf2_sha256$150000$ae3PUEcpXr4m$uO0babX3Xt28b1WdRuMUyTKbuqujccDK5VRzqQwlRew=", "last_login": null, "is_superuser": false, "username": "operator2", "first_name": "opera2", "last_name": "tor", "email": "operator2@operator.com", "is_staff": false, "is_active": true, "date_joined": "2020-05-11T16:33:12.813Z", "position": "OP", "cellphone": "4444555555", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 12, "fields": {"password": "pbkdf2_sha256$150000$ARBsxJSVMrFf$Q+Nrvu9srk7CKwjEZGCNmR5D/fd8ogAfv3KlnGVe1pM=", "last_login": null, "is_superuser": false, "username": "operatorjamundi", "first_name": "operaJamu", "last_name": "torin", "email": "operator@operatorjamundi.com", "is_staff": false, "is_active": true, "date_joined": "2020-05-11T16:33:32.241Z", "position": "OP", "cellphone": "5555444444", "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 13, "fields": {"password": "pbkdf2_sha256$150000$WhFOoZyDmziU$WLjyt/0lK1f+rxRPpaTFBnt8qd9SJcmIGtr6PwBdaQM=", "last_login": null, "is_superuser": false, "username": "Gaona", "first_name": "Carlos Mauricio", "last_name": "Gaona", "email": "gaonaUnivalle@correounivalle.edu.co", "is_staff": false, "is_active": true, "date_joined": "2020-05-11T16:34:04.504Z", "position": "CLT", "cellphone": "1111222222", "groups": [], "user_permissions": []}}, {"model": "assets.meter", "pk": 1, "fields": {"address": "Cra. 53 #7- 111", "stratum": 1, "city": "CALI", "use": "RES", "fk_electric_transformers": 2, "fk_client": 3, "isActive": true}}, {"model": "assets.meter", "pk": 2, "fields": {"address": "Cl. 9 #48-81", "stratum": 2, "city": "CALI", "use": "IND", "fk_electric_transformers": 2, "fk_client": 6, "isActive": true}}, {"model": "assets.meter", "pk": 3, "fields": {"address": "Cl. 47 Nte. #5131", "stratum": 3, "city": "CALI", "use": "RES", "fk_electric_transformers": 3, "fk_client": 7, "isActive": true}}, {"model": "assets.meter", "pk": 4, "fields": {"address": "Cl. 52 Nte. #3BN-06", "stratum": 4, "city": "CALI", "use": "IND", "fk_electric_transformers": 3, "fk_client": 8, "isActive": true}}, {"model": "assets.meter", "pk": 5, "fields": {"address": "Cl. 5 #59A-17", "stratum": 3, "city": "CALI", "use": "RES", "fk_electric_transformers": 2, "fk_client": 9, "isActive": true}}, {"model": "assets.meter", "pk": 6, "fields": {"address": "Cra. 8 #39-01", "stratum": 3, "city": "CALI", "use": "RES", "fk_electric_transformers": 1, "fk_client": 10, "isActive": true}}, {"model": "assets.meter", "pk": 7, "fields": {"address": "Cl. 9 #42-80", "stratum": 4, "city": "CALI", "use": "RES", "fk_electric_transformers": 2, "fk_client": 13, "isActive": true}}, {"model": "sales.bill", "pk": 1, "fields": {"start_date": "2019-11-01", "end_date": "2019-11-30", "read": 600, "expedition_date": "2019-11-30", "expiration_date": "2019-12-31", "is_paid": true, "value": 249952, "fk_debit_payment": 1, "fk_meter": 1, "fk_employee": null}}, {"model": "sales.bill", "pk": 2, "fields": {"start_date": "2019-11-01", "end_date": "2019-11-30", "read": 1148, "expedition_date": "2019-11-30", "expiration_date": "2019-12-31", "is_paid": true, "value": 816489, "fk_debit_payment": 2, "fk_meter": 2, "fk_employee": null}}, {"model": "sales.bill", "pk": 3, "fields": {"start_date": "2019-11-01", "end_date": "2019-11-30", "read": 540, "expedition_date": "2019-11-30", "expiration_date": "2019-12-31", "is_paid": true, "value": 296048, "fk_debit_payment": 3, "fk_meter": 3, "fk_employee": null}}, {"model": "sales.bill", "pk": 4, "fields": {"start_date": "2019-11-01", "end_date": "2019-11-30", "read": 1181, "expedition_date": "2019-11-30", "expiration_date": "2019-12-31", "is_paid": true, "value": 647469, "fk_debit_payment": 4, "fk_meter": 4, "fk_employee": null}}, {"model": "sales.bill", "pk": 5, "fields": {"start_date": "2019-11-01", "end_date": "2019-11-30", "read": 587, "expedition_date": "2019-11-30", "expiration_date": "2019-12-31", "is_paid": true, "value": 321816, "fk_debit_payment": 5, "fk_meter": 5, "fk_employee": null}}, {"model": "sales.bill", "pk": 6, "fields": {"start_date": "2019-12-01", "end_date": "2019-12-31", "read": 273, "expedition_date": "2019-12-31", "expiration_date": "2020-01-31", "is_paid": true, "value": 113728, "fk_debit_payment": 6, "fk_meter": 1, "fk_employee": null}}, {"model": "sales.bill", "pk": 7, "fields": {"start_date": "2019-12-01", "end_date": "2019-12-31", "read": 1177, "expedition_date": "2019-12-31", "expiration_date": "2020-01-31", "is_paid": true, "value": 837115, "fk_debit_payment": 7, "fk_meter": 2, "fk_employee": null}}, {"model": "sales.bill", "pk": 8, "fields": {"start_date": "2019-12-01", "end_date": "2019-12-31", "read": 311, "expedition_date": "2019-12-31", "expiration_date": "2020-01-31", "is_paid": true, "value": 170502, "fk_debit_payment": 8, "fk_meter": 3, "fk_employee": null}}, {"model": "sales.bill", "pk": 9, "fields": {"start_date": "2019-12-01", "end_date": "2019-12-31", "read": 886, "expedition_date": "2019-12-31", "expiration_date": "2020-01-31", "is_paid": true, "value": 485739, "fk_debit_payment": 9, "fk_meter": 4, "fk_employee": null}}, {"model": "sales.bill", "pk": 10, "fields": {"start_date": "2019-12-01", "end_date": "2019-12-31", "read": 521, "expedition_date": "2019-12-31", "expiration_date": "2020-01-31", "is_paid": true, "value": 285632, "fk_debit_payment": 10, "fk_meter": 5, "fk_employee": null}}, {"model": "sales.bill", "pk": 11, "fields": {"start_date": "2020-01-01", "end_date": "2020-01-31", "read": 712, "expedition_date": "2020-01-31", "expiration_date": "2020-02-29", "is_paid": true, "value": 296610, "fk_debit_payment": 11, "fk_meter": 1, "fk_employee": null}}, {"model": "sales.bill", "pk": 12, "fields": {"start_date": "2020-01-01", "end_date": "2020-01-31", "read": 1048, "expedition_date": "2020-01-31", "expiration_date": "2020-02-29", "is_paid": true, "value": 745366, "fk_debit_payment": 12, "fk_meter": 2, "fk_employee": null}}, {"model": "sales.bill", "pk": 13, "fields": {"start_date": "2020-01-01", "end_date": "2020-01-31", "read": 638, "expedition_date": "2020-01-31", "expiration_date": "2020-02-29", "is_paid": true, "value": 349776, "fk_debit_payment": 13, "fk_meter": 3, "fk_employee": null}}, {"model": "sales.bill", "pk": 14, "fields": {"start_date": "2020-01-01", "end_date": "2020-01-31", "read": 919, "expedition_date": "2020-01-31", "expiration_date": "2020-02-29", "is_paid": true, "value": 503830, "fk_debit_payment": 14, "fk_meter": 4, "fk_employee": null}}, {"model": "sales.bill", "pk": 15, "fields": {"start_date": "2020-01-01", "end_date": "2020-01-31", "read": 516, "expedition_date": "2020-01-31", "expiration_date": "2020-02-29", "is_paid": true, "value": 282891, "fk_debit_payment": 5, "fk_meter": 5, "fk_employee": null}}, {"model": "sales.bill", "pk": 16, "fields": {"start_date": "2020-02-01", "end_date": "2020-02-29", "read": 507, "expedition_date": "2020-02-29", "expiration_date": "2020-03-31", "is_paid": false, "value": 211210, "fk_debit_payment": null, "fk_meter": 1, "fk_employee": null}}, {"model": "sales.bill", "pk": 17, "fields": {"start_date": "2020-02-01", "end_date": "2020-02-29", "read": 510, "expedition_date": "2020-02-29", "expiration_date": "2020-03-31", "is_paid": true, "value": 362726, "fk_debit_payment": 16, "fk_meter": 2, "fk_employee": null}}, {"model": "sales.bill", "pk": 18, "fields": {"start_date": "2020-02-01", "end_date": "2020-02-29", "read": 720, "expedition_date": "2020-02-29", "expiration_date": "2020-03-31", "is_paid": true, "value": 394731, "fk_debit_payment": 17, "fk_meter": 3, "fk_employee": null}}, {"model": "sales.bill", "pk": 19, "fields": {"start_date": "2020-02-01", "end_date": "2020-02-29", "read": 1023, "expedition_date": "2020-02-29", "expiration_date": "2020-03-31", "is_paid": true, "value": 560847, "fk_debit_payment": 18, "fk_meter": 4, "fk_employee": null}}, {"model": "sales.bill", "pk": 20, "fields": {"start_date": "2020-02-01", "end_date": "2020-02-29", "read": 542, "expedition_date": "2020-02-29", "expiration_date": "2020-03-31", "is_paid": true, "value": 297145, "fk_debit_payment": 19, "fk_meter": 5, "fk_employee": null}}, {"model": "sales.bill", "pk": 21, "fields": {"start_date": "2020-03-01", "end_date": "2020-03-31", "read": 387, "expedition_date": "2020-03-31", "expiration_date": "2020-04-30", "is_paid": false, "value": 161219, "fk_debit_payment": null, "fk_meter": 1, "fk_employee": null}}, {"model": "sales.bill", "pk": 22, "fields": {"start_date": "2020-03-01", "end_date": "2020-03-31", "read": 1061, "expedition_date": "2020-03-31", "expiration_date": "2020-04-30", "is_paid": false, "value": 754612, "fk_debit_payment": null, "fk_meter": 2, "fk_employee": null}}, {"model": "sales.bill", "pk": 23, "fields": {"start_date": "2020-03-01", "end_date": "2020-03-31", "read": 522, "expedition_date": "2020-03-31", "expiration_date": "2020-04-30", "is_paid": false, "value": 286180, "fk_debit_payment": null, "fk_meter": 3, "fk_employee": null}}, {"model": "sales.bill", "pk": 24, "fields": {"start_date": "2020-03-01", "end_date": "2020-03-31", "read": 1056, "expedition_date": "2020-03-31", "expiration_date": "2020-04-30", "is_paid": true, "value": 578939, "fk_debit_payment": 20, "fk_meter": 4, "fk_employee": null}}, {"model": "sales.bill", "pk": 25, "fields": {"start_date": "2020-03-01", "end_date": "2020-03-31", "read": 796, "expedition_date": "2020-03-31", "expiration_date": "2020-04-30", "is_paid": true, "value": 436397, "fk_debit_payment": 21, "fk_meter": 5, "fk_employee": null}}, {"model": "sales.bill", "pk": 26, "fields": {"start_date": "2020-04-01", "end_date": "2020-04-30", "read": 894, "expedition_date": "2020-04-30", "expiration_date": "2020-05-31", "is_paid": false, "value": 635837, "fk_debit_payment": null, "fk_meter": 2, "fk_employee": null}}, {"model": "sales.bill", "pk": 27, "fields": {"start_date": "2020-04-01", "end_date": "2020-04-30", "read": 401, "expedition_date": "2020-04-30", "expiration_date": "2020-05-31", "is_paid": false, "value": 219843, "fk_debit_payment": null, "fk_meter": 3, "fk_employee": null}}, {"model": "sales.bill", "pk": 28, "fields": {"start_date": "2020-04-01", "end_date": "2020-04-30", "read": 866, "expedition_date": "2020-04-30", "expiration_date": "2020-05-31", "is_paid": true, "value": 474774, "fk_debit_payment": 22, "fk_meter": 4, "fk_employee": null}}, {"model": "sales.bill", "pk": 29, "fields": {"start_date": "2020-04-01", "end_date": "2020-04-30", "read": 719, "expedition_date": "2020-04-30", "expiration_date": "2020-05-31", "is_paid": false, "value": 394183, "fk_debit_payment": null, "fk_meter": 5, "fk_employee": null}}, {"model": "sales.bill", "pk": 30, "fields": {"start_date": "2020-04-01", "end_date": "2020-04-30", "read": 247, "expedition_date": "2020-04-30", "expiration_date": "2020-05-31", "is_paid": true, "value": 135415, "fk_debit_payment": 23, "fk_meter": 6, "fk_employee": null}}, {"model": "sales.bill", "pk": 31, "fields": {"start_date": "2020-04-01", "end_date": "2020-04-30", "read": 288, "expedition_date": "2020-04-30", "expiration_date": "2020-05-31", "is_paid": true, "value": 170695, "fk_debit_payment": 24, "fk_meter": 7, "fk_employee": null}}, {"model": "authtoken.token", "pk": "0bb7b28cb2fcf80560b57645a06db6a1d7f68970", "fields": {"user": 4, "created": "2020-05-11T16:28:34.247Z"}}, {"model": "authtoken.token", "pk": "325f00f3c2a97e4312227c388dc0bb5abd506915", "fields": {"user": 2, "created": "2020-05-11T16:26:50.732Z"}}, {"model": "admin.logentry", "pk": 1, "fields": {"action_time": "2020-05-11T16:37:03.000Z", "user": 5, "content_type": 11, "object_id": "Banco1", "object_repr": "Bank object (Banco1)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 2, "fields": {"action_time": "2020-05-11T16:37:06.303Z", "user": 5, "content_type": 11, "object_id": "Bancolombia", "object_repr": "Bank object (Bancolombia)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 3, "fields": {"action_time": "2020-05-11T16:37:10.224Z", "user": 5, "content_type": 11, "object_id": "Banco de Bogota", "object_repr": "Bank object (Banco de Bogota)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 4, "fields": {"action_time": "2020-05-11T16:37:14.696Z", "user": 5, "content_type": 11, "object_id": "Davivienda", "object_repr": "Bank object (Davivienda)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 5, "fields": {"action_time": "2020-05-11T16:37:20.028Z", "user": 5, "content_type": 11, "object_id": "MiBanco", "object_repr": "Bank object (MiBanco)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 6, "fields": {"action_time": "2020-05-11T16:39:24.950Z", "user": 5, "content_type": 9, "object_id": "3", "object_repr": "Substation object (3)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 7, "fields": {"action_time": "2020-05-11T16:39:34.674Z", "user": 5, "content_type": 9, "object_id": "4", "object_repr": "Substation object (4)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 8, "fields": {"action_time": "2020-05-11T16:39:43.261Z", "user": 5, "content_type": 9, "object_id": "5", "object_repr": "Substation object (5)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 9, "fields": {"action_time": "2020-05-11T16:40:33.237Z", "user": 5, "content_type": 8, "object_id": "3", "object_repr": "ElectricTransformer object (3)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 10, "fields": {"action_time": "2020-05-11T16:40:48.903Z", "user": 5, "content_type": 8, "object_id": "4", "object_repr": "ElectricTransformer object (4)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 11, "fields": {"action_time": "2020-05-11T16:41:02.514Z", "user": 5, "content_type": 8, "object_id": "5", "object_repr": "ElectricTransformer object (5)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 12, "fields": {"action_time": "2020-05-11T16:46:00.436Z", "user": 5, "content_type": 8, "object_id": "6", "object_repr": "ElectricTransformer object (6)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 13, "fields": {"action_time": "2020-05-11T16:47:09.815Z", "user": 5, "content_type": 10, "object_id": "1", "object_repr": "Meter object (1)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 14, "fields": {"action_time": "2020-05-11T16:47:31.904Z", "user": 5, "content_type": 10, "object_id": "2", "object_repr": "Meter object (2)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 15, "fields": {"action_time": "2020-05-11T16:47:52.520Z", "user": 5, "content_type": 10, "object_id": "3", "object_repr": "Meter object (3)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 16, "fields": {"action_time": "2020-05-11T16:48:12.735Z", "user": 5, "content_type": 10, "object_id": "4", "object_repr": "Meter object (4)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 17, "fields": {"action_time": "2020-05-11T16:48:33.207Z", "user": 5, "content_type": 10, "object_id": "5", "object_repr": "Meter object (5)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 18, "fields": {"action_time": "2020-05-11T16:48:52.074Z", "user": 5, "content_type": 10, "object_id": "6", "object_repr": "Meter object (6)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 19, "fields": {"action_time": "2020-05-11T16:49:09.092Z", "user": 5, "content_type": 10, "object_id": "7", "object_repr": "Meter object (7)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 20, "fields": {"action_time": "2020-05-11T17:03:58.113Z", "user": 5, "content_type": 11, "object_id": "Bancolombia", "object_repr": "Bank object (Bancolombia)", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 21, "fields": {"action_time": "2020-05-11T17:04:02.312Z", "user": 5, "content_type": 11, "object_id": "Banco de Bogota", "object_repr": "Bank object (Banco de Bogota)", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 22, "fields": {"action_time": "2020-05-11T17:04:06.014Z", "user": 5, "content_type": 11, "object_id": "Davivienda", "object_repr": "Bank object (Davivienda)", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 23, "fields": {"action_time": "2020-05-11T17:05:59.213Z", "user": 5, "content_type": 12, "object_id": "1", "object_repr": "DebitPayment object (1)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 24, "fields": {"action_time": "2020-05-11T17:06:00.642Z", "user": 5, "content_type": 12, "object_id": "2", "object_repr": "DebitPayment object (2)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 25, "fields": {"action_time": "2020-05-11T17:06:02.573Z", "user": 5, "content_type": 12, "object_id": "3", "object_repr": "DebitPayment object (3)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 26, "fields": {"action_time": "2020-05-11T17:06:13.355Z", "user": 5, "content_type": 12, "object_id": "4", "object_repr": "DebitPayment object (4)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 27, "fields": {"action_time": "2020-05-11T17:06:19.185Z", "user": 5, "content_type": 12, "object_id": "5", "object_repr": "DebitPayment object (5)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 28, "fields": {"action_time": "2020-05-11T17:06:21.444Z", "user": 5, "content_type": 12, "object_id": "6", "object_repr": "DebitPayment object (6)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 29, "fields": {"action_time": "2020-05-11T17:06:23.391Z", "user": 5, "content_type": 12, "object_id": "7", "object_repr": "DebitPayment object (7)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 30, "fields": {"action_time": "2020-05-11T17:06:25.604Z", "user": 5, "content_type": 12, "object_id": "8", "object_repr": "DebitPayment object (8)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 31, "fields": {"action_time": "2020-05-11T17:06:28.546Z", "user": 5, "content_type": 12, "object_id": "9", "object_repr": "DebitPayment object (9)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 32, "fields": {"action_time": "2020-05-11T17:06:31.537Z", "user": 5, "content_type": 12, "object_id": "10", "object_repr": "DebitPayment object (10)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 33, "fields": {"action_time": "2020-05-11T17:06:34.347Z", "user": 5, "content_type": 12, "object_id": "11", "object_repr": "DebitPayment object (11)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 34, "fields": {"action_time": "2020-05-11T17:06:37.773Z", "user": 5, "content_type": 12, "object_id": "12", "object_repr": "DebitPayment object (12)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 35, "fields": {"action_time": "2020-05-11T17:06:41.788Z", "user": 5, "content_type": 12, "object_id": "13", "object_repr": "DebitPayment object (13)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 36, "fields": {"action_time": "2020-05-11T17:06:44.145Z", "user": 5, "content_type": 12, "object_id": "14", "object_repr": "DebitPayment object (14)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 37, "fields": {"action_time": "2020-05-11T17:06:46.871Z", "user": 5, "content_type": 12, "object_id": "15", "object_repr": "DebitPayment object (15)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 38, "fields": {"action_time": "2020-05-11T17:06:54.625Z", "user": 5, "content_type": 12, "object_id": "16", "object_repr": "DebitPayment object (16)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 39, "fields": {"action_time": "2020-05-11T17:06:58.781Z", "user": 5, "content_type": 12, "object_id": "17", "object_repr": "DebitPayment object (17)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 40, "fields": {"action_time": "2020-05-11T17:07:01.684Z", "user": 5, "content_type": 12, "object_id": "18", "object_repr": "DebitPayment object (18)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 41, "fields": {"action_time": "2020-05-11T17:07:03.781Z", "user": 5, "content_type": 12, "object_id": "19", "object_repr": "DebitPayment object (19)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 42, "fields": {"action_time": "2020-05-11T17:07:06.581Z", "user": 5, "content_type": 12, "object_id": "20", "object_repr": "DebitPayment object (20)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 43, "fields": {"action_time": "2020-05-11T17:07:08.782Z", "user": 5, "content_type": 12, "object_id": "21", "object_repr": "DebitPayment object (21)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 44, "fields": {"action_time": "2020-05-11T17:07:12.793Z", "user": 5, "content_type": 12, "object_id": "22", "object_repr": "DebitPayment object (22)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 45, "fields": {"action_time": "2020-05-11T17:07:17.895Z", "user": 5, "content_type": 12, "object_id": "23", "object_repr": "DebitPayment object (23)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 46, "fields": {"action_time": "2020-05-11T17:07:18.960Z", "user": 5, "content_type": 12, "object_id": "24", "object_repr": "DebitPayment object (24)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 47, "fields": {"action_time": "2020-05-11T17:16:57.418Z", "user": 5, "content_type": 13, "object_id": "1", "object_repr": "Bill object (1)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 48, "fields": {"action_time": "2020-05-11T17:20:11.670Z", "user": 5, "content_type": 13, "object_id": "2", "object_repr": "Bill object (2)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 49, "fields": {"action_time": "2020-05-11T17:20:40.501Z", "user": 5, "content_type": 13, "object_id": "3", "object_repr": "Bill object (3)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 50, "fields": {"action_time": "2020-05-11T17:21:06.663Z", "user": 5, "content_type": 13, "object_id": "4", "object_repr": "Bill object (4)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 51, "fields": {"action_time": "2020-05-11T17:21:31.185Z", "user": 5, "content_type": 13, "object_id": "5", "object_repr": "Bill object (5)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 52, "fields": {"action_time": "2020-05-11T17:22:06.293Z", "user": 5, "content_type": 13, "object_id": "6", "object_repr": "Bill object (6)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 53, "fields": {"action_time": "2020-05-11T17:46:39.578Z", "user": 5, "content_type": 13, "object_id": "7", "object_repr": "Bill object (7)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 54, "fields": {"action_time": "2020-05-11T17:47:04.887Z", "user": 5, "content_type": 13, "object_id": "8", "object_repr": "Bill object (8)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 55, "fields": {"action_time": "2020-05-11T17:47:29.662Z", "user": 5, "content_type": 13, "object_id": "9", "object_repr": "Bill object (9)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 56, "fields": {"action_time": "2020-05-11T17:47:56.246Z", "user": 5, "content_type": 13, "object_id": "10", "object_repr": "Bill object (10)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 57, "fields": {"action_time": "2020-05-11T17:48:18.282Z", "user": 5, "content_type": 13, "object_id": "11", "object_repr": "Bill object (11)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 58, "fields": {"action_time": "2020-05-11T17:48:40.443Z", "user": 5, "content_type": 13, "object_id": "12", "object_repr": "Bill object (12)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 59, "fields": {"action_time": "2020-05-11T17:49:04.055Z", "user": 5, "content_type": 13, "object_id": "13", "object_repr": "Bill object (13)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 60, "fields": {"action_time": "2020-05-11T17:49:23.167Z", "user": 5, "content_type": 13, "object_id": "14", "object_repr": "Bill object (14)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 61, "fields": {"action_time": "2020-05-11T17:49:42.422Z", "user": 5, "content_type": 13, "object_id": "15", "object_repr": "Bill object (15)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 62, "fields": {"action_time": "2020-05-11T18:06:40.529Z", "user": 5, "content_type": 13, "object_id": "16", "object_repr": "Bill object (16)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 63, "fields": {"action_time": "2020-05-11T18:07:08.345Z", "user": 5, "content_type": 13, "object_id": "17", "object_repr": "Bill object (17)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 64, "fields": {"action_time": "2020-05-11T18:07:33.242Z", "user": 5, "content_type": 13, "object_id": "18", "object_repr": "Bill object (18)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 65, "fields": {"action_time": "2020-05-11T18:10:49.843Z", "user": 5, "content_type": 13, "object_id": "19", "object_repr": "Bill object (19)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 66, "fields": {"action_time": "2020-05-11T18:11:52.299Z", "user": 5, "content_type": 13, "object_id": "20", "object_repr": "Bill object (20)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 67, "fields": {"action_time": "2020-05-11T18:12:14.961Z", "user": 5, "content_type": 13, "object_id": "21", "object_repr": "Bill object (21)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 68, "fields": {"action_time": "2020-05-11T18:12:32.621Z", "user": 5, "content_type": 13, "object_id": "22", "object_repr": "Bill object (22)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 69, "fields": {"action_time": "2020-05-11T18:13:11.193Z", "user": 5, "content_type": 13, "object_id": "23", "object_repr": "Bill object (23)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 70, "fields": {"action_time": "2020-05-11T18:13:36.900Z", "user": 5, "content_type": 13, "object_id": "24", "object_repr": "Bill object (24)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 71, "fields": {"action_time": "2020-05-11T18:14:07.494Z", "user": 5, "content_type": 13, "object_id": "25", "object_repr": "Bill object (25)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 72, "fields": {"action_time": "2020-05-11T18:14:27.398Z", "user": 5, "content_type": 13, "object_id": "26", "object_repr": "Bill object (26)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 73, "fields": {"action_time": "2020-05-11T18:14:47.139Z", "user": 5, "content_type": 13, "object_id": "27", "object_repr": "Bill object (27)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 74, "fields": {"action_time": "2020-05-11T18:15:39.218Z", "user": 5, "content_type": 13, "object_id": "28", "object_repr": "Bill object (28)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 75, "fields": {"action_time": "2020-05-11T18:16:18.639Z", "user": 5, "content_type": 13, "object_id": "29", "object_repr": "Bill object (29)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 76, "fields": {"action_time": "2020-05-11T18:16:47.689Z", "user": 5, "content_type": 13, "object_id": "30", "object_repr": "Bill object (30)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 77, "fields": {"action_time": "2020-05-11T18:17:05.226Z", "user": 5, "content_type": 13, "object_id": "31", "object_repr": "Bill object (31)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}]
+[{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "authtoken",
+        "model": "token"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "users",
+        "model": "user"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "assets",
+        "model": "electrictransformer"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "assets",
+        "model": "substation"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "assets",
+        "model": "meter"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "sales",
+        "model": "bank"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "sales",
+        "model": "debitpayment"
+    }
+}, {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "sales",
+        "model": "bill"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "p1ppcu1p0x3xqqe6xnhjoq0x5nr3l5nh",
+    "fields": {
+        "session_data": "YzgxMGM1ZDM1NjdmMGUwYTVmMTk5ZTlkNTgwMDg4MjJjYmFmMjdkNDp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2ODYzOWZmNjFlYjM2NzE5N2Q1NGU5ZTYyOTlmN2IzMmJiMzIzZGM0In0=",
+        "expire_date": "2020-04-01T17:48:28.573Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "zfe2a17umerhbr23v6pow5p7hnmgxld7",
+    "fields": {
+        "session_data": "YTJjYmIxYzk0YzJmYzY3NjJjYWI1OTE0MWRjMjU2MmQxZDNjMzhhNTp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3MDk0OGZkZTFjZGE3MDc1Y2I1MWM2MzA2OWU0YTcwNDU0MGZjMjZkIn0=",
+        "expire_date": "2020-05-25T16:36:47.813Z"
+    }
+}, {
+    "model": "assets.substation",
+    "pk": 1,
+    "fields": {
+        "name": "sub1",
+        "long": "283.50288391113287000000",
+        "lat": "3.46270340871090940000",
+        "isActive": true
+    }
+}, {
+    "model": "assets.substation",
+    "pk": 2,
+    "fields": {
+        "name": "sub2",
+        "long": "283.43902587890630000000",
+        "lat": "3.42980402696740550000",
+        "isActive": true
+    }
+}, {
+    "model": "assets.substation",
+    "pk": 3,
+    "fields": {
+        "name": "subJamundi",
+        "long": "283.46307992935186000000",
+        "lat": "3.26758259186647600000",
+        "isActive": true
+    }
+}, {
+    "model": "assets.substation",
+    "pk": 4,
+    "fields": {
+        "name": "subPalmira",
+        "long": "283.69651794433600000000",
+        "lat": "3.53295345656683720000",
+        "isActive": true
+    }
+}, {
+    "model": "assets.substation",
+    "pk": 5,
+    "fields": {
+        "name": "subFlorida",
+        "long": "283.76621246337896000000",
+        "lat": "3.32938541670079900000",
+        "isActive": true
+    }
+}, {
+    "model": "assets.electrictransformer",
+    "pk": 1,
+    "fields": {
+        "tension_level": 2,
+        "reference": "123qwe",
+        "long": "283.50940704345710000000",
+        "lat": "3.46133262388436340000",
+        "fk_substation": 1,
+        "isActive": true
+    }
+}, {
+    "model": "assets.electrictransformer",
+    "pk": 2,
+    "fields": {
+        "tension_level": 3,
+        "reference": "345wer",
+        "long": "283.44589233398443000000",
+        "lat": "3.42671965171278500000",
+        "fk_substation": 2,
+        "isActive": true
+    }
+}, {
+    "model": "assets.electrictransformer",
+    "pk": 3,
+    "fields": {
+        "tension_level": 6,
+        "reference": "678ert",
+        "long": "283.50700378417974000000",
+        "lat": "3.48583510274171850000",
+        "fk_substation": 1,
+        "isActive": true
+    }
+}, {
+    "model": "assets.electrictransformer",
+    "pk": 4,
+    "fields": {
+        "tension_level": 4,
+        "reference": "100jam",
+        "long": "283.46353054046637000000",
+        "lat": "3.26675781423603250000",
+        "fk_substation": 3,
+        "isActive": true
+    }
+}, {
+    "model": "assets.electrictransformer",
+    "pk": 5,
+    "fields": {
+        "tension_level": 3,
+        "reference": "224fgh",
+        "long": "283.68656158447270000000",
+        "lat": "3.54357617427628120000",
+        "fk_substation": 4,
+        "isActive": true
+    }
+}, {
+    "model": "assets.electrictransformer",
+    "pk": 6,
+    "fields": {
+        "tension_level": 6,
+        "reference": "rfv367",
+        "long": "283.76458168029700000000",
+        "lat": "3.32253052724576000000",
+        "fk_substation": 5,
+        "isActive": true
+    }
+}, {
+    "model": "sales.bank",
+    "pk": "Banco1",
+    "fields": {
+        "email": "banco@banco.com"
+    }
+}, {
+    "model": "sales.bank",
+    "pk": "MiBanco",
+    "fields": {
+        "email": "MiBanquito@gmail.com"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 1,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 2,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 3,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 4,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 5,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 6,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 7,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 8,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 9,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 10,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 11,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 12,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 13,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 14,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 15,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 16,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 17,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 18,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 19,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 20,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 21,
+    "fields": {
+        "fk_bank": "MiBanco"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 22,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 23,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "sales.debitpayment",
+    "pk": 24,
+    "fields": {
+        "fk_bank": "Banco1"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add Token",
+        "content_type": 6,
+        "codename": "add_token"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change Token",
+        "content_type": 6,
+        "codename": "change_token"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete Token",
+        "content_type": 6,
+        "codename": "delete_token"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view Token",
+        "content_type": 6,
+        "codename": "view_token"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 7,
+        "codename": "add_user"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 7,
+        "codename": "change_user"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 7,
+        "codename": "delete_user"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 7,
+        "codename": "view_user"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add electric transformer",
+        "content_type": 8,
+        "codename": "add_electrictransformer"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change electric transformer",
+        "content_type": 8,
+        "codename": "change_electrictransformer"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete electric transformer",
+        "content_type": 8,
+        "codename": "delete_electrictransformer"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view electric transformer",
+        "content_type": 8,
+        "codename": "view_electrictransformer"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add substation",
+        "content_type": 9,
+        "codename": "add_substation"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change substation",
+        "content_type": 9,
+        "codename": "change_substation"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete substation",
+        "content_type": 9,
+        "codename": "delete_substation"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view substation",
+        "content_type": 9,
+        "codename": "view_substation"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add meter",
+        "content_type": 10,
+        "codename": "add_meter"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change meter",
+        "content_type": 10,
+        "codename": "change_meter"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete meter",
+        "content_type": 10,
+        "codename": "delete_meter"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view meter",
+        "content_type": 10,
+        "codename": "view_meter"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add bank",
+        "content_type": 11,
+        "codename": "add_bank"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change bank",
+        "content_type": 11,
+        "codename": "change_bank"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete bank",
+        "content_type": 11,
+        "codename": "delete_bank"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view bank",
+        "content_type": 11,
+        "codename": "view_bank"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add debit payment",
+        "content_type": 12,
+        "codename": "add_debitpayment"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change debit payment",
+        "content_type": 12,
+        "codename": "change_debitpayment"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete debit payment",
+        "content_type": 12,
+        "codename": "delete_debitpayment"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view debit payment",
+        "content_type": 12,
+        "codename": "view_debitpayment"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add bill",
+        "content_type": 13,
+        "codename": "add_bill"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change bill",
+        "content_type": 13,
+        "codename": "change_bill"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete bill",
+        "content_type": 13,
+        "codename": "delete_bill"
+    }
+}, {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view bill",
+        "content_type": 13,
+        "codename": "view_bill"
+    }
+}, {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$qYGGH17pw5xt$kWxXlU3ji4eIxv42I3VHjeOGVlH8t0CVeNgZK5mlLEs=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "manager",
+        "first_name": "ma",
+        "last_name": "nager",
+        "email": "manager@manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-18T16:57:40.628Z",
+        "position": "MGR",
+        "cellphone": "1111111111",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$I0EiNSDtVXiw$/k9Bvl+mH18/me4Ni5lRiKXqAaRjPnB4v4ONPE/RMxo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "admin",
+        "first_name": "ad",
+        "last_name": "min",
+        "email": "admin@admin.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-18T16:58:10.954Z",
+        "position": "ADMIN",
+        "cellphone": "2222222222",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$d8hOVgqKb50b$YclLlBXanwSd0JAyvQYBUDp0DSIjUcz4tC8wkf4RbVs=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "client",
+        "first_name": "cli",
+        "last_name": "ent",
+        "email": "client@client.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-18T17:04:54.083Z",
+        "position": "CLT",
+        "cellphone": "3333333333",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$ebIns0teaivG$FP8wB4mTP55Q+BMCjKzH/i5pseWsnwKYX1TR+aK3sHs=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "operator",
+        "first_name": "opera",
+        "last_name": "tor",
+        "email": "operator@operator.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-03-18T17:06:11.287Z",
+        "position": "OP",
+        "cellphone": "4444444444",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$nahJVBlvq04L$eXBxsMIXu5ADvBNaG0ANRmV56M1fBK7agReNvmeE36E=",
+        "last_login": "2020-05-11T16:36:47.812Z",
+        "is_superuser": true,
+        "username": "superuser",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:30:43.691Z",
+        "position": "CLT",
+        "cellphone": "",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$tJKHqfcHohdk$4GBefrBMXZg2Fnv/aE+UAtPsulu5agoGo5NQvWaERGY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Mateo",
+        "first_name": "Mateo",
+        "last_name": "Gregory",
+        "email": "mateo.gregory@correounivalle.edu.co",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:31:30.729Z",
+        "position": "CLT",
+        "cellphone": "3166443198",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$pZmLibwRZsrz$yrSsIvZXoT+qeJuSqKASiRpK4N04npxpUPFd3f2wpuE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Valeria",
+        "first_name": "Valeria",
+        "last_name": "Rivera",
+        "email": "valeria.rivera@correounivalle.edu.co",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:31:53.027Z",
+        "position": "CLT",
+        "cellphone": "3012617187",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$E9aSi6xyIPps$hD2fxLYQjGmj/Rpzyjv4MZtLX2c0RjGCLpqtYvBt/8w=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Emily",
+        "first_name": "Emily",
+        "last_name": "Carvajal",
+        "email": "emily.carvajal@correounivalle.edu.co",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:32:09.568Z",
+        "position": "CLT",
+        "cellphone": "3206973669",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$8PhDc85wCBGU$J9ub675NIxMo9VpeWimhSr0d8v/9ez/b4pyfVXEDoIk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Felipe",
+        "first_name": "Felipe",
+        "last_name": "Gil",
+        "email": "juan.felipe.gil@correounivalle.edu.co",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:32:24.253Z",
+        "position": "CLT",
+        "cellphone": "3148080739",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$COG4vmAVctoQ$oGC1NKFAFjAAzgci+Ra3gQUQnLniXk/awZXFJSnESrY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Jaime",
+        "first_name": "Jaime",
+        "last_name": "Cuartas",
+        "email": "jaime.cuartas@correounivalle.edu.co",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:32:37.807Z",
+        "position": "CLT",
+        "cellphone": "3107307371",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$ae3PUEcpXr4m$uO0babX3Xt28b1WdRuMUyTKbuqujccDK5VRzqQwlRew=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "operator2",
+        "first_name": "opera2",
+        "last_name": "tor",
+        "email": "operator2@operator.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:33:12.813Z",
+        "position": "OP",
+        "cellphone": "4444555555",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$ARBsxJSVMrFf$Q+Nrvu9srk7CKwjEZGCNmR5D/fd8ogAfv3KlnGVe1pM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "operatorjamundi",
+        "first_name": "operaJamu",
+        "last_name": "torin",
+        "email": "operator@operatorjamundi.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:33:32.241Z",
+        "position": "OP",
+        "cellphone": "5555444444",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "users.user",
+    "pk": 13,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$WhFOoZyDmziU$WLjyt/0lK1f+rxRPpaTFBnt8qd9SJcmIGtr6PwBdaQM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Gaona",
+        "first_name": "Carlos Mauricio",
+        "last_name": "Gaona",
+        "email": "gaonaUnivalle@correounivalle.edu.co",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2020-05-11T16:34:04.504Z",
+        "position": "CLT",
+        "cellphone": "1111222222",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "assets.meter",
+    "pk": 1,
+    "fields": {
+        "address": "Cra. 53 #7- 111",
+        "stratum": 1,
+        "city": "CALI",
+        "use": "RES",
+        "fk_electric_transformers": 2,
+        "fk_client": 3,
+        "isActive": true
+    }
+}, {
+    "model": "assets.meter",
+    "pk": 2,
+    "fields": {
+        "address": "Cl. 9 #48-81",
+        "stratum": 2,
+        "city": "CALI",
+        "use": "IND",
+        "fk_electric_transformers": 2,
+        "fk_client": 6,
+        "isActive": true
+    }
+}, {
+    "model": "assets.meter",
+    "pk": 3,
+    "fields": {
+        "address": "Cl. 47 Nte. #5131",
+        "stratum": 3,
+        "city": "CALI",
+        "use": "RES",
+        "fk_electric_transformers": 3,
+        "fk_client": 7,
+        "isActive": true
+    }
+}, {
+    "model": "assets.meter",
+    "pk": 4,
+    "fields": {
+        "address": "Cl. 52 Nte. #3BN-06",
+        "stratum": 4,
+        "city": "CALI",
+        "use": "IND",
+        "fk_electric_transformers": 3,
+        "fk_client": 8,
+        "isActive": true
+    }
+}, {
+    "model": "assets.meter",
+    "pk": 5,
+    "fields": {
+        "address": "Cl. 5 #59A-17",
+        "stratum": 2,
+        "city": "CALI",
+        "use": "RES",
+        "fk_electric_transformers": 2,
+        "fk_client": 9,
+        "isActive": true
+    }
+}, {
+    "model": "assets.meter",
+    "pk": 6,
+    "fields": {
+        "address": "Cra. 8 #39-01",
+        "stratum": 3,
+        "city": "CALI",
+        "use": "RES",
+        "fk_electric_transformers": 1,
+        "fk_client": 10,
+        "isActive": true
+    }
+}, {
+    "model": "assets.meter",
+    "pk": 7,
+    "fields": {
+        "address": "Cl. 9 #42-80",
+        "stratum": 4,
+        "city": "CALI",
+        "use": "RES",
+        "fk_electric_transformers": 2,
+        "fk_client": 13,
+        "isActive": true
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 1,
+    "fields": {
+        "start_date": "2019-11-01",
+        "end_date": "2019-11-30",
+        "read": 600,
+        "expedition_date": "2019-11-30",
+        "expiration_date": "2019-12-31",
+        "is_paid": true,
+        "value": 249952,
+        "fk_debit_payment": 1,
+        "fk_meter": 1,
+        "fk_employee": null,
+        "unit_value":416.58715,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 2,
+    "fields": {
+        "start_date": "2019-11-01",
+        "end_date": "2019-11-30",
+        "read": 1148,
+        "expedition_date": "2019-11-30",
+        "expiration_date": "2019-12-31",
+        "is_paid": true,
+        "value": 816489,
+        "fk_debit_payment": 2,
+        "fk_meter": 2,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 3,
+    "fields": {
+        "start_date": "2019-11-01",
+        "end_date": "2019-11-30",
+        "read": 540,
+        "expedition_date": "2019-11-30",
+        "expiration_date": "2019-12-31",
+        "is_paid": true,
+        "value": 296048,
+        "fk_debit_payment": 3,
+        "fk_meter": 3,
+        "fk_employee": null,
+        "unit_value":548.2377,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 4,
+    "fields": {
+        "start_date": "2019-11-01",
+        "end_date": "2019-11-30",
+        "read": 1181,
+        "expedition_date": "2019-11-30",
+        "expiration_date": "2019-12-31",
+        "is_paid": true,
+        "value": 647469,
+        "fk_debit_payment": 4,
+        "fk_meter": 4,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 5,
+    "fields": {
+        "start_date": "2019-11-01",
+        "end_date": "2019-11-30",
+        "read": 587,
+        "expedition_date": "2019-11-30",
+        "expiration_date": "2019-12-31",
+        "is_paid": true,
+        "value": 321816,
+        "fk_debit_payment": 5,
+        "fk_meter": 5,
+        "fk_employee": null,
+        "unit_value":446.64775,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 6,
+    "fields": {
+        "start_date": "2019-12-01",
+        "end_date": "2019-12-31",
+        "read": 273,
+        "expedition_date": "2019-12-31",
+        "expiration_date": "2020-01-31",
+        "is_paid": true,
+        "value": 113728,
+        "fk_debit_payment": 6,
+        "fk_meter": 1,
+        "fk_employee": null,
+        "unit_value":416.58715,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 7,
+    "fields": {
+        "start_date": "2019-12-01",
+        "end_date": "2019-12-31",
+        "read": 1177,
+        "expedition_date": "2019-12-31",
+        "expiration_date": "2020-01-31",
+        "is_paid": true,
+        "value": 837115,
+        "fk_debit_payment": 7,
+        "fk_meter": 2,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 8,
+    "fields": {
+        "start_date": "2019-12-01",
+        "end_date": "2019-12-31",
+        "read": 311,
+        "expedition_date": "2019-12-31",
+        "expiration_date": "2020-01-31",
+        "is_paid": true,
+        "value": 170502,
+        "fk_debit_payment": 8,
+        "fk_meter": 3,
+        "fk_employee": null,
+        "unit_value":548.2377,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 9,
+    "fields": {
+        "start_date": "2019-12-01",
+        "end_date": "2019-12-31",
+        "read": 886,
+        "expedition_date": "2019-12-31",
+        "expiration_date": "2020-01-31",
+        "is_paid": true,
+        "value": 485739,
+        "fk_debit_payment": 9,
+        "fk_meter": 4,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 10,
+    "fields": {
+        "start_date": "2019-12-01",
+        "end_date": "2019-12-31",
+        "read": 521,
+        "expedition_date": "2019-12-31",
+        "expiration_date": "2020-01-31",
+        "is_paid": true,
+        "value": 285632,
+        "fk_debit_payment": 10,
+        "fk_meter": 5,
+        "fk_employee": null,
+        "unit_value":446.64775,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 11,
+    "fields": {
+        "start_date": "2020-01-01",
+        "end_date": "2020-01-31",
+        "read": 712,
+        "expedition_date": "2020-01-31",
+        "expiration_date": "2020-02-29",
+        "is_paid": true,
+        "value": 296610,
+        "fk_debit_payment": 11,
+        "fk_meter": 1,
+        "fk_employee": null,
+        "unit_value":416.58715,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 12,
+    "fields": {
+        "start_date": "2020-01-01",
+        "end_date": "2020-01-31",
+        "read": 1048,
+        "expedition_date": "2020-01-31",
+        "expiration_date": "2020-02-29",
+        "is_paid": true,
+        "value": 745366,
+        "fk_debit_payment": 12,
+        "fk_meter": 2,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 13,
+    "fields": {
+        "start_date": "2020-01-01",
+        "end_date": "2020-01-31",
+        "read": 638,
+        "expedition_date": "2020-01-31",
+        "expiration_date": "2020-02-29",
+        "is_paid": true,
+        "value": 349776,
+        "fk_debit_payment": 13,
+        "fk_meter": 3,
+        "fk_employee": null,
+        "unit_value":548.2377,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 14,
+    "fields": {
+        "start_date": "2020-01-01",
+        "end_date": "2020-01-31",
+        "read": 919,
+        "expedition_date": "2020-01-31",
+        "expiration_date": "2020-02-29",
+        "is_paid": true,
+        "value": 503830,
+        "fk_debit_payment": 14,
+        "fk_meter": 4,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 15,
+    "fields": {
+        "start_date": "2020-01-01",
+        "end_date": "2020-01-31",
+        "read": 516,
+        "expedition_date": "2020-01-31",
+        "expiration_date": "2020-02-29",
+        "is_paid": true,
+        "value": 282891,
+        "fk_debit_payment": 5,
+        "fk_meter": 5,
+        "fk_employee": null,
+        "unit_value":446.64775,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 16,
+    "fields": {
+        "start_date": "2020-02-01",
+        "end_date": "2020-02-29",
+        "read": 507,
+        "expedition_date": "2020-02-29",
+        "expiration_date": "2020-03-31",
+        "is_paid": false,
+        "value": 211210,
+        "fk_debit_payment": null,
+        "fk_meter": 1,
+        "fk_employee": null,
+        "unit_value":416.58715,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 17,
+    "fields": {
+        "start_date": "2020-02-01",
+        "end_date": "2020-02-29",
+        "read": 510,
+        "expedition_date": "2020-02-29",
+        "expiration_date": "2020-03-31",
+        "is_paid": true,
+        "value": 362726,
+        "fk_debit_payment": 16,
+        "fk_meter": 2,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 18,
+    "fields": {
+        "start_date": "2020-02-01",
+        "end_date": "2020-02-29",
+        "read": 720,
+        "expedition_date": "2020-02-29",
+        "expiration_date": "2020-03-31",
+        "is_paid": true,
+        "value": 394731,
+        "fk_debit_payment": 17,
+        "fk_meter": 3,
+        "fk_employee": null,
+        "unit_value":548.2377,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 19,
+    "fields": {
+        "start_date": "2020-02-01",
+        "end_date": "2020-02-29",
+        "read": 1023,
+        "expedition_date": "2020-02-29",
+        "expiration_date": "2020-03-31",
+        "is_paid": true,
+        "value": 560847,
+        "fk_debit_payment": 18,
+        "fk_meter": 4,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 20,
+    "fields": {
+        "start_date": "2020-02-01",
+        "end_date": "2020-02-29",
+        "read": 542,
+        "expedition_date": "2020-02-29",
+        "expiration_date": "2020-03-31",
+        "is_paid": true,
+        "value": 297145,
+        "fk_debit_payment": 19,
+        "fk_meter": 5,
+        "fk_employee": null,
+        "unit_value":446.64775,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 21,
+    "fields": {
+        "start_date": "2020-03-01",
+        "end_date": "2020-03-31",
+        "read": 387,
+        "expedition_date": "2020-03-31",
+        "expiration_date": "2020-04-30",
+        "is_paid": false,
+        "value": 161219,
+        "fk_debit_payment": null,
+        "fk_meter": 1,
+        "fk_employee": null,
+        "unit_value":416.58715,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 22,
+    "fields": {
+        "start_date": "2020-03-01",
+        "end_date": "2020-03-31",
+        "read": 1061,
+        "expedition_date": "2020-03-31",
+        "expiration_date": "2020-04-30",
+        "is_paid": false,
+        "value": 754612,
+        "fk_debit_payment": null,
+        "fk_meter": 2,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 23,
+    "fields": {
+        "start_date": "2020-03-01",
+        "end_date": "2020-03-31",
+        "read": 522,
+        "expedition_date": "2020-03-31",
+        "expiration_date": "2020-04-30",
+        "is_paid": false,
+        "value": 286180,
+        "fk_debit_payment": null,
+        "fk_meter": 3,
+        "fk_employee": null,
+        "unit_value":548.2377,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 24,
+    "fields": {
+        "start_date": "2020-03-01",
+        "end_date": "2020-03-31",
+        "read": 1056,
+        "expedition_date": "2020-03-31",
+        "expiration_date": "2020-04-30",
+        "is_paid": true,
+        "value": 578939,
+        "fk_debit_payment": 20,
+        "fk_meter": 4,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 25,
+    "fields": {
+        "start_date": "2020-03-01",
+        "end_date": "2020-03-31",
+        "read": 796,
+        "expedition_date": "2020-03-31",
+        "expiration_date": "2020-04-30",
+        "is_paid": true,
+        "value": 436397,
+        "fk_debit_payment": 21,
+        "fk_meter": 5,
+        "fk_employee": null,
+        "unit_value":446.64775,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 26,
+    "fields": {
+        "start_date": "2020-04-01",
+        "end_date": "2020-04-30",
+        "read": 894,
+        "expedition_date": "2020-04-30",
+        "expiration_date": "2020-05-31",
+        "is_paid": false,
+        "value": 635837,
+        "fk_debit_payment": null,
+        "fk_meter": 2,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 27,
+    "fields": {
+        "start_date": "2020-04-01",
+        "end_date": "2020-04-30",
+        "read": 401,
+        "expedition_date": "2020-04-30",
+        "expiration_date": "2020-05-31",
+        "is_paid": false,
+        "value": 219843,
+        "fk_debit_payment": null,
+        "fk_meter": 3,
+        "fk_employee": null,
+        "unit_value":548.2377,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 28,
+    "fields": {
+        "start_date": "2020-04-01",
+        "end_date": "2020-04-30",
+        "read": 866,
+        "expedition_date": "2020-04-30",
+        "expiration_date": "2020-05-31",
+        "is_paid": true,
+        "value": 474774,
+        "fk_debit_payment": 22,
+        "fk_meter": 4,
+        "fk_employee": null,
+        "unit_value":711.2273,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 29,
+    "fields": {
+        "start_date": "2020-04-01",
+        "end_date": "2020-04-30",
+        "read": 719,
+        "expedition_date": "2020-04-30",
+        "expiration_date": "2020-05-31",
+        "is_paid": false,
+        "value": 394183,
+        "fk_debit_payment": null,
+        "fk_meter": 5,
+        "fk_employee": null,
+        "unit_value":446.64775,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 30,
+    "fields": {
+        "start_date": "2020-04-01",
+        "end_date": "2020-04-30",
+        "read": 247,
+        "expedition_date": "2020-04-30",
+        "expiration_date": "2020-05-31",
+        "is_paid": true,
+        "value": 135415,
+        "fk_debit_payment": 23,
+        "fk_meter": 6,
+        "fk_employee": null,
+        "unit_value":416.58715,
+        "mora":1
+    }
+}, {
+    "model": "sales.bill",
+    "pk": 31,
+    "fields": {
+        "start_date": "2020-04-01",
+        "end_date": "2020-04-30",
+        "read": 288,
+        "expedition_date": "2020-04-30",
+        "expiration_date": "2020-05-31",
+        "is_paid": true,
+        "value": 170695,
+        "fk_debit_payment": 24,
+        "fk_meter": 7,
+        "fk_employee": null,
+        "unit_value":592.6894,
+        "mora":1
+    }
+}, {
+    "model": "authtoken.token",
+    "pk": "0bb7b28cb2fcf80560b57645a06db6a1d7f68970",
+    "fields": {
+        "user": 4,
+        "created": "2020-05-11T16:28:34.247Z"
+    }
+}, {
+    "model": "authtoken.token",
+    "pk": "325f00f3c2a97e4312227c388dc0bb5abd506915",
+    "fields": {
+        "user": 2,
+        "created": "2020-05-11T16:26:50.732Z"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2020-05-11T16:37:03.000Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "Banco1",
+        "object_repr": "Bank object (Banco1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2020-05-11T16:37:06.303Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "Bancolombia",
+        "object_repr": "Bank object (Bancolombia)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2020-05-11T16:37:10.224Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "Banco de Bogota",
+        "object_repr": "Bank object (Banco de Bogota)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2020-05-11T16:37:14.696Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "Davivienda",
+        "object_repr": "Bank object (Davivienda)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2020-05-11T16:37:20.028Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "MiBanco",
+        "object_repr": "Bank object (MiBanco)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2020-05-11T16:39:24.950Z",
+        "user": 5,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "Substation object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2020-05-11T16:39:34.674Z",
+        "user": 5,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "Substation object (4)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2020-05-11T16:39:43.261Z",
+        "user": 5,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "Substation object (5)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2020-05-11T16:40:33.237Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "ElectricTransformer object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2020-05-11T16:40:48.903Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "ElectricTransformer object (4)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2020-05-11T16:41:02.514Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "5",
+        "object_repr": "ElectricTransformer object (5)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2020-05-11T16:46:00.436Z",
+        "user": 5,
+        "content_type": 8,
+        "object_id": "6",
+        "object_repr": "ElectricTransformer object (6)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2020-05-11T16:47:09.815Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Meter object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2020-05-11T16:47:31.904Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "2",
+        "object_repr": "Meter object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2020-05-11T16:47:52.520Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Meter object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2020-05-11T16:48:12.735Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "4",
+        "object_repr": "Meter object (4)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2020-05-11T16:48:33.207Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "5",
+        "object_repr": "Meter object (5)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2020-05-11T16:48:52.074Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "6",
+        "object_repr": "Meter object (6)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2020-05-11T16:49:09.092Z",
+        "user": 5,
+        "content_type": 10,
+        "object_id": "7",
+        "object_repr": "Meter object (7)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2020-05-11T17:03:58.113Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "Bancolombia",
+        "object_repr": "Bank object (Bancolombia)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2020-05-11T17:04:02.312Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "Banco de Bogota",
+        "object_repr": "Bank object (Banco de Bogota)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2020-05-11T17:04:06.014Z",
+        "user": 5,
+        "content_type": 11,
+        "object_id": "Davivienda",
+        "object_repr": "Bank object (Davivienda)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2020-05-11T17:05:59.213Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "1",
+        "object_repr": "DebitPayment object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2020-05-11T17:06:00.642Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "2",
+        "object_repr": "DebitPayment object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2020-05-11T17:06:02.573Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "3",
+        "object_repr": "DebitPayment object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2020-05-11T17:06:13.355Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "4",
+        "object_repr": "DebitPayment object (4)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2020-05-11T17:06:19.185Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "5",
+        "object_repr": "DebitPayment object (5)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2020-05-11T17:06:21.444Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "6",
+        "object_repr": "DebitPayment object (6)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2020-05-11T17:06:23.391Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "7",
+        "object_repr": "DebitPayment object (7)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2020-05-11T17:06:25.604Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "8",
+        "object_repr": "DebitPayment object (8)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2020-05-11T17:06:28.546Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "9",
+        "object_repr": "DebitPayment object (9)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2020-05-11T17:06:31.537Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "10",
+        "object_repr": "DebitPayment object (10)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2020-05-11T17:06:34.347Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "11",
+        "object_repr": "DebitPayment object (11)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2020-05-11T17:06:37.773Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "12",
+        "object_repr": "DebitPayment object (12)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2020-05-11T17:06:41.788Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "13",
+        "object_repr": "DebitPayment object (13)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2020-05-11T17:06:44.145Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "14",
+        "object_repr": "DebitPayment object (14)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2020-05-11T17:06:46.871Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "15",
+        "object_repr": "DebitPayment object (15)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2020-05-11T17:06:54.625Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "16",
+        "object_repr": "DebitPayment object (16)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2020-05-11T17:06:58.781Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "17",
+        "object_repr": "DebitPayment object (17)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2020-05-11T17:07:01.684Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "18",
+        "object_repr": "DebitPayment object (18)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2020-05-11T17:07:03.781Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "19",
+        "object_repr": "DebitPayment object (19)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2020-05-11T17:07:06.581Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "20",
+        "object_repr": "DebitPayment object (20)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2020-05-11T17:07:08.782Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "21",
+        "object_repr": "DebitPayment object (21)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2020-05-11T17:07:12.793Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "22",
+        "object_repr": "DebitPayment object (22)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2020-05-11T17:07:17.895Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "23",
+        "object_repr": "DebitPayment object (23)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2020-05-11T17:07:18.960Z",
+        "user": 5,
+        "content_type": 12,
+        "object_id": "24",
+        "object_repr": "DebitPayment object (24)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2020-05-11T17:16:57.418Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "1",
+        "object_repr": "Bill object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2020-05-11T17:20:11.670Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "2",
+        "object_repr": "Bill object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2020-05-11T17:20:40.501Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "3",
+        "object_repr": "Bill object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2020-05-11T17:21:06.663Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "4",
+        "object_repr": "Bill object (4)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2020-05-11T17:21:31.185Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "5",
+        "object_repr": "Bill object (5)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2020-05-11T17:22:06.293Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "6",
+        "object_repr": "Bill object (6)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2020-05-11T17:46:39.578Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "7",
+        "object_repr": "Bill object (7)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2020-05-11T17:47:04.887Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "8",
+        "object_repr": "Bill object (8)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2020-05-11T17:47:29.662Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "9",
+        "object_repr": "Bill object (9)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2020-05-11T17:47:56.246Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "10",
+        "object_repr": "Bill object (10)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2020-05-11T17:48:18.282Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "11",
+        "object_repr": "Bill object (11)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2020-05-11T17:48:40.443Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "12",
+        "object_repr": "Bill object (12)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+        "action_time": "2020-05-11T17:49:04.055Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "13",
+        "object_repr": "Bill object (13)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+        "action_time": "2020-05-11T17:49:23.167Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "14",
+        "object_repr": "Bill object (14)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+        "action_time": "2020-05-11T17:49:42.422Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "15",
+        "object_repr": "Bill object (15)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+        "action_time": "2020-05-11T18:06:40.529Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "16",
+        "object_repr": "Bill object (16)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+        "action_time": "2020-05-11T18:07:08.345Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "17",
+        "object_repr": "Bill object (17)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+        "action_time": "2020-05-11T18:07:33.242Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "18",
+        "object_repr": "Bill object (18)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+        "action_time": "2020-05-11T18:10:49.843Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "19",
+        "object_repr": "Bill object (19)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+        "action_time": "2020-05-11T18:11:52.299Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "20",
+        "object_repr": "Bill object (20)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+        "action_time": "2020-05-11T18:12:14.961Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "21",
+        "object_repr": "Bill object (21)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 68,
+    "fields": {
+        "action_time": "2020-05-11T18:12:32.621Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "22",
+        "object_repr": "Bill object (22)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 69,
+    "fields": {
+        "action_time": "2020-05-11T18:13:11.193Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "23",
+        "object_repr": "Bill object (23)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 70,
+    "fields": {
+        "action_time": "2020-05-11T18:13:36.900Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "24",
+        "object_repr": "Bill object (24)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 71,
+    "fields": {
+        "action_time": "2020-05-11T18:14:07.494Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "25",
+        "object_repr": "Bill object (25)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 72,
+    "fields": {
+        "action_time": "2020-05-11T18:14:27.398Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "26",
+        "object_repr": "Bill object (26)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 73,
+    "fields": {
+        "action_time": "2020-05-11T18:14:47.139Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "27",
+        "object_repr": "Bill object (27)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 74,
+    "fields": {
+        "action_time": "2020-05-11T18:15:39.218Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "28",
+        "object_repr": "Bill object (28)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 75,
+    "fields": {
+        "action_time": "2020-05-11T18:16:18.639Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "29",
+        "object_repr": "Bill object (29)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 76,
+    "fields": {
+        "action_time": "2020-05-11T18:16:47.689Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "30",
+        "object_repr": "Bill object (30)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 77,
+    "fields": {
+        "action_time": "2020-05-11T18:17:05.226Z",
+        "user": 5,
+        "content_type": 13,
+        "object_id": "31",
+        "object_repr": "Bill object (31)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}]
