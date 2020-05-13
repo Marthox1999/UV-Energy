@@ -796,7 +796,8 @@
         },
         "Reconnection":{
             "1":"Reconexão",
-            "2":"O serviço está suspenso, você deve pagar todas as suas contas e reconectar."
+            "2":"O serviço está suspenso, você deve pagar todas as suas contas e reconectar.",
+            "3":"O serviço está suspenso, você deve pagar todas as suas contas e reconectar. Por favor, vá ao site de serviço mais próximo para este procedimento."
         },
         "PayReconnection":{
             "1":"Pague as faturas e a reconexão associadas"
@@ -815,6 +816,9 @@
         },
         "Interest":{
             "1":"Juro"
+        },
+        "SelectBank":{
+            "1":"Selecione um banco"
         }
     }
 }
