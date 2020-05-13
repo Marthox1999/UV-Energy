@@ -34,6 +34,10 @@ class CheckPendingBills extends React.Component {
                 fk_meter: -1,
                 fk_employee: -1
             },
+            valor: "", 
+            mora: "",
+            total: "", 
+            reconexion: "",
             path: '',
             listBills: [],
             credentials: cookie.get('notCredentials'),           
@@ -53,6 +57,67 @@ class CheckPendingBills extends React.Component {
             }             
         }).catch(error => alert(error))
     }
+    sendpdf(key) {
+        axios({
+            url: c.api + 'sales/generatepdf/',
+            method: 'POST',
+            params: { pk_bill : key },
+            headers: { Authorization : `Token ${this.state.credentials.token}` },
+            responseType: 'blob'
+        }).then(response => {
+            if (response.data.error != null) {
+                console.log(response.data.error);
+            }
+            else {
+                const file = new Blob([response.data], { type: 'application/pdf' });
+                const fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            }
+        }).catch(error => alert(error))
+    }
+
+    /**
+     * Axios post para buscar datos, espera un json con data 
+     * pero sin cambios en back aun
+     *  {    
+     *      valor: "", 
+     *      mora: "",
+     *      total: "", 
+     *      reconexion: "",
+     *  }
+     *  valor: -2 No existe
+     *  valor: -1 Está vencida y no se puede pagar
+     *  valor: 0 Ya fue pagada
+     *  valor>0 /\ reconexion>0 debe pagar todas las facturas y reconexión
+     *  valor>0 /\ reconexion<=0 Puede pagar solo esta factura
+     * 
+     */
+    SearchInvoice(e){
+        e.preventDefault();
+        this.referenceInvoice=this.referenceField;
+        if (this.state.referenceField === ""){
+            this.setState({isAlertEmpty: true})
+            return;
+        }
+        this.setState({isAlertEmpty: false})
+        axios.post(c.api + 'sales/searchInvoice',
+            {
+                referenceBill:this.state.referenceInvoice
+            },
+            {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            this.setState(response.data)
+        }).catch(error => {
+            console.log(error)
+            this.setState({ valor: "12", 
+                            mora: "1",
+                            total: "34013", 
+                            reconexion: "0"})
+        })
+        
+    }
+
+
     render() {
         const { t } = this.props
         return(
@@ -75,6 +140,7 @@ class CheckPendingBills extends React.Component {
                                 <th scope="col"><font size="2">{t("Bill.expirationDate.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.value.1")}</font></th>
                                 <th scope="col"><font size="2">{t("Bill.Visualize.1")}</font></th>
+                                <th scope="col"><font size="2">{t("Bill.Pay.1")}</font></th>
                                 </tr>
                             </thead>
                             <tbody  >
@@ -87,6 +153,7 @@ class CheckPendingBills extends React.Component {
                                     <td align="center">{item.value}</td>
                                     <td className="text-center">
                                         <Button
+                                            onClick={() => this.sendpdf(item.pk_bill)}
                                             align="center"
                                             className="text-blue"
                                             role="button"
@@ -94,6 +161,19 @@ class CheckPendingBills extends React.Component {
                                             color="white"
                                         >
                                             <i className="ni ni-single-copy-04" />
+                 
+                                        </Button>
+                                    </td>
+                                    <td className="text-center">
+                                        <Button
+                                            
+                                            align="center"
+                                            className="text-blue"
+                                            role="button"
+                                            size="md"
+                                            color="white"
+                                        >
+                                            <i className="ni ni-credit-card" />
                  
                                         </Button>
                                     </td>

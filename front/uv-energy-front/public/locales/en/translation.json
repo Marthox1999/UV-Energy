@@ -524,6 +524,9 @@
         },
         "value":{
             "1":"Value"
+        },
+        "Pay":{
+            "1":"Pay"
         }
     },
 
@@ -817,6 +820,9 @@
         },
         "PayInvoice":{
             "1":"Pay invoice"
+        },
+        "Interest":{
+            "1":"Interest"
         }
     }
 }
