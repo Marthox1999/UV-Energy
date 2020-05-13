@@ -451,7 +451,7 @@ class SearchInvoiceViewSet (viewsets.ViewSet):
                             "reconexion": "0",
                             }
                 else:
-                    lastbill = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('is_paid','value')[:2]
+                    lastbill = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('is_paid','value','expiration_date')[:2]
                     # si no existen dos facturas para ese contador
                     if lastbill.count() <= 1:
                         # paga esta factura
@@ -464,15 +464,29 @@ class SearchInvoiceViewSet (viewsets.ViewSet):
                         }
                     # si existen dos facturas para este contador
                     else:
-                        # la factura anterior no esta pagada    
+                        # la factura anterior no esta pagada     
                         if not lastbill[1]['is_paid']:
-                            response = {    
-                                "valor": str(int(bill.read * bill.unit_value)), 
-                                "mora" : str(lastbill[1]['value']),
-                                "interes" : str(int(bill.value - lastbill[1]['value'] - bill.read * bill.unit_value)),
-                                "total": str(bill.value + 34000), 
-                                "reconexion": "34000",
-                            }
+                            # y esta vencida
+                            print(lastbill[1]['expiration_date'])
+                            if lastbill[1]['expiration_date'] < datetime.now().date():
+                                response = {    
+                                    "valor": str(int(bill.read * bill.unit_value)), 
+                                    "mora" : str(lastbill[1]['value']),
+                                    "interes" : str(int(bill.value - lastbill[1]['value'] - bill.read * bill.unit_value)),
+                                    "total": str(bill.value + 34000), 
+                                    "reconexion": "34000",
+                                }
+                            # no esta vencida
+                            else:
+                                response = {    
+                                    "valor": str(int(bill.read * bill.unit_value)), 
+                                    "mora" : str(lastbill[1]['value']),
+                                    "interes" : str(int(bill.value - lastbill[1]['value'] - bill.read * bill.unit_value)),
+                                    "total": str(bill.value), 
+                                    "reconexion": "0",
+                                }
+
+                        
                         else:
                             # pago normal
                             response = {    
@@ -546,14 +560,21 @@ class payUploadFileViewSet (viewsets.ViewSet):
                     #creo el pago debito correspondiente
                     debitpay = DebitPayment.objects.create(fk_bank=bank)
                     #modifico las facturas con los pagos
-                    print(invoice)
-                    print(Bill.objects.select_for_update.filter(pk_bill=invoice))
-                    Bill.objects.select_for_update.filter(pk_bill=invoice).update(fk_debit_payment=debitpay, is_paid=True)
+                    bill = Bill.objects.get(pk_bill=invoice)
+                    beforebill = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, is_paid=False, expedition_date__lte=bill.expedition_date).order_by('-end_date').first()
+                    # si no existe factura anterior 
+                    if beforebill is None:
+                        # solo paga la actual
+                        Bill.objects.select_for_update().filter(pk_bill=invoice).update(fk_debit_payment=debitpay, is_paid=True)
+                    else:
+                        # si no se pago la factura anterior
+                        if not beforebill.is_paid:
+                            # paga todas
+                            Bill.objects.select_for_update().filter(is_paid=False).update(fk_debit_payment=debitpay, is_paid=True)
+                        else:
+                            # solo paga la actual
+                            bill.select_for_update().update(fk_debit_payment=debitpay, is_paid=True)
         except IntegrityError:
             print('Fallo en la venta!')
             return Response('Fallo en la venta!')
-        except Exception:
-            print('algo mas paso', Exception.data)
-            return Response('algo mas paso')
-
-        return Response("end")
+        return Response("Se registraron los pagos correctamente")
