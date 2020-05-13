@@ -509,3 +509,23 @@ class  payReconnectionViewSet (viewsets.ViewSet):
             bills = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, is_paid= False, expedition_date__lte=bill.expedition_date).order_by('-end_date')
             bills.select_for_update().update(is_paid = True, fk_employee_id= pk_operator)
         return Response ("pagado")
+
+
+class payInvoiceClientViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        from os.path import exists, join
+        from os import makedirs, getcwd, walk
+        pk = request.data["referenceBill"]
+        bank = request.data['bank']
+        print(pk)
+        print(bank)
+        if not exists('BanksData'):
+            makedirs('BanksData')
+        
+        with open(join('BanksData', bank+'.txt'), 'a') as f:
+            f.write(str(pk) + '\n')
+
+        return Response("guardado satisfactoriamente")

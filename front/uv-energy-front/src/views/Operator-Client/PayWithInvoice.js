@@ -83,6 +83,7 @@ class PayWithInvoice extends React.Component {
                             total: response.data.total,
                             interes: response.data.interes,
                             reconexion: response.data.reconexion})
+            console.log(this.state)
         }).catch(error => {
             console.log(error)
             this.setState({ valor: "1", 
