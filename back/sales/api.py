@@ -312,3 +312,21 @@ class PendingBillListViewSet (viewsets.ViewSet):
         queryset = Bill.objects.filter(Q(is_paid=False), Q(fk_meter__in=meter_ids)).order_by('-end_date')
         serializer = BillSerializers(queryset, many=True)
         return Response(serializer.data)
+
+
+class SearchInvoiceViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        pk = request.data["referenceBill"]
+        print(request.data)
+        bill = Bill.objects.get(pk_bill = pk)
+        if bill is None:
+        response = {    
+                    "valor": -2, 
+                    "mora" : 0,
+                    "total": 0, 
+                    "reconexion": 0,
+                    }
+        return Response("termino")
