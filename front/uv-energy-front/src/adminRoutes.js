@@ -8,6 +8,26 @@ import AddOperator from "views/Administrador-Operador/AddOperator";
 import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator.js";
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 import ModifySubstation from "views/Administrador-Subestacion/ModifySubstation.js";
+import SetInvoices from "views/Administrador-Configurar/SetInvoices.js";
+import UploadInvoices from "views/Administrador-Configurar/UploadInvoices.js";
+
+var settingRoutes = [
+  
+  {
+    path: "/invoices",
+    name: "Settings.SetUpInvoices.1",
+    icon: "ni ni-settings text-blue",
+    component: SetInvoices,
+    layout: "/admin"
+  },
+  {
+    path: "/upload",
+    name: "Settings.Upload.1",
+    icon: "ni ni-settings text-blue",
+    component: UploadInvoices,
+    layout: "/admin"
+  },
+]
 
 
 var adminRoutes = [
@@ -31,14 +51,14 @@ var electricTransformerRoutes = [
   {
     path: "/addElectricTransformer",
     name: "ETransformer.AddET.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-fat-add text-blue",
     component: AddElectricTransformer,
     layout: "/admin"
   },
   {
     path: "/ModifyElectricTransformer",
     name: "ETransformer.ModifyET.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-settings text-blue",
     component: ModifyElectricTransformer,
     layout: "/admin"
   },
@@ -83,19 +103,20 @@ var substationRoutes = [
     path: "/addSubstation",
 
     name: "Substation.AddSubstation.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-fat-add text-blue",
     component: AddSubstation,
     layout: "/admin"
   },
   {
     path: "/modifySubstation",
     name: "Substation.ModifySubstation.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-settings text-blue",
     component: ModifySubstation,
     layout: "/admin"
   },
 ];
 export {
+  settingRoutes,
   adminRoutes,
   electricTransformerRoutes,
   managerRoutes,

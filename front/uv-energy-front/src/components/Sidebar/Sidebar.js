@@ -75,6 +75,26 @@ class Sidebar extends React.Component {
     });
   };
 
+  createSettingLinks = settingRoutes => {
+    return settingRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            <Trans>{prop.name}</Trans>
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+
+
+  
   createManagerLinks = managerRoutes => {
     return managerRoutes.map((prop, key) => {
       return (
@@ -163,7 +183,7 @@ class Sidebar extends React.Component {
     });
   };
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo} = this.props;
+    const { /*bgColor,*/ settingRoutes, adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes, logo} = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -217,26 +237,6 @@ class Sidebar extends React.Component {
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
-                <DropdownItem className="noti-title" header tag="div">
-                  <h6 className="text-overflow m-0">{t("Sidebar.Welcome.1")}</h6>
-                </DropdownItem>
-                <DropdownItem to="/admin/user-profile" tag={Link}>
-                  <i className="ni ni-single-02" />
-                  <span>{t("Sidebar.MyProfile.1")}</span>
-                </DropdownItem>
-                <DropdownItem to="/admin/user-profile" tag={Link}>
-                  <i className="ni ni-settings-gear-65" />
-                  <span>{t("Sidebar.Settings.1")}</span>
-                </DropdownItem>
-                <DropdownItem to="/admin/user-profile" tag={Link}>
-                  <i className="ni ni-calendar-grid-58" />
-                  <span>{t("Sidebar.Activity.1")}</span>
-                </DropdownItem>
-                <DropdownItem to="/admin/user-profile" tag={Link}>
-                  <i className="ni ni-support-16" />
-                  <span>{t("Sidebar.Support.1")}</span>
-                </DropdownItem>
-                <DropdownItem divider />
                 <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
                   <i className="ni ni-user-run" />
                   <span>{t("Sidebar.Logout.1")}</span>
@@ -292,6 +292,8 @@ class Sidebar extends React.Component {
             </Form>
             {/* Navigation */}
             <Nav navbar >  
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Configuration.1")}
+              {this.createSettingLinks(settingRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Manager.1")}
               {this.createManagerLinks(managerRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Administrator.1")}
@@ -311,6 +313,7 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.defaultProps = {
+  settingRoutes: [{}],
   adminRoutes: [{}],
   managerRoutes: [{}],
   operatorRoutes: [{}],
@@ -319,6 +322,7 @@ Sidebar.defaultProps = {
 
 Sidebar.propTypes = {
   // links that will be displayed inside the component
+  settingRoutes: PropTypes.arrayOf(PropTypes.object),
   adminRoutes: PropTypes.arrayOf(PropTypes.object),
   managerRoutes: PropTypes.arrayOf(PropTypes.object),
   operatorRoutes: PropTypes.arrayOf(PropTypes.object),

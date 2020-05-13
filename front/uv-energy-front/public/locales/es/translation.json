@@ -163,6 +163,12 @@
         },
         "ConfirmationDisable":{
             "1":"Deshabilitar Operador?"
+        },
+        "PayWithInvoices":{
+            "1": "Pagar facturas con su referencia"
+        },
+        "PayWithClient":{
+            "1": "Pagar facturas con código del cliente"
         }
     },
     "Manager":{
@@ -276,6 +282,9 @@
         "Manager":{
             "1":"Gerente"
         },
+        "Configuration":{
+            "1": "Configuración del sistema"
+        },
         "Administrator":{
             "1":"Administrador"
         },
@@ -287,9 +296,18 @@
         },
         "ElectricTransformer":{
             "1":"Transformador Electrico"
+        },
+        "Bill":{
+            "1":"Mis Facturas"
+        },
+        "Reports":{
+            "1":"Reports"
         }
     },
     "ETransformer":{
+        "Registered":{
+            "1":"Transformadores Eléctricos Registrados"
+        },
         "AddET":{
             "1":"Agregar Transformador Electrico"
         },
@@ -374,7 +392,6 @@
         "SelectSubstation":{
             "1":"Seleccione un transformador electrico primero."
         }
-
     },
 
     "Substation":{
@@ -395,6 +412,9 @@
         },
         "NoSubstation":{
             "1":"No hay subestaciones"
+        },
+        "AlreadyExists":{
+            "1":"La subestación con este nombre ya existe"
         },
         "Name":{
             "1":"Nombre"
@@ -563,6 +583,289 @@
         },
         "Delete":{
             "1":"Borrar"
+        }
+    },
+    "Bill":{
+        "NoBill":{
+            "1":"No hay Facturas"
+        },
+        "MyBills":{
+            "1":"Mis Facturas"
+        },
+        "expirationDate":{
+            "1":"Fecha de Vencimiento"
+        },
+        "IsPaid":{
+            "1":"Estado"
+        },
+        "Id":{
+            "1":"Numero de Factura"
+        },
+        "AreYouSure":{
+            "1":"Esta Seguro?"
+        },
+        "expeditionDate":{
+            "1":"Fecha de Expedicion"
+        },
+        "Download":{
+            "1":"Descargar"
+        },
+        "Visualize":{
+            "1":"Visualizar"
+        },
+        "AllBills":{
+            "1":"Todas las Facturas"
+        },
+        "PaidBills":{
+            "1":"Facturas Pagadas"
+        },
+        "PendingBills":{
+            "1":"Facturas Pendientes"
+        },
+        "value":{
+            "1":"Valor"
+        },
+        "Pay":{
+            "1":"Pagar"
+        }
+    },
+    "Client":{
+        "Warning":{
+            "1":"Advertencia"
+        },
+        "EmptyFields":{
+            "1":"Campos vacíos"
+        },
+        "AddClient":{
+            "1":"Agregar cliente"
+        },
+        "BadInputs":{
+            "1":"Entradas incorrectas"
+        },
+        "PersonalInformation":{
+            "1":"Información personal"
+        },
+        "Name":{
+            "1":"Nombre"
+        },
+        "LastName":{
+            "1":"Apellido"
+        },         
+        "Phone":{
+            "1":"Número de teléfono"
+        },
+        "Username":{
+            "1":"Nombre de usuario"
+        },
+        "AccountInformation":{
+            "1":"Información de cuenta"
+        },
+        "Password":{
+            "1":"Contraseña"
+        },
+        "Add":{
+            "1":"Agregar"
+        },
+        "Information":{
+            "1":"Información"
+        },
+        "Congratulations":{
+            "1":"¡Felicitaciones!"
+        },
+        "CreateSuccesfull":{
+            "1":"¡El cliente fue creado!"
+        },
+        "ModifySuccesfull":{
+            "1":"¡El cliente fue modificado!"
+        },
+        "Close":{
+            "1":"Cerrar"
+        },
+        "ActiveClient":{
+            "1":"Cliente activo"
+        },
+        "DisabledNotification":{
+            "1":"¡Se desactivo la cuenta del cliente! Vuelva a cargar la página para ver el cambio"
+        },
+        "DeletedNotification":{
+            "1":"¡Se eliminó la cuenta del cliente! Vuelva a cargar la página para ver los cambios"
+        },
+        "ModifyClient":{
+            "1":"Modificar cliente"
+        },
+        "DisabledClient":{
+            "1":"Cliente deshabilitado"
+        },
+        "DeletedClient":{
+            "1":"Cliente eliminado"
+        },
+        "RegisteredClient":{
+            "1":"Clientes registrados"
+        },
+        "WrongId":{
+            "1":"Identificación incorrecta"
+        },
+        "NoRegistered":{
+            "1":"No hay clientes registrados"
+        },
+        "ConfirmationDelete":{
+            "1":"¿Eliminar cliente?"
+        },
+        "ConfirmationDisable":{
+            "1":"¿Deshabilitar cliente?"
+        }
+    },
+
+    "Settings":{
+        "SetUpInvoices":{
+            "1": "Configurar facturas"
+        },
+        "StratumInformation":{
+            "1": "Información del estrato"
+        },
+        "Stratum":{
+            "1": "Estrato"
+        },
+        "Residential":{
+            "1": "Residencial"
+        },
+        "Industrial":{
+            "1": "Industrial"
+        },
+        "DebtInformation":{
+            "1": "Información de mora"
+        },
+        "DebtPercentage":{
+            "1": "Porcentaje de mora"
+        },
+        "ReconnectionInformation":{
+            "1": "Información de reconexión"
+        },
+        "ReconnectionCost":{
+            "1": "Costo de reconexión"
+        },
+        "Default":{
+            "1": "Restaurar valores predeterminados"
+        },
+        "GenerateInvoices":{
+            "1": "Generar facturas"
+        },
+        "Invalid":{
+            "1": "Todos los campos deben ser numéricos. Se encontró un campo que no lo cumple."
+        },
+        "Error":{
+            "1":"Se produjo un error al generar las facturas."
+        },
+        "Upload":{
+            "1":"Subir pagos"
+        },
+        "UploadFile":{
+            "1":"Subir archivo"
+        }
+    },
+    "PayBills":{
+        "PayWithInvoices":{
+            "1": "Pagar facturas con su referencia"
+        },
+        "EnterReferenceInvoice":{
+            "1":"Ingrese la referencia de la factura a pagar"
+        },
+        "Reference":{
+            "1": "Referencia de la factura"
+        },
+        "PayWithClient":{
+            "1": "Pagar facturas con código del cliente"
+        },
+        "Warning":{
+            "1":"Advertencia"
+        },
+        "EmptyFields":{
+            "1": "El campo de búsqueda está vacío."
+        },
+        "Search":{
+            "1": "Buscar"
+        },
+        "Expired":{
+            "1": "La factura expiró"
+        },
+        "Close":{
+            "1": "Cerrar"
+        },
+        "NoFound":{
+            "1": "No se encontró la factura con la referencia indicada."
+        },
+        "Congratulations":{
+            "1":"Felicidades"
+        },
+        "Information":{
+            "1":"Información"
+        },
+        "Paid":{
+            "1":"La factura ya ha sido pagada."
+        },
+        "Reconnection":{
+            "1":"Reconexión",
+            "2":"El servicio se encuentra suspendido, debe pagar todas sus facturas y la reconexión.",
+            "3":"El servicio está suspendido, debe pagar todas sus facturas y volver a reconectarse . Por favor dirijase al sitio de atención más cercano para este procedimiento."
+        },
+        "PayReconnection":{
+            "1":"Pagar facturas asociadas y reconexión"
+        },
+        "Value":{
+            "1":"Valor"
+        },
+        "Debt":{
+            "1":"Mora"
+        },
+        "Total":{
+            "1":"Total"
+        },
+        "PayInvoice":{
+            "1":"Pagar Factura"
+        },
+        "Interest":{
+            "1":"Interés"
+        },
+        "SelectBank":{
+            "1":"Seleccione un banco"
+        }
+    },
+    "Report":{
+        "Name":{
+            "1": "Reportes"
+        },
+        "Bills":{
+            "1": "Facturas"
+        },
+        "Income":{
+            "1": "Ingresos"
+        },
+        "Consumption":{
+            "1": "Consumo"
+        },
+        "Payments":{
+            "1":"Pagos"
+        },
+        "Day":{
+            "1": "Dia"
+        },
+        "Month":{
+            "1": "Mes"
+        },
+        "Year":{
+            "1":"Año"
+        },
+        "InitMonth":{
+            "1": "Mes de Inicio"
+        },
+        "InitYear":{
+            "1":"Año de Inicio"
+        },
+        "Type":{
+            "1":"Tipo de Reporte"
+        },
+        "Generate":{
+            "1":"Generar Reporte"
         }
     }
 }

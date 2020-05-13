@@ -4,8 +4,11 @@ UV-Energy es una aplicacion web para la empresa ficticia UV-Energy desarrollada 
 
 ## Instrucciones para instalar
 
-1. En el directorio ```./front/uv-energy-front``` ejecutar ```npm install```
-2. Regresar al directorio raiz y ejecutar ```docker-compose up --build```
+2. En el directorio raiz y ejecutar ```docker-compose up --build```
+
+Si presenta un error de node-sass porfavor ejecute
+
+2. ``` docker exec -it uvenergy_react_1 npm install node-sass --save ```
 
 ## Puertos
 

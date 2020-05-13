@@ -162,6 +162,12 @@
         },
         "ConfirmationDisable":{
             "1":"Disable Operator?"
+        },
+        "PayWithInvoices":{
+            "1": "Pay bills with its reference"
+        },
+        "PayWithClient":{
+            "1": "Pay bills with customer code"
         }
     },
     "Manager":{
@@ -275,6 +281,9 @@
         "Manager":{
             "1":"Manager"
         },
+        "Configuration":{
+            "1": "System configuration"
+        },
         "Administrator":{
             "1":"Administrator"
         },
@@ -286,9 +295,18 @@
         },
         "ElectricTransformer":{
             "1":"Electric Transformer"
+        },
+        "Bill":{
+            "1":"My Bills"
+        },
+        "Reports":{
+            "1":"Reportes"
         }
     },
     "ETransformer":{
+        "Registered":{
+            "1":"Registered Electrical Transformers"
+        },
         "AddET":{
             "1":"Add Electric Transformer"
         },
@@ -306,6 +324,9 @@
         },
         "NoSubstation":{
             "1":"There aren't substations"
+        },
+        "Reference":{
+            "1":"Reference"
         },
         "Name":{
             "1":"Name"
@@ -374,9 +395,6 @@
             "1":"Select a electric transformer first"
         }
     },
-
-
-
     "Substation":{
         "AddSubstation":{
             "1":"Add Substation"
@@ -395,6 +413,12 @@
         },
         "NoSubstation":{
             "1":"There aren't substations"
+        },
+        "AlreadyExists":{
+            "1":"Substation with this name already exists"
+        },
+        "Name":{
+            "1":"Name"
         },
         "Reference":{
             "1":"Reference"
@@ -458,6 +482,51 @@
         },
         "NewName":{
             "1":"New name"
+        }
+    },
+
+    "Bill":{
+        "NoBill":{
+            "1":"There aren't bills"
+        },
+        "MyBills":{
+            "1":"My Bills"
+        },
+        "expirationDate":{
+            "1":"Expiration Date"
+        },
+        "IsPaid":{
+            "1":"State"
+        },
+        "Id":{
+            "1":"Bill Number"
+        },
+        "AreYouSure":{
+            "1":"are you sure?"
+        },
+        "expeditionDate":{
+            "1":"Expedition Date"
+        },
+        "Download":{
+            "1":"Download"
+        },
+        "Visualize":{
+            "1":"Visualize"
+        },
+        "AllBills":{
+            "1":"All Bills"
+        },
+        "PaidBills":{
+            "1":"Paid Bills"
+        },
+        "PendingBills":{
+            "1":"Pending Bills"
+        },
+        "value":{
+            "1":"Value"
+        },
+        "Pay":{
+            "1":"Pay"
         }
     },
 
@@ -563,6 +632,246 @@
         },
         "Delete":{
             "1":"Delete"
+        }
+    },
+    "Client":{
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1":"Empty Fields"
+        },
+        "AddClient":{
+            "1":"Add Client"
+        },
+        "BadInputs":{
+            "1":"Bad Inputs"
+        },
+        "PersonalInformation":{
+            "1":"Personal Information"
+        },
+        "Name":{
+            "1":"Name"
+        },
+        "LastName":{
+            "1":"Last Name"
+        },         
+        "Phone":{
+            "1":"Phone Number"
+        },
+        "Username":{
+            "1":"Username"
+        },
+        "AccountInformation":{
+            "1":"Account Information"
+        },
+        "Password":{
+            "1":"Password"
+        },
+        "Add":{
+            "1":"Add"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "CreateSuccesfull":{
+            "1":"The client was created!"
+        },
+        "ModifySuccesfull":{
+            "1":"The client was modified!"
+        },
+        "Close":{
+            "1":"Close"
+        },
+        "ActiveClient":{
+            "1":"Active client"
+        },
+        "DisabledNotification":{
+            "1":"Client account was disabled! Please reload the page to see the change"
+        },
+        "DeletedNotification":{
+            "1":"CLient account was deleted! Please reload the page to see the changes"
+        },
+        "ModifyClient":{
+            "1":"Modify Client"
+        },
+        "DisabledClient":{
+            "1":"Disabled Client"
+        },
+        "DeletedClient":{
+            "1":"Deleted Client"
+        },
+        "RegisteredClient":{
+            "1":"Registered Clients"
+        },
+        "WrongId":{
+            "1":"Wrong Id"
+        },
+        "NoRegistered":{
+            "1":"There aren't any clients registered"
+        },
+        "ConfirmationDelete":{
+            "1":"Delete Client?"
+        },
+        "ConfirmationDisable":{
+            "1":"Disable Client?"
+        }
+    },
+
+    "Settings":{
+        "SetUpInvoices":{
+            "1": "Set up invoices"
+        },
+        "StratumInformation":{
+            "1": "Stratum information"
+        },
+        "Stratum":{
+            "1": "Stratum"
+        },
+        "Residential":{
+            "1": "Residential"
+        },
+        "Industrial":{
+            "1": "Industrial"
+        },
+        "DebtInformation":{
+            "1": "Debt information"
+        },
+        "DebtPercentage":{
+            "1": "Debt percentage"
+        },
+        "ReconnectionInformation":{
+            "1": "Reconnection information"
+        },
+        "ReconnectionCost":{
+            "1": "Reconnection cost"
+        },
+        "Default":{
+            "1": "Restore defaults"
+        },
+        "GenerateInvoices":{
+            "1": "Generate invoices"
+        },
+        "Invalid":{
+            "1": "All fields must be numeric. A field was found that does not comply."
+        },
+        "Error":{
+            "1":"An error occurred generating the invoices"
+        },
+        "Upload":{
+            "1":"Upload payments"
+        },
+        "UploadFile":{
+            "1":"Upload file"
+        }
+    },
+    "PayBills":{
+        "PayWithInvoices":{
+            "1": "Pay bills with its reference"
+        },
+        "EnterReferenceInvoice":{
+            "1":"Enter the reference of the invoice to pay"
+        },
+        "Reference":{
+            "1": "Invoice reference"
+        },
+        "PayWithClient":{
+            "1": "Pay bills with customer code"
+        },
+        "Warning":{
+            "1":"Warning"
+        },
+        "EmptyFields":{
+            "1": "The search field is empty."
+        },
+        "Search":{
+            "1": "Search"
+        },
+        "Expired":{
+            "1": "The invoice expired"
+        },
+        "Close":{
+            "1": "Close"
+        },
+        "NoFound":{
+            "1": "The invoice with the indicated reference was not found."
+        },
+        "Congratulations":{
+            "1":"Congratulations"
+        },
+        "Information":{
+            "1":"Information"
+        },
+        "Paid":{
+            "1":"The invoice has already been paid."
+        },
+        "Reconnection":{
+            "1":"Reconnection",
+            "2":"The service is suspended, you must pay all your bills and reconnect.",
+            "3":"The service is suspended, you must pay all your bills and reconnect. Please go to the nearest service site for this procedure."
+        },
+        "PayReconnection":{
+            "1":"Pay associated invoices and reconnection"
+        },
+        "Value":{
+            "1":"Value"
+        },
+        "Debt":{
+            "1":"Debt"
+        },
+        "Total":{
+            "1":"Total"
+        },
+        "PayInvoice":{
+            "1":"Pay invoice"
+        },
+        "Interest":{
+            "1":"Interest"
+        },
+        "SelectBank":{
+            "1":"Select a bank"
+        }
+    },
+
+    "Report":{
+        "Name":{
+            "1": "Reports"
+        },
+        "Bills":{
+            "1": "Bills"
+        },
+        "Income":{
+            "1": "Income"
+        },
+        "Consumption":{
+            "1": "Consumption"
+        },
+        "Payments":{
+            "1":"Payments"
+        },
+        "Day":{
+            "1": "Day"
+        },
+        "Month":{
+            "1": "Month"
+        },
+        "Year":{
+            "1":"Year"
+        },
+        "InitMonth":{
+            "1": "Initial Month"
+        },
+        "InitYear":{
+            "1":"initial Year"
+        },
+        "Type":{
+            "1":"Report Type"
+        },
+        "Generate":{
+            "1":"Generate Report"
         }
     }
 }

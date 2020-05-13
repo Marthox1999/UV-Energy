@@ -15,7 +15,7 @@ import {
 
 import 'leaflet/dist/leaflet.css';
 import i18n from '../../i18n.js';
-import { withTranslation, Trans } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 // core components
 import UVHeader from "components/Headers/UVHeader.js";

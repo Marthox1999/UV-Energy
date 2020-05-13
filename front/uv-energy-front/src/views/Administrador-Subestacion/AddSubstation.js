@@ -130,7 +130,12 @@ class AddSubstation extends React.Component {
                             isAlertEmpty: false,
                             substation: response.data});
                     }
-                }).catch(error => console.log(error.response.request.responseText))
+                }).catch(
+                    error => {
+                        alert(i18n.t("Substation.AlreadyExists.1"));
+                        console.log(error.response.request.responseText);
+                    }
+                )
             }
         }
     }

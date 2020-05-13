@@ -126,11 +126,45 @@ class SidebarM extends React.Component {
       );
     });
   };
+  createElectricTransfomerLinks = electricTransformerRoutes => {
+    return electricTransformerRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            <Trans>{prop.name}</Trans>
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+  createReportLinks = reportRoutes => {
+    return reportRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            <Trans>{prop.name}</Trans>
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
   handlelogout = () => {
     cookie.remove('notCredentials', { path: '/' })
   }
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, logo } = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, reportRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -183,26 +217,6 @@ class SidebarM extends React.Component {
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
-                  <DropdownItem className="noti-title" header tag="div">
-                    <h6 className="text-overflow m-0">{t('Sidebar.Welcome.1')}</h6>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-single-02" />
-                    <span>{t('Sidebar.MyProfile.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-settings-gear-65" />
-                    <span>{t('Sidebar.Settings.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-calendar-grid-58" />
-                    <span>{t('Sidebar.Activity.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-support-16" />
-                    <span>{t('Sidebar.Support.1')}</span>
-                  </DropdownItem>
-                  <DropdownItem divider />
                   <DropdownItem to="/login" tag={Link} onClick={this.handlelogout}>
                     <i className="ni ni-user-run" />
                     <span>{t('Sidebar.Logout.1')}</span>
@@ -264,6 +278,10 @@ class SidebarM extends React.Component {
               {this.createAdminLinks(adminRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Operator.1")}
               {this.createOperatorLinks(operatorRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.ElectricTransformer.1")}
+              {this.createElectricTransfomerLinks(electricTransformerRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Reports.1")}
+              {this.createReportLinks(reportRoutes)}
               </Nav>
           </Collapse>
         </Container>

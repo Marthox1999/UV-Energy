@@ -2,7 +2,6 @@ import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { withTranslation } from 'react-i18next';
-import i18n from '../../i18n.js';
 // reactstrap components
 import {
   Card,
