@@ -299,6 +299,9 @@
         },
         "Bill":{
             "1":"Mis Facturas"
+        },
+        "Reports":{
+            "1":"Reports"
         }
     },
     "ETransformer":{
@@ -826,6 +829,44 @@
         },
         "SelectBank":{
             "1":"Seleccione un banco"
+        }
+    },
+    "Report":{
+        "Name":{
+            "1": "Reportes"
+        },
+        "Bills":{
+            "1": "Facturas"
+        },
+        "Income":{
+            "1": "Ingresos"
+        },
+        "Consumption":{
+            "1": "Consumo"
+        },
+        "Payments":{
+            "1":"Pagos"
+        },
+        "Day":{
+            "1": "Dia"
+        },
+        "Month":{
+            "1": "Mes"
+        },
+        "Year":{
+            "1":"Año"
+        },
+        "InitMonth":{
+            "1": "Mes de Inicio"
+        },
+        "InitYear":{
+            "1":"Año de Inicio"
+        },
+        "Type":{
+            "1":"Tipo de Reporte"
+        },
+        "Generate":{
+            "1":"Generar Reporte"
         }
     }
 }

@@ -115,14 +115,18 @@ class CheckPendingBills extends React.Component {
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
-            this.setState(response.data)
+            this.setState({ valor: response.data.valor, 
+                            mora: response.data.mora,
+                            total: response.data.total,
+                            interes: response.data.interes,
+                            reconexion: response.data.reconexion})
         }).catch(error => {
             console.log(error)
-            this.setState({ valor: "21", 
+            this.setState({ valor: "1", 
                             mora: "1",
-                            total: "132",
-                            interes: "21",
-                            reconexion: "0"})
+                            total: "1",
+                            interes: "1",
+                            reconexion: "1"})
         })
         
     }
@@ -133,8 +137,8 @@ class CheckPendingBills extends React.Component {
      * Para que un cliente pague una factura no vencida
      * 
      */
-    payInvoice(){
-        
+    payInvoice(e){
+        e.preventDefault()
         axios.post(c.api + 'sales/payInvoiceClient/',
             {
                 bank:this.state.bancoSeleccionado,
@@ -143,7 +147,7 @@ class CheckPendingBills extends React.Component {
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.closeModal();
-            window.location.reload(true);
+            /* window.location.reload(true);*/
         }).catch(error => {
             console.log(error)                        
             this.closeModal();
@@ -167,8 +171,6 @@ class CheckPendingBills extends React.Component {
 
     render() {
         const { t } = this.props;
-
-
         return(
             <>
             <UVHeader />

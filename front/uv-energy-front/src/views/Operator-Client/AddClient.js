@@ -19,7 +19,7 @@ import {
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 import Axios from "axios";
-import { withTranslation, Trans } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
 
 const c = require('../constants')

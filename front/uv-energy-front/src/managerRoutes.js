@@ -2,6 +2,7 @@ import RegisteredAdmins from "views/Administrador-Administrador/RegisteredAdmins
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js";
 import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator.js";
 import RegisteredElectricTransformer from "views/Gerente-Transformador/RegisteredTransformer.js";
+import managerReport from "views/Gerente-Reportes/Reportes.js"
 
 
 var adminRoutes = [
@@ -44,9 +45,20 @@ var electricTransformerRoutes = [
   },
 ];
 
+var reportRoutes =[
+  {
+    path: "/reportes",
+    name: "Report.Name.1",
+    icon: "ni ni-single-02 text-yellow",
+    component: managerReport,
+    layout: "/manager" 
+  },
+];
+
 export {
   adminRoutes,  
   managerRoutes,
   operatorRoutes,
-  electricTransformerRoutes
+  electricTransformerRoutes,
+  reportRoutes
 }

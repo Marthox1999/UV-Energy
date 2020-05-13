@@ -5,13 +5,16 @@ from rest_framework import viewsets, permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from .serializers import BillSerializers
-from django.db.models import Q
+from django.db.models import Q, Count, Min, Max, Avg, Sum
+from django.db.models.functions import TruncMonth, TruncYear
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.core import serializers
 from django.core.exceptions import ValidationError
+from django.db import transaction
 import pdfkit
 import json
+
 
 # funcion auxiliar para generar histogramas 
 
@@ -42,6 +45,106 @@ def histogramGenerate(meter_id, expedition_date):
         # guardando la imagen
         plt.savefig("static/hist.png",  bbox_inches = "tight")
         return hreadquery
+
+class GenerateReportViewSet(viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        print("holaaaaaaaaaaaaaaaaaaa")
+        time_size = request.data['time_size']
+        print("time Size:")
+        print(request.data['time_size'])
+        print(request.data)
+        if (time_size=='monthly'):
+            init_month = request.data['init_month']
+            finish_month = request.data['finish_month']
+            init_year = request.data['init_year']
+            finish_year = request.data['finish_year']
+
+            init_date = init_year+'-'+init_month+"-01"
+            end_date = finish_year+'-'+finish_month+"-01"
+
+            report_type = request.data['report_type']
+
+            time=[]
+            values=[]
+            bills="empty"
+
+            if(report_type == "bill"):
+                print(init_date)
+                print(end_date)
+                #Obtener las facturas pagadas y calcular la cantidad por mes
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('month')).values('month', 'c').order_by('month')
+            elif (report_type == "no_payed_bill"):
+                #Obtener las facturas no pagadas y calcular la cantidad por mes
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=False).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('month')).values('month', 'c').order_by('month')
+            elif (report_type == "income"):
+                #Obtener las facturas
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Sum('value')).values('month', 'c').order_by('month')
+            elif (report_type == "operator_payments"):
+                #Obtener las facturas y calcular los pagos
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('fk_employee_id')).values('month', 'c').order_by('month')
+            elif (report_type == "debit_payments"):
+                #Obtener las facturas y calcular los pagos
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('fk_debit_payment_id')).values('month', 'c').order_by('month')
+            elif (report_type == "consumption"):
+                #Obtener las facturas y calcular el consumo
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Sum('read')).values('month', 'c').order_by('month')
+            else:
+                "por favor seleccione un tipo de grafica"
+            if bills != "empty":
+                for bill in bills:
+                    time.append(bill['month'])
+                    values.append(bill['c'])
+            
+            sendpackage={"data":values, "labels":time}
+            print(sendpackage)
+            print(sendpackage["data"])
+            print(sendpackage["labels"])
+            return Response(sendpackage)
+
+        elif (time_size=='yearly'):
+            init_year = request.data['init_year']
+            finish_year = request.data['finish_year']
+
+            init_date = init_year+"-01-01"
+            end_date = finish_year+'-12-01'
+
+            report_type = request.data['report_type']
+
+            time=[]
+            values=[]
+            bills="empty"
+
+            if(report_type == "bill"):
+                #Obtener las facturas pagadas y calcular la cantidad por mes
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Count('year')).values('year', 'c').order_by('year')
+            elif (report_type == "no_payed_bill"):
+                #Obtener las facturas no pagadas y calcular la cantidad por mes
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=False).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Count('year')).values('year', 'c').order_by('year')
+            elif (report_type == "income"):
+                #Obtener las facturas
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Sum('value')).values('year', 'c').order_by('year')
+            elif (report_type == "operator_payments"):
+                #Obtener las facturas y calcular los pagos
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Count('fk_employee_id')).values('year', 'c').order_by('year')
+            elif (report_type == "debit_payments"):
+                #Obtener las facturas y calcular los pagos
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Count('fk_debit_payment_id')).values('year', 'c').order_by('year')
+            elif (report_type == "consumption"):
+                #Obtener las facturas y calcular el consumo
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Sum('read')).values('year', 'c').order_by('year')
+            else:
+                "por favor seleccione un tipo de grafica"
+            if bills != "empty":
+                for bill in bills:
+                    time.append(bill['month'])
+                    values.append(bill['c'])
+            
+            sendpackage={"data":values, "labels":time}
+            return Response(sendpackage)
+
 
 
 class GeneratePDFViewSet(viewsets.ViewSet):
@@ -146,7 +249,6 @@ class GenerateBillsViewSet(viewsets.ViewSet):
         # tomo la ultima factura de cada meter (suponiendo uno cada uno)
         for meter in meters:
             # tomo la ultima factura del contador 
-            # print(meter._meta.fields)
             bill = Bill.objects.filter(fk_meter_id=meter.pk_meter).order_by('-end_date').first()
             # encuentro el factor para multiplicar la lectura
             if meter.use == "RES":
@@ -191,7 +293,7 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                         print("valor anterior", bill.value)
                         print("mora total", bill.value * abs(now - past)* (mora/100.0) + bill.value)
                         if (abs(now - past) >= 30):
-                            interest = bill.value * 0.3
+                            interest = bill.value * 0.3 + bill.value
                         else:
                             interest = bill.value * abs(now - past)* (mora/100.0) + bill.value
                         aux = Bill(
@@ -213,9 +315,7 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                         if not secondbill[1].is_paid:
                             print("# si la anterior a ella no esta apagada genero corte")
                             # si la anterior a ella no esta apagada genero corte
-                            # no se genera factur para este
-                            print("anterior de anterior no pagada corte--------no genera")
-                            
+                            # no se genera factura para esta
                         else:
                             print("# si el hace 2 meses esta pagada genero mora")
                             # si esta pagada genero mora
@@ -226,7 +326,7 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                             print("valor anterior", bill.value)
                             print("mora total", bill.value * abs(now - past)* (mora/100.0) + bill.value)
                             if (abs(now - past) >= 30):
-                                interest = bill.value * 0.3
+                                interest = bill.value * 0.3 + bill.value
                             else:
                                 interest = bill.value * abs(now - past)* (mora/100.0) + bill.value
                             aux = Bill(
@@ -266,7 +366,6 @@ class GenerateBillsViewSet(viewsets.ViewSet):
             except ValidationError as e:
                 print("error de validacion de datos de generacion automatica !", e)
             aux.save()
-        print("biennnnnnnnnnnnnnnnnnnnnnnnn")
         return Response("Las facturas se han generado correctamente")
 
 
@@ -312,3 +411,121 @@ class PendingBillListViewSet (viewsets.ViewSet):
         queryset = Bill.objects.filter(Q(is_paid=False), Q(fk_meter__in=meter_ids)).order_by('-end_date')
         serializer = BillSerializers(queryset, many=True)
         return Response(serializer.data)
+
+
+class SearchInvoiceViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        from datetime import datetime, timedelta
+        pk = request.data["referenceBill"]
+        bill = Bill.objects.filter(pk_bill = pk).first()
+        response = {}
+        # no existe la factura con esa referencia
+        if bill is None:
+            response = {    
+                        "valor": "-2", 
+                        "mora" : "0",
+                        "interes" : "0",
+                        "total": "0", 
+                        "reconexion": "0",
+                        }
+        else:
+            # ya esta pagada
+            if bill.is_paid:
+                response = {    
+                        "valor": "0", 
+                        "mora" : "0",
+                        "interes" : "0",
+                        "total": "0", 
+                        "reconexion": "0",
+                        }
+            else:
+                # ya se vencio
+                if datetime.now().date() >  bill.expiration_date or datetime.now().date() < bill.expedition_date:
+                    response = {    
+                            "valor": "-1", 
+                            "mora" : "0",
+                            "interes" : "0",
+                            "total": "0", 
+                            "reconexion": "0",
+                            }
+                else:
+                    lastbill = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('is_paid','value')[:2]
+                    # si no existen dos facturas para ese contador
+                    if lastbill.count() <= 1:
+                        # paga esta factura
+                        response = {    
+                            "valor": str(bill.value), 
+                            "mora" : "0",
+                            "interes" : "0",
+                            "total": str(bill.value), 
+                            "reconexion": "0",
+                        }
+                    # si existen dos facturas para este contador
+                    else:
+                        # la factura anterior no esta pagada    
+                        if not lastbill[1]['is_paid']:
+                            response = {    
+                                "valor": str(int(bill.read * bill.unit_value)), 
+                                "mora" : str(lastbill[1]['value']),
+                                "interes" : str(int(bill.value - lastbill[1]['value'] - bill.read * bill.unit_value)),
+                                "total": str(bill.value + 34000), 
+                                "reconexion": "34000",
+                            }
+                        else:
+                            # pago normal
+                            response = {    
+                                "valor": str(bill.value), 
+                                "mora" : "0",
+                                "interes" : "0",
+                                "total": str(bill.value), 
+                                "reconexion": "0",
+                            }
+        return Response(response)
+
+
+class payInvoiceViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        pk = request.data["referenceBill"]
+        pk_operator = request.data["operator"]
+        with transaction.atomic():
+            Bill.objects.select_for_update().filter(pk_bill = pk).update(is_paid = True, fk_employee_id= pk_operator)
+        return Response ("pagado")
+
+class  payReconnectionViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        pk = request.data["referenceBill"]
+        pk_operator = request.data["operator"]
+        with transaction.atomic():
+            bill = Bill.objects.get(pk_bill=pk)
+            bills = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, is_paid= False, expedition_date__lte=bill.expedition_date).order_by('-end_date')
+            bills.select_for_update().update(is_paid = True, fk_employee_id= pk_operator)
+        return Response ("pagado")
+
+
+class payInvoiceClientViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        from os.path import exists, join
+        from os import makedirs, getcwd, walk
+        pk = request.data["referenceBill"]
+        bank = request.data['bank']
+        print(pk)
+        print(bank)
+        if not exists('BanksData'):
+            makedirs('BanksData')
+        
+        with open(join('BanksData', bank+'.txt'), 'a') as f:
+            f.write(str(pk) + '\n')
+
+        return Response("guardado satisfactoriamente")
