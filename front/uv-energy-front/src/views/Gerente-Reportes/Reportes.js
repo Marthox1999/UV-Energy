@@ -21,8 +21,8 @@ import {
   DropdownToggle,   
   DropdownItem,
   DropdownMenu,
-  Input
-
+  Input,
+  Alert
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -132,37 +132,52 @@ class managerReport extends React.Component {
 
     GenerateReport(e){
         e.preventDefault()
-        console.log(this.state.credentials.token)
-        axios.post(c.api + 'sales/generateReport/', 
+        if (((this.state.date.initYear === "") ||
+            (this.state.date.year === ""))){
+            this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
+
+        }else if (((this.state.date.initMonth === "") ||
+                    (this.state.date.month === ""))&&
+                    this.state.reporTime==="montlhy"){
+                    this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
+
+    /*    }else if (parseInt(this.state.initYear)>parseInt(this.state.year)){
+            this.setState({isAlertEmpty: false, isAlertSuccess: false, isBadinputs: true})     
+
+        }else if ((parseInt(this.state.initYear)===parseInt(this.state.year))&&
+                    (parseInt(this.state.initMonth)>parseInt(this.state.month))&&
+                    (this.state.reporTime==="montlhy")){
+                this.setState({isAlertEmpty: false, isAlertSuccess: false, isBadinputs: true})    
+    */
+        }else{
+            axios.post(c.api + 'sales/generateReport/', 
             { time_size:this.state.reportTime, init_month:this.state.date.initMonth , finish_month: this.state.date.month , 
                         init_year: this.state.date.initYear , finish_year: this.state.date.year, report_type: this.state.reportType },
             {headers: { Authorization: `Token ${this.state.credentials.token}` }
-    })
+            })
             .then(response => {
+                if (response.data !== ""){
+                    this.setState({ isAlertSuccess: true,
+                                    isAlertEmpty: false,
+                                    isBadinputs: false});
+                
                     this.setState({ info: response.data })
                     this.setState({data : this.state.info["data"]})
                     this.setState({labels : this.state.info["labels"]})
-
+                }
                    /* console.log(this.state.info["data"])
                     console.log(this.state.info["labels"])*/
-            }).catch(error => console.log(error.request))
-   
+            }).catch(error => {
+                console.log(error)
+                this.setState({ isAlertSuccess: false,
+                                isAlertEmpty: false,
+                                isBadinputs: true})
+            })
+        }
     }
     
     render() {
         const { t } = this.props
-        const state = {
-            labels: this.state.labels,
-            datasets: [
-              {
-                label: '',
-                backgroundColor: "blue",
-                borderColor: 'rgba(0,0,0,0)',
-                borderWidth: 2,
-                data: this.state.data,
-              }
-            ]
-          }
         
         return(
             <>
@@ -178,6 +193,12 @@ class managerReport extends React.Component {
                     </Row>
                     </CardHeader>
                     <CardBody>
+                    <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                        <strong>{t("Admin.Warning.1")}</strong> {t("Admin.EmptyFields.1")}
+                    </Alert>
+                    <Alert color="warning" isOpen={this.state.isBadinputs}>
+                        <strong>{t("Admin.Warning.1")}</strong> {t("Admin.BadInputs.1")}
+                    </Alert>
                     <Form onSubmit= {(e)=> (this.GenerateReport(e))}>
                         <Row>
                             <Col>
@@ -327,7 +348,18 @@ class managerReport extends React.Component {
                         </Row>
                     </Form>
                     <Bar
-                        data={state}
+                        data={{
+                            labels: this.state.labels,
+                            datasets: [
+                              {
+                                label: '',
+                                backgroundColor: "blue",
+                                borderColor: 'rgba(0,0,0,0)',
+                                borderWidth: 2,
+                                data: this.state.data,
+                              }
+                            ]
+                          }}
                         display="none"
                         options={{
                             title:{
