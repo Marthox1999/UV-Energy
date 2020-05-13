@@ -83,7 +83,6 @@ class PayWithInvoice extends React.Component {
                             total: response.data.total,
                             interes: response.data.interes,
                             reconexion: response.data.reconexion})
-            console.log(this.state)
         }).catch(error => {
             console.log(error)
             this.setState({ valor: "1", 
@@ -109,8 +108,8 @@ class PayWithInvoice extends React.Component {
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.closeModal();
-        }).catch(error => {
-            console.log(error)                        
+            alert(response.data)
+        }).catch(error => {                      
             this.closeModal();
         })
         
@@ -129,6 +128,7 @@ class PayWithInvoice extends React.Component {
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.closeModal();
+            alert(response.data)
         }).catch(error => {
             console.log(error)                        
             this.closeModal();

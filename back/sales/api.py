@@ -394,3 +394,16 @@ class payInvoiceViewSet (viewsets.ViewSet):
         with transaction.atomic():
             Bill.objects.select_for_update().filter(pk_bill = pk).update(is_paid = True, fk_employee_id= pk_operator)
         return Response ("pagado")
+
+class  payReconnectionViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        pk = request.data["referenceBill"]
+        pk_operator = request.data["operator"]
+        with transaction.atomic():
+            bill = Bill.objects.get(pk_bill=pk)
+            bills = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, is_paid= False, expedition_date__lte=bill.expedition_date).order_by('-end_date')
+            bills.select_for_update().update(is_paid = True, fk_employee_id= pk_operator)
+        return Response ("pagado")
