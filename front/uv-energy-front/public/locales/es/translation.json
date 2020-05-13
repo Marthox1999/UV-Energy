@@ -773,6 +773,12 @@
         "Year":{
             "1":"Año"
         },
+        "InitMonth":{
+            "1": "Mes de Inicio"
+        },
+        "InitYear":{
+            "1":"Año de Inicio"
+        },
         "Type":{
             "1":"Tipo de Reporte"
         },
@@ -780,5 +786,4 @@
             "1":"Generar Reporte"
         }
     }
-}
 }

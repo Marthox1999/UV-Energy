@@ -19,24 +19,29 @@ class GenerateReportViewSet(viewsets.ViewSet):
         permissions.IsAuthenticated
     ]
     def create(self, request):
-
-        time_size = request.query_params.get('time_size')
+        print("holaaaaaaaaaaaaaaaaaaa")
+        time_size = request.data['time_size']
+        print("time Size:")
+        print(request.data['time_size'])
+        print(request.data)
         if (time_size=='monthly'):
-            init_month = request.query_params.get('init_month')
-            finish_month = request.query_params.get('finish_month')
-            init_year = request.query_params.get('init_year')
-            finish_year = request.query_params.get('finish_year')
+            init_month = request.data['init_month']
+            finish_month = request.data['finish_month']
+            init_year = request.data['init_year']
+            finish_year = request.data['finish_year']
 
             init_date = init_year+'-'+init_month+"-01"
             end_date = finish_year+'-'+finish_month+"-01"
 
-            report_type = request.query_params.get('report_type')
+            report_type = request.data['report_type']
 
             time=[]
             values=[]
             bills="empty"
 
             if(report_type == "bill"):
+                print(init_date)
+                print(end_date)
                 #Obtener las facturas pagadas y calcular la cantidad por mes
                 bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('month')).values('month', 'c').order_by('month')
             elif (report_type == "no_payed_bill"):
@@ -62,17 +67,19 @@ class GenerateReportViewSet(viewsets.ViewSet):
                     values.append(bill['c'])
             
             sendpackage={"data":values, "labels":time}
-            response = HttpResponse(sendpackage)
-            return response
+            print(sendpackage)
+            print(sendpackage["data"])
+            print(sendpackage["labels"])
+            return Response(sendpackage)
 
         elif (time_size=='yearly'):
-            init_year = request.query_params.get('init_year')
-            finish_year = request.query_params.get('finish_year')
+            init_year = request.data['init_year']
+            finish_year = request.data['finish_year']
 
             init_date = init_year+"-01-01"
             end_date = finish_year+'-12-01'
 
-            report_type = request.query_params.get('report_type')
+            report_type = request.data['report_type']
 
             time=[]
             values=[]
@@ -104,8 +111,7 @@ class GenerateReportViewSet(viewsets.ViewSet):
                     values.append(bill['c'])
             
             sendpackage={"data":values, "labels":time}
-            response = HttpResponse(sendpackage)
-            return response
+            return Response(sendpackage)
 
 
 class GeneratePDFViewSet(viewsets.ViewSet):
