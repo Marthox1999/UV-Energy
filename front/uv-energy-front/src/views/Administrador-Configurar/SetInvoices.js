@@ -190,7 +190,7 @@ class SetInvoices extends React.Component {
                             {[...Array(5).keys()].map((indexStratum)=>
                             <tr>
                                 <td>
-                                    Estrato {indexStratum+1}
+                                    {t("Settings.Stratum.1")} {indexStratum+1}
                                 </td>
                                 <td>
                                     <center>

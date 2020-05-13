@@ -752,6 +752,12 @@
         },
         "Error":{
             "1":"Ocorreu um erro ao gerar as faturas."
+        },
+        "Upload":{
+            "1":"Carregar pagamentos"
+        },
+        "UploadFile":{
+            "1":"Subir arquivo"
         }
     },
     "PayBills":{

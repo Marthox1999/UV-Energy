@@ -760,6 +760,12 @@
         },
         "Error":{
             "1":"An error occurred generating the invoices"
+        },
+        "Upload":{
+            "1":"Upload payments"
+        },
+        "UploadFile":{
+            "1":"Upload file"
         }
     },
     "PayBills":{
