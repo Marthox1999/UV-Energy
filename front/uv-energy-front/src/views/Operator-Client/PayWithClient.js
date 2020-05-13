@@ -14,7 +14,9 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  UncontrolledDropdown
+  UncontrolledDropdown,
+  Col,
+  CardBody
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -25,7 +27,7 @@ import Cookies from 'universal-cookie';
 const c = require('../constants')
 const cookie = new Cookies();
 
-class CheckPendingBills extends React.Component {
+class PayWithClient extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -42,6 +44,7 @@ class CheckPendingBills extends React.Component {
                 fk_employee: -1
             },
 
+            client: "",
 
             bancoSeleccionado: "Banco1",
             referenceInvoice: "",
@@ -175,8 +178,32 @@ class CheckPendingBills extends React.Component {
             <UVHeader />
             {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
-                <Row>
+
+                <Card className="bg-secondary shadow">
+                    <CardHeader className="bg-white border-0">
+                    <Row className="align-items-center">
+                        <Col xs="8">
+                        <font size="5">{t("PayBills.PayWithInvoices.1")}</font>
+                        </Col>
+                    </Row>
+                    </CardHeader>
+                    <CardBody>
+
+                    <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                        <strong>{t("PayBills.Warning.1")}</strong> {t("PayBills.EmptyFields.1")}
+                    </Alert>
+
+
+
+
+
+
+
+
+
+
+
+                    <Row>
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
@@ -397,10 +424,33 @@ class CheckPendingBills extends React.Component {
                         </Button>
                     </div>
                 </Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </CardBody>
+                </Card>
+
+
+
             </Container>
             </>
         );
     }
 }
 
-export default withTranslation()(CheckPendingBills);
+export default withTranslation()(PayWithClient);
+                
