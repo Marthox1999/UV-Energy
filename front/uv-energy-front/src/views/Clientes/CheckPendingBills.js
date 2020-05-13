@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // reactstrap components
 import {
@@ -7,7 +7,14 @@ import {
   Table,
   Container,
   Row,
-  Button
+  Button,
+  Alert,
+  Modal,
+  ModalBody,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -34,14 +41,22 @@ class CheckPendingBills extends React.Component {
                 fk_meter: -1,
                 fk_employee: -1
             },
+
+            bancoSeleccionado: "Banco1",
+            referenceInvoice: "",
             valor: "", 
             mora: "",
-            total: "", 
+            interes: "",
             reconexion: "",
+            total: "",
+
             path: '',
             listBills: [],
             credentials: cookie.get('notCredentials'),           
         }
+        this.searchInvoice = this.searchInvoice.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+        this.payInvoice = this.payInvoice.bind(this)
     }
     componentDidMount(){
         axios.get(c.api + 'sales/pendingbillList/', {params: { pk_cliente: this.state.credentials.id}, 
@@ -92,15 +107,9 @@ class CheckPendingBills extends React.Component {
      *  valor>0 /\ reconexion<=0 Puede pagar solo esta factura
      * 
      */
-    SearchInvoice(e){
-        e.preventDefault();
-        this.referenceInvoice=this.referenceField;
-        if (this.state.referenceField === ""){
-            this.setState({isAlertEmpty: true})
-            return;
-        }
-        this.setState({isAlertEmpty: false})
-        axios.post(c.api + 'sales/searchInvoice',
+    searchInvoice(referenceInvoiceIn){
+        this.state.referenceInvoice=referenceInvoiceIn;
+        axios.post(c.api + 'sales/searchInvoice/',
             {
                 referenceBill:this.state.referenceInvoice
             },
@@ -109,17 +118,57 @@ class CheckPendingBills extends React.Component {
             this.setState(response.data)
         }).catch(error => {
             console.log(error)
-            this.setState({ valor: "12", 
+            this.setState({ valor: "21", 
                             mora: "1",
-                            total: "34013", 
+                            total: "132",
+                            interes: "21",
                             reconexion: "0"})
         })
         
     }
 
+    
+
+    /**
+     * Para que un cliente pague una factura no vencida
+     * 
+     */
+    payInvoice(){
+        
+        axios.post(c.api + 'sales/payInvoiceClient',
+            {
+                bank:this.state.bancoSeleccionado,
+                referenceBill:this.state.referenceInvoice
+            },
+            {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            this.closeModal();
+            window.location.reload(true);
+        }).catch(error => {
+            console.log(error)                        
+            this.closeModal();
+        })   
+    }
+
+
+    closeModal(){
+        
+        this.setState({
+            referenceInvoice: "",
+            valor: "", 
+            mora: "",
+            interes: "",
+            reconexion: "",
+            total: ""
+        })
+    }
+
+    
 
     render() {
-        const { t } = this.props
+        const { t } = this.props;
+
+
         return(
             <>
             <UVHeader />
@@ -166,7 +215,7 @@ class CheckPendingBills extends React.Component {
                                     </td>
                                     <td className="text-center">
                                         <Button
-                                            
+                                            onClick={() => this.searchInvoice(item.pk_bill)}
                                             align="center"
                                             className="text-blue"
                                             role="button"
@@ -184,6 +233,169 @@ class CheckPendingBills extends React.Component {
                         </Card>
                     </div>
                 </Row>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="warning"
+                    isOpen={this.state.valor==="-2"}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="warning">
+                            <strong>{t("PayBills.Warning.1")}!</strong><br/>
+                        </Alert>
+                        {t("PayBills.NoFound.1")}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        {t("PayBills.Close.1")}
+                        </Button>
+                    </div>
+                </Modal>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="warning"
+                    isOpen={this.state.valor==="-1"}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="warning">
+                            <strong>{t("PayBills.Warning.1")}!</strong><br/>
+                        </Alert>
+                        {t("PayBills.Expired.1")}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        {t("PayBills.Close.1")}
+                        </Button>
+                    </div>
+                </Modal>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="info"
+                    isOpen={this.state.valor==="0"}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="info">
+                            <strong>{t("PayBills.Information.1")}!</strong><br/>
+                        </Alert>
+                        {t("PayBills.Paid.1")}
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                        color="primary"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={this.closeModal}
+                        >
+                        {t("PayBills.Close.1")}
+                        </Button>
+                    </div>
+                </Modal>
+                <Modal
+                    className="modal-dialog-centered"
+                    color="info"
+                    isOpen={parseFloat(this.state.valor)>0 && parseFloat(this.state.reconexion)>0}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="info">
+                            <strong>{t("PayBills.Information.1")}!</strong><br/>
+                        </Alert>
+                        <br></br>
+                        {t("PayBills.Reconnection.3")}<br/><br/>
+                        {t("PayBills.Value.1")} = $ {this.state.valor} <br/>
+                        {t("PayBills.Debt.1")} = $ {this.state.mora} <br/>
+                        {t("PayBills.Interest.1")} = $ {this.state.interes} <br/>
+                        {t("PayBills.Reconnection.1")} = $ {this.state.reconexion} <br/>
+                        {t("PayBills.Total.1")} = $ {this.state.total} <br/>
+
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                            color="primary"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.closeModal}
+                            >
+                            {t("PayBills.Close.1")}
+                        </Button>
+                    </div>
+                </Modal>
+
+                <Modal
+                    className="modal-dialog-centered"
+                    color="info"
+                    isOpen={parseFloat(this.state.valor)>0 && parseFloat(this.state.reconexion)<=0}
+                    >
+                    <ModalBody>
+                    <div className="modal-body">
+                        <Alert color="info">
+                            <strong>{t("PayBills.Information.1")}!</strong><br/>
+                        </Alert>
+                        <br></br>
+
+                        
+                            <UncontrolledDropdown nav>
+                                <DropdownToggle className="dropdown-menu-arrow">
+                                
+                                        {t("PayBills.SelectBank.1")}  
+                                    
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                    <DropdownItem onClick={()=>this.state.bancoSeleccionado="Banco1"}>
+                                        Banco1
+                                    </DropdownItem>
+                                    <DropdownItem onClick={()=>this.state.bancoSeleccionado="MiBanco"}>
+                                        MiBanco
+                                    </DropdownItem>
+                                    
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+
+                        <br></br>
+                        <br></br>
+                        
+                        {t("PayBills.Value.1")} = $ {this.state.valor} <br/>
+                        {t("PayBills.Debt.1")} = $ {this.state.mora} <br/>
+                        {t("PayBills.Interest.1")} = $ {this.state.interes} <br/>
+                        {t("PayBills.Total.1")} = $ {this.state.total} <br/>
+
+                    </div>
+                    </ModalBody>
+                    <div className="modal-footer">
+                        <Button
+                            color="success"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.payInvoice}
+                            >
+                            {t("PayBills.PayInvoice.1")}
+                        </Button>
+                        <Button
+                            color="primary"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.closeModal}
+                            >
+                            {t("PayBills.Close.1")}
+                        </Button>
+                    </div>
+                </Modal>
             </Container>
             </>
         );
