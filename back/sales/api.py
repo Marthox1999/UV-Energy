@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.core import serializers
 from django.core.exceptions import ValidationError
+from django.db import transaction
 import pdfkit
 import json
 
@@ -146,7 +147,6 @@ class GenerateBillsViewSet(viewsets.ViewSet):
         # tomo la ultima factura de cada meter (suponiendo uno cada uno)
         for meter in meters:
             # tomo la ultima factura del contador 
-            # print(meter._meta.fields)
             bill = Bill.objects.filter(fk_meter_id=meter.pk_meter).order_by('-end_date').first()
             # encuentro el factor para multiplicar la lectura
             if meter.use == "RES":
@@ -191,7 +191,7 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                         print("valor anterior", bill.value)
                         print("mora total", bill.value * abs(now - past)* (mora/100.0) + bill.value)
                         if (abs(now - past) >= 30):
-                            interest = bill.value * 0.3
+                            interest = bill.value * 0.3 + bill.value
                         else:
                             interest = bill.value * abs(now - past)* (mora/100.0) + bill.value
                         aux = Bill(
@@ -213,9 +213,7 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                         if not secondbill[1].is_paid:
                             print("# si la anterior a ella no esta apagada genero corte")
                             # si la anterior a ella no esta apagada genero corte
-                            # no se genera factur para este
-                            print("anterior de anterior no pagada corte--------no genera")
-                            
+                            # no se genera factura para esta
                         else:
                             print("# si el hace 2 meses esta pagada genero mora")
                             # si esta pagada genero mora
@@ -226,7 +224,7 @@ class GenerateBillsViewSet(viewsets.ViewSet):
                             print("valor anterior", bill.value)
                             print("mora total", bill.value * abs(now - past)* (mora/100.0) + bill.value)
                             if (abs(now - past) >= 30):
-                                interest = bill.value * 0.3
+                                interest = bill.value * 0.3 + bill.value
                             else:
                                 interest = bill.value * abs(now - past)* (mora/100.0) + bill.value
                             aux = Bill(
@@ -266,7 +264,6 @@ class GenerateBillsViewSet(viewsets.ViewSet):
             except ValidationError as e:
                 print("error de validacion de datos de generacion automatica !", e)
             aux.save()
-        print("biennnnnnnnnnnnnnnnnnnnnnnnn")
         return Response("Las facturas se han generado correctamente")
 
 
@@ -319,14 +316,81 @@ class SearchInvoiceViewSet (viewsets.ViewSet):
         permissions.IsAuthenticated
     ]
     def create(self, request):
+        from datetime import datetime, timedelta
         pk = request.data["referenceBill"]
-        print(request.data)
-        bill = Bill.objects.get(pk_bill = pk)
+        bill = Bill.objects.filter(pk_bill = pk).first()
+        response = {}
+        # no existe la factura con esa referencia
         if bill is None:
-        response = {    
-                    "valor": -2, 
-                    "mora" : 0,
-                    "total": 0, 
-                    "reconexion": 0,
-                    }
-        return Response("termino")
+            response = {    
+                        "valor": "-2", 
+                        "mora" : "0",
+                        "interes" : "0",
+                        "total": "0", 
+                        "reconexion": "0",
+                        }
+        else:
+            # ya esta pagada
+            if bill.is_paid:
+                response = {    
+                        "valor": "0", 
+                        "mora" : "0",
+                        "interes" : "0",
+                        "total": "0", 
+                        "reconexion": "0",
+                        }
+            else:
+                # ya se vencio
+                if datetime.now().date() >  bill.expiration_date or datetime.now().date() < bill.expedition_date:
+                    response = {    
+                            "valor": "-1", 
+                            "mora" : "0",
+                            "interes" : "0",
+                            "total": "0", 
+                            "reconexion": "0",
+                            }
+                else:
+                    lastbill = Bill.objects.filter(fk_meter_id=bill.fk_meter_id, expedition_date__lte=bill.expedition_date).order_by('-end_date').values('is_paid','value')[:2]
+                    # si no existen dos facturas para ese contador
+                    if lastbill.count() <= 1:
+                        # paga esta factura
+                        response = {    
+                            "valor": str(bill.value), 
+                            "mora" : "0",
+                            "interes" : "0",
+                            "total": str(bill.value), 
+                            "reconexion": "0",
+                        }
+                    # si existen dos facturas para este contador
+                    else:
+                        # la factura anterior no esta pagada    
+                        if not lastbill[1]['is_paid']:
+                            response = {    
+                                "valor": str(int(bill.read * bill.unit_value)), 
+                                "mora" : str(lastbill[1]['value']),
+                                "interes" : str(int(bill.value - lastbill[1]['value'] - bill.read * bill.unit_value)),
+                                "total": str(bill.value + 34000), 
+                                "reconexion": "34000",
+                            }
+                        else:
+                            # pago normal
+                            response = {    
+                                "valor": str(bill.value), 
+                                "mora" : "0",
+                                "interes" : "0",
+                                "total": str(bill.value), 
+                                "reconexion": "0",
+                            }
+        return Response(response)
+
+
+class payInvoiceViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        pk = request.data["referenceBill"]
+        pk_operator = request.data["operator"]
+        with transaction.atomic():
+            Bill.objects.select_for_update().filter(pk_bill = pk).update(is_paid = True, fk_employee_id= pk_operator)
+        return Response ("pagado")

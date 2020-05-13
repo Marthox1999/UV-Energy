@@ -19,7 +19,7 @@ import {
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 import Axios from "axios";
-import { withTranslation, Trans } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
 
 const c = require('../constants')
@@ -39,6 +39,7 @@ class PayWithInvoice extends React.Component {
             total: "",
             credentials: cookie.get('notCredentials'),
         }
+        
         this.onChangeState = this.onChangeState.bind(this)
         this.SearchInvoice = this.SearchInvoice.bind(this)
         this.closeModal = this.closeModal.bind(this)
@@ -51,6 +52,7 @@ class PayWithInvoice extends React.Component {
      *  {    
      *      valor: "", 
      *      mora: "",
+     *      interes: "",
      *      total: "", 
      *      reconexion: "",
      *  }
@@ -70,20 +72,25 @@ class PayWithInvoice extends React.Component {
             return;
         }
         this.setState({isAlertEmpty: false})
-        Axios.post(c.api + 'sales/searchInvoice',
+        Axios.post(c.api + 'sales/searchInvoice/',
             {
                 referenceBill:this.state.referenceInvoice
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
-            this.setState(response.data)
+            this.setState({ valor: response.data.valor, 
+                            mora: response.data.mora,
+                            total: response.data.total,
+                            interes: response.data.interes,
+                            reconexion: response.data.reconexion})
+            console.log(this.state)
         }).catch(error => {
             console.log(error)
-            this.setState({ valor: "12", 
+            this.setState({ valor: "1", 
                             mora: "1",
-                            total: "132",
-                            interes: "21",
-                            reconexion: "21"})
+                            total: "1",
+                            interes: "1",
+                            reconexion: "1"})
         })
         
     }
@@ -92,12 +99,12 @@ class PayWithInvoice extends React.Component {
      * 
      */
     payReconnection(){
-        
         this.setState({isAlertEmpty: false})
         console.log(this.state.referenceInvoice)
-        Axios.post(c.api + 'sales/payReconnection',
+        Axios.post(c.api + 'sales/payReconnection/',
             {
-                referenceBill:this.state.referenceInvoice
+                referenceBill:this.state.referenceInvoice,
+                operator: this.state.credentials.id
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
@@ -108,17 +115,16 @@ class PayWithInvoice extends React.Component {
         })
         
     }
-
     /**
      * Para pagar una factura no vencida
      * 
      */
     payInvoice(){
-        
         this.setState({isAlertEmpty: false})
-        Axios.post(c.api + 'sales/payAnInvoice',
+        Axios.post(c.api + 'sales/payAnInvoice/',
             {
-                referenceBill:this.state.referenceInvoice
+                referenceBill:this.state.referenceInvoice,
+                operator: this.state.credentials.id
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
@@ -128,8 +134,6 @@ class PayWithInvoice extends React.Component {
             this.closeModal();
         })   
     }
-
-
     closeModal(){
         
         this.setState({
