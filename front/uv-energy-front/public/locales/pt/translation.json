@@ -294,7 +294,7 @@
             "1":"Minhas contas"
         },
         "Reports":{
-            "1":"Reports"
+            "1":"Relatórios"
         }
     },
     "ETransformer":{
@@ -780,4 +780,5 @@
             "1":"Gerar Relatório"
         }
     }
+}
 }

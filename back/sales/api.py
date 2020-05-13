@@ -5,13 +5,108 @@ from rest_framework import viewsets, permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from .serializers import BillSerializers
-from django.db.models import Q
+from django.db.models import Q, Count, Min, Max, Avg, Sum
+from django.db.models.functions import TruncMonth, TruncYear
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.core import serializers
 from django.core.exceptions import ValidationError
 import pdfkit
 import json
+
+class GenerateReportViewSet(viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+
+        time_size = request.query_params.get('time_size')
+        if (time_size=='monthly'):
+            init_month = request.query_params.get('init_month')
+            finish_month = request.query_params.get('finish_month')
+            init_year = request.query_params.get('init_year')
+            finish_year = request.query_params.get('finish_year')
+
+            init_date = init_year+'-'+init_month+"-01"
+            end_date = finish_year+'-'+finish_month+"-01"
+
+            report_type = request.query_params.get('report_type')
+
+            time=[]
+            values=[]
+            bills="empty"
+
+            if(report_type == "bill"):
+                #Obtener las facturas pagadas y calcular la cantidad por mes
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('month')).values('month', 'c').order_by('month')
+            elif (report_type == "no_payed_bill"):
+                #Obtener las facturas no pagadas y calcular la cantidad por mes
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=False).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('month')).values('month', 'c').order_by('month')
+            elif (report_type == "income"):
+                #Obtener las facturas
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Sum('value')).values('month', 'c').order_by('month')
+            elif (report_type == "operator_payments"):
+                #Obtener las facturas y calcular los pagos
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('fk_employee_id')).values('month', 'c').order_by('month')
+            elif (report_type == "debit_payments"):
+                #Obtener las facturas y calcular los pagos
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('fk_debit_payment_id')).values('month', 'c').order_by('month')
+            elif (report_type == "consumption"):
+                #Obtener las facturas y calcular el consumo
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Sum('read')).values('month', 'c').order_by('month')
+            else:
+                "por favor seleccione un tipo de grafica"
+            if bills != "empty":
+                for bill in bills:
+                    time.append(bill['month'])
+                    values.append(bill['c'])
+            
+            sendpackage={"data":values, "labels":time}
+            response = HttpResponse(sendpackage)
+            return response
+
+        elif (time_size=='yearly'):
+            init_year = request.query_params.get('init_year')
+            finish_year = request.query_params.get('finish_year')
+
+            init_date = init_year+"-01-01"
+            end_date = finish_year+'-12-01'
+
+            report_type = request.query_params.get('report_type')
+
+            time=[]
+            values=[]
+            bills="empty"
+
+            if(report_type == "bill"):
+                #Obtener las facturas pagadas y calcular la cantidad por mes
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Count('year')).values('year', 'c').order_by('year')
+            elif (report_type == "no_payed_bill"):
+                #Obtener las facturas no pagadas y calcular la cantidad por mes
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=False).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Count('year')).values('year', 'c').order_by('year')
+            elif (report_type == "income"):
+                #Obtener las facturas
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Sum('value')).values('year', 'c').order_by('year')
+            elif (report_type == "operator_payments"):
+                #Obtener las facturas y calcular los pagos
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Count('fk_employee_id')).values('year', 'c').order_by('year')
+            elif (report_type == "debit_payments"):
+                #Obtener las facturas y calcular los pagos
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Count('fk_debit_payment_id')).values('year', 'c').order_by('year')
+            elif (report_type == "consumption"):
+                #Obtener las facturas y calcular el consumo
+                bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date).annotate(year=TruncYear('expedition_date')).values('year').annotate(c = Sum('read')).values('year', 'c').order_by('year')
+            else:
+                "por favor seleccione un tipo de grafica"
+            if bills != "empty":
+                for bill in bills:
+                    time.append(bill['month'])
+                    values.append(bill['c'])
+            
+            sendpackage={"data":values, "labels":time}
+            response = HttpResponse(sendpackage)
+            return response
+
 
 class GeneratePDFViewSet(viewsets.ViewSet):
     permission_classes = [
