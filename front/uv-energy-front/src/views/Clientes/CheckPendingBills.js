@@ -135,7 +135,7 @@ class CheckPendingBills extends React.Component {
      */
     payInvoice(){
         
-        axios.post(c.api + 'sales/payInvoiceClient',
+        axios.post(c.api + 'sales/payInvoiceClient/',
             {
                 bank:this.state.bancoSeleccionado,
                 referenceBill:this.state.referenceInvoice

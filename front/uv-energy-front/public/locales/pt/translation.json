@@ -751,7 +751,8 @@
             "1": "Todos os campos devem ser numéricos. Foi encontrado um campo que não está em conformidade."
         },
         "Error":{
-            "1":"Ocorreu um erro ao gerar as faturas."
+            "1":"Ocorreu um erro ao gerar as faturas.",
+            "2":"Os bancos devem ser Banco1 ou MiBanco"
         },
         "Upload":{
             "1":"Carregar pagamentos"
