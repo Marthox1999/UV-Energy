@@ -67,7 +67,7 @@ class UploadPayments extends React.Component {
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
-            
+            alert(response.data)
         }).catch(error => {
             alert(i18n.t("Settings.Error.1"));
             console.log(error)                        
