@@ -1,102 +1,58 @@
-import React, { useState } from "react";
+import React from "react";
 
 // reactstrap components
 import {
+  Button,
   Card,
   CardHeader,
-  Table,
+  CardBody,
+  FormGroup,
+  Form,
+  Input,
   Container,
   Row,
-  Button,
+  Col,
   Alert,
   Modal,
-  ModalBody,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  UncontrolledDropdown
+  ModalBody
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
-import axios from 'axios';
+import Axios from "axios";
 import { withTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
 
 const c = require('../constants')
 const cookie = new Cookies();
 
-class CheckPendingBills extends React.Component {
+class PayWithInvoice extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            bill : {
-                pk_bill: -1,
-                start_date: "",
-                end_date: "",
-                read: 1,
-                expedition_date: "",
-                expiration_date: "",
-                is_paid: true,
-                fk_debit_payment: -1,
-                fk_meter: -1,
-                fk_employee: -1
-            },
-
-            bancoSeleccionado: "Banco1",
+        this.state={
+            referenceField: "",
+            isAlertEmpty: false,
             referenceInvoice: "",
             valor: "", 
             mora: "",
             interes: "",
             reconexion: "",
             total: "",
-
-            path: '',
-            listBills: [],
-            credentials: cookie.get('notCredentials'),           
+            credentials: cookie.get('notCredentials'),
         }
-        this.searchInvoice = this.searchInvoice.bind(this)
+        
+        this.onChangeState = this.onChangeState.bind(this)
+        this.SearchInvoice = this.SearchInvoice.bind(this)
         this.closeModal = this.closeModal.bind(this)
+        this.payReconnection = this.payReconnection.bind(this)
         this.payInvoice = this.payInvoice.bind(this)
     }
-    componentDidMount(){
-        axios.get(c.api + 'sales/pendingbillList/', {params: { pk_cliente: this.state.credentials.id}, 
-                headers: { Authorization: `Token ${this.state.credentials.token}`}})
-        .then( response => {
-            if( response.data.error != null){
-                alert(response.data.error);
-              }
-              else{
-                this.setState({listBills: response.data})
-               /*console.log(this.state.listBills)*/
-                 /*console.log(response.config)*/
-            }             
-        }).catch(error => alert(error))
-    }
-    sendpdf(key) {
-        axios({
-            url: c.api + 'sales/generatepdf/',
-            method: 'POST',
-            params: { pk_bill : key },
-            headers: { Authorization : `Token ${this.state.credentials.token}` },
-            responseType: 'blob'
-        }).then(response => {
-            if (response.data.error != null) {
-                console.log(response.data.error);
-            }
-            else {
-                const file = new Blob([response.data], { type: 'application/pdf' });
-                const fileURL = URL.createObjectURL(file);
-                window.open(fileURL);
-            }
-        }).catch(error => alert(error))
-    }
-
     /**
      * Axios post para buscar datos, espera un json con data 
      * pero sin cambios en back aun
      *  {    
      *      valor: "", 
      *      mora: "",
+     *      interes: "",
      *      total: "", 
      *      reconexion: "",
      *  }
@@ -107,9 +63,16 @@ class CheckPendingBills extends React.Component {
      *  valor>0 /\ reconexion<=0 Puede pagar solo esta factura
      * 
      */
-    searchInvoice(referenceInvoiceIn){
-        this.state.referenceInvoice=referenceInvoiceIn;
-        axios.post(c.api + 'sales/searchInvoice/',
+    SearchInvoice(e){
+        e.preventDefault();
+        this.state.referenceInvoice=this.state.referenceField;
+
+        if (this.state.referenceField === ""){
+            this.setState({isAlertEmpty: true})
+            return;
+        }
+        this.setState({isAlertEmpty: false})
+        Axios.post(c.api + 'sales/searchInvoice/',
             {
                 referenceBill:this.state.referenceInvoice
             },
@@ -120,6 +83,7 @@ class CheckPendingBills extends React.Component {
                             total: response.data.total,
                             interes: response.data.interes,
                             reconexion: response.data.reconexion})
+            console.log(this.state)
         }).catch(error => {
             console.log(error)
             this.setState({ valor: "1", 
@@ -130,34 +94,51 @@ class CheckPendingBills extends React.Component {
         })
         
     }
-
-    
-
     /**
-     * Para que un cliente pague una factura no vencida
+     * Para pagar la factura y todas la facturas asociadas al cliente
      * 
      */
-    payInvoice(e){
-        e.preventDefault()
-        axios.post(c.api + 'sales/payInvoiceClient/',
+    payReconnection(){
+        this.setState({isAlertEmpty: false})
+        console.log(this.state.referenceInvoice)
+        Axios.post(c.api + 'sales/payReconnection/',
             {
-                bank:this.state.bancoSeleccionado,
-                referenceBill:this.state.referenceInvoice
+                referenceBill:this.state.referenceInvoice,
+                operator: this.state.credentials.id
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.closeModal();
-            /* window.location.reload(true);*/
+            alert(response.data)
+        }).catch(error => {                      
+            this.closeModal();
+        })
+        
+    }
+    /**
+     * Para pagar una factura no vencida
+     * 
+     */
+    payInvoice(){
+        this.setState({isAlertEmpty: false})
+        Axios.post(c.api + 'sales/payAnInvoice/',
+            {
+                referenceBill:this.state.referenceInvoice,
+                operator: this.state.credentials.id
+            },
+            {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            this.closeModal();
+            alert(response.data)
         }).catch(error => {
             console.log(error)                        
             this.closeModal();
         })   
     }
-
-
     closeModal(){
         
         this.setState({
+            isAlertEmpty: false,
             referenceInvoice: "",
             valor: "", 
             mora: "",
@@ -166,75 +147,70 @@ class CheckPendingBills extends React.Component {
             total: ""
         })
     }
+    onChangeState(e){
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        
+        this.setState({
+            [name]:value
+        })
+    }
 
-    
-
-    render() {
-        const { t } = this.props;
+    render(){
+        const { t } = this.props
         return(
             <>
             <UVHeader />
-            {/* Page content */}
+
             <Container className="mt--7" fluid>
-                {/* Table */}
-                <Row>
-                    <div className="col">
-                        <Card className="shadow">
-                            <CardHeader className="border-0">
-                            <font size="5">{t("Bill.MyBills.1")}</font>
-                            </CardHeader>
-                            <Table className="align-items-center table-flush" responsive>
-                            <thead className="thead-light" align="center">
-                                <tr>
-                                <th scope="col"><font size="2">{t("Bill.Id.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.expeditionDate.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.expirationDate.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.value.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.Visualize.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Bill.Pay.1")}</font></th>
-                                </tr>
-                            </thead>
-                            <tbody  >
-                                {this.state.listBills.map((item, key) => 
-                                    
-                                    <tr key={'bill-'+ key}>
-                                    <td align="center">{item.pk_bill}</td>
-                                    <td align="center"> {item.expedition_date} </td>
-                                    <td align="center">{item.expiration_date}</td>
-                                    <td align="center">{item.value}</td>
-                                    <td className="text-center">
-                                        <Button
-                                            onClick={() => this.sendpdf(item.pk_bill)}
-                                            align="center"
-                                            className="text-blue"
-                                            role="button"
-                                            size="md"
-                                            color="white"
-                                        >
-                                            <i className="ni ni-single-copy-04" />
-                 
-                                        </Button>
-                                    </td>
-                                    <td className="text-center">
-                                        <Button
-                                            onClick={() => this.searchInvoice(item.pk_bill)}
-                                            align="center"
-                                            className="text-blue"
-                                            role="button"
-                                            size="md"
-                                            color="white"
-                                        >
-                                            <i className="ni ni-credit-card" />
-                 
-                                        </Button>
-                                    </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                            </Table>
-                        </Card>
-                    </div>
-                </Row>
+                <Card className="bg-secondary shadow">
+                    <CardHeader className="bg-white border-0">
+                    <Row className="align-items-center">
+                        <Col xs="8">
+                        <font size="5">{t("PayBills.PayWithInvoices.1")}</font>
+                        </Col>
+                    </Row>
+                    </CardHeader>
+                    <CardBody>
+
+                    <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                        <strong>{t("PayBills.Warning.1")}</strong> {t("PayBills.EmptyFields.1")}
+                    </Alert>
+
+                    <Form onSubmit={this.SearchInvoice}>
+                        <h6 className="heading-small text-muted mb-4">
+                        {t("PayBills.EnterReferenceInvoice.1")}
+                        </h6>
+                        <div className="pl-lg-4">
+                        
+                            <FormGroup>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-first-name"
+                                >
+                                {t("PayBills.Reference.1")}
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                name="referenceField"
+                                id="input-first-name"
+                                placeholder={t("PayBills.Reference.1")}
+                                type="text"
+                                value={this.state.referenceField}
+                                onChange={this.onChangeState}
+                                />
+                            </FormGroup>
+                            <div className="text-center">
+                                <Button className="mt-4" color="primary" type="submit">
+                                {t("PayBills.Search.1")}
+                                </Button>
+                            </div>
+                        
+                        </div>
+                    </Form>
+                    </CardBody>
+                </Card>
                 <Modal
                     className="modal-dialog-centered"
                     color="warning"
@@ -318,7 +294,7 @@ class CheckPendingBills extends React.Component {
                             <strong>{t("PayBills.Information.1")}!</strong><br/>
                         </Alert>
                         <br></br>
-                        {t("PayBills.Reconnection.3")}<br/><br/>
+                        {t("PayBills.Reconnection.2")}<br/><br/>
                         {t("PayBills.Value.1")} = $ {this.state.valor} <br/>
                         {t("PayBills.Debt.1")} = $ {this.state.mora} <br/>
                         {t("PayBills.Interest.1")} = $ {this.state.interes} <br/>
@@ -328,6 +304,14 @@ class CheckPendingBills extends React.Component {
                     </div>
                     </ModalBody>
                     <div className="modal-footer">
+                        <Button
+                            color="success"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.payReconnection}
+                            >
+                            {t("PayBills.PayReconnection.1")}
+                        </Button>
                         <Button
                             color="primary"
                             data-dismiss="modal"
@@ -349,27 +333,6 @@ class CheckPendingBills extends React.Component {
                         <Alert color="info">
                             <strong>{t("PayBills.Information.1")}!</strong><br/>
                         </Alert>
-                        <br></br>
-
-                        
-                            <UncontrolledDropdown nav>
-                                <DropdownToggle className="dropdown-menu-arrow">
-                                
-                                        {t("PayBills.SelectBank.1")}  
-                                    
-                                </DropdownToggle>
-                                <DropdownMenu className="dropdown-menu-arrow" right>
-                                    <DropdownItem onClick={()=>this.state.bancoSeleccionado="Banco1"}>
-                                        Banco1
-                                    </DropdownItem>
-                                    <DropdownItem onClick={()=>this.state.bancoSeleccionado="MiBanco"}>
-                                        MiBanco
-                                    </DropdownItem>
-                                    
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-
-                        <br></br>
                         <br></br>
                         
                         {t("PayBills.Value.1")} = $ {this.state.valor} <br/>
@@ -398,10 +361,12 @@ class CheckPendingBills extends React.Component {
                         </Button>
                     </div>
                 </Modal>
+                
+                
             </Container>
             </>
         );
     }
 }
 
-export default withTranslation()(CheckPendingBills);
+export default withTranslation()(PayWithInvoice);

@@ -163,6 +163,12 @@
         },
         "ConfirmationDisable":{
             "1":"Deshabilitar Operador?"
+        },
+        "PayWithInvoices":{
+            "1": "Pagar facturas con su referencia"
+        },
+        "PayWithClient":{
+            "1": "Pagar facturas con código del cliente"
         }
     },
     "Manager":{
@@ -618,6 +624,9 @@
         },
         "value":{
             "1":"Valor"
+        },
+        "Pay":{
+            "1":"Pagar"
         }
     },
     "Client":{
@@ -745,7 +754,81 @@
             "1": "Todos los campos deben ser numéricos. Se encontró un campo que no lo cumple."
         },
         "Error":{
-            "1":"Se produjo un error al generar las facturas."
+            "1":"Se produjo un error al generar las facturas.",
+            "2":"Los bancos deben ser Banco1 ó MiBanco"
+        },
+        "Upload":{
+            "1":"Subir pagos"
+        },
+        "UploadFile":{
+            "1":"Subir archivo"
+        }
+    },
+    "PayBills":{
+        "PayWithInvoices":{
+            "1": "Pagar facturas con su referencia"
+        },
+        "EnterReferenceInvoice":{
+            "1":"Ingrese la referencia de la factura a pagar"
+        },
+        "Reference":{
+            "1": "Referencia de la factura"
+        },
+        "PayWithClient":{
+            "1": "Pagar facturas con código del cliente"
+        },
+        "Warning":{
+            "1":"Advertencia"
+        },
+        "EmptyFields":{
+            "1": "El campo de búsqueda está vacío."
+        },
+        "Search":{
+            "1": "Buscar"
+        },
+        "Expired":{
+            "1": "La factura expiró"
+        },
+        "Close":{
+            "1": "Cerrar"
+        },
+        "NoFound":{
+            "1": "No se encontró la factura con la referencia indicada."
+        },
+        "Congratulations":{
+            "1":"Felicidades"
+        },
+        "Information":{
+            "1":"Información"
+        },
+        "Paid":{
+            "1":"La factura ya ha sido pagada."
+        },
+        "Reconnection":{
+            "1":"Reconexión",
+            "2":"El servicio se encuentra suspendido, debe pagar todas sus facturas y la reconexión.",
+            "3":"El servicio está suspendido, debe pagar todas sus facturas y volver a reconectarse . Por favor dirijase al sitio de atención más cercano para este procedimiento."
+        },
+        "PayReconnection":{
+            "1":"Pagar facturas asociadas y reconexión"
+        },
+        "Value":{
+            "1":"Valor"
+        },
+        "Debt":{
+            "1":"Mora"
+        },
+        "Total":{
+            "1":"Total"
+        },
+        "PayInvoice":{
+            "1":"Pagar Factura"
+        },
+        "Interest":{
+            "1":"Interés"
+        },
+        "SelectBank":{
+            "1":"Seleccione un banco"
         }
     },
     "Report":{
@@ -773,6 +856,12 @@
         "Year":{
             "1":"Año"
         },
+        "InitMonth":{
+            "1": "Mes de Inicio"
+        },
+        "InitYear":{
+            "1":"Año de Inicio"
+        },
         "Type":{
             "1":"Tipo de Reporte"
         },
@@ -780,5 +869,4 @@
             "1":"Generar Reporte"
         }
     }
-}
 }

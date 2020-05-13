@@ -14,7 +14,9 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  UncontrolledDropdown
+  UncontrolledDropdown,
+  Col,
+  CardBody
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
@@ -25,7 +27,7 @@ import Cookies from 'universal-cookie';
 const c = require('../constants')
 const cookie = new Cookies();
 
-class CheckPendingBills extends React.Component {
+class PayWithClient extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -41,6 +43,8 @@ class CheckPendingBills extends React.Component {
                 fk_meter: -1,
                 fk_employee: -1
             },
+
+            client: "",
 
             bancoSeleccionado: "Banco1",
             referenceInvoice: "",
@@ -115,18 +119,14 @@ class CheckPendingBills extends React.Component {
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
-            this.setState({ valor: response.data.valor, 
-                            mora: response.data.mora,
-                            total: response.data.total,
-                            interes: response.data.interes,
-                            reconexion: response.data.reconexion})
+            this.setState(response.data)
         }).catch(error => {
             console.log(error)
-            this.setState({ valor: "1", 
+            this.setState({ valor: "21", 
                             mora: "1",
-                            total: "1",
-                            interes: "1",
-                            reconexion: "1"})
+                            total: "132",
+                            interes: "21",
+                            reconexion: "0"})
         })
         
     }
@@ -137,8 +137,8 @@ class CheckPendingBills extends React.Component {
      * Para que un cliente pague una factura no vencida
      * 
      */
-    payInvoice(e){
-        e.preventDefault()
+    payInvoice(){
+        
         axios.post(c.api + 'sales/payInvoiceClient/',
             {
                 bank:this.state.bancoSeleccionado,
@@ -147,7 +147,7 @@ class CheckPendingBills extends React.Component {
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.closeModal();
-            /* window.location.reload(true);*/
+            window.location.reload(true);
         }).catch(error => {
             console.log(error)                        
             this.closeModal();
@@ -171,13 +171,39 @@ class CheckPendingBills extends React.Component {
 
     render() {
         const { t } = this.props;
+
+
         return(
             <>
             <UVHeader />
             {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
-                <Row>
+
+                <Card className="bg-secondary shadow">
+                    <CardHeader className="bg-white border-0">
+                    <Row className="align-items-center">
+                        <Col xs="8">
+                        <font size="5">{t("PayBills.PayWithInvoices.1")}</font>
+                        </Col>
+                    </Row>
+                    </CardHeader>
+                    <CardBody>
+
+                    <Alert color="warning" isOpen={this.state.isAlertEmpty}>
+                        <strong>{t("PayBills.Warning.1")}</strong> {t("PayBills.EmptyFields.1")}
+                    </Alert>
+
+
+
+
+
+
+
+
+
+
+
+                    <Row>
                     <div className="col">
                         <Card className="shadow">
                             <CardHeader className="border-0">
@@ -398,10 +424,33 @@ class CheckPendingBills extends React.Component {
                         </Button>
                     </div>
                 </Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </CardBody>
+                </Card>
+
+
+
             </Container>
             </>
         );
     }
 }
 
-export default withTranslation()(CheckPendingBills);
+export default withTranslation()(PayWithClient);
+                

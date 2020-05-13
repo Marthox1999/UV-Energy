@@ -14,12 +14,10 @@ import {
   Row,
   Col,
   FormGroup,
-  Alert,
   CardBody,
   Form,
   UncontrolledDropdown,
   Media,
-  Link,
   DropdownToggle,   
   DropdownItem,
   DropdownMenu,
@@ -55,23 +53,15 @@ class managerReport extends React.Component {
         super(props);
 
         this.state = {
-            admin : {
-                username: "Username",
-                password: "",
-                email: "Email",
-                first_name: "Name",
-                last_name: "Last name",
-                is_active: true,
-                cellphone: "123",
-                position: "ADMIN"
-            },
-            labels: [],
-            data: [],
+            info:[],
             date:{
+                initYear:'',
                 year: '',
+                initMonth:'',
                 month:'',
             },
-            graphType:0 ,
+            graphType:1,
+            reportType:"",
             path: '',
             isAlertEmpty: false,
             isAlertSuccess: false,
@@ -80,61 +70,78 @@ class managerReport extends React.Component {
         }
         this.onChangeYear = this.onChangeYear.bind(this);
         this.onChangeMonth = this.onChangeMonth.bind(this);
+        this.onChangeInitYear = this.onChangeInitYear.bind(this);
+        this.onChangeInitMonth = this.onChangeInitMonth.bind(this);
+        this.onChangeReportType = this.onChangeReportType.bind(this);
+        this.GenerateReport=this.GenerateReport.bind(this);
+
     }
-    componentDidMount(){
-   
+
+    onChangeInitYear(e){
+        this.setState({ date: {
+            initYear: e.target.value,
+            year: this.state.date.year,
+            initMonth: this.state.date.initMonth,
+            month: this.state.date.month,
+                                            }})
     }
+
 
     onChangeYear(e){
         this.setState({ date: {
-                                                year: e.target.value,
-                                                month: this.state.date.month,
+            initYear: this.state.date.initYear,
+            year: e.target.value,
+            initMonth: this.state.date.initMonth,
+            month: this.state.date.month,
                                             }})
     }
+
+    onChangeInitMonth(e){
+        this.setState({ date: {
+            initYear:this.state.date.initYear,
+            year: this.state.date.year,
+            initMonth: e.target.value,
+            month: this.state.date.month,
+                                            }})
+    }
+  
+
     onChangeMonth(e){
         this.setState({ date: {
-                                                year: this.state.date.year,
-                                                month: e.target.value,
+            initYear:this.state.date.initYear,
+            year: this.state.date.year,
+            initMonth: this.state.date.initMonth,
+             month: e.target.value,
                                             }})
     }
 
     onChangeGraphType(e){
         this.setState({
-            /*1: barras
-              2: linea */
             graphType: 1,
         })
     }
-    /*
+
+    onChangeReportType(e){
+        this.setState({
+            reportType:e.target.value,
+        })
+    }
+
     GenerateReport(e){
         e.preventDefault()
-        if ((this.state.date.month === "") ||
-            (this.state.date.year === "")){
-            console.log(this.state.date)
-            this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
-        }else{
-            axios.post(c.api + 'users/user/',
-
-                       {headers: { Authorization: `Token ${this.state.credentials.token}`}})
-            .then( response => {
-                console.log(response)
-                if (response.data.username !== ""){
-                    this.setState({ isAlertSuccess: true,
-                                    isAlertEmpty: false,
-                                    isBadinputs: false,
-                                    admin : response.data});
-                }
-            }).catch(error => {
-                console.log(error)
-                this.setState({ isAlertSuccess: false,
-                                isAlertEmpty: false,
-                                isBadinputs: true})
-            })
-        }
+        console.log(this.state.credentials.token)
+        axios.post(c.api + 'sales/generateReport/', 
+            { time_size:"monthly", init_month:this.state.date.initMonth , finish_month: this.state.date.month , 
+                        init_year: this.state.date.initYear , finish_year: this.state.date.year, report_type: "bill" },
+            {headers: { Authorization: `Token ${this.state.credentials.token}` }
+    })
+            .then(response => {
+                    this.setState({ info: response.data })
+                    console.log(response.data)
+            }).catch(error => console.log(error.request))
+   
     }
-    */
-
-
+    
     render() {
         const { t } = this.props
         let graph;
@@ -184,9 +191,9 @@ class managerReport extends React.Component {
                     </Row>
                     </CardHeader>
                     <CardBody>
-                    <Form>
+                    <Form onSubmit= {(e)=> (this.GenerateReport(e))}>
                         <Row>
-                            <Col lg="3">
+                            <Col>
                             <center>
                             <FormGroup>
                                 <br></br>
@@ -202,17 +209,17 @@ class managerReport extends React.Component {
                                 {console.log(this.state.graphType)}
                                 </DropdownToggle>
                                 <DropdownMenu className="dropdown-menu-arrow" right>
-                                <DropdownItem onClick={()=> this.onChangeGraphType()}>
+                                <DropdownItem>
                                     {t("Report.Bills.1")}
                                 </DropdownItem>
-                                <DropdownItem onClick={()=> this.onChangeGraphType()}>
+                                <DropdownItem>
                                     {t("Report.Payments.1")}
                                 </DropdownItem>
-                                <DropdownItem onClick={()=> this.onChangeGraphType()}>
+                                <DropdownItem >
                                     {console.log(this.state.graphType)}
                                     {t("Report.Income.1")}
                                 </DropdownItem>
-                                <DropdownItem onClick={()=> this.onChangeGraphType()}>
+                                <DropdownItem>
                                     {t("Report.Consumption.1")}
                                 </DropdownItem>
                                 </DropdownMenu>
@@ -220,7 +227,43 @@ class managerReport extends React.Component {
                             </FormGroup>
                             </center>
                             </Col>
-                            <Col lg="3">
+                            <Col>
+                            <FormGroup>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-initYear"
+                                >
+                                {t("Report.InitYear.1")}
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                name="year"
+                                placeholder={t("Report.InitYear.1")}
+                                type="number"
+                                value={this.state.date.initYear}
+                                onChange={this.onChangeInitYear}
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col>
+                            <FormGroup>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-initMont"
+                                >
+                                {t("Report.InitMonth.1")}
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                name="month"
+                                placeholder={t("Report.InitMonth.1")}
+                                type="number"
+                                value={this.state.date.initMonth}
+                                onChange={this.onChangeInitMonth}
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col>
                             <FormGroup>
                                 <label
                                 className="form-control-label"
@@ -238,11 +281,11 @@ class managerReport extends React.Component {
                                 />
                             </FormGroup>
                             </Col>
-                            <Col lg="3">
+                            <Col>
                             <FormGroup>
                                 <label
                                 className="form-control-label"
-                                htmlFor="input-last-name"
+                                htmlFor="input-month"
                                 >
                                 {t("Report.Month.1")}
                                 </label>
@@ -256,7 +299,7 @@ class managerReport extends React.Component {
                                 />
                             </FormGroup>
                             </Col>
-                            <Col lg="3">
+                            <Col>
                             <FormGroup>
                                 <Button className="mt-4" color="primary" type="submit">
                                 {t("Report.Generate.1")}
@@ -267,6 +310,7 @@ class managerReport extends React.Component {
                         </Row>
                     </Form>
                     {console.log(this.state.date)}
+                    {console.log(this.state.credentials)}
                     {graph}                        
                     </CardBody>
                 </Card>                
