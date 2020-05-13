@@ -750,7 +750,34 @@
     },
     "Report":{
         "Name":{
-            "1": "Reports"
+            "1": "Reportes"
+        },
+        "Bills":{
+            "1": "Facturas"
+        },
+        "Income":{
+            "1": "Ingresos"
+        },
+        "Consumption":{
+            "1": "Consumo"
+        },
+        "Payments":{
+            "1":"Pagos"
+        },
+        "Day":{
+            "1": "Dia"
+        },
+        "Month":{
+            "1": "Mes"
+        },
+        "Year":{
+            "1":"Año"
+        },
+        "Type":{
+            "1":"Tipo de Reporte"
+        },
+        "Generate":{
+            "1":"Generar Reporte"
         }
     }
 }

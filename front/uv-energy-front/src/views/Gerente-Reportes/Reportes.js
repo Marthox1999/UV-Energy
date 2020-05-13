@@ -2,6 +2,8 @@ import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { withTranslation } from 'react-i18next';
+import {Bar} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 
 // reactstrap components
 import {
@@ -10,8 +12,19 @@ import {
   CardHeader,
   Container,
   Row,
-  Table,
+  Col,
+  FormGroup,
   Alert,
+  CardBody,
+  Form,
+  UncontrolledDropdown,
+  Media,
+  Link,
+  DropdownToggle,   
+  DropdownItem,
+  DropdownMenu,
+  Input
+
 } from "reactstrap";
 
 import 'leaflet/dist/leaflet.css';
@@ -23,16 +36,23 @@ const c = require('../constants')
 
 const cookie = new Cookies();
 
+const state = {
+    labels: ['Mayo'],
+    datasets: [
+      {
+        label: '',
+        backgroundColor: "blue",
+        borderColor: 'rgba(0,0,0,0)',
+        borderWidth: 2,
+        data: [5]
+      }
+    ]
+  }
+
+
 class managerReport extends React.Component {
     constructor(props){
         super(props);
-        if(this.props.location.state === null){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: false, reload: false}}
-        }else if(this.props.location.state.disabledAdmin){
-            this.props = { state:{disabledAdmin: true, deletedAdmin: false, reload: true}}
-        }else if(this.props.location.state.deletedAdmin){
-            this.props = { state:{disabledAdmin: false, deletedAdmin: true, reload: true}}
-        }
 
         this.state = {
             admin : {
@@ -45,95 +65,218 @@ class managerReport extends React.Component {
                 cellphone: "123",
                 position: "ADMIN"
             },
+            labels: [],
+            data: [],
+            date:{
+                year: '',
+                month:'',
+            },
+            graphType:0 ,
             path: '',
-            listAdmins: [],
-            isdisabledAdmin: this.props.state.disabledAdmin,
-            isdeletedAdmin: this.props.state.deletedAdmin,
+            isAlertEmpty: false,
+            isAlertSuccess: false,
+            isBadinputs: false,
             credentials: cookie.get('notCredentials'),           
         }
+        this.onChangeYear = this.onChangeYear.bind(this);
+        this.onChangeMonth = this.onChangeMonth.bind(this);
     }
     componentDidMount(){
-        console.log(this.state.credentials)
-        if(this.state.credentials.position === 'ADMIN'){
-            this.setState({path: '/admin/RUDDAdmin'})
-        }else if(this.state.credentials.position === 'MGR'){
-            this.setState({path: '/manager/RUDDAdminM'})
-
-        }
-        axios.get(c.api + 'users/activeAdmin/',
-                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
-        .then( response => {
-            if( response.data.error != null){
-                alert(response.data.error);
-                alert("There are no registered administrators.")
-              }
-              else{
-                this.setState({listAdmins: response.data})
-                console.log(this.state.listAdmins)
-                //console.log(response.config)
-            }             
-        }).catch(error => alert(error))
+   
     }
+
+    onChangeYear(e){
+        this.setState({ date: {
+                                                year: e.target.value,
+                                                month: this.state.date.month,
+                                            }})
+    }
+    onChangeMonth(e){
+        this.setState({ date: {
+                                                year: this.state.date.year,
+                                                month: e.target.value,
+                                            }})
+    }
+
+    onChangeGraphType(e){
+        this.setState({
+            /*1: barras
+              2: linea */
+            graphType: 1,
+        })
+    }
+    /*
+    GenerateReport(e){
+        e.preventDefault()
+        if ((this.state.date.month === "") ||
+            (this.state.date.year === "")){
+            console.log(this.state.date)
+            this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
+        }else{
+            axios.post(c.api + 'users/user/',
+
+                       {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+            .then( response => {
+                console.log(response)
+                if (response.data.username !== ""){
+                    this.setState({ isAlertSuccess: true,
+                                    isAlertEmpty: false,
+                                    isBadinputs: false,
+                                    admin : response.data});
+                }
+            }).catch(error => {
+                console.log(error)
+                this.setState({ isAlertSuccess: false,
+                                isAlertEmpty: false,
+                                isBadinputs: true})
+            })
+        }
+    }
+    */
+
+
     render() {
         const { t } = this.props
+        let graph;
+        if (this.state.graphType) {
+        graph = <Bar
+        data={state}
+        display="none"
+        options={{
+            title:{
+            display:true,
+            text:'Average Rainfall per month',
+            fontSize:15
+            },
+            legend:{
+            display:true,
+            position:'right'
+            }
+        }}/>;
+        } else {
+        graph = <Line
+        data={state}
+        display="none"
+        options={{
+            title:{
+            display:true,
+            text:'Average Rainfall per month',
+            fontSize:15
+            },
+            legend:{
+            display:true,
+            position:'right'
+            }
+        }}/>;
+        }
+
         return(
             <>
             <UVHeader />
             {/* Page content */}
             <Container className="mt--7" fluid>
-                {/* Table */}
-                <Row>
-                    <div className="col">
-                        <Card className="shadow">
-                            <CardHeader className="border-0">
-                            <font size="5">{t("Admin.ActiveAdmins.1")}</font>
-                            </CardHeader>
-                            <Alert color="info" isOpen={this.state.isdisabledAdmin}>
-                                {t("Admin.DisableAdmin.1")}
-                            </Alert>
-                            <Alert color="info" isOpen={this.state.isdeletedAdmin}>
-                                {t("Admin.DeletedAdmin.1")}
-                            </Alert>
-                            <Table className="align-items-center table-flush" responsive>
-                            <thead className="thead-light">
-                                <tr>
-                                <th scope="col"><font size="2">{t("Admin.Id.2")}</font></th>
-                                <th scope="col"><font size="2">{t("Admin.Name.1")}</font></th>
-                                <th scope="col"><font size="2">{t("Admin.Username.1")}</font></th>
-                                <th scope="col" />
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.listAdmins.map((item, key) => 
-                                    <tr key={'admin-'+key}>
-                                    <td>{item.id}</td>
-                                    <th scope="row">
-                                        <span className="mb-0 text-sm">
-                                        {item.first_name}
-                                        </span>
-                                    </th>
-                                    <td>{item.username}</td>
-                                    <td className="text-right">
-                                        <Button
+                <Card className="bg-secondary shadow">
+                    <CardHeader className="bg-white border-0">
+                    <Row className="align-items-center">
+                        <Col xs="8">
+                        <h3 className="mb-0">{t("Report.Name.1")}</h3>
+                        </Col>
+                    </Row>
+                    </CardHeader>
+                    <CardBody>
+                    <Form>
+                        <Row>
+                            <Col lg="3">
+                            <center>
+                            <FormGroup>
+                                <br></br>
+                                <UncontrolledDropdown nav>
+                                <DropdownToggle className="dropdown-menu-arrow">
+                                <Media className="align-items-center" >
+                                    <span className="mb-0 text-sm font-weight-bold">
+                                        {t("Report.Type.1")}
+                                    </span>
+                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
+                                    </span>
+                                </Media>
+                                {console.log(this.state.graphType)}
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                <DropdownItem onClick={()=> this.onChangeGraphType()}>
+                                    {t("Report.Bills.1")}
+                                </DropdownItem>
+                                <DropdownItem onClick={()=> this.onChangeGraphType()}>
+                                    {t("Report.Payments.1")}
+                                </DropdownItem>
+                                <DropdownItem onClick={()=> this.onChangeGraphType()}>
+                                    {console.log(this.state.graphType)}
+                                    {t("Report.Income.1")}
+                                </DropdownItem>
+                                <DropdownItem onClick={()=> this.onChangeGraphType()}>
+                                    {t("Report.Consumption.1")}
+                                </DropdownItem>
+                                </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </FormGroup>
+                            </center>
+                            </Col>
+                            <Col lg="3">
+                            <FormGroup>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-year"
+                                >
+                                {t("Report.Year.1")}
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                name="year"
+                                placeholder={t("Report.Year.1")}
+                                type="number"
+                                value={this.state.date.year}
+                                onChange={this.onChangeYear}
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col lg="3">
+                            <FormGroup>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-last-name"
+                                >
+                                {t("Report.Month.1")}
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                name="month"
+                                placeholder={t("Report.Month.1")}
+                                type="number"
+                                value={this.state.date.month}
+                                onChange={this.onChangeMonth}
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col lg="3">
+                            <FormGroup>
+                                <Button className="mt-4" color="primary" type="submit">
+                                {t("Report.Generate.1")}
+                                </Button>
+                            </FormGroup>
+                            </Col>
 
-                                            className="text-blue"
-                                            role="button"
-                                            size="md"
-                                            color="white"
-                                            onClick={ () => this.props.history.push({pathname: this.state.path, state: { adminID: item.id }}) }
-                                        >
-                                            <i className="ni ni-settings" />
-                 
-                                        </Button>
-                                    </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                            </Table>
-                        </Card>
-                    </div>
-                </Row>
+                        </Row>
+                    </Form>
+                    {console.log(this.state.date)}
+                    {graph}                        
+                    </CardBody>
+                </Card>                
             </Container>
+
+
+                        
+
+            
+            
             </>
         );
     }

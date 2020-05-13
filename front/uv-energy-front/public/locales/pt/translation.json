@@ -751,6 +751,33 @@
     "Report":{
         "Name":{
             "1": "Relatórios"
+        },
+        "Bills":{
+            "1": "Contas"
+        },
+        "Income":{
+            "1": "Renda"
+        },
+        "Consumption":{
+            "1": "Consumo"
+        },
+        "Payments":{
+            "1":"Pagamentos"
+        },
+        "Day":{
+            "1": "Dia"
+        },
+        "Month":{
+            "1": "Mês"
+        },
+        "Year":{
+            "1":"Ano"
+        },
+        "Type":{
+            "1":"Tipo de Relatório"
+        },
+        "Generate":{
+            "1":"Gerar Relatório"
         }
     }
 }
