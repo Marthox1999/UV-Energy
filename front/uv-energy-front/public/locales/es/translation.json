@@ -621,6 +621,9 @@
         },
         "value":{
             "1":"Valor"
+        },
+        "Pay":{
+            "1":"Pagar"
         }
     },
     "Client":{
@@ -809,6 +812,9 @@
         },
         "PayInvoice":{
             "1":"Pagar Factura"
+        },
+        "Interest":{
+            "1":"Interés"
         }
     }
 }

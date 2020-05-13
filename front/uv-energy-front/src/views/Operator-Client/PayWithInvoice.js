@@ -34,8 +34,9 @@ class PayWithInvoice extends React.Component {
             referenceInvoice: "",
             valor: "", 
             mora: "",
-            total: "", 
+            interes: "",
             reconexion: "",
+            total: "",
             credentials: cookie.get('notCredentials'),
         }
         this.onChangeState = this.onChangeState.bind(this)
@@ -62,7 +63,8 @@ class PayWithInvoice extends React.Component {
      */
     SearchInvoice(e){
         e.preventDefault();
-        this.referenceInvoice=this.referenceField;
+        this.state.referenceInvoice=this.state.referenceField;
+
         if (this.state.referenceField === ""){
             this.setState({isAlertEmpty: true})
             return;
@@ -79,8 +81,9 @@ class PayWithInvoice extends React.Component {
             console.log(error)
             this.setState({ valor: "12", 
                             mora: "1",
-                            total: "34013", 
-                            reconexion: "0"})
+                            total: "132",
+                            interes: "21",
+                            reconexion: "21"})
         })
         
     }
@@ -90,12 +93,8 @@ class PayWithInvoice extends React.Component {
      */
     payReconnection(){
         
-        this.referenceInvoice=this.referenceField;
-        if (this.state.referenceField === ""){
-            this.setState({isAlertEmpty: true})
-            return;
-        }
         this.setState({isAlertEmpty: false})
+        console.log(this.state.referenceInvoice)
         Axios.post(c.api + 'sales/payReconnection',
             {
                 referenceBill:this.state.referenceInvoice
@@ -116,11 +115,6 @@ class PayWithInvoice extends React.Component {
      */
     payInvoice(){
         
-        this.referenceInvoice=this.referenceField;
-        if (this.state.referenceField === ""){
-            this.setState({isAlertEmpty: true})
-            return;
-        }
         this.setState({isAlertEmpty: false})
         Axios.post(c.api + 'sales/payAnInvoice',
             {
@@ -132,8 +126,7 @@ class PayWithInvoice extends React.Component {
         }).catch(error => {
             console.log(error)                        
             this.closeModal();
-        })
-        
+        })   
     }
 
 
@@ -144,8 +137,9 @@ class PayWithInvoice extends React.Component {
             referenceInvoice: "",
             valor: "", 
             mora: "",
-            total: "", 
-            reconexion: ""
+            interes: "",
+            reconexion: "",
+            total: ""
         })
     }
     onChangeState(e){
@@ -298,6 +292,7 @@ class PayWithInvoice extends React.Component {
                         {t("PayBills.Reconnection.2")}<br/><br/>
                         {t("PayBills.Value.1")} = $ {this.state.valor} <br/>
                         {t("PayBills.Debt.1")} = $ {this.state.mora} <br/>
+                        {t("PayBills.Interest.1")} = $ {this.state.interes} <br/>
                         {t("PayBills.Reconnection.1")} = $ {this.state.reconexion} <br/>
                         {t("PayBills.Total.1")} = $ {this.state.total} <br/>
 
@@ -337,6 +332,7 @@ class PayWithInvoice extends React.Component {
                         
                         {t("PayBills.Value.1")} = $ {this.state.valor} <br/>
                         {t("PayBills.Debt.1")} = $ {this.state.mora} <br/>
+                        {t("PayBills.Interest.1")} = $ {this.state.interes} <br/>
                         {t("PayBills.Total.1")} = $ {this.state.total} <br/>
 
                     </div>
