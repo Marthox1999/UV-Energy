@@ -1,4 +1,4 @@
-from sales.models import Bill
+from sales.models import Bill, Bank, DebitPayment
 from assets.models import Meter, ElectricTransformer
 from users.models import User
 from rest_framework import viewsets, permissions
@@ -11,7 +11,6 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.core import serializers
 from django.core.exceptions import ValidationError
-from django.db import transaction
 import pdfkit
 import json
 
@@ -491,6 +490,7 @@ class payInvoiceViewSet (viewsets.ViewSet):
         permissions.IsAuthenticated
     ]
     def create(self, request):
+        from django.db import transaction
         pk = request.data["referenceBill"]
         pk_operator = request.data["operator"]
         with transaction.atomic():
@@ -502,6 +502,7 @@ class  payReconnectionViewSet (viewsets.ViewSet):
         permissions.IsAuthenticated
     ]
     def create(self, request):
+        from django.db import transaction
         pk = request.data["referenceBill"]
         pk_operator = request.data["operator"]
         with transaction.atomic():
@@ -525,7 +526,34 @@ class payInvoiceClientViewSet (viewsets.ViewSet):
         if not exists('BanksData'):
             makedirs('BanksData')
         
-        with open(join('BanksData', bank+'.txt'), 'a') as f:
+        with open(join('BanksData', bank), 'a') as f:
             f.write(str(pk) + '\n')
 
         return Response("guardado satisfactoriamente")
+
+class payUploadFileViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        from django.db import IntegrityError, transaction
+        pksInvoices = request.data["invoices"]
+        pkBank = request.data['bank']
+        bank = Bank.objects.get(name=pkBank)
+        try:
+            with transaction.atomic():
+                for invoice in pksInvoices:
+                    #creo el pago debito correspondiente
+                    debitpay = DebitPayment.objects.create(fk_bank=bank)
+                    #modifico las facturas con los pagos
+                    print(invoice)
+                    print(Bill.objects.select_for_update.filter(pk_bill=invoice))
+                    Bill.objects.select_for_update.filter(pk_bill=invoice).update(fk_debit_payment=debitpay, is_paid=True)
+        except IntegrityError:
+            print('Fallo en la venta!')
+            return Response('Fallo en la venta!')
+        except Exception:
+            print('algo mas paso', Exception.data)
+            return Response('algo mas paso')
+
+        return Response("end")
