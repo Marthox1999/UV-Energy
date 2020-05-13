@@ -298,6 +298,9 @@
         },
         "Bill":{
             "1":"My Bills"
+        },
+        "Reports":{
+            "1":"Reportes"
         }
     },
     "ETransformer":{
@@ -392,9 +395,6 @@
             "1":"Select a electric transformer first"
         }
     },
-
-
-
     "Substation":{
         "AddSubstation":{
             "1":"Add Substation"
@@ -833,6 +833,45 @@
         },
         "SelectBank":{
             "1":"Select a bank"
+        }
+    },
+
+    "Report":{
+        "Name":{
+            "1": "Reports"
+        },
+        "Bills":{
+            "1": "Bills"
+        },
+        "Income":{
+            "1": "Income"
+        },
+        "Consumption":{
+            "1": "Consumption"
+        },
+        "Payments":{
+            "1":"Payments"
+        },
+        "Day":{
+            "1": "Day"
+        },
+        "Month":{
+            "1": "Month"
+        },
+        "Year":{
+            "1":"Year"
+        },
+        "InitMonth":{
+            "1": "Initial Month"
+        },
+        "InitYear":{
+            "1":"initial Year"
+        },
+        "Type":{
+            "1":"Report Type"
+        },
+        "Generate":{
+            "1":"Generate Report"
         }
     }
 }

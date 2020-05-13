@@ -298,6 +298,9 @@
         },
         "Bill":{
             "1":"Minhas contas"
+        },
+        "Reports":{
+            "1":"Relatórios"
         }
     },
     "ETransformer":{
@@ -825,6 +828,44 @@
         },
         "SelectBank":{
             "1":"Selecione um banco"
+        }
+    },
+    "Report":{
+        "Name":{
+            "1": "Relatórios"
+        },
+        "Bills":{
+            "1": "Contas"
+        },
+        "Income":{
+            "1": "Renda"
+        },
+        "Consumption":{
+            "1": "Consumo"
+        },
+        "Payments":{
+            "1":"Pagamentos"
+        },
+        "Day":{
+            "1": "Dia"
+        },
+        "Month":{
+            "1": "Mês"
+        },
+        "Year":{
+            "1":"Ano"
+        },
+        "InitMonth":{
+            "1": "Mês de início"
+        },
+        "InitYear":{
+            "1":"Ano de início"
+        },
+        "Type":{
+            "1":"Tipo de Relatório"
+        },
+        "Generate":{
+            "1":"Gerar Relatório"
         }
     }
 }

@@ -1,5 +1,7 @@
 from rest_framework import routers
-from .api import BillListViewSet, PaidBillListViewSet, PendingBillListViewSet, GeneratePDFViewSet, GenerateBillsViewSet, SearchInvoiceViewSet, payInvoiceViewSet, payReconnectionViewSet
+
+from .api import BillListViewSet, PaidBillListViewSet, PendingBillListViewSet, GeneratePDFViewSet, GenerateBillsViewSet, SearchInvoiceViewSet, payInvoiceViewSet, payReconnectionViewSet, GenerateReportViewSet
+
 
 router = routers.DefaultRouter()
 router.register(r'billList', BillListViewSet, 'billList')
@@ -10,5 +12,6 @@ router.register(r'generateInvoices', GenerateBillsViewSet, 'createInvoices')
 router.register(r'searchInvoice', SearchInvoiceViewSet, 'searchInvoice')
 router.register(r'payAnInvoice', payInvoiceViewSet, 'payInvoice')
 router.register(r'payReconnection', payReconnectionViewSet, 'payReconnection')
+router.register(r'generateReport', GenerateReportViewSet, 'generateReport')
 
 urlpatterns = router.urls
