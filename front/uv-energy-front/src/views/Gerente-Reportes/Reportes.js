@@ -34,19 +34,6 @@ const c = require('../constants')
 
 const cookie = new Cookies();
 
-const state = {
-    labels: ['Mayo'],
-    datasets: [
-      {
-        label: '',
-        backgroundColor: "blue",
-        borderColor: 'rgba(0,0,0,0)',
-        borderWidth: 2,
-        data: [5]
-      }
-    ]
-  }
-
 
 class managerReport extends React.Component {
     constructor(props){
@@ -54,6 +41,8 @@ class managerReport extends React.Component {
 
         this.state = {
             info:[],
+            data:[],
+            labels:[],
             date:{
                 initYear:'',
                 year: '',
@@ -62,7 +51,9 @@ class managerReport extends React.Component {
             },
             graphType:1,
             reportType:"",
+            reporTime:"",
             path: '',
+            disabled:true,
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
@@ -73,6 +64,7 @@ class managerReport extends React.Component {
         this.onChangeInitYear = this.onChangeInitYear.bind(this);
         this.onChangeInitMonth = this.onChangeInitMonth.bind(this);
         this.onChangeReportType = this.onChangeReportType.bind(this);
+        this.onChangeReportTime = this.onChangeReportTime.bind(this);
         this.GenerateReport=this.GenerateReport.bind(this);
 
     }
@@ -127,56 +119,51 @@ class managerReport extends React.Component {
         })
     }
 
+    onChangeReportTime(e){
+        this.setState({
+            reportTime:e.target.value,
+        })
+        if(e.target.value=="monthly"){
+            this.setState({
+                disabled:false
+            })
+        }
+    }
+
     GenerateReport(e){
         e.preventDefault()
         console.log(this.state.credentials.token)
         axios.post(c.api + 'sales/generateReport/', 
-            { time_size:"monthly", init_month:this.state.date.initMonth , finish_month: this.state.date.month , 
-                        init_year: this.state.date.initYear , finish_year: this.state.date.year, report_type: "bill" },
+            { time_size:this.state.reportTime, init_month:this.state.date.initMonth , finish_month: this.state.date.month , 
+                        init_year: this.state.date.initYear , finish_year: this.state.date.year, report_type: this.state.reportType },
             {headers: { Authorization: `Token ${this.state.credentials.token}` }
     })
             .then(response => {
                     this.setState({ info: response.data })
-                    console.log(response.data)
+                    this.setState({data : this.state.info["data"]})
+                    this.setState({labels : this.state.info["labels"]})
+
+                   /* console.log(this.state.info["data"])
+                    console.log(this.state.info["labels"])*/
             }).catch(error => console.log(error.request))
    
     }
     
     render() {
         const { t } = this.props
-        let graph;
-        if (this.state.graphType) {
-        graph = <Bar
-        data={state}
-        display="none"
-        options={{
-            title:{
-            display:true,
-            text:'Average Rainfall per month',
-            fontSize:15
-            },
-            legend:{
-            display:true,
-            position:'right'
-            }
-        }}/>;
-        } else {
-        graph = <Line
-        data={state}
-        display="none"
-        options={{
-            title:{
-            display:true,
-            text:'Average Rainfall per month',
-            fontSize:15
-            },
-            legend:{
-            display:true,
-            position:'right'
-            }
-        }}/>;
-        }
-
+        const state = {
+            labels: this.state.labels,
+            datasets: [
+              {
+                label: '',
+                backgroundColor: "blue",
+                borderColor: 'rgba(0,0,0,0)',
+                borderWidth: 2,
+                data: this.state.data,
+              }
+            ]
+          }
+        
         return(
             <>
             <UVHeader />
@@ -206,21 +193,49 @@ class managerReport extends React.Component {
                                     <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
                                     </span>
                                 </Media>
-                                {console.log(this.state.graphType)}
                                 </DropdownToggle>
                                 <DropdownMenu className="dropdown-menu-arrow" right>
-                                <DropdownItem>
+                                <DropdownItem value="bill" onClick={(e)=> (this.onChangeReportType(e))}>
                                     {t("Report.Bills.1")}
                                 </DropdownItem>
-                                <DropdownItem>
-                                    {t("Report.Payments.1")}
+                                <DropdownItem value="debit_payments" onClick={(e)=> (this.onChangeReportType(e))}>
+                                    {t("Report.BPayments.1")}
                                 </DropdownItem>
-                                <DropdownItem >
-                                    {console.log(this.state.graphType)}
+                                <DropdownItem value="operator_payments" onClick={(e)=> (this.onChangeReportType(e))}>
+                                    {t("Report.OPayments.1")}
+                                </DropdownItem>
+                                <DropdownItem value ="income" onClick={(e)=> (this.onChangeReportType(e))} >
+            
                                     {t("Report.Income.1")}
                                 </DropdownItem>
-                                <DropdownItem>
+                                <DropdownItem  value="consumption" onClick={(e)=> (this.onChangeReportType(e))}>
                                     {t("Report.Consumption.1")}
+                                </DropdownItem>
+                                </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </FormGroup>
+                            </center>
+                            </Col>
+                            <Col>
+                            <center>
+                            <FormGroup>
+                                <br></br>
+                                <UncontrolledDropdown nav>
+                                <DropdownToggle className="dropdown-menu-arrow">
+                                <Media className="align-items-center" >
+                                    <span className="mb-0 text-sm font-weight-bold">
+                                        {t("Report.Period.1")}
+                                    </span>
+                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
+                                    </span>
+                                </Media>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                <DropdownItem value="monthly" onClick={(e)=> (this.onChangeReportTime(e))}>
+                                    {t("Report.Monthly.1")}
+                                </DropdownItem>
+                                <DropdownItem value="yearly" onClick={(e)=> (this.onChangeReportTime(e))}>
+                                    {t("Report.Yearly.1")}
                                 </DropdownItem>
                                 </DropdownMenu>
                                 </UncontrolledDropdown>
@@ -260,6 +275,7 @@ class managerReport extends React.Component {
                                 type="number"
                                 value={this.state.date.initMonth}
                                 onChange={this.onChangeInitMonth}
+                                disabled={this.state.disabled}
                                 />
                             </FormGroup>
                             </Col>
@@ -296,6 +312,7 @@ class managerReport extends React.Component {
                                 type="number"
                                 value={this.state.date.month}
                                 onChange={this.onChangeMonth}
+                                disabled={this.state.disabled}
                                 />
                             </FormGroup>
                             </Col>
@@ -309,9 +326,20 @@ class managerReport extends React.Component {
 
                         </Row>
                     </Form>
-                    {console.log(this.state.date)}
-                    {console.log(this.state.credentials)}
-                    {graph}                        
+                    <Bar
+                        data={state}
+                        display="none"
+                        options={{
+                            title:{
+                            display:true,
+                            text:this.state.reportType,
+                            fontSize:15
+                            },
+                            legend:{
+                            display:true,
+                            position:'right'
+                            }
+                        }}/>                        
                     </CardBody>
                 </Card>                
             </Container>

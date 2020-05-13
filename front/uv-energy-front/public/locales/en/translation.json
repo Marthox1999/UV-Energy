@@ -849,8 +849,11 @@
         "Consumption":{
             "1": "Consumption"
         },
-        "Payments":{
-            "1":"Payments"
+        "BPayments":{
+            "1":"Bank Payments"
+        },
+        "OPayments":{
+            "1":"Operator Payments"
         },
         "Day":{
             "1": "Day"
@@ -872,6 +875,15 @@
         },
         "Generate":{
             "1":"Generate Report"
+        },
+        "Period":{
+            "1":"Period Type"
+        },
+        "Monthly":{
+            "1":"Monthly"
+        },
+        "Yearly":{
+            "1":"Yearly"
         }
     }
 }
