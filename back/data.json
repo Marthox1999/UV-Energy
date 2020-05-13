@@ -1086,7 +1086,7 @@
     "pk": 5,
     "fields": {
         "address": "Cl. 5 #59A-17",
-        "stratum": 3,
+        "stratum": 2,
         "city": "CALI",
         "use": "RES",
         "fk_electric_transformers": 2,

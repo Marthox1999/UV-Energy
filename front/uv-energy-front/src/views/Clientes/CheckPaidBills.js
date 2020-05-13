@@ -54,6 +54,24 @@ class CheckPaidBills extends React.Component {
             }             
         }).catch(error => alert(error))
     }
+    sendpdf(key) {
+        axios({
+            url: c.api + 'sales/generatepdf/',
+            method: 'POST',
+            params: { pk_bill : key },
+            headers: { Authorization : `Token ${this.state.credentials.token}` },
+            responseType: 'blob'
+        }).then(response => {
+            if (response.data.error != null) {
+                console.log(response.data.error);
+            }
+            else {
+                const file = new Blob([response.data], { type: 'application/pdf' });
+                const fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            }
+        }).catch(error => alert(error))
+    }
     render() {
         const { t } = this.props
         return(
@@ -88,6 +106,7 @@ class CheckPaidBills extends React.Component {
                                     <td align="center">{item.value}</td>
                                     <td className="text-center">
                                         <Button
+                                            onClick={() => this.sendpdf(item.pk_bill)}
                                             align="center"
                                             className="text-blue"
                                             role="button"

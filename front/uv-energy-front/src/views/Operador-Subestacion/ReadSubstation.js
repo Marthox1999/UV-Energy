@@ -3,7 +3,6 @@ import React from "react";
 import axios from 'axios';
 // reactstrap components
 import {
-    Button,
     Card,
     CardHeader,
     CardBody,
@@ -13,9 +12,7 @@ import {
     Container,
     Row,
     Col,
-    Alert,
-    Modal,
-    ModalBody
+    Alert
   } from "reactstrap";
 
 import L from 'leaflet';

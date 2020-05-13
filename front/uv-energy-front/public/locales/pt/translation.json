@@ -162,6 +162,12 @@
         },
         "ConfirmationDisable":{
             "1":"Desabilitar Operador?"
+        },
+        "PayWithInvoices":{
+            "1": "Pagar contas com sua referência"
+        },
+        "PayWithClient":{
+            "1": "Pagar contas com código do cliente"
         }
     },
     "Manager":{
@@ -618,6 +624,9 @@
         },
         "value":{
             "1":"Valor"
+        },
+        "Pay":{
+            "1":"Pagar"
         }
     },
     "Client":{
@@ -746,6 +755,79 @@
         },
         "Error":{
             "1":"Ocorreu um erro ao gerar as faturas."
+        },
+        "Upload":{
+            "1":"Carregar pagamentos"
+        },
+        "UploadFile":{
+            "1":"Subir arquivo"
+        }
+    },
+    "PayBills":{
+        "PayWithInvoices":{
+            "1": "Pagar contas com sua referência"
+        },
+        "EnterReferenceInvoice":{
+            "1":"Insira a referência da fatura a pagar"
+        },
+        "Reference":{
+            "1": "Referência da fatura"
+        },
+        "PayWithClient":{
+            "1": "Pagar contas com código do cliente"
+        },
+        "Warning":{
+            "1":"Aviso"
+        },
+        "EmptyFields":{
+            "1": "O campo de pesquisa está vazio"
+        },
+        "Search":{
+            "1": "Pesquisar"
+        },
+        "Expired":{
+            "1": "A fatura expirou"
+        },
+        "Close":{
+            "1": "Fechar"
+        },
+        "NoFound":{
+            "1": "A fatura com a referência indicada não foi encontrada."
+        },
+        "Congratulations":{
+            "1":"Parabéns"
+        },
+        "Information":{
+            "1":"Informação"
+        },
+        "Paid":{
+            "1":"A fatura já foi paga"
+        },
+        "Reconnection":{
+            "1":"Reconexão",
+            "2":"O serviço está suspenso, você deve pagar todas as suas contas e reconectar.",
+            "3":"O serviço está suspenso, você deve pagar todas as suas contas e reconectar. Por favor, vá ao site de serviço mais próximo para este procedimento."
+        },
+        "PayReconnection":{
+            "1":"Pague as faturas e a reconexão associadas"
+        },
+        "Value":{
+            "1":"Valor"
+        },
+        "Debt":{
+            "1":"Dívida"
+        },
+        "Total":{
+            "1":"Total"
+        },
+        "PayInvoice":{
+            "1":"Pagar fatura"
+        },
+        "Interest":{
+            "1":"Juro"
+        },
+        "SelectBank":{
+            "1":"Selecione um banco"
         }
     },
     "Report":{

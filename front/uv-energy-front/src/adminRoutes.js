@@ -9,6 +9,7 @@ import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator
 import AddSubstation from "views/Administrador-Subestacion/AddSubstation.js";
 import ModifySubstation from "views/Administrador-Subestacion/ModifySubstation.js";
 import SetInvoices from "views/Administrador-Configurar/SetInvoices.js";
+import UploadInvoices from "views/Administrador-Configurar/UploadInvoices.js";
 
 var settingRoutes = [
   
@@ -17,6 +18,13 @@ var settingRoutes = [
     name: "Settings.SetUpInvoices.1",
     icon: "ni ni-settings text-blue",
     component: SetInvoices,
+    layout: "/admin"
+  },
+  {
+    path: "/upload",
+    name: "Settings.Upload.1",
+    icon: "ni ni-settings text-blue",
+    component: UploadInvoices,
     layout: "/admin"
   },
 ]
