@@ -31,7 +31,7 @@ const cookie = new Cookies();
 
 
 
-class SetInvoices extends React.Component {
+class UploadPayments extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -147,4 +147,4 @@ class SetInvoices extends React.Component {
 }
 
 
-export default withTranslation()(SetInvoices);
+export default withTranslation()(UploadPayments);
