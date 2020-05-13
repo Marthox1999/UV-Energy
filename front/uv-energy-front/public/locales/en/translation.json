@@ -884,6 +884,9 @@
         },
         "Yearly":{
             "1":"Yearly"
+        },
+        "NoReport":{
+            "1":"There are no Records"
         }
     }
 }

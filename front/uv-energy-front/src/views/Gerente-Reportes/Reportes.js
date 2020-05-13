@@ -57,6 +57,7 @@ class managerReport extends React.Component {
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
+            noReport: false,
             credentials: cookie.get('notCredentials'),           
         }
         this.onChangeYear = this.onChangeYear.bind(this);
@@ -141,14 +142,14 @@ class managerReport extends React.Component {
                     this.state.reporTime==="montlhy"){
                     this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
 
-    /*    }else if (parseInt(this.state.initYear)>parseInt(this.state.year)){
+        }else if (parseInt(this.state.initYear)>parseInt(this.state.year)){
             this.setState({isAlertEmpty: false, isAlertSuccess: false, isBadinputs: true})     
 
         }else if ((parseInt(this.state.initYear)===parseInt(this.state.year))&&
                     (parseInt(this.state.initMonth)>parseInt(this.state.month))&&
                     (this.state.reporTime==="montlhy")){
                 this.setState({isAlertEmpty: false, isAlertSuccess: false, isBadinputs: true})    
-    */
+    
         }else{
             axios.post(c.api + 'sales/generateReport/', 
             { time_size:this.state.reportTime, init_month:this.state.date.initMonth , finish_month: this.state.date.month , 
@@ -156,7 +157,8 @@ class managerReport extends React.Component {
             {headers: { Authorization: `Token ${this.state.credentials.token}` }
             })
             .then(response => {
-                if (response.data !== ""){
+                if (response.data["data"][0] !== 0 ){
+
                     this.setState({ isAlertSuccess: true,
                                     isAlertEmpty: false,
                                     isBadinputs: false});
@@ -164,9 +166,12 @@ class managerReport extends React.Component {
                     this.setState({ info: response.data })
                     this.setState({data : this.state.info["data"]})
                     this.setState({labels : this.state.info["labels"]})
+                }else{
+                    this.setState({noReport: true})
                 }
-                   /* console.log(this.state.info["data"])
-                    console.log(this.state.info["labels"])*/
+                    console.log(this.state.info["data"])
+                    console.log(this.state.info["labels"])
+                    console.log(response.data["data"].length)
             }).catch(error => {
                 console.log(error)
                 this.setState({ isAlertSuccess: false,
@@ -198,6 +203,9 @@ class managerReport extends React.Component {
                     </Alert>
                     <Alert color="warning" isOpen={this.state.isBadinputs}>
                         <strong>{t("Admin.Warning.1")}</strong> {t("Admin.BadInputs.1")}
+                    </Alert>
+                    <Alert color="warning" isOpen={this.state.noReport}>
+                        <strong>{t("Admin.Warning.1")}</strong> {t("Report.NoReport.1")}
                     </Alert>
                     <Form onSubmit= {(e)=> (this.GenerateReport(e))}>
                         <Row>

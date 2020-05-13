@@ -878,6 +878,9 @@
         },
         "Yearly":{
             "1":"Anualmente"
+        },
+        "NoReport":{
+            "1":"Não há registros"
         }
     }
 }
