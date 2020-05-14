@@ -844,8 +844,11 @@
         "Consumption":{
             "1": "Consumo"
         },
-        "Payments":{
-            "1":"Pagos"
+        "BPayments":{
+            "1":"Pagos en Banco"
+        },
+        "OPayments":{
+            "1":"Pagos con Operador"
         },
         "Day":{
             "1": "Dia"
@@ -867,6 +870,18 @@
         },
         "Generate":{
             "1":"Generar Reporte"
+        },
+        "Period":{
+            "1":"Periodo"
+        },
+        "Monthly":{
+            "1":"Mensual"
+        },
+        "Yearly":{
+            "1":"Anual"
+        },
+        "NoReport":{
+            "1":"No hay Registros"
         }
     }
 }
