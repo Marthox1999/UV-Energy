@@ -2,6 +2,7 @@ import ReadSubstation from "views/Operador-Subestacion/ReadSubstation.js";
 import ReadElectricTransformer from "views/Operador-Transformador/ReadElectricTransformer.js";
 import addClient from "views/Operator-Client/AddClient.js"
 import PayWithInvoice from "views/Operator-Client/PayWithInvoice.js"
+import PayWithClient from "views/Operator-Client/PayWithClient.js"
 
 
 var electricTransformerRoutes = [
@@ -39,6 +40,18 @@ var clientRoutes = [
     component: PayWithInvoice,
     layout: "/operator"
   },
+  /**
+   * 
+   * 
+   
+  {
+    path: "/PayWithClient",
+    name: "Operator.PayWithClient.1",
+    icon: "ni ni-fat-add text-blue",
+    component: PayWithClient,
+    layout: "/operator"
+  },
+  */
 ];
 
 export {
