@@ -755,13 +755,24 @@
         },
         "Error":{
             "1":"Ocorreu um erro ao gerar as faturas.",
-            "2":"Os bancos devem ser Banco1 ou MiBanco"
+            "2":"Os bancos devem ser Banco1 ou MiBanco",
+            "3":"Um banco deve ser selecionado para fazer o download"
         },
         "Upload":{
             "1":"Carregar pagamentos"
         },
+        "Download":{
+            "1":"Baixar pagamentos"
+        },
         "UploadFile":{
             "1":"Subir arquivo"
+        },
+        
+        "EmptyBank":{
+            "1":"O banco não registra pagamentos"
+        },
+        "Success":{
+            "1":"Arquivo baixado com sucesso"
         }
     },
     "PayBills":{
