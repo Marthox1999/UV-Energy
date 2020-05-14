@@ -30,6 +30,8 @@ import 'leaflet/dist/leaflet.css';
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 
+import i18n from '../../i18n.js';
+
 const c = require('../constants')
 
 const cookie = new Cookies();
@@ -41,8 +43,8 @@ class managerReport extends React.Component {
 
         this.state = {
             info:[],
-            data:[],
-            labels:[],
+            data:[0],
+            labels:[""],
             date:{
                 initYear:'',
                 year: '',
@@ -52,12 +54,15 @@ class managerReport extends React.Component {
             graphType:1,
             reportType:"",
             reporTime:"",
+            reportName:"",
+            timeName: "",
             path: '',
             disabled:true,
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
             noReport: false,
+            showGraph: false,
             credentials: cookie.get('notCredentials'),           
         }
         this.onChangeYear = this.onChangeYear.bind(this);
@@ -117,7 +122,30 @@ class managerReport extends React.Component {
     onChangeReportType(e){
         this.setState({
             reportType:e.target.value,
+            data:[0],
+            labels:[""]
         })
+        if(e.target.value=="bill"){
+            this.setState({
+                reportName: i18n.t("Report.Bills.1")
+            })
+        }else if(e.target.value=="debit_payments"){
+            this.setState({
+                reportName: i18n.t("Report.BPayments.1")
+            })
+        }else if(e.target.value=="operator_payments"){
+            this.setState({
+                reportName: i18n.t("Report.OPayments.1")
+            })
+        }else if(e.target.value=="consumption"){
+            this.setState({
+                reportName: i18n.t("Report.Consumption.1")
+            })
+        }else if(e.target.value=="income"){
+            this.setState({
+                reportName: i18n.t("Report.Income.1")
+            })
+        }
     }
 
     onChangeReportTime(e){
@@ -126,7 +154,13 @@ class managerReport extends React.Component {
         })
         if(e.target.value=="monthly"){
             this.setState({
-                disabled:false
+                disabled:false,
+                timeName: i18n.t("Report.Monthly.1")
+            })
+        }else if(e.target.value=="yearly"){
+            this.setState({
+                disabled:true,
+                timeName: i18n.t("Report.Yearly.1")
             })
         }
     }
@@ -166,6 +200,7 @@ class managerReport extends React.Component {
                     this.setState({ info: response.data })
                     this.setState({data : this.state.info["data"]})
                     this.setState({labels : this.state.info["labels"]})
+                    this.setState({showGraph : true})
                 }else{
                     this.setState({noReport: true})
                 }
@@ -183,7 +218,47 @@ class managerReport extends React.Component {
     
     render() {
         const { t } = this.props
-        
+        let graph;
+        let name, time;
+        if (this.state.data[0] !== 0){
+            graph= <Bar
+                    data={{
+                        labels: this.state.labels,
+                        datasets: [
+                        {
+                            label: this.state.reportName,
+                            backgroundColor: "blue",
+                            borderColor: 'rgba(0,0,0,0)',
+                            borderWidth: 2,
+                            data: this.state.data,
+                        }
+                        ]
+                    }}
+                    options={{
+                        title:{
+                        display:this.state.showGraph,
+                        text:this.state.reportName,
+                        fontSize:15,
+                        },
+                        legend:{
+                        display:this.state.showGraph,
+                        position: "right",
+                        }
+                    }}/>
+        }
+
+        if(this.state.reportName === ""){
+            name=i18n.t("Report.Type.1")
+        }else{
+            name=this.state.reportName
+        }
+
+        if(this.state.timeName === ""){
+            time=i18n.t("Report.Period.1")
+        }else{
+            time=this.state.timeName
+        }
+
         return(
             <>
             <UVHeader />
@@ -217,7 +292,8 @@ class managerReport extends React.Component {
                                 <DropdownToggle className="dropdown-menu-arrow">
                                 <Media className="align-items-center" >
                                     <span className="mb-0 text-sm font-weight-bold">
-                                        {t("Report.Type.1")}
+                                        {name}
+                                        
                                     </span>
                                     <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
                                     </span>
@@ -253,7 +329,7 @@ class managerReport extends React.Component {
                                 <DropdownToggle className="dropdown-menu-arrow">
                                 <Media className="align-items-center" >
                                     <span className="mb-0 text-sm font-weight-bold">
-                                        {t("Report.Period.1")}
+                                        {time}
                                     </span>
                                     <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
                                     </span>
@@ -354,35 +430,17 @@ class managerReport extends React.Component {
                             </Col>
 
                         </Row>
+                        <div class="chart-container">
+                        
+                        {graph}
+                </div>    
                     </Form>
-                    <Bar
-                        data={{
-                            labels: this.state.labels,
-                            datasets: [
-                              {
-                                label: '',
-                                backgroundColor: "blue",
-                                borderColor: 'rgba(0,0,0,0)',
-                                borderWidth: 2,
-                                data: this.state.data,
-                              }
-                            ]
-                          }}
-                        display="none"
-                        options={{
-                            title:{
-                            display:true,
-                            text:this.state.reportType,
-                            fontSize:15
-                            },
-                            legend:{
-                            display:true,
-                            position:'right'
-                            }
-                        }}/>                        
+                              
                     </CardBody>
-                </Card>                
+                </Card>    
+                                     
             </Container>
+            
 
 
                         
