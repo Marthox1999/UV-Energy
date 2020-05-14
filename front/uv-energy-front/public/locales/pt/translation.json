@@ -835,7 +835,7 @@
             "1": "Relatórios"
         },
         "Bills":{
-            "1": "Contas"
+            "1": "Contas pagas"
         },
         "Income":{
             "1": "Renda"
@@ -844,11 +844,17 @@
             "1": "Consumo"
         },
         "BPayments":{
-            "1":"Pagamentos Bancários"
+            "1":"Montante dos pagamentos bancários"
         },
-        "OPayments":{
-            "1":"Pagamentos do Operador"
+        "OPayments": {
+            "1": "Montante dos pagamentos do operador"
         },
+        "VBPayments": {
+             "1": "Valor dos pagamentos bancários"
+        },
+         "VOPayments": {
+             "1": "Valor de pagamentos do operador"
+        },
         "Day":{
             "1": "Dia"
         },
@@ -881,6 +887,10 @@
         },
         "NoReport":{
             "1":"Não há registros"
+        },
+        "NoBillPaid":{
+            "1":"Contas não pagas"
         }
+
     }
 }

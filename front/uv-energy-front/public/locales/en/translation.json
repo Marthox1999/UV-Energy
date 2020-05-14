@@ -841,7 +841,7 @@
             "1": "Reports"
         },
         "Bills":{
-            "1": "Bills"
+            "1": "Paid Bills"
         },
         "Income":{
             "1": "Income"
@@ -850,10 +850,16 @@
             "1": "Consumption"
         },
         "BPayments":{
-            "1":"Bank Payments"
+            "1":"Bank Payments Amount"
         },
         "OPayments":{
-            "1":"Operator Payments"
+            "1":"Operator Payments Amount"
+        },
+        "VBPayments":{
+            "1":" Bank Payments Value"
+        },
+        "VOPayments":{
+            "1":"Operator Payments Value"
         },
         "Day":{
             "1": "Day"
@@ -887,6 +893,9 @@
         },
         "NoReport":{
             "1":"There are no Records"
+        },
+        "NoBillPaid":{
+            "1":"Unpaid Bills"
         }
     }
 }
