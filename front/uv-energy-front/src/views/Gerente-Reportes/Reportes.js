@@ -125,27 +125,27 @@ class managerReport extends React.Component {
             data:[0],
             labels:[""]
         })
-        if(e.target.value=="bill"){
+        if(e.target.value==="bill"){
             this.setState({
                 reportName: i18n.t("Report.Bills.1")
             })
-        }else if(e.target.value=="debit_payments"){
+        }else if(e.target.value==="debit_payments"){
             this.setState({
                 reportName: i18n.t("Report.BPayments.1")
             })
-        }else if(e.target.value=="operator_payments"){
+        }else if(e.target.value==="operator_payments"){
             this.setState({
                 reportName: i18n.t("Report.OPayments.1")
             })
-        }else if(e.target.value=="consumption"){
+        }else if(e.target.value==="consumption"){
             this.setState({
                 reportName: i18n.t("Report.Consumption.1")
             })
-        }else if(e.target.value=="income"){
+        }else if(e.target.value==="income"){
             this.setState({
                 reportName: i18n.t("Report.Income.1")
             })
-        }else if(e.target.value=="no_payed_bill"){
+        }else if(e.target.value==="no_payed_bill"){
             this.setState({
                 reportName: i18n.t("Report.NoBillPaid.1")
             })
