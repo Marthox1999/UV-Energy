@@ -1,8 +1,6 @@
 from rest_framework import routers
 
-from .api import ElectricTransformerViewSet, SubStationViewSet, ActiveETViewSet
-
-from .api import ElectricTransformerViewSet, SubStationViewSet, ActiveSubStationViewSet
+from .api import ElectricTransformerViewSet, SubStationViewSet, ActiveETViewSet, ActiveSubStationViewSet
 
 router = routers.DefaultRouter()
 

@@ -1,4 +1,4 @@
-from assets.models import ElectricTransformer, Substation
+from assets.models import ElectricTransformer, Substation, Meter
 from rest_framework import viewsets, permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
