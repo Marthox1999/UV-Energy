@@ -108,10 +108,10 @@ class CheckPendingBills extends React.Component {
      * 
      */
     searchInvoice(referenceInvoiceIn){
-        this.state.referenceInvoice=referenceInvoiceIn;
+        this.setState({referenceInvoice: referenceInvoiceIn})
         axios.post(c.api + 'sales/searchInvoice/',
             {
-                referenceBill:this.state.referenceInvoice
+                referenceBill: referenceInvoiceIn
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
