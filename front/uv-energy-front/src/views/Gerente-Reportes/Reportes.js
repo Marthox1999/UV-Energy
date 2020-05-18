@@ -125,25 +125,29 @@ class managerReport extends React.Component {
             data:[0],
             labels:[""]
         })
-        if(e.target.value=="bill"){
+        if(e.target.value==="bill"){
             this.setState({
                 reportName: i18n.t("Report.Bills.1")
             })
-        }else if(e.target.value=="debit_payments"){
+        }else if(e.target.value==="debit_payments"){
             this.setState({
                 reportName: i18n.t("Report.BPayments.1")
             })
-        }else if(e.target.value=="operator_payments"){
+        }else if(e.target.value==="operator_payments"){
             this.setState({
                 reportName: i18n.t("Report.OPayments.1")
             })
-        }else if(e.target.value=="consumption"){
+        }else if(e.target.value==="consumption"){
             this.setState({
                 reportName: i18n.t("Report.Consumption.1")
             })
-        }else if(e.target.value=="income"){
+        }else if(e.target.value==="income"){
             this.setState({
                 reportName: i18n.t("Report.Income.1")
+            })
+        }else if(e.target.value==="no_payed_bill"){
+            this.setState({
+                reportName: i18n.t("Report.NoBillPaid.1")
             })
         }
     }
@@ -236,13 +240,20 @@ class managerReport extends React.Component {
                     }}
                     options={{
                         title:{
-                        display:this.state.showGraph,
+                        display:true,
                         text:this.state.reportName,
                         fontSize:15,
                         },
                         legend:{
                         display:this.state.showGraph,
                         position: "right",
+                        },
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    offsetGridLines: false
+                                }
+                            }]
                         }
                     }}/>
         }
@@ -302,6 +313,9 @@ class managerReport extends React.Component {
                                 <DropdownMenu className="dropdown-menu-arrow" right>
                                 <DropdownItem value="bill" onClick={(e)=> (this.onChangeReportType(e))}>
                                     {t("Report.Bills.1")}
+                                </DropdownItem>
+                                <DropdownItem value="no_payed_bill" onClick={(e)=> (this.onChangeReportType(e))}>
+                                    {t("Report.NoBillPaid.1")}
                                 </DropdownItem>
                                 <DropdownItem value="debit_payments" onClick={(e)=> (this.onChangeReportType(e))}>
                                     {t("Report.BPayments.1")}
@@ -429,15 +443,13 @@ class managerReport extends React.Component {
                             </FormGroup>
                             </Col>
 
-                        </Row>
-                        <div class="chart-container">
-                        
-                        {graph}
-                </div>    
+                        </Row>  
                     </Form>
-                              
                     </CardBody>
-                </Card>    
+                </Card>
+                        <div class="chart-container">
+                            {graph}
+                        </div>   
                                      
             </Container>
             

@@ -847,7 +847,7 @@
             "1": "Reportes"
         },
         "Bills":{
-            "1": "Facturas"
+            "1": "Facturas pagadas"
         },
         "Income":{
             "1": "Ingresos"
@@ -856,10 +856,16 @@
             "1": "Consumo"
         },
         "BPayments":{
-            "1":"Pagos en Banco"
+            "1":"Cantidad Pagos en Banco"
         },
         "OPayments":{
-            "1":"Pagos con Operador"
+            "1":"Cantidad Pagos con Operador"
+        },
+        "VBPayments":{
+            "1":"Valor Pagos en Banco"
+        },
+        "VOPayments":{
+            "1":"Valor Pagos con Operador"
         },
         "Day":{
             "1": "Dia"
@@ -893,6 +899,9 @@
         },
         "NoReport":{
             "1":"No hay Registros"
+        }, 
+        "NoBillPaid":{
+            "1":"Facturas no Pagadas"
         }
     },
     "Meter":{
