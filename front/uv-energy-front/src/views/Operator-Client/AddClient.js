@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -14,11 +15,17 @@ import {
   Col,
   Alert,
   Modal,
-  ModalBody
+  ModalBody,
+  DropdownToggle,
+  DropdownItem,
+  DropdownMenu,
+  Media,
+  UncontrolledDropdown,
 } from "reactstrap";
 // core components
 import UVHeader from "components/Headers/UVHeader.js";
 import Axios from "axios";
+import i18n from '../../i18n.js';
 import { withTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
 
@@ -29,7 +36,22 @@ class AddClient extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            user: {
+            listET: [],
+            listStratum:[1,2,3,4,5,6],
+            listCity:[['Bogotá','BOG'],
+                      ['Medellín','MED'],
+                      ['Cali','CALI'],
+                      ['Jamundi','JAM'],
+                      ['Barranquilla','B/Q'],
+                      ['Cartagena','CART'],
+                      ['Cucuta','CUC'],
+                      ['Soledad','SOL'],
+                      ['Ibague','IBG'],
+                      ['Bucaramanga','BCM'], 
+                      ['Soacha','SOAC']],
+            listUso:[['Residencial', 'RES'],
+                 ['Industrial', 'IND']],
+            request: {
                 username: "",
                 password: "",
                 email: "",
@@ -37,8 +59,18 @@ class AddClient extends React.Component {
                 last_name: "",
                 is_active: true,
                 cellphone: "",
-                position: "CLT"
+                position: "CLT",
+                address: "",
+                stratum: -1,
+                city: "",
+                use: "",
+                pk_transformers: -1,
+                client: ""
             },
+            selectedET:"Electric Transformer",
+            selectedCity:"City",
+            selectedUse:"Uso",
+            selectedStratum:"Stratum",
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
@@ -50,107 +82,272 @@ class AddClient extends React.Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeCellphone = this.onChangeCellphone.bind(this);
-        this.AddManager = this.AddManager.bind(this);
+        this.onChangeAddres = this.onChangeAddres.bind(this);
+        this.AddClient = this.AddClient.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
+    /* Agregar ET Activos */
+    componentDidMount(){
+        Axios.get(c.api + 'assets/ActiveET',
+                  {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            if( response.data.count === 0){
+                alert(i18n.t("ETransformer.NoSubstationRegistered.1"))
+              }
+              else{
+                console.log(response.data)
+                this.setState({listET: response.data})
+            }             
+        }).catch(error => console.log(error))
+    }
     onChangeFirstName(e){
-        this.setState({ user: {
-            username: this.state.user.username,
-            password: this.state.user.password,
-            email: this.state.user.email,
+        this.setState({ request: {
+            username: this.state.request.username,
+            password: this.state.request.password,
+            email: this.state.request.email,
             first_name: e.target.value,
-            last_name: this.state.user.last_name,
+            last_name: this.state.request.last_name,
             is_active: true,
-            cellphone: this.state.user.cellphone,
-            position: "CLT"
+            cellphone: this.state.request.cellphone,
+            position: "CLT",
+            address: this.state.request.address,
+            stratum: this.state.request.stratum,
+            city: this.state.request.city,
+            use: this.state.request.use,
+            pk_transformers: this.state.request.pk_transformers,
+            client: ""
         }})
     }
     onChangeLastName(e){
-        this.setState({ user: {
-            username: this.state.user.username,
-            password: this.state.user.password,
-            email: this.state.user.email,
-            first_name: this.state.user.first_name,
+        this.setState({ request: {
+            username: this.state.request.username,
+            password: this.state.request.password,
+            email: this.state.request.email,
+            first_name: this.state.request.first_name,
             last_name: e.target.value,
             is_active: true,
-            cellphone: this.state.user.cellphone,
-            position: "CLT"
+            cellphone: this.state.request.cellphone,
+            position: "CLT",
+            address: this.state.request.address,
+            stratum: this.state.request.stratum,
+            city: this.state.request.city,
+            use: this.state.request.use,
+            pk_transformers: this.state.request.pk_transformers,
+            client: ""
         }})
     }
     onChangeUsername(e){
-        this.setState({ user: {
+        this.setState({ request: {
             username: e.target.value,
-            password: this.state.user.password,
-            email: this.state.user.email,
-            first_name: this.state.user.first_name,
-            last_name: this.state.user.last_name,
+            password: this.state.request.password,
+            email: this.state.request.email,
+            first_name: this.state.request.first_name,
+            last_name: this.state.request.last_name,
             is_active: true,
-            cellphone: this.state.user.cellphone,
-            position: "CLT"
+            cellphone: this.state.request.cellphone,
+            position: "CLT",
+            address: this.state.request.address,
+            stratum: this.state.request.stratum,
+            city: this.state.request.city,
+            use: this.state.request.use,
+            pk_transformers: this.state.request.pk_transformers,
+            client: ""
         }})
     }
     onChangeEmail(e){
-        this.setState({ user: {
-            username: this.state.user.username,
-            password: this.state.user.password,
+        this.setState({ request: {
+            username: this.state.request.username,
+            password: this.state.request.password,
             email: e.target.value,
-            first_name: this.state.user.first_name,
-            last_name: this.state.user.last_name,
+            first_name: this.state.request.first_name,
+            last_name: this.state.request.last_name,
             is_active: true,
-            cellphone: this.state.user.cellphone,
-            position: "CLT"
+            cellphone: this.state.request.cellphone,
+            position: "CLT",
+            address: this.state.request.address,
+            stratum: this.state.request.stratum,
+            city: this.state.request.city,
+            use: this.state.request.use,
+            pk_transformers: this.state.request.pk_transformers,
+            client: ""
         }}) 
     }
     onChangePassword(e){
-        this.setState({ user: {
-            username: this.state.user.username,
+        this.setState({ request: {
+            username: this.state.request.username,
             password: e.target.value,
-            email: this.state.user.email,
-            first_name: this.state.user.first_name,
-            last_name: this.state.user.last_name,
+            email: this.state.request.email,
+            first_name: this.state.request.first_name,
+            last_name: this.state.request.last_name,
             is_active: true,
-            cellphone: this.state.user.cellphone,
-            position: "CLT"
+            cellphone: this.state.request.cellphone,
+            position: "CLT",
+            address: this.state.request.address,
+            stratum: this.state.request.stratum,
+            city: this.state.request.city,
+            use: this.state.request.use,
+            pk_transformers: this.state.request.pk_transformers,
+            client: ""
         }})
     }
     onChangeCellphone(e){
-        this.setState({ user: {
-            username: this.state.user.username,
-            password: this.state.user.password,
-            email: this.state.user.email,
-            first_name: this.state.user.first_name,
-            last_name: this.state.user.last_name,
+        this.setState({ request: {
+            username: this.state.request.username,
+            password: this.state.request.password,
+            email: this.state.request.email,
+            first_name: this.state.request.first_name,
+            last_name: this.state.request.last_name,
             is_active: true,
-            cellphone: e.target.value.toString(),
-            position: "CLT"
+            cellphone: e.target.value,
+            position: "CLT",
+            address: this.state.request.address,
+            stratum: this.state.request.stratum,
+            city: this.state.request.city,
+            use: this.state.request.use,
+            pk_transformers: this.state.request.pk_transformers,
+            client: ""
         }}) 
     }
-    AddManager(e){
+    onChangeAddres(e){
+        this.setState({ request: {
+            username: this.state.request.username,
+            password: this.state.request.password,
+            email: this.state.request.email,
+            first_name: this.state.request.first_name,
+            last_name: this.state.request.last_name,
+            is_active: true,
+            cellphone: this.state.request.cellphone,
+            position: "CLT",
+            address: e.target.value,
+            stratum: this.state.request.stratum,
+            city: this.state.request.city,
+            use: this.state.request.use,
+            pk_transformers: this.state.request.pk_transformers,
+            client: ""
+        }});
+    }
+    getET(data){
+        this.setState({ 
+        request: {
+            username: this.state.request.username,
+            password: this.state.request.password,
+            email: this.state.request.email,
+            first_name: this.state.request.first_name,
+            last_name: this.state.request.last_name,
+            is_active: true,
+            cellphone: this.state.request.cellphone,
+            position: "CLT",
+            address: this.state.request.address,
+            stratum: this.state.request.stratum,
+            city: this.state.request.city,
+            use: this.state.request.use,
+            pk_transformers: data.pk_transformers,
+            client: ""
+        },
+        selectedET: `${data.pk_transformers}, ${data.reference}`
+        });
+    }
+    getCity(data){
+        this.setState({ 
+        request: {
+            username: this.state.request.username,
+            password: this.state.request.password,
+            email: this.state.request.email,
+            first_name: this.state.request.first_name,
+            last_name: this.state.request.last_name,
+            is_active: true,
+            cellphone: this.state.request.cellphone,
+            position: "CLT",
+            address: this.state.request.address,
+            stratum: this.state.request.stratum,
+            city: data[1],
+            use: this.state.request.use,
+            pk_transformers: this.state.request.pk_transformers,
+            client: ""
+        },
+        selectedCity: `Ciudad: ${data[0]}`
+        });
+    }
+    getUso(data){
+        console.log(data)
+        this.setState({ 
+            request: {
+                username: this.state.request.username,
+                password: this.state.request.password,
+                email: this.state.request.email,
+                first_name: this.state.request.first_name,
+                last_name: this.state.request.last_name,
+                is_active: true,
+                cellphone: this.state.request.cellphone,
+                position: "CLT",
+                address: this.state.request.address,
+                stratum: this.state.request.stratum,
+                city: this.state.request.city,
+                use: data[1],
+                pk_transformers: this.state.request.pk_transformers,
+                client: ""
+            },
+            selectedUse: `Use: ${data[0]}`
+            });
+    }
+    getStratum(data){
+        console.log(this.state.request)
+        this.setState({ 
+            request: {
+                username: this.state.request.username,
+                password: this.state.request.password,
+                email: this.state.request.email,
+                first_name: this.state.request.first_name,
+                last_name: this.state.request.last_name,
+                is_active: true,
+                cellphone: this.state.request.cellphone,
+                position: "CLT",
+                address: this.state.request.address,
+                stratum: data,
+                city: this.state.request.city,
+                use: this.state.request.use,
+                pk_transformers: this.state.request.pk_transformers,
+                client: ""
+            },
+            selectedStratum: `Stratum: ${data}`
+            });
+    }
+    AddClient(e){
+        console.log(this.state.request)
         e.preventDefault()
-        if ((this.state.user.username === "") ||
-            (this.state.user.password === "") ||
-            (this.state.user.email === "") ||
-            (this.state.user.first_name === "") ||
-            (this.state.user.last_name === "") ||
-            (this.state.user.cellphone === "")){
+        if ((this.state.request.username === "") ||
+            (this.state.request.password === "") ||
+            (this.state.request.email === "") ||
+            (this.state.request.first_name === "") ||
+            (this.state.request.last_name === "") ||
+            (this.state.request.cellphone === "") ||
+            (this.state.request.address === "") ||
+            (this.state.request.stratum === -1) ||
+            (this.state.request.city === "") ||
+            (this.state.request.pk_transformers === -1)){
             this.setState({isAlertEmpty: true, isAlertSuccess: false, isBadinputs: false})
         }else{
-            console.log(this.state.user)
-            Axios.post(c.api + 'users/user/', this.state.user,
+            console.log(this.state.request)
+            Axios.post(c.api + 'users/createClient/', this.state.request,
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
             .then( response => {
-                this.setState({ isAlertEmpty: false,
-                                isAlertSuccess: true,
-                                isBadinputs: false,
-                                user: response.data})
+                console.log(response)
+                this.setState({request: response.data})
+                this.setState({
+                    isAlertSuccess: true,
+                    isAlertEmpty: false,
+                    substation: response.data})
             }).catch(error => {
                 console.log(error)
                 this.setState({ isAlertSuccess: false,
                                 isAlertEmpty: false,
                                 isBadinputs: true})
             })
+            console.log(this.state.request)
+            
         }
     }
+
     closeModal(){
         this.setState({ isAlertSuccess: !this.state.isAlertSuccess})
         window.location.reload(true);
@@ -177,7 +374,7 @@ class AddClient extends React.Component {
                     <Alert color="warning" isOpen={this.state.isBadinputs}>
                     <strong>{t("Client.Warning.1")}</strong> {t("Client.BadInputs.1")}
                     </Alert>
-                    <Form onSubmit={this.AddManager}>
+                    <Form onSubmit={this.AddClient}>
                         <h6 className="heading-small text-muted mb-4">
                         {t("Manager.PersonalInformation.1")}
                         </h6>
@@ -196,7 +393,7 @@ class AddClient extends React.Component {
                                 id="input-first-name"
                                 placeholder={t("Client.Name.1")}
                                 type="text"
-                                value={this.state.user.first_name}
+                                value={this.state.request.first_name}
                                 onChange={this.onChangeFirstName}
                                 />
                             </FormGroup>
@@ -214,7 +411,7 @@ class AddClient extends React.Component {
                                 id="input-last-name"
                                 placeholder={t("Client.LastName.1")}
                                 type="text"
-                                value={this.state.user.last_name}
+                                value={this.state.request.last_name}
                                 onChange={this.onChangeLastName}
                                 />
                             </FormGroup>
@@ -232,8 +429,163 @@ class AddClient extends React.Component {
                                 id="input-cellphone"
                                 placeholder={t("Client.Phone.1")}
                                 type={t("Client.Phone.1")}
-                                value={this.state.user.cellphone}
+                                value={this.state.request.cellphone}
                                 onChange={this.onChangeCellphone}/>
+                            </FormGroup>
+                            </Col>
+                        </Row>
+                        <hr className="my-4"></hr>
+                        <h6 className="heading-small text-muted mb-4">
+                        Contador
+                        </h6>
+                        <Row>
+                        <Col lg="6">
+                            <FormGroup>
+                                <label
+                                className="form-control-label"
+                                htmlFor="input-username"
+                                >
+                                Address
+                                </label>
+                                <Input
+                                className="form-control-alternative"
+                                id="input-Adress"
+                                placeholder="Adress"
+                                type="text"
+                                value={this.state.request.address}
+                                onChange={this.onChangeAddres}
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col lg="6">
+                            <FormGroup>
+                                <br></br>
+                                <UncontrolledDropdown nav>
+                                <DropdownToggle className="dropdown-menu-arrow">
+                                <Media className="align-items-center" >
+                                    <span className="mb-0 text-sm font-weight-bold">
+                                        {this.state.selectedET}
+                                    </span>
+                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
+                                    <img
+                                        alt="..."
+                                        src={require("assets/img/theme/subestacion.svg")}
+                                    />
+                                    </span>
+                                </Media>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                { this.state.listET.length > 0 ?
+                                this.state.listET.map((data, id) =>
+                                <DropdownItem key={'s-'+id} onClick={()=> this.getET(data)}>
+                                    <i className=" ni ni-pin-3" />
+                                <span>{data.pk_transformers}, {data.reference}</span>
+                                </DropdownItem>) : 
+                                <DropdownItem to="#" tag={Link}>
+                                <i className=" ni ni-fat-remove"/>
+                                <span>{t("ETransformer.NoSubstation.1")}</span>
+                                </DropdownItem>}
+                                </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </FormGroup>
+                            </Col>
+                            <Col lg="4">
+                            <FormGroup>
+                                <br></br>
+                                <UncontrolledDropdown nav>
+                                <DropdownToggle className="dropdown-menu-arrow">
+                                <Media className="align-items-center" >
+                                    <span className="mb-0 text-sm font-weight-bold">
+                                        {this.state.selectedCity}
+                                    </span>
+                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
+                                    <img
+                                        alt="..."
+                                        src={require("assets/img/theme/subestacion.svg")}
+                                    />
+                                    </span>
+                                </Media>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                { this.state.listCity.length > 0 ?
+                                    this.state.listCity.map((data, id) =>
+                                    <DropdownItem key={'s-'+id} onClick={()=> this.getCity(data)}>
+                                        <i className=" ni ni-pin-3" />
+                                    <span>{data[0]}, {data[1]}</span>
+                                    </DropdownItem>) : 
+                                    <DropdownItem to="#" tag={Link}>
+                                    <i className=" ni ni-fat-remove"/>
+                                    <span>{t("ETransformer.NoSubstation.1")}</span>
+                                    </DropdownItem>
+                                }
+                                </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </FormGroup>
+                            </Col>
+                            <Col lg="4">
+                            <FormGroup>
+                                <br></br>
+                                <UncontrolledDropdown nav>
+                                <DropdownToggle className="dropdown-menu-arrow">
+                                <Media className="align-items-center" >
+                                    <span className="mb-0 text-sm font-weight-bold">
+                                        {this.state.selectedUse}
+                                    </span>
+                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
+                                    <img
+                                        alt="..."
+                                        src={require("assets/img/theme/subestacion.svg")}
+                                    />
+                                    </span>
+                                </Media>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                { this.state.listUso.length > 0 ?
+                                    this.state.listUso.map((data, id) =>
+                                    <DropdownItem key={'s-'+id} onClick={()=> this.getUso(data)}>
+                                        <i className=" ni ni-pin-3" />
+                                    <span>{data[0]}</span>
+                                    </DropdownItem>) : 
+                                    <DropdownItem to="#" tag={Link}>
+                                    <i className=" ni ni-fat-remove"/>
+                                    <span>{t("ETransformer.NoSubstation.1")}</span>
+                                    </DropdownItem>
+                                }
+                                </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </FormGroup>
+                            </Col>
+                            <Col lg="4">
+                            <FormGroup>
+                                <br></br>
+                                <UncontrolledDropdown nav>
+                                <DropdownToggle className="dropdown-menu-arrow">
+                                <Media className="align-items-center" >
+                                    <span className="mb-0 text-sm font-weight-bold">
+                                        {this.state.selectedStratum}
+                                    </span>
+                                    <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
+                                    <img
+                                        alt="..."
+                                        src={require("assets/img/theme/subestacion.svg")}
+                                    />
+                                    </span>
+                                </Media>
+                                </DropdownToggle>
+                                <DropdownMenu className="dropdown-menu-arrow" right>
+                                { this.state.listStratum.length > 0 ?
+                                    this.state.listStratum.map((data, id) =>
+                                    <DropdownItem key={'s-'+id} onClick={()=> this.getStratum(data)}>
+                                        <i className=" ni ni-pin-3" />
+                                    <span>{data}</span>
+                                    </DropdownItem>) : 
+                                    <DropdownItem to="#" tag={Link}>
+                                    <i className=" ni ni-fat-remove"/>
+                                    <span>{t("ETransformer.NoSubstation.1")}</span>
+                                    </DropdownItem>
+                                }
+                                </DropdownMenu>
+                                </UncontrolledDropdown>
                             </FormGroup>
                             </Col>
                         </Row>
@@ -256,7 +608,7 @@ class AddClient extends React.Component {
                                 id="input-username"
                                 placeholder={t("Manager.Username.1")}
                                 type="text"
-                                value={this.state.user.username}
+                                value={this.state.request.username}
                                 onChange={this.onChangeUsername}
                                 />
                             </FormGroup>
@@ -274,7 +626,7 @@ class AddClient extends React.Component {
                                 id="input-email"
                                 placeholder="jesse@example.com"
                                 type="email"
-                                value={this.state.user.email}
+                                value={this.state.request.email}
                                 onChange={this.onChangeEmail}
                                 />
                             </FormGroup>
@@ -294,7 +646,7 @@ class AddClient extends React.Component {
                                 placeholder={t("Client.Password.1")}
                                 type="password" 
                                 autoComplete="new-password"
-                                value={this.state.user.password}
+                                value={this.state.request.password}
                                 onChange={this.onChangePassword}/>
                             </FormGroup>
                             </Col>
@@ -320,10 +672,14 @@ class AddClient extends React.Component {
                         </Alert>
                         <strong>{t("Client.Information.1")}:</strong>
                         <br></br>
-                        <strong> {t("Client.Name.1")}: </strong> {this.state.user.first_name}<br/>
-                        <strong> {t("Client.LastName.1")}: </strong> {this.state.user.last_name}<br/>
-                        <strong> {t("Client.Phone.1")}: </strong> {this.state.user.cellphone}<br/>
-                        <strong> Email: </strong> {this.state.user.email}<br/>
+                        <strong> {t("Client.Name.1")}: </strong> {this.state.request.first_name}<br/>
+                        <strong> {t("Client.LastName.1")}: </strong> {this.state.request.last_name}<br/>
+                        <strong> {t("Client.Phone.1")}: </strong> {this.state.request.cellphone}<br/>
+                        <strong> Email: </strong> {this.state.request.email}<br/>
+                        <strong> {t("Meter.address.1")}: </strong> {this.state.request.address}<br/>
+                        <strong> {t("Meter.stratum.1")}: </strong> {this.state.request.stratum}<br/>
+                        <strong> {t("Meter.city.1")}: </strong> {this.state.request.city}<br/>
+                        <strong> {t("Meter.use.1")}: </strong> {this.state.request.use}<br/>
                     </div>
                     </ModalBody>
                     <div className="modal-footer">

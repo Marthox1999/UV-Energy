@@ -478,6 +478,9 @@
         },
         "NewName":{
             "1":"Nuevo nombre"
+        },
+        "RegisteredSubstation":{
+            "1":"Subestaciones registradas"
         }
     },
 
@@ -681,8 +684,16 @@
         "Close":{
             "1":"Cerrar"
         },
-        "ActiveClient":{
-            "1":"Cliente activo"
+        "ActiveClients":{
+            "1":"Clientes activos"
+        },
+        "Congrat":{
+            "1":"Felicitaciones!",
+            "2":"La cuenta del administrador fue creada!",
+            "3":"La información del administrador fue modificada!"
+        },
+        "DisableButton":{
+            "1":"Desabilitar Cliente"
         },
         "DisabledNotification":{
             "1":"¡Se desactivo la cuenta del cliente! Vuelva a cargar la página para ver el cambio"
@@ -754,7 +765,8 @@
             "1": "Todos los campos deben ser numéricos. Se encontró un campo que no lo cumple."
         },
         "Error":{
-            "1":"Se produjo un error al generar las facturas."
+            "1":"Se produjo un error al generar las facturas.",
+            "2":"Los bancos deben ser Banco1 ó MiBanco"
         },
         "Upload":{
             "1":"Subir pagos"
@@ -890,6 +902,20 @@
         }, 
         "NoBillPaid":{
             "1":"Facturas no Pagadas"
+        }
+    },
+    "Meter":{
+        "address":{
+            "1":"Direccion"
+        },
+        "stratum":{
+            "1":"Estrato"
+        },
+        "city": {
+            "1":"Ciudad"
+        },
+        "use":{
+            "1":"Uso"
         }
     }
 }

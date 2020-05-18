@@ -1,14 +1,16 @@
 import ReadSubstation from "views/Operador-Subestacion/ReadSubstation.js";
 import ReadElectricTransformer from "views/Operador-Transformador/ReadElectricTransformer.js";
 import addClient from "views/Operator-Client/AddClient.js"
+import RegisteredClients from "views/Operator-Client/RegisteredClients.js"
 import PayWithInvoice from "views/Operator-Client/PayWithInvoice.js"
+import PayWithClient from "views/Operator-Client/PayWithClient.js"
 
 
 var electricTransformerRoutes = [
   {
     path: "/ReadElectricTransformer",
-    name: "Registered Electric Transformer",
-    icon: "ni ni-fat-delete text-blue",
+    name: "ETransformer.Registered.1",
+    icon: "ni ni-istanbul text-blue",
     component: ReadElectricTransformer,
     layout: "/operator"
   },
@@ -17,8 +19,8 @@ var electricTransformerRoutes = [
 var substationRoutes = [
   {
     path: "/ReadSubstation",
-    name: "Registered Substation",
-    icon: "ni ni-fat-delete text-blue",
+    name: "Substation.RegisteredSubstation.1",
+    icon: "ni ni-istanbul text-blue",
     component: ReadSubstation,
     layout: "/operator"
   },
@@ -33,12 +35,31 @@ var clientRoutes = [
     layout: "/operator"
   },
   {
+    path: "/RegisteredClients",
+    name: "Client.RegisteredClient.1",
+    icon: "ni ni-single-02 text-blue",
+    component: RegisteredClients,
+    layout: "/operator"
+  },
+  {
     path: "/PayWithInvoices",
     name: "Operator.PayWithInvoices.1",
-    icon: "ni ni-fat-add text-blue",
+    icon: "ni ni-credit-card text-blue",
     component: PayWithInvoice,
     layout: "/operator"
   },
+  /**
+   * 
+   * 
+   
+  {
+    path: "/PayWithClient",
+    name: "Operator.PayWithClient.1",
+    icon: "ni ni-fat-add text-blue",
+    component: PayWithClient,
+    layout: "/operator"
+  },
+  */
 ];
 
 export {

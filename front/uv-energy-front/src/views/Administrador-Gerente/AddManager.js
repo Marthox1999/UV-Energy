@@ -139,6 +139,7 @@ class AddManager extends React.Component {
             Axios.post(c.api + 'users/user/', this.state.user,
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
             .then( response => {
+                console.log(response)
                 this.setState({ isAlertEmpty: false,
                                 isAlertSuccess: true,
                                 isBadinputs: false,

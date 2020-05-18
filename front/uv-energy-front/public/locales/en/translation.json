@@ -482,6 +482,9 @@
         },
         "NewName":{
             "1":"New name"
+        },
+        "RegisteredSubstation":{
+            "1":"Registered substations"
         }
     },
 
@@ -687,7 +690,15 @@
             "1":"Close"
         },
         "ActiveClient":{
-            "1":"Active client"
+            "1":"Active clients"
+        },
+        "Congrat":{
+            "1":"Congratulations!",
+            "2":"The client account was created!",
+            "3":"The client was modified!"
+        },
+        "DisableButton":{
+            "1":"Disable Client"
         },
         "DisabledNotification":{
             "1":"Client account was disabled! Please reload the page to see the change"
@@ -759,7 +770,8 @@
             "1": "All fields must be numeric. A field was found that does not comply."
         },
         "Error":{
-            "1":"An error occurred generating the invoices"
+            "1":"An error occurred generating the invoices",
+            "2":"Banks must be Banco1 or MiBanco"
         },
         "Upload":{
             "1":"Upload payments"
@@ -896,6 +908,20 @@
         },
         "NoBillPaid":{
             "1":"Unpaid Bills"
+        }
+    },
+    "Meter":{
+        "address":{
+            "1":"Address"
+        },
+        "stratum":{
+            "1":"Stratum"
+        },
+        "city": {
+            "1":"City"
+        },
+        "use":{
+            "1":"Use"
         }
     }
 }
