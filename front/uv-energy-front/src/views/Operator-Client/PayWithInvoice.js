@@ -86,11 +86,11 @@ class PayWithInvoice extends React.Component {
             console.log(this.state)
         }).catch(error => {
             console.log(error)
-            this.setState({ valor: "1", 
-                            mora: "1",
-                            total: "1",
-                            interes: "1",
-                            reconexion: "1"})
+            this.setState({ valor: "-2", 
+                            mora: "",
+                            total: "",
+                            interes: "",
+                            reconexion: ""})
         })
         
     }

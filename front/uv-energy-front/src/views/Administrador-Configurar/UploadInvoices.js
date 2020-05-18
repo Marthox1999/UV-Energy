@@ -13,6 +13,10 @@ import {
   Row,
   Col,
   Alert,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown
 } from "reactstrap";
 // core components
 
@@ -36,11 +40,17 @@ class UploadPayments extends React.Component {
         super(props);
         this.state = {
             bank:"",
+            bancoSeleccionado:"",
             invoices:[],
+            downloadFile:"",
+            isAlerNoSelected:false,
             credentials: cookie.get('notCredentials'),
+            
         }
+
         this.readFile = this.readFile.bind(this)
         this.sendFile = this.sendFile.bind(this)
+        this.downloadFile = this.downloadFile.bind(this)
     }
 
     readFile(e){
@@ -73,6 +83,36 @@ class UploadPayments extends React.Component {
             console.log(error)                        
         })   
     }
+    /**
+     * Recibo 
+     * downloadFile:"0" falla en descarga
+     * downloadFile:"1" exito en descarga
+     */
+    downloadFile (){
+        if(this.state.bancoSeleccionado===""){
+            this.setState({
+                isAlerNoSelected:true
+            })
+            return;
+        }
+        this.setState({
+            isAlerNoSelected:false
+        })
+
+        axios.post(c.api + 'sales/downloadFile/',
+            {
+                selectedBank:this.state.bancoSeleccionado
+            },
+            {headers: { Authorization: `Token ${this.state.credentials.token}`}})
+        .then( response => {
+            alert(response.data)
+        }).catch(error => {
+            this.setState({
+                downloadFile:"0"
+            })
+            console.log(error)                        
+        })     
+    }
 
     render() {
         const { t } = this.props;
@@ -84,6 +124,8 @@ class UploadPayments extends React.Component {
             <Container className="mt--7" fluid>
                 <Card className="bg-secondary shadow">
                     <CardHeader className="bg-white border-0">
+
+                    
                     <Row className="align-items-center">
                         <Col xs="8">
                         <font size="5">{t("Settings.Upload.1")}</font>
@@ -93,8 +135,54 @@ class UploadPayments extends React.Component {
                     <CardBody>
 
                     <Alert color="warning" isOpen={this.state.bank!="Banco1" && this.state.bank!="MiBanco" && this.state.bank!=""}>
-                             {t("Settings.Error.2")}
-                        </Alert>
+                        {t("Settings.Error.2")}
+                    </Alert>
+
+                    <Alert color="info" isOpen={this.state.isAlerNoSelected}>
+                        {t("Settings.Error.3")}
+                    </Alert>
+
+                    <Alert color="warning" isOpen={this.state.downloadFile==="0"}>
+                        {t("Settings.EmptyBank.1")}
+                    </Alert>
+
+                    <Alert color="success" isOpen={this.state.downloadFile==="1"}>
+                        {t("Settings.Success.1")}
+                    </Alert>
+
+                    <UncontrolledDropdown nav>
+                        <DropdownToggle className="dropdown-menu-arrow">
+                        
+                                {t("PayBills.SelectBank.1")}  
+                            
+                        </DropdownToggle>
+                        <DropdownMenu className="dropdown-menu-arrow" right>
+                            <DropdownItem onClick={()=>this.state.bancoSeleccionado="Banco1"}>
+                                Banco1
+                            </DropdownItem>
+                            <DropdownItem onClick={()=>this.state.bancoSeleccionado="MiBanco"}>
+                                MiBanco
+                            </DropdownItem>
+                            
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+
+                    <br>
+                    </br>
+                    
+                    <div className="text-center">
+                        <Button
+                            color="success"
+                            data-dismiss="modal"
+                            type="button"
+                            onClick={this.downloadFile}
+                            >
+                            {t("Settings.Download.1")}
+                        </Button>
+                    </div> 
+
+
+                    <hr className="my-4"></hr>
 
                     <Form>                    
 
@@ -126,15 +214,12 @@ class UploadPayments extends React.Component {
                                     color="success"
                                     data-dismiss="modal"
                                     type="button"
-                                    onClick={this.sendFile}
                                     disabled
                                     >
                                     {t("Settings.UploadFile.1")}
                                 </Button>
                             </div>
                         }
-                        
-    
                         
                     </Form>
                     </CardBody>

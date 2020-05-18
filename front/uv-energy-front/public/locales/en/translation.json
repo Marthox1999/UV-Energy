@@ -760,13 +760,23 @@
         },
         "Error":{
             "1":"An error occurred generating the invoices",
-            "2":"Banks must be Banco1 or MiBanco"
+            "2":"Banks must be Banco1 or MiBanco",
+            "3":"A bank must be selected to download"
         },
         "Upload":{
             "1":"Upload payments"
         },
+        "Download":{
+            "1":"download payments"
+        },
         "UploadFile":{
             "1":"Upload file"
+        },
+        "EmptyBank":{
+            "1":"The bank does not record payments"
+        },
+        "Success":{
+            "1":"File downloaded successfully"
         }
     },
     "PayBills":{
