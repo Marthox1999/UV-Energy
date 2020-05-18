@@ -151,6 +151,8 @@ class GeneratePDFViewSet(viewsets.ViewSet):
         permissions.IsAuthenticated
     ]
     def create(self, request):
+        import time
+        start_time = time.time()
         # recibe el parametro de la factura a generar
         pk = request.query_params.get('pk_bill')
         # buscar el registros asociados de dicha factura
@@ -218,6 +220,7 @@ class GeneratePDFViewSet(viewsets.ViewSet):
         response['Content-Disposition'] = 'attachment;  filename=output.pdf'
         #f.close()
         # envia la respuesta
+        print(" TIME: ", time.time() - start_time)
         return response
 
 
