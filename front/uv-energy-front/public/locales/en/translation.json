@@ -487,7 +487,6 @@
             "1":"Registered substations"
         }
     },
-
     "Bill":{
         "NoBill":{
             "1":"There aren't bills"
@@ -532,8 +531,6 @@
             "1":"Pay"
         }
     },
-
-
     "Admin":{
         "AddAdmin":{
             "1":"Add Administrator"
@@ -675,7 +672,8 @@
             "1":"Add"
         },
         "Information":{
-            "1":"Information"
+            "1":"Information",
+            "2":"Information of"
         },
         "Congratulations":{
             "1":"Congratulations"
@@ -729,9 +727,11 @@
         },
         "ConfirmationDisable":{
             "1":"Disable Client?"
+        },
+        "ClientRegister":{
+            "1":"client de register"
         }
     },
-
     "Settings":{
         "SetUpInvoices":{
             "1": "Set up invoices"
@@ -847,7 +847,6 @@
             "1":"Select a bank"
         }
     },
-
     "Report":{
         "Name":{
             "1": "Reports"

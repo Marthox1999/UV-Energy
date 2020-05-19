@@ -1,5 +1,4 @@
 {   
-    
     "Login":{
         "Welcome":{
             "1":"Bienvenido!"
@@ -393,7 +392,6 @@
             "1":"Seleccione un transformador electrico primero."
         }
     },
-
     "Substation":{
         "AddSubstation":{
             "1":"Agregar Subestación"
@@ -483,8 +481,6 @@
             "1":"Subestaciones registradas"
         }
     },
-
-
     "Admin":{
         "AddAdmin":{
             "1":"Adicionar Administrador"
@@ -670,7 +666,8 @@
             "1":"Agregar"
         },
         "Information":{
-            "1":"Información"
+            "1":"Información",
+            "2":"Información de"
         },
         "Congratulations":{
             "1":"¡Felicitaciones!"
@@ -724,9 +721,11 @@
         },
         "ConfirmationDisable":{
             "1":"¿Deshabilitar cliente?"
+        },
+        "ClientRegister":{
+            "1":"registro de clientes"
         }
     },
-
     "Settings":{
         "SetUpInvoices":{
             "1": "Configurar facturas"

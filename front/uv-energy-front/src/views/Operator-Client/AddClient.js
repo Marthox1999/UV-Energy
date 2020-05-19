@@ -67,10 +67,10 @@ class AddClient extends React.Component {
                 pk_transformers: -1,
                 client: ""
             },
-            selectedET:"Electric Transformer",
-            selectedCity:"City",
-            selectedUse:"Uso",
-            selectedStratum:"Stratum",
+            selectedET:i18n.t("Sidebar.ElectricTransformer.1"),
+            selectedCity:i18n.t("Meter.city.1"),
+            selectedUse:i18n.t("Meter.use.1"),
+            selectedStratum:i18n.t("Meter.stratum.1"),
             isAlertEmpty: false,
             isAlertSuccess: false,
             isBadinputs: false,
@@ -445,7 +445,7 @@ class AddClient extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-username"
                                 >
-                                Address
+                                {t("Meter.address.1")}
                                 </label>
                                 <Input
                                 className="form-control-alternative"
@@ -501,7 +501,7 @@ class AddClient extends React.Component {
                                     <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
                                     <img
                                         alt="..."
-                                        src={require("assets/img/theme/subestacion.svg")}
+                                        src={require("assets/img/theme/city.svg")}
                                     />
                                     </span>
                                 </Media>
@@ -534,7 +534,7 @@ class AddClient extends React.Component {
                                     <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
                                     <img
                                         alt="..."
-                                        src={require("assets/img/theme/subestacion.svg")}
+                                        src={require("assets/img/theme/use.svg")}
                                     />
                                     </span>
                                 </Media>
@@ -567,7 +567,7 @@ class AddClient extends React.Component {
                                     <span className="avatar avatar-sm rounded-circle" style={{ background: 'none'}}>
                                     <img
                                         alt="..."
-                                        src={require("assets/img/theme/subestacion.svg")}
+                                        src={require("assets/img/theme/trade.svg")}
                                     />
                                     </span>
                                 </Media>

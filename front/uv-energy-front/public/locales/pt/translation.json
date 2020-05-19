@@ -391,9 +391,7 @@
         "SelectSubstation":{
             "1":"Selecione um transformador elétrico primeiro"
         }
-
     },
-
     "Substation":{
         "AddSubstation":{
             "1":"Adicionar subestação"
@@ -670,7 +668,8 @@
             "1":"Adicionar"
         },
         "Information":{
-            "1":"Informações!"
+            "1":"Informações!",
+            "2":"Informação de"
         },
         "Congratulations":{
             "1":"Parabéns!"
@@ -724,6 +723,9 @@
         },
         "ConfirmationDisable":{
             "1":"Desativar cliente?"
+        },
+        "ClientRegister":{
+            "1":"registro de cliente"
         }
     },
 
@@ -861,12 +863,12 @@
         "OPayments": {
             "1": "Montante dos pagamentos do operador"
         },
-        "VBPayments": {
-             "1": "Valor dos pagamentos bancários"
-        },
-         "VOPayments": {
-             "1": "Valor de pagamentos do operador"
-        },
+        "VBPayments": {
+            "1": "Valor dos pagamentos bancários"
+        },
+        "VOPayments": {
+            "1": "Valor de pagamentos do operador"
+        },
         "Day":{
             "1": "Dia"
         },
