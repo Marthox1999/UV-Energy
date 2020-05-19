@@ -436,7 +436,7 @@ class AddClient extends React.Component {
                         </Row>
                         <hr className="my-4"></hr>
                         <h6 className="heading-small text-muted mb-4">
-                        Contador
+                        {t("Meter.meter.1")}
                         </h6>
                         <Row>
                         <Col lg="6">

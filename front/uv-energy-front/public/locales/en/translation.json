@@ -910,6 +910,9 @@
         }
     },
     "Meter":{
+        "meter":{
+            "1":"Meter"
+        },
         "address":{
             "1":"Address"
         },

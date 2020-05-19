@@ -904,6 +904,9 @@
         }
     },
     "Meter":{
+        "meter":{
+            "1":"Contador"
+        },
         "address":{
             "1":"Direccion"
         },

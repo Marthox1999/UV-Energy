@@ -907,6 +907,9 @@
         }
     },
     "Meter":{
+        "meter":{
+            "1":"Medidor"
+        },
         "address":{
             "1":"Endereço"
         },
