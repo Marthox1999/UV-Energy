@@ -2,7 +2,6 @@ import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { withTranslation } from 'react-i18next';
-import i18n from '../../i18n.js';
 
 // reactstrap components
 import {
@@ -70,7 +69,7 @@ class RegisteredAdmins extends React.Component {
               }
               else{
                 this.setState({listAdmins: response.data})
-                //console.log(this.state.listAdmins)
+                console.log(this.state.listAdmins)
                 //console.log(response.config)
             }             
         }).catch(error => alert(error))

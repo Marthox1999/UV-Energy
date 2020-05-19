@@ -52,6 +52,17 @@ class ActiveOperatorViewSet (viewsets.ViewSet):
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
 
+# Active Client viewSet
+class ActiveClientViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+
+    def list(self, request):
+        queryset = User.objects.filter(Q(position="CLT") & Q(is_active=True))
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)    
+    
 
 class ProfileViewSet (viewsets.ViewSet):
     permission_classes = [

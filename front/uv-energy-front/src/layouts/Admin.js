@@ -4,12 +4,11 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { Container } from "reactstrap";
 // core components
 import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
-import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
 
 import routes from "routes.js";
-import {adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes} from "adminRoutes.js";
+import {settingRoutes, adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, substationRoutes} from "adminRoutes.js";
 
 import Cookies from 'universal-cookie';
 
@@ -48,6 +47,21 @@ class Admin extends Component {
   };
   getRoutes = routes => {
     return routes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getSettingRoutes = settingRoutes => {
+    return settingRoutes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
           <Route
@@ -149,6 +163,19 @@ class Admin extends Component {
       return "Brand";
   };
 
+  getBrandTextSetting = path => {
+    for (let i = 0; i < settingRoutes.length - 1; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          settingRoutes[i].layout + settingRoutes[i].path
+        ) !== -1
+      ) {
+        return settingRoutes[i].name;
+      }
+    }
+    return "Brand";
+  };
+
   getBrandTextAdmin = path => {
     for (let i = 0; i < adminRoutes.length - 1; i++) {
       if (
@@ -193,6 +220,7 @@ class Admin extends Component {
         <Sidebar
           {...this.props}
           routes={routes}
+          settingRoutes={settingRoutes}
           managerRoutes={managerRoutes}
           adminRoutes={adminRoutes}
           substationRoutes={substationRoutes}
@@ -208,6 +236,7 @@ class Admin extends Component {
           <UVAdminNavbar/>
           <Switch>
             {this.getRoutes(routes)}
+            {this.getSettingRoutes(settingRoutes)}
             {this.getAdminRoutes(adminRoutes)}
             {this.getManagerRoutes(managerRoutes)}
             {this.getsubstationRoutes(substationRoutes)}

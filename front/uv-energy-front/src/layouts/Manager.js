@@ -4,11 +4,10 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { Container } from "reactstrap";
 // core components
 import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
-import AdminFooter from "components/Footers/AdminFooter.js";
 import SidebarM from "components/Sidebar/SidebarM.js";
 
 import routes from "routes.js";
-import {managerRoutes, adminRoutes, operatorRoutes} from "managerRoutes.js";
+import {managerRoutes, adminRoutes, substationRoutes, electricTransformerRoutes, operatorRoutes, reportRoutes} from "managerRoutes.js";
 
 import Cookies from 'universal-cookie';
 
@@ -105,6 +104,51 @@ class Manager extends React.Component {
       }
     });
   };
+  getSubstationRoutes = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      if (prop.layout === "/manager") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getTransformerRoutes = transformerRoutes => {
+    return transformerRoutes.map((prop, key) => {
+      if (prop.layout === "/manager") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  getReportRoutes = reportRoutes => {
+    return reportRoutes.map((prop, key) => {
+      if (prop.layout === "/manager") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -130,6 +174,8 @@ class Manager extends React.Component {
     }
     return "Brand";
   };
+
+
   render() {
     return (
       <>
@@ -139,6 +185,9 @@ class Manager extends React.Component {
           managerRoutes={managerRoutes}
           adminRoutes={adminRoutes}
           operatorRoutes={operatorRoutes}
+          substationRoutes={substationRoutes}
+          electricTransformerRoutes={electricTransformerRoutes}
+          reportRoutes={reportRoutes}
           logo={{
             innerLink: "/manager/index",
             imgSrc: require("assets/img/brand/argon-react.png"),
@@ -152,6 +201,9 @@ class Manager extends React.Component {
             {this.getManagerRoutes(managerRoutes)}
             {this.getAdminRoutes(adminRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
+            {this.getSubstationRoutes(substationRoutes)}
+            {this.getTransformerRoutes(electricTransformerRoutes)}
+            {this.getReportRoutes(reportRoutes)}
             <Redirect from="*" to="/manager/index" />
           </Switch>
           <Container fluid>
