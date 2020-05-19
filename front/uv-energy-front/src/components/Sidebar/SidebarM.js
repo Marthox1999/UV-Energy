@@ -126,6 +126,23 @@ class SidebarM extends React.Component {
       );
     });
   };
+  createSubstationLinks = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={this.closeCollapse}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            <Trans>{prop.name}</Trans>
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
   createElectricTransfomerLinks = electricTransformerRoutes => {
     return electricTransformerRoutes.map((prop, key) => {
       return (
@@ -164,7 +181,7 @@ class SidebarM extends React.Component {
     cookie.remove('notCredentials', { path: '/' })
   }
   render() {
-    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, electricTransformerRoutes, reportRoutes, logo } = this.props;
+    const { /*bgColor,*/ adminRoutes, managerRoutes, operatorRoutes, substationRoutes, electricTransformerRoutes, reportRoutes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {
@@ -278,6 +295,8 @@ class SidebarM extends React.Component {
               {this.createAdminLinks(adminRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Operator.1")}
               {this.createOperatorLinks(operatorRoutes)}
+              &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Substation.1")}
+              {this.createSubstationLinks(substationRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.ElectricTransformer.1")}
               {this.createElectricTransfomerLinks(electricTransformerRoutes)}
               &nbsp;&nbsp;&nbsp;&nbsp;{t("Sidebar.Reports.1")}
@@ -294,6 +313,7 @@ SidebarM.defaultProps = {
   adminRoutes: [{}],
   managerRoutes: [{}],
   operatorRoutes: [{}],
+  substationRoutes: [{}],
   electricTransformerRoutes: [{}]
 };
 
@@ -302,6 +322,7 @@ SidebarM.propTypes = {
   adminRoutes: PropTypes.arrayOf(PropTypes.object),
   managerRoutes: PropTypes.arrayOf(PropTypes.object),
   operatorRoutes: PropTypes.arrayOf(PropTypes.object),
+  substationRoutes: PropTypes.arrayOf(PropTypes.object),
   electricTransformerRoutes: PropTypes.arrayOf(PropTypes.object),
   logo: PropTypes.shape({
     // innerLink is for links that will direct the user within the app

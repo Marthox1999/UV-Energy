@@ -60,7 +60,7 @@ class UploadPayments extends React.Component {
         const reader = new FileReader();
         reader.onload = async (e) => {
             const text = reader.result;
-            let arrayInvoices = text.split('\n').filter((element)=> element!="");
+            let arrayInvoices = text.split('\n').filter((element)=> element!=="");
             this.setState({ 
                 bank: fileIn.name,
                 invoices: arrayInvoices
@@ -105,7 +105,22 @@ class UploadPayments extends React.Component {
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
-            alert(response.data)
+            if (response.data.error != null) {
+                console.log(response.data.error);
+            }
+            else {
+                if (response.data === "no hay pagos registrados en ese banco."){
+                    alert(response.data)
+                }else{
+                    const file = new Blob([response.data]);
+                    const fileURL = URL.createObjectURL(file);
+                    const link = document.createElement('a');
+                    link.href = fileURL;
+                    link.setAttribute('download',this.state.bancoSeleccionado);
+                    document.body.appendChild(link);
+                    link.click();
+                }
+            }
         }).catch(error => {
             this.setState({
                 downloadFile:"0"
@@ -134,7 +149,7 @@ class UploadPayments extends React.Component {
                     </CardHeader>
                     <CardBody>
 
-                    <Alert color="warning" isOpen={this.state.bank!="Banco1" && this.state.bank!="MiBanco" && this.state.bank!=""}>
+                    <Alert color="warning" isOpen={this.state.bank!=="Banco1.txt" && this.state.bank!=="MiBanco.txt" && this.state.bank!==""}>
                         {t("Settings.Error.2")}
                     </Alert>
 
@@ -197,7 +212,7 @@ class UploadPayments extends React.Component {
                         <br>
                         </br>
                         
-                        { this.state.bank==="Banco1" || this.state.bank==="MiBanco"? 
+                        { this.state.bank==="Banco1.txt" || this.state.bank==="MiBanco.txt"? 
                             <div className="text-center">
                                 <Button
                                     color="success"

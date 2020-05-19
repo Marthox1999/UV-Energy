@@ -2,6 +2,7 @@ import RegisteredAdmins from "views/Administrador-Administrador/RegisteredAdmins
 import RegisteredManagers from "views/Administrador-Gerente/RegisteredManagers.js";
 import RegisteredOperators from "views/Administrador-Operador/RegisteredOperator.js";
 import RegisteredElectricTransformer from "views/Gerente-Transformador/RegisteredTransformer.js";
+import RegisteredSubstation from "views/Gerente-Subestacion/RegisteredSubstation.js";
 import managerReport from "views/Gerente-Reportes/Reportes.js"
 
 
@@ -45,6 +46,16 @@ var electricTransformerRoutes = [
   },
 ];
 
+var substationRoutes = [
+  {
+    path: "/registeredSubstation",
+    name: "Substation.Registered.1",
+    icon: "ni ni-single-02 text-yellow",
+    component: RegisteredSubstation,
+    layout: "/manager"
+  },
+];
+
 var reportRoutes =[
   {
     path: "/reportes",
@@ -59,6 +70,7 @@ export {
   adminRoutes,  
   managerRoutes,
   operatorRoutes,
+  substationRoutes,
   electricTransformerRoutes,
   reportRoutes
 }

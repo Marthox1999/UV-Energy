@@ -395,6 +395,9 @@
     },
 
     "Substation":{
+        "Registered":{
+            "1":"Subestaciones Registradas"
+        },
         "AddSubstation":{
             "1":"Agregar Subestación"
         },

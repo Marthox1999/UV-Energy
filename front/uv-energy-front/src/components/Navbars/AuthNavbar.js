@@ -25,8 +25,6 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   Navbar,
-  NavItem,
-  NavLink,
   Nav,
   Container,
   Row,

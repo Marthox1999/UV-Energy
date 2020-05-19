@@ -2,7 +2,7 @@ import ReadSubstation from "views/Operador-Subestacion/ReadSubstation.js";
 import ReadElectricTransformer from "views/Operador-Transformador/ReadElectricTransformer.js";
 import addClient from "views/Operator-Client/AddClient.js"
 import PayWithInvoice from "views/Operator-Client/PayWithInvoice.js"
-import PayWithClient from "views/Operator-Client/PayWithClient.js"
+//import PayWithClient from "views/Operator-Client/PayWithClient.js"
 
 
 var electricTransformerRoutes = [
