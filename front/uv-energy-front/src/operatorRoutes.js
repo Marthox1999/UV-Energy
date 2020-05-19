@@ -8,7 +8,7 @@ import PayWithInvoice from "views/Operator-Client/PayWithInvoice.js"
 var electricTransformerRoutes = [
   {
     path: "/ReadElectricTransformer",
-    name: "Registered Electric Transformer",
+    name: "ETransformer.Registered.1",
     icon: "ni ni-fat-delete text-blue",
     component: ReadElectricTransformer,
     layout: "/operator"
@@ -18,7 +18,7 @@ var electricTransformerRoutes = [
 var substationRoutes = [
   {
     path: "/ReadSubstation",
-    name: "Registered Substation",
+    name: "Substation.Registered.1",
     icon: "ni ni-fat-delete text-blue",
     component: ReadSubstation,
     layout: "/operator"
