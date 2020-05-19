@@ -774,7 +774,8 @@
             "1":"El banco no registra pagos"
         },
         "Success":{
-            "1":"Archivo descargado con éxito"
+            "1":"Archivo descargado con éxito",
+            "2":"Facturas generadas con éxito"
         }
     },
     "PayBills":{

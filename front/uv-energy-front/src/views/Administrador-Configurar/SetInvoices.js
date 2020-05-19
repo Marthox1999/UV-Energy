@@ -47,6 +47,9 @@ class SetInvoices extends React.Component {
                          "711.2273"],
             
             mora:"1",
+
+            alertSuccess:false,
+
             credentials: cookie.get('notCredentials'),
             isInvalidNumber: false
         }
@@ -133,7 +136,10 @@ class SetInvoices extends React.Component {
             {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.setState(this.getInitState());
-            alert(response.data);
+            this.setState({
+                alertSuccess: true
+            })
+            
         }).catch(
             error => {
                 alert(i18n.t("Settings.Error.1"));
@@ -171,6 +177,9 @@ class SetInvoices extends React.Component {
                         
                         <Alert color="warning" isOpen={this.state.isInvalidNumber}>
                              {t("Settings.Invalid.1")}
+                        </Alert>
+                        <Alert color="success" isOpen={this.state.alertSuccess}>
+                             {t("Settings.Success.2")}
                         </Alert>
                             {/**
                          * Tabla de estratos

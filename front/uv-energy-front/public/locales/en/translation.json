@@ -779,7 +779,8 @@
             "1":"The bank does not record payments"
         },
         "Success":{
-            "1":"File downloaded successfully"
+            "1":"File downloaded successfully",
+            "2":"Invoices generated successfully"
         }
     },
     "PayBills":{
