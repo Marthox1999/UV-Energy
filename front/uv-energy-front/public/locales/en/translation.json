@@ -396,6 +396,9 @@
         }
     },
     "Substation":{
+        "Registered":{
+            "1":"Registered Substation"
+        },
         "AddSubstation":{
             "1":"Add Substation"
         },

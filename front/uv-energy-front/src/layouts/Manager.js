@@ -7,7 +7,7 @@ import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
 import SidebarM from "components/Sidebar/SidebarM.js";
 
 import routes from "routes.js";
-import {managerRoutes, adminRoutes, electricTransformerRoutes, operatorRoutes, reportRoutes} from "managerRoutes.js";
+import {managerRoutes, adminRoutes, substationRoutes, electricTransformerRoutes, operatorRoutes, reportRoutes} from "managerRoutes.js";
 
 import Cookies from 'universal-cookie';
 
@@ -104,6 +104,21 @@ class Manager extends React.Component {
       }
     });
   };
+  getSubstationRoutes = substationRoutes => {
+    return substationRoutes.map((prop, key) => {
+      if (prop.layout === "/manager") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getTransformerRoutes = transformerRoutes => {
     return transformerRoutes.map((prop, key) => {
       if (prop.layout === "/manager") {
@@ -170,6 +185,7 @@ class Manager extends React.Component {
           managerRoutes={managerRoutes}
           adminRoutes={adminRoutes}
           operatorRoutes={operatorRoutes}
+          substationRoutes={substationRoutes}
           electricTransformerRoutes={electricTransformerRoutes}
           reportRoutes={reportRoutes}
           logo={{
@@ -185,8 +201,9 @@ class Manager extends React.Component {
             {this.getManagerRoutes(managerRoutes)}
             {this.getAdminRoutes(adminRoutes)}
             {this.getOperatorRoutes(operatorRoutes)}
+            {this.getSubstationRoutes(substationRoutes)}
             {this.getTransformerRoutes(electricTransformerRoutes)}
-            {this.getTransformerRoutes(reportRoutes)}
+            {this.getReportRoutes(reportRoutes)}
             <Redirect from="*" to="/manager/index" />
           </Switch>
           <Container fluid>

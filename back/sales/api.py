@@ -370,12 +370,12 @@ class downloadFileViewSet (viewsets.ViewSet):
         from os import makedirs, getcwd, walk
         bank = request.data["selectedBank"]
         if not exists('BanksData'):
-            return Response("no hay pagos registrados en ningun banco.")
+            return Response("no hay pagos registrados en ese banco.")
         else:
-            if not exists(join('BanksData',bank)):
+            if not exists(join('BanksData',bank+'.txt')):
                return Response("no hay pagos registrados en ese banco.") 
         
-        with open(join('BanksData',bank),'rb') as f:
+        with open(join('BanksData',bank+'.txt'),'rb') as f:
             bankdata = f.read()
         # prepara la cabecera de la peticion
         response = HttpResponse(bankdata, content_type='text/plain')
@@ -555,7 +555,7 @@ class payInvoiceClientViewSet (viewsets.ViewSet):
         if not exists('BanksData'):
             makedirs('BanksData')
         
-        with open(join('BanksData', bank), 'a') as f:
+        with open(join('BanksData', bank+'.txt'), 'a') as f:
             f.write(str(pk) + '\n')
 
         return Response("guardado satisfactoriamente")
@@ -567,12 +567,12 @@ class payUploadFileViewSet (viewsets.ViewSet):
     def create(self, request):
         from django.db import IntegrityError, transaction
         pksInvoices = request.data["invoices"]
-        pkBank = request.data['bank']
+        pkBank = str(request.data['bank']).split(".")[0]
         bank = Bank.objects.get(name=pkBank)
         try:
             with transaction.atomic():
                 for invoice in pksInvoices:
-                    #creo el pago debito correspondiente
+                    #creo el pago debito correspondiented
                     debitpay = DebitPayment.objects.create(fk_bank=bank)
                     #modifico las facturas con los pagos
                     bill = Bill.objects.get(pk_bill=invoice)
