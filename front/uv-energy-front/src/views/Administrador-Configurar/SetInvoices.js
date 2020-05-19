@@ -51,6 +51,7 @@ class SetInvoices extends React.Component {
             isInvalidNumber: false
         }
         this.onChangeStratum = this.onChangeStratum.bind(this);
+        this.onChangeMora = this.onChangeMora.bind(this);
         this.getInitState = this.getInitState.bind(this);
         this.checkNumbers = this.checkNumbers.bind(this);
     }
@@ -70,6 +71,13 @@ class SetInvoices extends React.Component {
             isInvalidNumber: false
         });
     }
+
+    onChangeMora(e){
+        this.setState({
+            mora:e.target.value
+        })
+    }
+
     getInitState(){
         let obj = new Object();
         obj.residencial=["416.58715",
@@ -249,7 +257,7 @@ class SetInvoices extends React.Component {
                             placeholder={t("Settings.DebtPercentage.1")}
                             type="number"
                             value={this.state.mora}
-                            onChange={this.onChangeMoraReconexion}
+                            onChange={this.onChangeMora}
                             />
 
                         <div className="text-center">
