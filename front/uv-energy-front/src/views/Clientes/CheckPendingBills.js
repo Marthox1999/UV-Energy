@@ -50,6 +50,8 @@ class CheckPendingBills extends React.Component {
             reconexion: "",
             total: "",
 
+            successPayment: false,
+
             path: '',
             listBills: [],
             credentials: cookie.get('notCredentials'),           
@@ -147,6 +149,9 @@ class CheckPendingBills extends React.Component {
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
+            this.setState({
+                successPayment:true
+            })
             this.closeModal();
             /* window.location.reload(true);*/
         }).catch(error => {
@@ -184,6 +189,11 @@ class CheckPendingBills extends React.Component {
                             <CardHeader className="border-0">
                             <font size="5">{t("Bill.MyBills.1")}</font>
                             </CardHeader>
+
+                            <Alert color="success" isOpen={this.state.successPayment}>
+                                {t("PayBills.Completed.1")}
+                            </Alert>
+
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light" align="center">
                                 <tr>

@@ -842,6 +842,9 @@
         },
         "SelectBank":{
             "1":"Seleccione un banco"
+        },
+        "Completed":{
+            "1": "Se han realizado pagos y se verán reflejados cuando la empresa de servicios actualice los datos"
         }
     },
     "Report":{

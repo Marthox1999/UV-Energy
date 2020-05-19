@@ -847,6 +847,9 @@
         },
         "SelectBank":{
             "1":"Select a bank"
+        },
+        "Completed":{
+            "1": "Payments have been made and will be reflected when the service company updates the data"
         }
     },
 
