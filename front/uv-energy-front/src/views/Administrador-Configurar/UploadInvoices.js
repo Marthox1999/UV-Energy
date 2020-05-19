@@ -105,7 +105,18 @@ class UploadPayments extends React.Component {
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
-            alert(response.data)
+            if (response.data.error != null) {
+                console.log(response.data.error);
+            }
+            else {
+                const file = new Blob([response.data]);
+                const fileURL = URL.createObjectURL(file);
+                const link = document.createElement('a');
+                link.href = fileURL;
+                link.setAttribute('download',this.state.bancoSeleccionado);
+                document.body.appendChild(link);
+                link.click();
+            }
         }).catch(error => {
             this.setState({
                 downloadFile:"0"

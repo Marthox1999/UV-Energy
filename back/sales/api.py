@@ -50,11 +50,7 @@ class GenerateReportViewSet(viewsets.ViewSet):
         permissions.IsAuthenticated
     ]
     def create(self, request):
-        print("holaaaaaaaaaaaaaaaaaaa")
         time_size = request.data['time_size']
-        print("time Size:")
-        print(request.data['time_size'])
-        print(request.data)
         if (time_size=='monthly'):
             init_month = request.data['init_month']
             finish_month = request.data['finish_month']
@@ -71,8 +67,6 @@ class GenerateReportViewSet(viewsets.ViewSet):
             bills="empty"
 
             if(report_type == "bill"):
-                print(init_date)
-                print(end_date)
                 #Obtener las facturas pagadas y calcular la cantidad por mes
                 bills = Bill.objects.filter(expedition_date__gte=init_date, expedition_date__lte=end_date, is_paid=True).annotate(month=TruncMonth('expedition_date')).values('month').annotate(c = Count('month')).values('month', 'c').order_by('month')
             elif (report_type == "no_payed_bill"):
@@ -98,9 +92,6 @@ class GenerateReportViewSet(viewsets.ViewSet):
                     values.append(bill['c'])
             
             sendpackage={"data":values, "labels":time}
-            print(sendpackage)
-            print(sendpackage["data"])
-            print(sendpackage["labels"])
             return Response(sendpackage)
 
         elif (time_size=='yearly'):
@@ -370,6 +361,30 @@ class GenerateBillsViewSet(viewsets.ViewSet):
             aux.save()
         return Response("Las facturas se han generado correctamente")
 
+class downloadFileViewSet (viewsets.ViewSet):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    def create(self, request):
+        from os.path import exists, join
+        from os import makedirs, getcwd, walk
+        bank = request.data["selectedBank"]
+        if not exists('BanksData'):
+            return Response("no hay pagos registrados en ningun banco.")
+        else:
+            if not exists(join('BanksData',bank)):
+               return Response("no hay pagos registrados en ese banco.") 
+        
+        with open(join('BanksData',bank),'rb') as f:
+            bankdata = f.read()
+        # prepara la cabecera de la peticion
+        response = HttpResponse(bankdata, content_type='text/plain')
+        response['Content-Disposition'] = 'attachment;  filename={0}'.format(bankdata)
+        # envia la respuesta
+        return response
+
+
+
 
 
 class BillListViewSet (viewsets.ViewSet):
@@ -469,9 +484,9 @@ class SearchInvoiceViewSet (viewsets.ViewSet):
                     else:
                         # la factura anterior no esta pagada     
                         if not lastbill[1]['is_paid']:
-                            # y esta vencida
-                            print(lastbill[1]['expiration_date'])
-                            if lastbill[1]['expiration_date'] < datetime.now().date():
+                            print(lastbill[1])
+                            # y la actual esta vencida
+                            if bill.expiration_date < datetime.now().date():
                                 response = {    
                                     "valor": str(int(bill.read * bill.unit_value)), 
                                     "mora" : str(lastbill[1]['value']),
@@ -488,9 +503,8 @@ class SearchInvoiceViewSet (viewsets.ViewSet):
                                     "total": str(bill.value), 
                                     "reconexion": "0",
                                 }
-
-                        
                         else:
+                            print("pago normal")
                             # pago normal
                             response = {    
                                 "valor": str(bill.value), 
@@ -538,8 +552,6 @@ class payInvoiceClientViewSet (viewsets.ViewSet):
         from os import makedirs, getcwd, walk
         pk = request.data["referenceBill"]
         bank = request.data['bank']
-        print(pk)
-        print(bank)
         if not exists('BanksData'):
             makedirs('BanksData')
         
