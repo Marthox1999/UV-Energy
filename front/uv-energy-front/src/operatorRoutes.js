@@ -3,7 +3,7 @@ import ReadElectricTransformer from "views/Operador-Transformador/ReadElectricTr
 import addClient from "views/Operator-Client/AddClient.js"
 import RegisteredClients from "views/Operator-Client/RegisteredClients.js"
 import PayWithInvoice from "views/Operator-Client/PayWithInvoice.js"
-import PayWithClient from "views/Operator-Client/PayWithClient.js"
+//import PayWithClient from "views/Operator-Client/PayWithClient.js"
 
 
 var electricTransformerRoutes = [

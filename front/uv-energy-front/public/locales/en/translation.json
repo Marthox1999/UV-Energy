@@ -396,6 +396,9 @@
         }
     },
     "Substation":{
+        "Registered":{
+            "1":"Registered Substation"
+        },
         "AddSubstation":{
             "1":"Add Substation"
         },
@@ -771,13 +774,24 @@
         },
         "Error":{
             "1":"An error occurred generating the invoices",
-            "2":"Banks must be Banco1 or MiBanco"
+            "2":"Banks must be Banco1 or MiBanco",
+            "3":"A bank must be selected to download"
         },
         "Upload":{
             "1":"Upload payments"
         },
+        "Download":{
+            "1":"download payments"
+        },
         "UploadFile":{
             "1":"Upload file"
+        },
+        "EmptyBank":{
+            "1":"The bank does not record payments"
+        },
+        "Success":{
+            "1":"File downloaded successfully",
+            "2":"Invoices generated successfully"
         }
     },
     "PayBills":{
@@ -845,6 +859,9 @@
         },
         "SelectBank":{
             "1":"Select a bank"
+        },
+        "Completed":{
+            "1": "Payments have been made and will be reflected when the service company updates the data"
         }
     },
     "Report":{

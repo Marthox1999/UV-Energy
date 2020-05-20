@@ -47,10 +47,14 @@ class SetInvoices extends React.Component {
                          "711.2273"],
             
             mora:"1",
+
+            alertSuccess:false,
+
             credentials: cookie.get('notCredentials'),
             isInvalidNumber: false
         }
         this.onChangeStratum = this.onChangeStratum.bind(this);
+        this.onChangeMora = this.onChangeMora.bind(this);
         this.getInitState = this.getInitState.bind(this);
         this.checkNumbers = this.checkNumbers.bind(this);
     }
@@ -70,6 +74,13 @@ class SetInvoices extends React.Component {
             isInvalidNumber: false
         });
     }
+
+    onChangeMora(e){
+        this.setState({
+            mora:e.target.value
+        })
+    }
+
     getInitState(){
         let obj = new Object();
         obj.residencial=["416.58715",
@@ -125,7 +136,10 @@ class SetInvoices extends React.Component {
             {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
         .then( response => {
             this.setState(this.getInitState());
-            alert(response.data);
+            this.setState({
+                alertSuccess: true
+            })
+            
         }).catch(
             error => {
                 alert(i18n.t("Settings.Error.1"));
@@ -163,6 +177,9 @@ class SetInvoices extends React.Component {
                         
                         <Alert color="warning" isOpen={this.state.isInvalidNumber}>
                              {t("Settings.Invalid.1")}
+                        </Alert>
+                        <Alert color="success" isOpen={this.state.alertSuccess}>
+                             {t("Settings.Success.2")}
                         </Alert>
                             {/**
                          * Tabla de estratos
@@ -249,7 +266,7 @@ class SetInvoices extends React.Component {
                             placeholder={t("Settings.DebtPercentage.1")}
                             type="number"
                             value={this.state.mora}
-                            onChange={this.onChangeMoraReconexion}
+                            onChange={this.onChangeMora}
                             />
 
                         <div className="text-center">

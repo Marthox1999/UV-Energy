@@ -50,6 +50,8 @@ class CheckPendingBills extends React.Component {
             reconexion: "",
             total: "",
 
+            successPayment: false,
+
             path: '',
             listBills: [],
             credentials: cookie.get('notCredentials'),           
@@ -108,10 +110,11 @@ class CheckPendingBills extends React.Component {
      * 
      */
     searchInvoice(referenceInvoiceIn){
-        this.state.referenceInvoice=referenceInvoiceIn;
+        this.setState({referenceInvoice: referenceInvoiceIn})
+        console.log(referenceInvoiceIn)
         axios.post(c.api + 'sales/searchInvoice/',
             {
-                referenceBill:this.state.referenceInvoice
+                referenceBill: referenceInvoiceIn
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
@@ -122,11 +125,11 @@ class CheckPendingBills extends React.Component {
                             reconexion: response.data.reconexion})
         }).catch(error => {
             console.log(error)
-            this.setState({ valor: "1", 
-                            mora: "1",
-                            total: "1",
-                            interes: "1",
-                            reconexion: "1"})
+            this.setState({ valor: "-2", 
+                            mora: "",
+                            total: "",
+                            interes: "",
+                            reconexion: ""})
         })
         
     }
@@ -146,6 +149,9 @@ class CheckPendingBills extends React.Component {
             },
             {headers: { Authorization: `Token ${this.state.credentials.token}`}})
         .then( response => {
+            this.setState({
+                successPayment:true
+            })
             this.closeModal();
             /* window.location.reload(true);*/
         }).catch(error => {
@@ -183,6 +189,11 @@ class CheckPendingBills extends React.Component {
                             <CardHeader className="border-0">
                             <font size="5">{t("Bill.MyBills.1")}</font>
                             </CardHeader>
+
+                            <Alert color="success" isOpen={this.state.successPayment}>
+                                {t("PayBills.Completed.1")}
+                            </Alert>
+
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light" align="center">
                                 <tr>

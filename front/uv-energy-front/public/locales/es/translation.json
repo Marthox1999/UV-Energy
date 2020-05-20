@@ -393,6 +393,9 @@
         }
     },
     "Substation":{
+        "Registered":{
+            "1":"Subestaciones Registradas"
+        },
         "AddSubstation":{
             "1":"Agregar Subestación"
         },
@@ -765,13 +768,24 @@
         },
         "Error":{
             "1":"Se produjo un error al generar las facturas.",
-            "2":"Los bancos deben ser Banco1 ó MiBanco"
+            "2":"Los bancos deben ser Banco1 ó MiBanco",
+            "3":"Se debe seleccionar un banco para descargar"
         },
         "Upload":{
             "1":"Subir pagos"
         },
+        "Download":{
+            "1":"Descargar pagos"
+        },
         "UploadFile":{
             "1":"Subir archivo"
+        },
+        "EmptyBank":{
+            "1":"El banco no registra pagos"
+        },
+        "Success":{
+            "1":"Archivo descargado con éxito",
+            "2":"Facturas generadas con éxito"
         }
     },
     "PayBills":{
@@ -839,6 +853,9 @@
         },
         "SelectBank":{
             "1":"Seleccione un banco"
+        },
+        "Completed":{
+            "1": "Se han realizado pagos y se verán reflejados cuando la empresa de servicios actualice los datos"
         }
     },
     "Report":{
