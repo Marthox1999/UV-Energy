@@ -292,7 +292,7 @@ class RUDDClient extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <font size="5">{t("Admin.Info.2")} {this.state.admin.first_name}</font>
+                        <font size="5">{t("Client.Information.2")} {this.state.admin.first_name}</font>
                         </Col>
                     </Row>
                     </CardHeader>
@@ -302,10 +302,10 @@ class RUDDClient extends React.Component {
                             </h6>
                             <div className="pl-lg-4">
                                 <Alert color="warning" isOpen={this.state.isAlertEmpty}>
-                                    <strong>{t("Admin.Warning.1")}</strong> {t("Admin.EmptyFields.1")}
+                                    <strong>{t("Client.Warning.1")}</strong> {t("Client.EmptyFields.1")}
                                 </Alert>
                                 <Alert color="warning" isOpen={this.state.isBadinputs}>
-                                    <strong>{t("Admin.Warning.1")}</strong> {t("Admin.BadInputs.1")}
+                                    <strong>{t("Client.Warning.1")}</strong> {t("Client.BadInputs.1")}
                                 </Alert>
                                 <Alert color="success" isOpen={this.state.isAlertSuccess}>
                                     <strong>{t("Client.Congrat.1")}</strong> {t("Client.Congrat.3")}
@@ -317,12 +317,12 @@ class RUDDClient extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-first-name"
                                         >
-                                        {t("Admin.Name.1")}
+                                        {t("Client.Name.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-first-name"
-                                        placeholder={t("Admin.Name.1")}
+                                        placeholder={t("Client.Name.1")}
                                         type="text"
                                         value={this.state.admin.first_name}
                                         onChange={this.onChangeFirsName}
@@ -335,12 +335,12 @@ class RUDDClient extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-last-name"
                                         >
-                                        {t("Admin.LastName.1")}
+                                        {t("Client.LastName.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-last-name"
-                                        placeholder={t("Admin.LastName.1")}
+                                        placeholder={t("Client.LastName.1")}
                                         type="text"
                                         value={this.state.admin.last_name}
                                         onChange={this.onChangeLastName}
@@ -356,12 +356,12 @@ class RUDDClient extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-phone-number"
                                         >
-                                        {t("Admin.PhoneNumber.1")}
+                                        {t("Client.Phone.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-phone-number"
-                                        placeholder={t("Admin.PhoneNumber.1")}
+                                        placeholder={t("ClientClient.Phone.1")}
                                         type="text"
                                         value={this.state.admin.cellphone}
                                         onChange={this.onChangeCellphone}
@@ -373,7 +373,7 @@ class RUDDClient extends React.Component {
 
                             <hr className="my-4"></hr>
                             <h6 className="heading-small text-muted mb-4">
-                            {t("Admin.AccountInfo.1")}
+                            {t("Client.AccountInfo.1")}
                             </h6>
                             <div className="pl-lg-4">                        
                                 <Row>
@@ -383,12 +383,12 @@ class RUDDClient extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-username"
                                         >
-                                        {t("Admin.Username.1")}
+                                        {t("Client.Username.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
                                         id="input-username"
-                                        placeholder={t("Admin.Username.1")}
+                                        placeholder={t("Client.Username.1")}
                                         type="text"                                
                                         value={this.state.admin.username}
                                         onChange={this.onChangeUsername}
@@ -401,7 +401,7 @@ class RUDDClient extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-email"
                                         >
-                                        {t("Admin.Email.1")}
+                                        {t("Client.Email.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
@@ -421,11 +421,11 @@ class RUDDClient extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-password"
                                         >
-                                        {t("Admin.Password.1")}
+                                        {t("Client.Password.1")}
                                         </label>
                                         <Input 
                                         className="form-control-alternative"
-                                        placeholder={t("Admin.Password.1")}
+                                        placeholder={t("Client.Password.1")}
                                         type="password" 
                                         autoComplete="new-password"
                                         value={this.state.adminPassword}
@@ -457,9 +457,9 @@ class RUDDClient extends React.Component {
                     <ModalBody>
                         <div className="modal-body">
                             <Alert color="warning">
-                            <strong>{this.state.submitClicked} {t("Admin.AdminRegister.1")},</strong><br/>{t("Admin.AreYouSure.1")}
+                            <strong>{this.state.submitClicked} {t("Client.ClientRegister.1")},</strong><br/>{t("Admin.AreYouSure.1")}
                             </Alert>
-                            <strong>{t("Admin.Info.1")}</strong>
+                            <strong>{t("Client.Information.1")}</strong>
                             <br></br>
                             <strong> {t("Admin.Id.1")} </strong> {this.state.adminData.id}<br/>
                             <strong> {t("Admin.Name.2")} </strong> {this.state.adminData.name} {this.state.adminData.last_name}<br/>                                                        
