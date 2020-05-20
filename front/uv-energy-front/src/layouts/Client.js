@@ -6,6 +6,7 @@ import { Container } from "reactstrap";
 import UVAdminNavbar from "components/Navbars/UVAdminNavbar.js";
 import SidebarC from "components/Sidebar/SidebarC.js";
 
+import routes from "routes.js";
 
 import clientRoutes from "clientRoutes.js";
 
@@ -59,6 +60,21 @@ class Client extends Component {
       }
     });
   };
+  getRoutes = routes => {
+    return routes.map((prop, key) => {
+      if (prop.layout === "/client") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
   getBrandTextClient = path => {
     for (let i = 0; i < clientRoutes.length; i++) {
       if (
@@ -71,12 +87,24 @@ class Client extends Component {
       }
       return "Brand";
   };
-  
+  getBrandText = path => {
+    for (let i = 0; i < routes.length; i++) {
+      if (
+        this.props.location.pathname.indexOf(
+          routes[i].layout + routes[i].path
+        ) !== -1
+        ) {
+          return routes[i].name;
+        }
+      }
+      return "Brand";
+  };
   render() {
     return (
       <>
         <SidebarC
           {...this.props}
+          routes={routes}
           clientRoutes={clientRoutes}
           logo={{
             innerLink: "/client/index",
@@ -87,6 +115,7 @@ class Client extends Component {
         <div className="main-content" ref="mainContent">
           <UVAdminNavbar/>
           <Switch>
+            {this.getRoutes(routes)}
             {this.getClientRoutes(clientRoutes)}
             <Redirect from="*" to="/client/index" />
           </Switch>

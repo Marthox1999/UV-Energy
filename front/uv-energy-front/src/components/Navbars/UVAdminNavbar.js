@@ -39,17 +39,17 @@ class UVAdminNavbar extends React.Component {
             <Nav className="align-items-center d-none d-md-flex" navbar>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="pr-0" nav>
-                  <i class="ni ni-world"></i>
+                  <i className="ni ni-world"></i>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-arrow" right>
                   <DropdownItem className="noti-title" header tag="div">
-                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('en')}>English</button>
+                    <button type="button" className="btn btn-default btn-block" onClick={() => this.handleClick('en')}>English</button>
                   </DropdownItem>
                   <DropdownItem className="noti-title" header tag="div">
-                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('es')}>Español</button>
+                    <button type="button" className="btn btn-default btn-block" onClick={() => this.handleClick('es')}>Español</button>
                   </DropdownItem>
                   <DropdownItem className="noti-title" header tag="div">
-                    <button type="button" class="btn btn-default btn-block" onClick={() => this.handleClick('pt')}>Português</button>
+                    <button type="button" className="btn btn-default btn-block" onClick={() => this.handleClick('pt')}>Português</button>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -61,7 +61,7 @@ class UVAdminNavbar extends React.Component {
                     <span className="avatar avatar-sm rounded-circle">
                       <img
                         alt="..."
-                        src={require("assets/img/theme/team-4-800x800.jpg")}
+                        src={require("assets/img/theme/user.png")}
                       />
                     </span>
                     <Media className="ml-2 d-none d-lg-block">

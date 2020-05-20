@@ -11,6 +11,7 @@ import RUDDOperator from "views/Administrador-Operador/RUDDOperator.js"
 import RUDDAdminM from "views/Gerente-Reportes/RUDDAdminM.js"
 import RUDDManagerM from "views/Gerente-Reportes/RUDDManagerM.js"
 import RUDDOperatorM from "views/Gerente-Reportes/RUDDOperatorM.js"
+import RUDDClient from "views/Operator-Client/RUDDClient.js"
 import HomePage from "views/Clientes/HomePage.js"
 
 var routes = [
@@ -18,7 +19,7 @@ var routes = [
     path: "/index",
     name: "Dashboard",
     icon: "ni ni-tv-2 text-primary",
-    component: Index,
+    component: HomePage,
     layout: "/admin"
   },
   {
@@ -92,10 +93,17 @@ var routes = [
     layout: "/admin"
   },
   {
+    path: "/RUDDClient",
+    name: "Selected Operator",
+    icon: "ni ni-single-02 text-blue",
+    component: RUDDClient,
+    layout: "/operator"
+  },
+  {
     path: "/index",
     name: "Dashboard",
     icon: "ni ni-tv-2 text-primary",
-    component: Index,
+    component: HomePage,
     layout: "/manager"
   },
   {
@@ -123,7 +131,7 @@ var routes = [
     path: "/index",
     name: "Dashboard",
     icon: "ni ni-tv-2 text-primary",
-    component: Index,
+    component: HomePage,
     layout: "/operator"
   },
 ];
