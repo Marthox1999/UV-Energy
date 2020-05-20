@@ -129,7 +129,7 @@ class GenerateReportViewSet(viewsets.ViewSet):
                 "por favor seleccione un tipo de grafica"
             if bills != "empty":
                 for bill in bills:
-                    time.append(bill['month'])
+                    time.append(bill['year'])
                     values.append(bill['c'])
             
             sendpackage={"data":values, "labels":time}

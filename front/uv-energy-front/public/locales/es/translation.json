@@ -1,5 +1,4 @@
 {   
-    
     "Login":{
         "Welcome":{
             "1":"Bienvenido!"
@@ -393,7 +392,6 @@
             "1":"Seleccione un transformador electrico primero."
         }
     },
-
     "Substation":{
         "Registered":{
             "1":"Subestaciones Registradas"
@@ -481,10 +479,11 @@
         },
         "NewName":{
             "1":"Nuevo nombre"
+        },
+        "RegisteredSubstation":{
+            "1":"Subestaciones registradas"
         }
     },
-
-
     "Admin":{
         "AddAdmin":{
             "1":"Adicionar Administrador"
@@ -670,7 +669,8 @@
             "1":"Agregar"
         },
         "Information":{
-            "1":"Información"
+            "1":"Información",
+            "2":"Información de"
         },
         "Congratulations":{
             "1":"¡Felicitaciones!"
@@ -684,8 +684,16 @@
         "Close":{
             "1":"Cerrar"
         },
-        "ActiveClient":{
-            "1":"Cliente activo"
+        "ActiveClients":{
+            "1":"Clientes activos"
+        },
+        "Congrat":{
+            "1":"Felicitaciones!",
+            "2":"La cuenta del cliente fue creada!",
+            "3":"La información del cliente fue modificada!"
+        },
+        "DisableButton":{
+            "1":"Desabilitar Cliente"
         },
         "DisabledNotification":{
             "1":"¡Se desactivo la cuenta del cliente! Vuelva a cargar la página para ver el cambio"
@@ -716,9 +724,14 @@
         },
         "ConfirmationDisable":{
             "1":"¿Deshabilitar cliente?"
+        },
+        "ClientRegister":{
+            "1":"registro de clientes"
+        },
+        "DeleteButton":{
+            "1":"Borrar Registro"
         }
     },
-
     "Settings":{
         "SetUpInvoices":{
             "1": "Configurar facturas"
@@ -853,7 +866,7 @@
             "1": "Reportes"
         },
         "Bills":{
-            "1": "Facturas"
+            "1": "Facturas pagadas"
         },
         "Income":{
             "1": "Ingresos"
@@ -861,8 +874,17 @@
         "Consumption":{
             "1": "Consumo"
         },
-        "Payments":{
-            "1":"Pagos"
+        "BPayments":{
+            "1":"Cantidad Pagos en Banco"
+        },
+        "OPayments":{
+            "1":"Cantidad Pagos con Operador"
+        },
+        "VBPayments":{
+            "1":"Valor Pagos en Banco"
+        },
+        "VOPayments":{
+            "1":"Valor Pagos con Operador"
         },
         "Day":{
             "1": "Dia"
@@ -884,6 +906,38 @@
         },
         "Generate":{
             "1":"Generar Reporte"
+        },
+        "Period":{
+            "1":"Periodo"
+        },
+        "Monthly":{
+            "1":"Mensual"
+        },
+        "Yearly":{
+            "1":"Anual"
+        },
+        "NoReport":{
+            "1":"No hay Registros"
+        }, 
+        "NoBillPaid":{
+            "1":"Facturas no Pagadas"
+        }
+    },
+    "Meter":{
+        "meter":{
+            "1":"Contador"
+        },
+        "address":{
+            "1":"Direccion"
+        },
+        "stratum":{
+            "1":"Estrato"
+        },
+        "city": {
+            "1":"Ciudad"
+        },
+        "use":{
+            "1":"Uso"
         }
     }
 }

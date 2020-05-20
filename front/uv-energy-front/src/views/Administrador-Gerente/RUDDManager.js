@@ -377,7 +377,7 @@ class RUDDManager extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
-                        {/*
+                        {
                         <Row>
                             <Col className="col-md-12">
                             <FormGroup>
@@ -385,11 +385,11 @@ class RUDDManager extends React.Component {
                                 className="form-control-label"
                                 htmlFor="input-password"
                                 >
-                                Password
+                                {t("Admin.Password.1")}
                                 </label>
                                 <Input 
                                 className="form-control-alternative"
-                                placeholder="Password" 
+                                placeholder={t("Admin.Password.1")} 
                                 type="password" 
                                 autoComplete="new-password"
                                 value={this.state.managerPassword}
@@ -398,7 +398,7 @@ class RUDDManager extends React.Component {
                             </FormGroup>
                             </Col>
                         </Row>
-                        */}
+                        }
                         <div className="text-center">
                             <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                             {t("Manager.ModifyManager.1")}

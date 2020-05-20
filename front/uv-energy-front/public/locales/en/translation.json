@@ -485,9 +485,11 @@
         },
         "NewName":{
             "1":"New name"
+        },
+        "RegisteredSubstation":{
+            "1":"Registered substations"
         }
     },
-
     "Bill":{
         "NoBill":{
             "1":"There aren't bills"
@@ -532,8 +534,6 @@
             "1":"Pay"
         }
     },
-
-
     "Admin":{
         "AddAdmin":{
             "1":"Add Administrator"
@@ -675,7 +675,8 @@
             "1":"Add"
         },
         "Information":{
-            "1":"Information"
+            "1":"Information",
+            "2":"Information of"
         },
         "Congratulations":{
             "1":"Congratulations"
@@ -690,7 +691,15 @@
             "1":"Close"
         },
         "ActiveClient":{
-            "1":"Active client"
+            "1":"Active clients"
+        },
+        "Congrat":{
+            "1":"Congratulations!",
+            "2":"The client account was created!",
+            "3":"The client was modified!"
+        },
+        "DisableButton":{
+            "1":"Disable Client"
         },
         "DisabledNotification":{
             "1":"Client account was disabled! Please reload the page to see the change"
@@ -721,9 +730,14 @@
         },
         "ConfirmationDisable":{
             "1":"Disable Client?"
+        },
+        "ClientRegister":{
+            "1":"client de register"
+        },
+        "DeleteButton":{
+            "1":"Borrar Registro"
         }
     },
-
     "Settings":{
         "SetUpInvoices":{
             "1": "Set up invoices"
@@ -853,13 +867,12 @@
             "1": "Payments have been made and will be reflected when the service company updates the data"
         }
     },
-
     "Report":{
         "Name":{
             "1": "Reports"
         },
         "Bills":{
-            "1": "Bills"
+            "1": "Paid Bills"
         },
         "Income":{
             "1": "Income"
@@ -867,8 +880,17 @@
         "Consumption":{
             "1": "Consumption"
         },
-        "Payments":{
-            "1":"Payments"
+        "BPayments":{
+            "1":"Bank Payments Amount"
+        },
+        "OPayments":{
+            "1":"Operator Payments Amount"
+        },
+        "VBPayments":{
+            "1":" Bank Payments Value"
+        },
+        "VOPayments":{
+            "1":"Operator Payments Value"
         },
         "Day":{
             "1": "Day"
@@ -890,6 +912,38 @@
         },
         "Generate":{
             "1":"Generate Report"
+        },
+        "Period":{
+            "1":"Period Type"
+        },
+        "Monthly":{
+            "1":"Monthly"
+        },
+        "Yearly":{
+            "1":"Yearly"
+        },
+        "NoReport":{
+            "1":"There are no Records"
+        },
+        "NoBillPaid":{
+            "1":"Unpaid Bills"
+        }
+    },
+    "Meter":{
+        "meter":{
+            "1":"Meter"
+        },
+        "address":{
+            "1":"Address"
+        },
+        "stratum":{
+            "1":"Stratum"
+        },
+        "city": {
+            "1":"City"
+        },
+        "use":{
+            "1":"Use"
         }
     }
 }

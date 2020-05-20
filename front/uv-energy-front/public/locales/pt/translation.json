@@ -391,9 +391,7 @@
         "SelectSubstation":{
             "1":"Selecione um transformador elétrico primeiro"
         }
-
     },
-
     "Substation":{
         "Registered":{
             "1":"Subestações registradas"
@@ -481,6 +479,9 @@
         },
         "NewName":{
             "1":"Novo nome"
+        },
+        "RegisteredSubstation":{
+            "1":"Subestações registradas"
         }
     },
 
@@ -670,7 +671,8 @@
             "1":"Adicionar"
         },
         "Information":{
-            "1":"Informações!"
+            "1":"Informações!",
+            "2":"Informação de"
         },
         "Congratulations":{
             "1":"Parabéns!"
@@ -685,7 +687,15 @@
             "1":"Fechar"
         },
         "ActiveClient":{
-            "1":"Cliente ativo"
+            "1":"Clientes ativos"
+        },
+        "Congrat":{
+            "1":"Parabéns!",
+            "2":"A conta do cliente foi criada!",
+            "3":"As informações do cliente foram modificadas!"
+        },
+        "DisableButton":{
+            "1":"Desativar cliente"
         },
         "DisabledNotification":{
             "1":"A conta do cliente foi desativada! Atualize a página para ver a alteração"
@@ -716,6 +726,9 @@
         },
         "ConfirmationDisable":{
             "1":"Desativar cliente?"
+        },
+        "ClientRegister":{
+            "1":"registro de cliente"
         }
     },
 
@@ -854,7 +867,7 @@
             "1": "Relatórios"
         },
         "Bills":{
-            "1": "Contas"
+            "1": "Contas pagas"
         },
         "Income":{
             "1": "Renda"
@@ -862,8 +875,17 @@
         "Consumption":{
             "1": "Consumo"
         },
-        "Payments":{
-            "1":"Pagamentos"
+        "BPayments":{
+            "1":"Montante dos pagamentos bancários"
+        },
+        "OPayments": {
+            "1": "Montante dos pagamentos do operador"
+        },
+        "VBPayments": {
+            "1": "Valor dos pagamentos bancários"
+        },
+        "VOPayments": {
+            "1": "Valor de pagamentos do operador"
         },
         "Day":{
             "1": "Dia"
@@ -885,6 +907,38 @@
         },
         "Generate":{
             "1":"Gerar Relatório"
+        },
+        "Period":{
+            "1":"Período"
+        },
+        "Monthly":{
+            "1":"Mesal"
+        },
+        "Yearly":{
+            "1":"Anualmente"
+        },
+        "NoReport":{
+            "1":"Não há registros"
+        },
+        "NoBillPaid":{
+            "1":"Contas não pagas"
+        }
+    },
+    "Meter":{
+        "meter":{
+            "1":"Medidor"
+        },
+        "address":{
+            "1":"Endereço"
+        },
+        "stratum":{
+            "1":"Estrato"
+        },
+        "city": {
+            "1":"Cidade"
+        },
+        "use":{
+            "1":"Usar"
         }
     }
 }

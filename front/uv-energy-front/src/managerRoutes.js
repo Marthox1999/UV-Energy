@@ -40,7 +40,7 @@ var electricTransformerRoutes = [
   {
     path: "/registeredElectricTransformer",
     name: "ETransformer.Registered.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-istanbul text-blue",
     component: RegisteredElectricTransformer,
     layout: "/manager"
   },
@@ -60,7 +60,7 @@ var reportRoutes =[
   {
     path: "/reportes",
     name: "Report.Name.1",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-books text-blue",
     component: managerReport,
     layout: "/manager" 
   },

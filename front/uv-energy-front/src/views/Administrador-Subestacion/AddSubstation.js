@@ -124,6 +124,7 @@ class AddSubstation extends React.Component {
                     this.state.substation,
                     {headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
                 .then( response => {
+                    console.log(response)
                     if (response.data.pk_substation !== -1){
                         this.setState({
                             isAlertSuccess: true,
