@@ -90,10 +90,10 @@ class RegisteredClients extends React.Component {
                             <font size="5">{t("Client.ActiveClient.1")}</font>
                             </CardHeader>
                             <Alert color="info" isOpen={this.state.isdisabledAdmin}>
-                                {t("Admin.DisableAdmin.1")}
+                                {t("Client.DisabledClient.1")}
                             </Alert>
                             <Alert color="info" isOpen={this.state.isdeletedAdmin}>
-                                {t("Admin.DeletedAdmin.1")}
+                                {t("Client.DeletedClient.1")}
                             </Alert>
                             <Table className="align-items-center table-flush" responsive>
                             <thead className="thead-light">

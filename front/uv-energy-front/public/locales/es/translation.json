@@ -689,8 +689,8 @@
         },
         "Congrat":{
             "1":"Felicitaciones!",
-            "2":"La cuenta del administrador fue creada!",
-            "3":"La información del administrador fue modificada!"
+            "2":"La cuenta del cliente fue creada!",
+            "3":"La información del cliente fue modificada!"
         },
         "DisableButton":{
             "1":"Desabilitar Cliente"
@@ -727,6 +727,9 @@
         },
         "ClientRegister":{
             "1":"registro de clientes"
+        },
+        "DeleteButton":{
+            "1":"Borrar Registro"
         }
     },
     "Settings":{

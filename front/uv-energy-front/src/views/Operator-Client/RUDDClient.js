@@ -42,7 +42,7 @@ class RUDDClient extends React.Component {
                 last_name: "",
                 is_active: true,
                 cellphone: "",
-                position: "ADMIN"
+                position: "CLT"
             },
             adminData: {
                 id: this.props.location.state.adminID,
@@ -53,7 +53,7 @@ class RUDDClient extends React.Component {
                 last_name: "",
                 is_active: true,
                 cellphone: "",
-                position: "ADMIN"
+                position: "CLT"
             },
             credentials: cookie.get('notCredentials'),
             adminPassword: "",
@@ -100,7 +100,7 @@ class RUDDClient extends React.Component {
                                     last_name: this.state.admin.last_name,
                                     is_active: true,
                                     cellphone: this.state.admin.cellphone,
-                                    position: "ADMIN"
+                                    position: "CLT"
                                 }})
     }
     onChangePassword(e){
@@ -116,7 +116,7 @@ class RUDDClient extends React.Component {
                                     last_name: this.state.admin.last_name,
                                     is_active: true,
                                     cellphone: this.state.admin.cellphone,
-                                    position: "ADMIN"
+                                    position: "CLT"
                                 }})
     }
     onChangeFirsName(e){
@@ -129,7 +129,7 @@ class RUDDClient extends React.Component {
                                     last_name: this.state.admin.last_name,
                                     is_active: true,
                                     cellphone: this.state.admin.cellphone,
-                                    position: "ADMIN"
+                                    position: "CLT"
                                 }})
     }
     onChangeLastName(e){
@@ -142,7 +142,7 @@ class RUDDClient extends React.Component {
                                     last_name: e.target.value,
                                     is_active: true,
                                     cellphone: this.state.admin.cellphone,
-                                    position: "ADMIN"
+                                    position: "CLT"
                                 }})
     }
     onChangeCellphone(e){
@@ -155,7 +155,7 @@ class RUDDClient extends React.Component {
                                     last_name: this.state.admin.last_name,
                                     is_active: true,
                                     cellphone: e.target.value,
-                                    position: "ADMIN"
+                                    position: "CLT"
                                 }})
     }
     SubmitEvent(buttonVal){
@@ -184,7 +184,7 @@ class RUDDClient extends React.Component {
                             last_name: this.state.admin.last_name,
                             is_active: true,
                             cellphone: this.state.admin.cellphone,
-                            position: "ADMIN"
+                            position: "CLT"
                         },
                         {headers: { Authorization: `Token ${this.state.credentials.token}`}})
 
@@ -248,12 +248,12 @@ class RUDDClient extends React.Component {
                 last_name: this.state.admin.last_name,
                 is_active: false,
                 cellphone: this.state.admin.cellphone,
-                position: "ADMIN"
+                position: "CLT"
             },{headers: { 'Authorization' : `Token ${this.state.credentials.token}`}})
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: true, deletedAdmin: false, reload: true}})
+                pathname: '/operator/RegisteredClients', state:{disabledAdmin: true, deletedAdmin: false, reload: true}})
                 window.location.reload(true);
 
         }else if(buttonVal === 3){
@@ -263,7 +263,7 @@ class RUDDClient extends React.Component {
             .catch(error => console.log(error))
 
             this.props.history.push({
-                pathname: '/admin/RegisteredAdmins', state:{disabledAdmin: false, deletedAdmin: true, reload: true}})
+                pathname: '/operator/RegisteredClients', state:{disabledAdmin: false, deletedAdmin: true, reload: true}})
                 window.location.reload(true);
         }
     }
@@ -373,7 +373,7 @@ class RUDDClient extends React.Component {
 
                             <hr className="my-4"></hr>
                             <h6 className="heading-small text-muted mb-4">
-                            {t("Client.AccountInfo.1")}
+                            {t("Client.AccountInformation.1")}
                             </h6>
                             <div className="pl-lg-4">                        
                                 <Row>
@@ -401,7 +401,7 @@ class RUDDClient extends React.Component {
                                         className="form-control-label"
                                         htmlFor="input-email"
                                         >
-                                        {t("Client.Email.1")}
+                                        {t("General.Email.1")}
                                         </label>
                                         <Input
                                         className="form-control-alternative"
@@ -438,11 +438,11 @@ class RUDDClient extends React.Component {
                                     <Button className="mt-4" color="primary" onClick={ () => this.SubmitEvent(1) }>
                                         {t("Admin.ModifyButton.1")}
                                     </Button>
-                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked(i18n.t("Admin.Disable.1"))}>
+                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked(i18n.t("Client.DisabledClient.1"))}>
                                         {t("Client.DisableButton.1")}
                                     </Button>
-                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked(i18n.t("Admin.Delete.1"))}>
-                                        {t("Admin.DeleteButton.1")}
+                                    <Button className="mt-4" color="primary" onClick={()=>this.updateClicked(i18n.t("Client.DeletedClient.1"))}>
+                                        {t("Client.DeleteButton.1")}
                                     </Button>
                                 </div>
                             </div>

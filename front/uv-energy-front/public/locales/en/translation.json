@@ -733,6 +733,9 @@
         },
         "ClientRegister":{
             "1":"client de register"
+        },
+        "DeleteButton":{
+            "1":"Borrar Registro"
         }
     },
     "Settings":{
