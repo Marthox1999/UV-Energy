@@ -17,6 +17,27 @@ class UserViewSet (viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = UserSerializer
+    def update(self, request, pk=None):
+        user = User.objects.get(id=pk)
+        user.username = request.data['username']
+        password = request.data['password']
+        encoded_password = make_password(password, salt=None, hasher='default')
+        user.password = encoded_password
+        user.email = request.data['email']
+        user.first_name = request.data['first_name']
+        user.last_name = request.data['last_name']
+        user.cellphone = request.data['cellphone']
+        user.save()
+
+        sendpackage={
+                "first_name":request.data['first_name'],
+                "last_name":request.data['last_name'],
+                "cellphone":request.data['cellphone'],
+                "email":request.data['email'],
+                "password":password
+                }
+
+        return Response(sendpackage)
 
 
 # Active Manager viewSet
