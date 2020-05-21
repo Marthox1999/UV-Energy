@@ -1467,7 +1467,7 @@
         "expedition_date": "2020-03-31",
         "expiration_date": "2020-04-30",
         "is_paid": false,
-        "value": 161219,
+        "value": 435792,
         "fk_debit_payment": null,
         "fk_meter": 1,
         "fk_employee": null,
@@ -1552,7 +1552,7 @@
         "expedition_date": "2020-04-30",
         "expiration_date": "2020-05-31",
         "is_paid": false,
-        "value": 635837,
+        "value": 1556464,
         "fk_debit_payment": null,
         "fk_meter": 2,
         "fk_employee": null,
@@ -1573,7 +1573,7 @@
         "fk_debit_payment": null,
         "fk_meter": 3,
         "fk_employee": null,
-        "unit_value":548.2377,
+        "unit_value":568.983,
         "mora":1
     }
 }, {
