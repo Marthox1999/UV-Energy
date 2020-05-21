@@ -244,7 +244,9 @@ class ModifySubstation extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{t("Substation.DeactivateSubstation.1")}</h3>
+                        <font size="5">{t("Substation.ModifySubstation.1")}</font>
+                        <br></br>
+                        <font size="3">{this.props.location.pathname}</font>
                         </Col>
                     </Row>
                     </CardHeader>

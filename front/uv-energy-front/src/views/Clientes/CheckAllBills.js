@@ -87,6 +87,8 @@ class CheckAllBills extends React.Component {
                             <Card className="shadow">
                                 <CardHeader className="border-0">
                                     <font size="5">{t("Bill.MyBills.1")}</font>
+                                    <br></br>
+                                    <font size="3">{this.props.location.pathname}</font>
                                 </CardHeader>
                                 <Table className="align-items-center table-flush" responsive>
                                     <thead className="thead-light" align="center">

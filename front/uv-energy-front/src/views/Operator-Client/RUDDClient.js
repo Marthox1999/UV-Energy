@@ -293,6 +293,8 @@ class RUDDClient extends React.Component {
                     <Row className="align-items-center">
                         <Col xs="8">
                         <font size="5">{t("Client.Information.2")} {this.state.admin.first_name}</font>
+                        <br></br>
+                        <font size="3">{this.props.location.pathname}</font>
                         </Col>
                     </Row>
                     </CardHeader>

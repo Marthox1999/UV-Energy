@@ -160,6 +160,8 @@ class SetInvoices extends React.Component {
                     <Row className="align-items-center">
                         <Col xs="8">
                         <font size="5">{t("Settings.SetUpInvoices.1")}</font>
+                        <br></br>
+                        <font size="3">{this.props.location.pathname}</font>
                         </Col>
                     </Row>
                     </CardHeader>

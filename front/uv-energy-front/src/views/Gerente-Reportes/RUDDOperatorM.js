@@ -66,7 +66,9 @@ class RUDDOperatorM extends React.Component {
                     <CardHeader className="bg-white border-0">
                     <Row className="align-items-center">
                         <Col xs="8">
-                        <h3 className="mb-0">{t("Admin.Info.2")} {this.state.operator.first_name}</h3>
+                        <font size="5">{t("Admin.Info.2")} {this.state.operator.first_name}</font>
+                        <br></br>
+                        <font size="3">{this.props.location.pathname}</font>
                         </Col>
                     </Row>
                     </CardHeader>

@@ -87,6 +87,8 @@ class RegisteredAdmins extends React.Component {
                         <Card className="shadow">
                             <CardHeader className="border-0">
                             <font size="5">{t("Admin.ActiveAdmins.1")}</font>
+                            <br></br>
+                            <font size="3">{this.props.location.pathname}</font>
                             </CardHeader>
                             <Alert color="info" isOpen={this.state.isdisabledAdmin}>
                                 {t("Admin.DisableAdmin.1")}

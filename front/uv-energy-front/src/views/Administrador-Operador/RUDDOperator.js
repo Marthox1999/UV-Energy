@@ -255,6 +255,8 @@ class RUDDOperator extends React.Component {
                     <Row className="align-items-center">
                         <Col xs="8">
                         <font size="5">{this.state.operator.first_name} {t("Operator.Information.1")}</font>
+                        <br></br>
+                        <font size="3">{this.props.location.pathname}</font>
                         </Col>
                     </Row>
                     </CardHeader>
