@@ -50,7 +50,7 @@
     "i18next": "^19.3.2",
     "i18next-browser-languagedetector": "^4.0.2",
     "i18next-xhr-backend": "^3.2.2",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "leaflet": "^1.6.0",
     "moment": "2.24.0",
     "node-sass": "^4.14.1",
